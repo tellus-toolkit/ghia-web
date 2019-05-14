@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/js/manchester-lsoa-full.js" />
+    <file url="file://$PROJECT_DIR$/js/manchester-lsoa-generalised.js" />
+    <file url="file://$PROJECT_DIR$/js/manchester-lsoa-super-generalised.js" />
+    <file url="file://$PROJECT_DIR$/js/nuts-3-2013-polygons-v4-epsg-4326-p4.js" />
+  </component>
+</project>
