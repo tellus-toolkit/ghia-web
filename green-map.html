@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.css">
   <!--<link rel="stylesheet" href="libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.min.css">-->
 
-  <link rel="stylesheet" href="styles/map.css">
+  <link rel="stylesheet" href="styles/green-map.css">
   <link rel="stylesheet" href="styles/loader.css">
 
   <!-- JQuery -->
@@ -64,7 +64,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Map <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="map.html">Map</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Green Map <span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>
@@ -252,41 +255,43 @@
 
   <!-- Component: Sidebar -->
   <div>
-  <!--<div id="sidebar" class="sidebar collapsed sidebar-right leaflet-touch">-->
+  <div id="sidebar" class="sidebar collapsed sidebar-right leaflet-touch">
 
-    <!--&lt;!&ndash; Component: Sidebar Tabs &ndash;&gt;-->
-    <!--<div id="sidebarTabsVM" class="sidebar-tabs">-->
-      <!--<ul role="tablist">-->
-        <!--<li id="map-controls-button" title="Show / Hide Map Controls"-->
-            <!--data-toggle="tooltip" data-placement="left" aria-label="Show / Hide Map Controls"-->
-            <!--v-on:click="hideTooltip('#map-controls-button')">-->
-          <!--&lt;!&ndash;<a href="#info" role="tab"><i class="fas fa-bars"></i></a>&ndash;&gt;-->
-          <!--&lt;!&ndash;<a href="#info" role="tab"><i class="fas fa-bars"></i></a>&ndash;&gt;-->
-          <!--&lt;!&ndash;<a href="#map-controls" role="tab">&ndash;&gt;-->
-          <!--&lt;!&ndash;<i class="crt-material-icons">menu</i>&ndash;&gt;-->
-          <!--&lt;!&ndash;</a>&ndash;&gt;-->
-          <!--&lt;!&ndash;<a href="#map-controls" role="tab"><i class="fas fa-map"></i></a>&ndash;&gt;-->
+    <!-- Component: Sidebar Tabs -->
+    <div id="sidebarTabsVM" class="sidebar-tabs">
+      <ul role="tablist">
+        <li id="map-controls-button" title="Show / Hide Map Controls"
+            data-toggle="tooltip" data-placement="left" aria-label="Show / Hide Map Controls"
+            v-on:click="hideTooltip('#map-controls-button')">
+          <!--<a href="#info" role="tab"><i class="fas fa-bars"></i></a>-->
+          <!--<a href="#info" role="tab"><i class="fas fa-bars"></i></a>-->
           <!--<a href="#map-controls" role="tab">-->
-            <!--<i class="crt-material-icons">chrome_reader_mode</i>-->
+          <!--<i class="crt-material-icons">menu</i>-->
           <!--</a>-->
-        <!--</li>-->
-        <!--<li id="typology-info-button" title="Show / Hide Typology Information"-->
-            <!--data-toggle="tooltip" data-placement="left" aria-label="Show / Hide Typology Information"-->
-            <!--v-on:click="hideTooltip('#typology-info-button')">-->
-          <!--<a href="#typology-info" role="tab">-->
-            <!--<i class="crt-material-icons">assignment</i>-->
-          <!--</a>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
+          <!--<a href="#map-controls" role="tab"><i class="fas fa-map"></i></a>-->
+          <a href="#map-controls" role="tab">
+            <i class="crt-material-icons">chrome_reader_mode</i>
+          </a>
+        </li>
+        <li id="typology-info-button" title="Show / Hide Typology Information"
+            data-toggle="tooltip" data-placement="left" aria-label="Show / Hide Typology Information"
+            v-on:click="hideTooltip('#typology-info-button')">
+          <a href="#typology-info" role="tab">
+            <i class="crt-material-icons">assignment</i>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-    <!--&lt;!&ndash; Component: Sidebar Content &ndash;&gt;-->
-    <!--<div class="sidebar-content h-100">-->
+    <!-- Component: Sidebar Content -->
+    <div class="sidebar-content h-100">
 
-      <!--&lt;!&ndash; Component: Map Controls &ndash;&gt;-->
-      <!--<div class="sidebar-pane h-100" id="map-controls">-->
+      <!-- Component: Map Controls -->
+      <div class="sidebar-pane h-100" id="map-controls">
 
-        <!--<div class="pane-container h-100" >-->
+        <div class="pane-container h-100" >
+
+          <p>Map Controls</p>
 
           <!--&lt;!&ndash; Component: Symbology &ndash;&gt;-->
           <!--<div id="symbologyVM" class="h-100"-->
@@ -3578,7 +3583,7 @@
                                     <!--</canvas>-->
 
                                   <!--</div>-->
-                                  <!---->
+
                                 <!--</div>-->
 
                               <!--</div>-->
@@ -3600,18 +3605,18 @@
 
           <!--</div>-->
 
-        <!--</div>-->
+        </div>
 
-      <!--</div>-->
+      </div>
 
-      <!--&lt;!&ndash; Component: Typology Info &ndash;&gt;-->
-      <!--<div class="sidebar-pane h-100" id="typology-info">-->
-        <!--<p>Typology Information</p>-->
-      <!--</div>-->
+      <!-- Component: Typology Info -->
+      <div class="sidebar-pane h-100" id="typology-info">
+        <p>Typo Info</p>
+      </div>
 
-    <!--</div>-->
+    </div>
 
-  <!--</div>-->
+  </div>
   </div>
 
 </div>
@@ -3649,7 +3654,7 @@
 <!--<script type="text/javascript" src="js/manchester-lsoa-full.js"></script>-->
 <script type="text/javascript" src="js/manchester-lsoa-generalised.js"></script>
 <!--<script type="text/javascript" src="js/manchester-lsoa-super-generalised.js"></script>-->
-<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/green-map.js"></script>
 
 <!--<script>-->
   <!--$(document).ready(function () {-->

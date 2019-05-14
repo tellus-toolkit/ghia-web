@@ -383,21 +383,17 @@ let MapLayers = {
   // TODO: Update the documentation.
 
   /**
-   * The LSOAs polygons layer
+   * The LSOA polygons layer
    */
-  lsoas: {
+  lsoa: {
 
     /**
      * The name of the layer.
      */
-    name: 'lsoas',
+    name: 'lsoa',
 
     /**
-     * The attribution to add on the map related to the NUTS3 layer.
-     *
-     * Official attribution string. The version used on the map omits UN-FAO and Turkstat.
-     * Data source: GISCO - Eurostat (European Commission)
-     * Administrative boundaries: © EuroGeographics © UN-FAO © Turkstat.
+     * The attribution to add on the map related to the LSOA layer.
      */
     attribution: 'Data source: ' +
       '<a href="https://www.ordnancesurvey.co.uk/" target="_cf">Crown Copyright - Ordnance Survey</a>',
@@ -408,12 +404,12 @@ let MapLayers = {
     namedBasemapLayers: {
 
       /**
-       * Object light is used to define the styles used to render the NUTS3 layer on top of the Light Basemap.
+       * Object light is used to define the styles used to render the LSOA layer on top of the Light Basemap.
        */
       light: {
 
         /**
-         * The default style used to render NUTS3 polygons on top of the Light Basemap.
+         * The default style used to render LSOA polygons on top of the Light Basemap.
          */
         defaultStyle: {
           stroke: true,
@@ -428,7 +424,7 @@ let MapLayers = {
         },
 
         /**
-         * The default style used to highlight the current NUTS3 polygon on top of the Light Basemap.
+         * The default style used to highlight the current LSOA polygon on top of the Light Basemap.
          */
         defaultHighlightingStyle: {
           stroke: true,
@@ -459,12 +455,12 @@ let MapLayers = {
       },
 
       /**
-       * Object dark is used to define the styles used to render the NUTS3 layer on top of the Dark Basemap.
+       * Object dark is used to define the styles used to render the LSOA layer on top of the Dark Basemap.
        */
       dark: {
 
         /**
-         * The default style used to render NUTS3 polygons on top of the Dark Basemap.
+         * The default style used to render LSOA polygons on top of the Dark Basemap.
          */
         defaultStyle: {
           stroke: true,
@@ -479,7 +475,7 @@ let MapLayers = {
         },
 
         /**
-         * The default style used to highlight the current NUTS3 polygon on top of the Dark Basemap.
+         * The default style used to highlight the current LSOA polygon on top of the Dark Basemap.
          */
         defaultHighlightingStyle: {
           stroke: true,
@@ -510,12 +506,12 @@ let MapLayers = {
       },
 
       /**
-       * Object roads is used to define the styles used to render the NUTS3 layer on top of the Roads Basemap.
+       * Object roads is used to define the styles used to render the LSOA layer on top of the Roads Basemap.
        */
       roads: {
 
         /**
-         * The default style used to render NUTS3 polygons on top of the Roads Basemap.
+         * The default style used to render LSOA polygons on top of the Roads Basemap.
          */
         defaultStyle: {
           stroke: true,
@@ -530,7 +526,7 @@ let MapLayers = {
         },
 
         /**
-         * The default style used to highlight the current NUTS3 polygon on top of the Roads Basemap.
+         * The default style used to highlight the current LSOA polygon on top of the Roads Basemap.
          */
         defaultHighlightingStyle: {
           stroke: true,
@@ -561,12 +557,12 @@ let MapLayers = {
       },
 
       /**
-       * Object physical is used to define the styles used to render the NUTS3 layer on top of the Physical Basemap.
+       * Object physical is used to define the styles used to render the LSOA layer on top of the Physical Basemap.
        */
       physical: {
 
         /**
-         * The default style used to render NUTS3 polygons on top of the Physical Basemap.
+         * The default style used to render LSOA polygons on top of the Physical Basemap.
          */
         defaultStyle: {
           stroke: true,
@@ -581,7 +577,7 @@ let MapLayers = {
         },
 
         /**
-         * The default style used to highlight the current NUTS3 polygon on top of the Physical Basemap.
+         * The default style used to highlight the current LSOA polygon on top of the Physical Basemap.
          */
         defaultHighlightingStyle: {
           stroke: true,
@@ -612,12 +608,12 @@ let MapLayers = {
       },
 
       /**
-       * Object terrain is used to define the styles used to render the NUTS3 layer on top of the Terrain Basemap.
+       * Object terrain is used to define the styles used to render the LSOA layer on top of the Terrain Basemap.
        */
       terrain: {
 
         /**
-         * The default style used to render NUTS3 polygons on top of the Terrain Basemap.
+         * The default style used to render LSOA polygons on top of the Terrain Basemap.
          */
         defaultStyle: {
           stroke: true,
@@ -632,7 +628,7 @@ let MapLayers = {
         },
 
         /**
-         * The default style used to highlight the current NUTS3 polygon on top of the Terrain Basemap.
+         * The default style used to highlight the current LSOA polygon on top of the Terrain Basemap.
          */
         defaultHighlightingStyle: {
           stroke: true,
@@ -663,12 +659,12 @@ let MapLayers = {
       },
 
       /**
-       * Object satellite is used to define the styles used to render the NUTS3 layer on top of the Satellite Basemap.
+       * Object satellite is used to define the styles used to render the LSOA layer on top of the Satellite Basemap.
        */
       satellite: {
 
         /**
-         * The default style used to render NUTS3 polygons on top of the Satellite Basemap.
+         * The default style used to render LSOA polygons on top of the Satellite Basemap.
          */
         defaultStyle: {
           stroke: true,
@@ -683,7 +679,7 @@ let MapLayers = {
         },
 
         /**
-         * The default style used to highlight the current NUTS3 polygon on top of the Satellite Basemap.
+         * The default style used to highlight the current LSOA polygon on top of the Satellite Basemap.
          */
         defaultHighlightingStyle: {
           stroke: true,
@@ -775,7 +771,7 @@ let MapLayers = {
     },
 
     /**
-     * Creates the LSOAs layer.
+     * Creates the LSOA layer.
      */
     createLayer: function() {
 
@@ -790,9 +786,9 @@ let MapLayers = {
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
         /**
-         * The LSOAs layer attribution to insert on the map.
+         * The LSOA layer attribution to insert on the map.
          */
-        attribution: MapLayers.lsoas.attribution,
+        attribution: MapLayers.lsoa.attribution,
 
         // TODO: RESIN - Correct rendering code to allow the use of the current basemap and the current rendering method (typology supergroups / groups or indicators)
         style: function(feature) {
@@ -800,17 +796,17 @@ let MapLayers = {
 
           // TODO: WORKAROUND for the class = 0 bug. (Introduced feature.properties.class !==0 because 2 LSOAs have a class of 0).
           if (feature.properties.class !==0) {
-            let isVisible = MapLayers.lsoas.classes[feature.properties.class.toString()].visible;
+            let isVisible = MapLayers.lsoa.classes[feature.properties.class.toString()].visible;
 
             if (isVisible) {
-              return MapLayers.lsoas.namedBasemapLayers[namedBaseMap].pc10[feature.properties.class];
+              return MapLayers.lsoa.namedBasemapLayers[namedBaseMap].pc10[feature.properties.class];
             }
             else {
-              return MapLayers.nuts3.namedBasemapLayers[namedBaseMap].defaultStyle;
+              return MapLayers.lsoa.namedBasemapLayers[namedBaseMap].defaultStyle;
             }
           }
           else {
-            return MapLayers.nuts3.namedBasemapLayers[namedBaseMap].defaultStyle;
+            return MapLayers.lsoa.namedBasemapLayers[namedBaseMap].defaultStyle;
           }
 
         },
@@ -2342,7 +2338,7 @@ let Spatial = {
     BaseMapLayers.setNamedBasemapLayers();
     BaseMapLayers.createBaseMapLayers();
 
-    MapLayers.lsoas.createLayer();
+    MapLayers.lsoa.createLayer();
 
     Spatial.setInitialBaseMapLayer();
 
@@ -2503,7 +2499,7 @@ let toggleBaseMapViewModel = new Vue({
       baseLayer.bringToBack();
 
       //MapLayers.nuts3.renderLayer();
-      MapLayers.lsoas.renderLayer();
+      MapLayers.lsoa.renderLayer();
 
     }
 
