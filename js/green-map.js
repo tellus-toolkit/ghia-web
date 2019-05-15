@@ -29,8 +29,8 @@ let GlobalFunctions = {
 
 let raster = {
   metadata: {
-    columns:          5440,
-    rows:             3987,
+    columns:          5440, // 5500
+    rows:             3987, // 4000
     xLowerLeftCorner: 351672.35,
     yLowerLeftCorner: 381166.0433,
     cellSize:         10,
@@ -834,6 +834,646 @@ let MapLayers = {
   // TODO: Update the documentation.
 
   /**
+   * The GHIA raster Area of interest layer
+   */
+  ghiaAOI: {
+
+    /**
+     * The name of the layer.
+     */
+    name: 'ghiaAOI',
+
+    /**
+     * The x coordinate of the lower left corner of the GHIA area of interest in British National Grid. (EPSG:27700).
+     */
+    xmin: 351672.35,
+
+    /**
+     * The y coordinate of the lower left corner of the GHIA area of interest in British National Grid. (EPSG:27700).
+     */
+    ymin: 381166.0433,
+
+    /**
+     * The named basemap layers.
+     */
+    namedBasemapLayers: {
+
+      /**
+       * Object light is used to define the styles used to render the
+       * GHIA Area of Interest layer on top of the Light Basemap.
+       */
+      light: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object dark is used to define the styles used to render the
+       * GHIA Area of Interest layer on top of the Dark Basemap.
+       */
+      dark: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Dark Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object roads is used to define the styles used to render the
+       * GHIA Area of Interest layer on top of the Roads Basemap.
+       */
+      roads: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Roads Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object physical is used to define the styles used to render the
+       * GHIA Area of Interest layer on top of the Physical Basemap.
+       */
+      physical: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Physical Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object terrain is used to define the styles used to render the
+       * GHIA Area of Interest layer on top of the Terrain Basemap.
+       */
+      terrain: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Terrain Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object satellite is used to define the styles used to render the
+       * GHIA Area of Interest layer on top of the Satellite Basemap.
+       */
+      satellite: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Satellite Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      }
+
+    },
+
+    /**
+     * The leaflet map layer.
+     */
+    mapLayer: null,
+
+    /**
+     * The GeoJSON used to create the leaflet map layer.
+     */
+    geoJSON: null,
+
+    /**
+     * The LSOA feature selected by the user.
+     */
+    selectedFeature: null,
+
+    /**
+     * The internal layer of the selected LSOA feature.
+     */
+    selectedInternalLayer: null,
+
+    /**
+     * Creates the GHIA Area of Interest layer.
+     */
+    createLayer: function() {
+
+      // TODO: RESIN - Check next line.
+      // spinnerViewModel.isVisible = true;
+
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      this.geoJSON = AppData.ghiaAoi;
+
+      this.mapLayer = L.geoJSON(this.geoJSON, {
+
+        style: function(feature) {
+          return MapLayers.ghiaAOI.namedBasemapLayers[namedBaseMap].defaultStyle;
+        },
+
+        /**
+         * Define the behaviour of each feature.
+         *
+         * @param feature - The feature whose behaviour will be defined.
+         * @param layer - The internal layer of each feature.
+         */
+        // onEachFeature: function(feature, layer) {
+        //   layer.on({
+        //
+        //     /**
+        //      * Raised when the mouse is over a feature.
+        //      */
+        //     mouseover: function() {
+        //       MapLayers.nuts3.showTooltip(layer);
+        //       MapLayers.nuts3.highlightNuts3(feature, layer);
+        //     },
+        //
+        //     /**
+        //      * Raised when the mouse is going out of a feature.
+        //      */
+        //     mouseout: function() {
+        //       MapLayers.nuts3.hideTooltip(layer);
+        //       MapLayers.nuts3.resetNuts3Style(feature, layer, false);
+        //       MapLayers.nuts3.reselectNuts3();
+        //     },
+        //
+        //     /**
+        //      * Raised when a feature is clicked.
+        //      */
+        //     click: function() {
+        //       MapLayers.nuts3.selectNuts3(feature, layer);
+        //       MapLayers.nuts3.updateInfo(feature);
+        //     },
+        //
+        //     /**
+        //      * Raised when a feature is double clicked.
+        //      */
+        //     dblclick: function() {
+        //       //MapLayers.nuts3.resetNuts3Style(feature, layer);
+        //       //alert('double clicked');
+        //       //map.doubleClickZoom.disable();
+        //       //map.doubleClickZoom.enable()
+        //       // TODO: This is a problem. A click event is fired before the double click. We need to change this behaviour.
+        //       //Spatial.map.fitBounds(layer.getBounds());
+        //     }
+        //
+        //   });
+        // }
+      });
+
+      // Add the layer in to the map and make sure it is visible.
+      this.mapLayer.addTo(Spatial.map);
+      this.mapLayer.bringToFront();
+
+      // Loop through all the internal layers.
+      // Create the feature to internal layer dictionary and bind the layer tooltips.
+      // this.mapLayer.eachLayer(function(layer) {
+      //   MapLayers.nuts3.featureToInternalLayerDictionary[layer.feature.properties.NUTS_ID] = layer._leaflet_id;
+      //
+      //   layer.bindTooltip('', {
+      //     // TODO: RESIN - Check here the final tooltip options.
+      //     direction: 'top', // TODO: RESIN - APPVAR
+      //     offset: [0, -30], // TODO: RESIN - APPVAR
+      //     sticky: true
+      //   });
+      // });
+
+    },
+
+    /**
+     * Renders the NUTS3 layer.
+     */
+    // renderLayer: function() {
+    //
+    //   // Get the current basemap. This is used to decide the symbology of the NUTS3 polygons.
+    //   let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+    //
+    //   // Get the current tab.
+    //   let currentTab = symbologyViewModel.currentTab;
+    //
+    //   // Check whether NUTS3 features exist or not.
+    //   if (this.geoJSON !== undefined || this.geoJSON !== null) {
+    //
+    //     // Loop through the NUTS3 features.
+    //     for (i = 0; i < this.geoJSON.features.length; i++) {
+    //
+    //       // Get the NUTS3 feature, attribute name and the class value.
+    //       let feature = this.geoJSON.features[i];
+    //
+    //       if (currentTab !== 'indicators') {
+    //         // Render the layer based on typology classes (supergroups or groups).
+    //         let attributeName = this.typologyLevelDictionary[currentTab].attributeName;
+    //         let classValue = feature.properties[attributeName].toString();
+    //
+    //         // Render the NUTS3 polygon having the specified typology class.
+    //         this.renderNuts3PolygonByTypologyClass(feature, classValue, currentTab, currentBaseMap);
+    //       }
+    //       else {
+    //         let indicator = symbologyViewModel.selectedIndicators[symbologyViewModel.currentDomain][0];
+    //         let zscore = feature.properties[indicator + 'Z'];
+    //
+    //         // Render the layer based on the selected indicator.
+    //         this.renderNuts3PolygonByIndicator(feature, indicator, zscore);
+    //       }
+    //
+    //     }
+    //
+    //   }
+    //
+    //   MapLayers.nuts3.reselectNuts3();
+    //
+    // },
+
+
+  },
+
+  /**
+   * The GHIA 1km tiles layer
+   */
+  ghiaTiles1000: {
+
+    /**
+     * The name of the layer.
+     */
+    name: 'ghiaTiles1000',
+
+    /**
+     * The named basemap layers.
+     */
+    namedBasemapLayers: {
+
+      /**
+       * Object light is used to define the styles used to render the
+       * GHIA 1 km tiles layer on top of the Light Basemap.
+       */
+      light: {
+
+        /**
+         * The default style used to render the GHIA 1km tiles layer on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.blue900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object dark is used to define the styles used to render the
+       * GHIA 1 km tiles layer on top of the Dark Basemap.
+       */
+      dark: {
+
+        /**
+         * The default style used to render the GHIA 1 km tiles layer on top of the Dark Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.blue900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object roads is used to define the styles used to render the
+       * GHIA 1 km tiles layer on top of the Roads Basemap.
+       */
+      roads: {
+
+        /**
+         * The default style used to render the GHIA 1km tiles layer on top of the Roads Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.blue900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object physical is used to define the styles used to render the
+       * GHIA 1 km tiles layer on top of the Physical Basemap.
+       */
+      physical: {
+
+        /**
+         * The default style used to render the GHIA 1 km tiles layer on top of the Physical Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.blue900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object terrain is used to define the styles used to render the
+       * GHIA 1 km tiles layer on top of the Terrain Basemap.
+       */
+      terrain: {
+
+        /**
+         * The default style used to render the GHIA 1 km tiles layer on top of the Terrain Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.blue900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object satellite is used to define the styles used to render the
+       * GHIA 1 km tiles layer on top of the Satellite Basemap.
+       */
+      satellite: {
+
+        /**
+         * The default style used to render the GHIA 1 km tiles layer on top of the Satellite Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.blue900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      }
+
+    },
+
+    /**
+     * The columns of the GHIA 1 km tiles.
+     */
+    columns: 55,
+
+    /**
+     * The rows of the GHIA 1 km tiles.
+     */
+    rows: 40,
+
+    /**
+     * The leaflet map layer.
+     */
+    mapLayer: null,
+
+    /**
+     * The GeoJSON used to create the leaflet map layer.
+     */
+    geoJSON: null,
+
+    /**
+     * The LSOA feature selected by the user.
+     */
+    selectedFeature: null,
+
+    /**
+     * The internal layer of the selected LSOA feature.
+     */
+    selectedInternalLayer: null,
+
+    /**
+     * Creates the GHIA Area of Interest layer.
+     */
+    createLayer: function() {
+
+      // TODO: RESIN - Check next line.
+      // spinnerViewModel.isVisible = true;
+
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      this.geoJSON = AppData.ghiaTiles1000Polygons;
+
+      this.mapLayer = L.geoJSON(this.geoJSON, {
+
+        style: function(feature) {
+          return MapLayers.ghiaTiles1000.namedBasemapLayers[namedBaseMap].defaultStyle;
+        },
+
+        /**
+         * Define the behaviour of each feature.
+         *
+         * @param feature - The feature whose behaviour will be defined.
+         * @param layer - The internal layer of each feature.
+         */
+        // onEachFeature: function(feature, layer) {
+        //   layer.on({
+        //
+        //     /**
+        //      * Raised when the mouse is over a feature.
+        //      */
+        //     mouseover: function() {
+        //       MapLayers.nuts3.showTooltip(layer);
+        //       MapLayers.nuts3.highlightNuts3(feature, layer);
+        //     },
+        //
+        //     /**
+        //      * Raised when the mouse is going out of a feature.
+        //      */
+        //     mouseout: function() {
+        //       MapLayers.nuts3.hideTooltip(layer);
+        //       MapLayers.nuts3.resetNuts3Style(feature, layer, false);
+        //       MapLayers.nuts3.reselectNuts3();
+        //     },
+        //
+        //     /**
+        //      * Raised when a feature is clicked.
+        //      */
+        //     click: function() {
+        //       MapLayers.nuts3.selectNuts3(feature, layer);
+        //       MapLayers.nuts3.updateInfo(feature);
+        //     },
+        //
+        //     /**
+        //      * Raised when a feature is double clicked.
+        //      */
+        //     dblclick: function() {
+        //       //MapLayers.nuts3.resetNuts3Style(feature, layer);
+        //       //alert('double clicked');
+        //       //map.doubleClickZoom.disable();
+        //       //map.doubleClickZoom.enable()
+        //       // TODO: This is a problem. A click event is fired before the double click. We need to change this behaviour.
+        //       //Spatial.map.fitBounds(layer.getBounds());
+        //     }
+        //
+        //   });
+        // }
+      });
+
+      // Add the layer in to the map and make sure it is visible.
+      this.mapLayer.addTo(Spatial.map);
+      this.mapLayer.bringToFront();
+
+      // Loop through all the internal layers.
+      // Create the feature to internal layer dictionary and bind the layer tooltips.
+      // this.mapLayer.eachLayer(function(layer) {
+      //   MapLayers.nuts3.featureToInternalLayerDictionary[layer.feature.properties.NUTS_ID] = layer._leaflet_id;
+      //
+      //   layer.bindTooltip('', {
+      //     // TODO: RESIN - Check here the final tooltip options.
+      //     direction: 'top', // TODO: RESIN - APPVAR
+      //     offset: [0, -30], // TODO: RESIN - APPVAR
+      //     sticky: true
+      //   });
+      // });
+
+    },
+
+    /**
+     * Renders the NUTS3 layer.
+     */
+    // renderLayer: function() {
+    //
+    //   // Get the current basemap. This is used to decide the symbology of the NUTS3 polygons.
+    //   let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+    //
+    //   // Get the current tab.
+    //   let currentTab = symbologyViewModel.currentTab;
+    //
+    //   // Check whether NUTS3 features exist or not.
+    //   if (this.geoJSON !== undefined || this.geoJSON !== null) {
+    //
+    //     // Loop through the NUTS3 features.
+    //     for (i = 0; i < this.geoJSON.features.length; i++) {
+    //
+    //       // Get the NUTS3 feature, attribute name and the class value.
+    //       let feature = this.geoJSON.features[i];
+    //
+    //       if (currentTab !== 'indicators') {
+    //         // Render the layer based on typology classes (supergroups or groups).
+    //         let attributeName = this.typologyLevelDictionary[currentTab].attributeName;
+    //         let classValue = feature.properties[attributeName].toString();
+    //
+    //         // Render the NUTS3 polygon having the specified typology class.
+    //         this.renderNuts3PolygonByTypologyClass(feature, classValue, currentTab, currentBaseMap);
+    //       }
+    //       else {
+    //         let indicator = symbologyViewModel.selectedIndicators[symbologyViewModel.currentDomain][0];
+    //         let zscore = feature.properties[indicator + 'Z'];
+    //
+    //         // Render the layer based on the selected indicator.
+    //         this.renderNuts3PolygonByIndicator(feature, indicator, zscore);
+    //       }
+    //
+    //     }
+    //
+    //   }
+    //
+    //   MapLayers.nuts3.reselectNuts3();
+    //
+    // },
+
+
+  },
+
+  /**
    * The LSOA polygons layer
    */
   lsoa: {
@@ -1302,6 +1942,18 @@ let Spatial = {
   sidebar: null,
 
   /**
+   * The EPSG definition for the WGS84 Projection. (EPSG:4326).
+   */
+  // +proj=longlat +datum=WGS84 +no_defs
+  wgs84Projection: '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs',
+
+  /**
+   * The EPSG definition for the British National Grid Projection. (EPSG:27700).
+   */
+  // '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=446.448,-125.157,542.06,0.15,0.247,0.842,-20.489 +units=m +no_defs',
+  osgbProjection: '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs',
+
+  /**
    * The map of the application.
    */
   map: null,
@@ -1332,7 +1984,15 @@ let Spatial = {
     });
 
     Spatial.map.on('click', function(e) {
-      alert(e.latlng);
+
+      let coords = proj4(Spatial.wgs84Projection, Spatial.osgbProjection, [e.latlng.lng, e.latlng.lat]);
+
+      let tile = Spatial.getTile1000(coords);
+
+      alert(tile);
+
+      // alert(coords[0]);
+      // alert(coords[1]);
     });
 
     // Move the attribution control to the bottom-left.
@@ -1346,7 +2006,10 @@ let Spatial = {
     BaseMapLayers.setNamedBasemapLayers();
     BaseMapLayers.createBaseMapLayers();
 
+    MapLayers.ghiaTiles1000.createLayer();
+    MapLayers.ghiaAOI.createLayer();
     MapLayers.lsoa.createLayer();
+
 
     Spatial.setInitialBaseMapLayer();
 
@@ -1367,7 +2030,25 @@ let Spatial = {
     baseLayer.addTo(Spatial.map);
     baseLayer.bringToBack();
 
+  },
+
+  /**
+   * Returns the Tile1000.
+   *
+   * @param coords - The array of x and y coordinates in British National Grid (EPSG:27700)
+   *                 used to retrieve the 1km tile.
+   * @returns {number[]} - A 2 position array having the x and y index of the tile.
+   */
+  getTile1000: function(coords) {
+
+    let nx = Math.floor((coords[0] - MapLayers.ghiaAOI.xmin) / 1000);
+
+    let ny = Math.floor((MapLayers.ghiaAOI.ymin + (MapLayers.ghiaTiles1000.rows * 1000) - coords[1]) / 1000);
+
+    return [nx, ny];
+
   }
+
 
 };
 

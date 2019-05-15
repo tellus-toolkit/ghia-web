@@ -3,4 +3,8 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/js/ghia-ilm-v-1-1-aoi.js" />
+    <file url="file://$PROJECT_DIR$/js/ghia-ilm-v-1-1-tiles1000.js" />
+  </component>
 </project>
