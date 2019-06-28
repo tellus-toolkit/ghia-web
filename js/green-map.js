@@ -1989,7 +1989,10 @@ let Spatial = {
 
       let tile = Spatial.getTile1000(coords);
 
-      alert(tile);
+      let coordsMessage = 'Lon: ' + e.latlng.lng + ' Lat: ' + e.latlng.lat + '\r\n' +
+                          'x: ' + coords[0] + ' y: ' + coords[1] + '\r\n' +
+                          'tile: ' + tile;
+      alert(coordsMessage);
 
       // alert(coords[0]);
       // alert(coords[1]);
