@@ -1995,8 +1995,7 @@ let Spatial = {
 
       alert(coordsMessage);
 
-      Spatial.getReport(coords);
-      
+      Spatial.getReport(e.latlng.lat, e.latlng.lng);
 
     });
 
@@ -2056,9 +2055,9 @@ let Spatial = {
 
 
 
-  getReport: function(coords) {
+  getReport: function(lat, lon) {
 
-    var url = 'http://localhost:8082/report/@' + coords[1] + ',' + coords[0];
+    var url = 'http://localhost:8082/report/@' + lat + ',' + lon;
 
     $.ajax({
       url: url,
