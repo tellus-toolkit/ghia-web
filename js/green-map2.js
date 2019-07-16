@@ -2057,7 +2057,7 @@ let Spatial = {
 
   getReport: function(lat, lon) {
 
-    var url = 'http://localhost:8082/report/@' + lat + ',' + lon;
+    var url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
 
     $.ajax({
       url: url,

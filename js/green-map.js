@@ -1994,6 +1994,8 @@ let Spatial = {
                           'tile: ' + tile;
       alert(coordsMessage);
 
+      Spatial.getReport(e.latlng.lat, e.latlng.lng);
+
       // alert(coords[0]);
       // alert(coords[1]);
     });
@@ -2050,8 +2052,33 @@ let Spatial = {
 
     return [nx, ny];
 
-  }
+  },
 
+
+  getReport: function(lat, lon) {
+
+    var url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      crossDomain: true,
+      dataType: 'json',
+      success: function(result) {
+        
+        alert(result);
+        
+      },
+      error: function(xhr, status, error) {
+
+        let message = 'status' + '\r\n' + error + '\r\n';
+
+        alert(message);
+
+      }
+    });
+
+  }
 
 };
 
