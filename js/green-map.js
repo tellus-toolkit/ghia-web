@@ -2058,6 +2058,7 @@ let Spatial = {
   getReport: function(lat, lon) {
 
     var url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
+    //var url = 'http://maps.humanities.manchester.ac.uk/spatial/geoserver/commute-flow/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=commute-flow:commute-flow-thin-filtered-epsg-4326&cql_filter=rc=102004008&outputFormat=application/json';
 
     $.ajax({
       url: url,
@@ -2065,13 +2066,15 @@ let Spatial = {
       crossDomain: true,
       dataType: 'json',
       success: function(result) {
+
+        let resultJSON = JSON.stringify(result);
         
-        alert(result);
+        alert(resultJSON);
         
       },
       error: function(xhr, status, error) {
 
-        let message = 'status' + '\r\n' + error + '\r\n';
+        let message = 'status:' + status + '\r\n' + 'error:' + error + '\r\n';
 
         alert(message);
 
