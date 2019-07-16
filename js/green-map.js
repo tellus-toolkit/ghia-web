@@ -2057,7 +2057,8 @@ let Spatial = {
 
   getReport: function(lat, lon) {
 
-    var url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
+    //var url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
+    var url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/1';
     //var url = 'http://maps.humanities.manchester.ac.uk/spatial/geoserver/commute-flow/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=commute-flow:commute-flow-thin-filtered-epsg-4326&cql_filter=rc=102004008&outputFormat=application/json';
 
     $.ajax({
