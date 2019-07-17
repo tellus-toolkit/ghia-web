@@ -2057,29 +2057,77 @@ let Spatial = {
 
   getReport: function(lat, lon) {
 
-    var url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
-    //var url = 'http://maps.humanities.manchester.ac.uk/spatial/geoserver/commute-flow/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=commute-flow:commute-flow-thin-filtered-epsg-4326&cql_filter=rc=102004008&outputFormat=application/json';
+    // http://maps.humanities.manchester.ac.uk/resin/
+    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/:level
+    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/0
+    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/1
+    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/2
+    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/3
+    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/:level/:prev_levels_nuts_code
+    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/3/AT11
+    // http://maps.humanities.manchester.ac.uk/resin/typology/:name
+    // http://maps.humanities.manchester.ac.uk/resin/typology/supergroups
+    // http://maps.humanities.manchester.ac.uk/resin/typology/groups
+    // http://maps.humanities.manchester.ac.uk/resin/typology/indicators
+    // http://maps.humanities.manchester.ac.uk/resin/geospatial/:geometry_type/:nuts_id
+    // http://maps.humanities.manchester.ac.uk/resin/geospatial/centroids/EL512
+    // http://maps.humanities.manchester.ac.uk/resin/geospatial/polygons/EL512
 
-    $.ajax({
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/0';
+
+
+    // let url = 'http://localhost:3000';
+    // let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/raster-metadata';
+    let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
+    // let url = 'http://maps.humanities.manchester.ac.uk/spatial/geoserver/commute-flow/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=commute-flow:commute-flow-thin-filtered-epsg-4326&cql_filter=rc=102004008&outputFormat=application/json';
+
+
+
+    // $.ajax({
+    //   url: url,
+    //   type: 'GET',
+    //   crossDomain: true,
+    //   dataType: 'json',
+    //   success: function(result) {
+    //
+    //     let resultJSON = JSON.stringify(result);
+    //
+    //     alert(resultJSON);
+    //
+    //   },
+    //   error: function(xhr, status, error) {
+    //
+    //     let message = 'status:' + status + '\r\n' + 'error:' + error + '\r\n';
+    //
+    //     alert(message);
+    //
+    //   }
+    // });
+
+
+    // responseType: 'json'
+
+    axios({
+      method: 'get',
       url: url,
-      type: 'GET',
-      crossDomain: true,
-      dataType: 'json',
-      success: function(result) {
+      responseType: 'application/json'
+    })
+      .then(function (response) {
 
-        let resultJSON = JSON.stringify(result);
-        
-        alert(resultJSON);
-        
-      },
-      error: function(xhr, status, error) {
+        let result = JSON.stringify(response);
 
-        let message = 'status:' + status + '\r\n' + 'error:' + error + '\r\n';
+        alert(result);
+        //response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
 
-        alert(message);
+      })
+      .catch(function (error) {
+        let errorMessage = JSON.stringify(error);
+        alert(errorMessage);
+      })
+      .finally(function () {
+        // always executed
+      });
 
-      }
-    });
 
   }
 
