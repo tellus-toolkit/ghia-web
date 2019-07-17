@@ -2107,6 +2107,8 @@ let Spatial = {
 
     // responseType: 'json'
 
+    // axios
+
     axios({
       method: 'get',
       url: url,
