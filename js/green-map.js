@@ -2117,7 +2117,6 @@ let Spatial = {
         let result = JSON.stringify(response);
 
         alert(result);
-        //response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
 
       })
       .catch(function (error) {
