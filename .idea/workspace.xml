@@ -17,7 +17,7 @@
     <session id="-1990370333">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.6" value="1" />
@@ -81,7 +81,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/green-map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
+            <state relative-caret-position="533">
               <caret line="2134" column="2" lean-forward="true" selection-start-line="2134" selection-start-column="2" selection-end-line="2134" selection-end-column="2" />
               <folding>
                 <element signature="e#14158#25570#0" />
@@ -165,7 +165,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ghia-raster-service" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="C:\Users\mzdssvv2\AppData\Roaming\npm\node_modules\eslint" />
@@ -210,7 +210,7 @@
       <workItem from="1560429861555" duration="2641000" />
       <workItem from="1563320804250" duration="3606000" />
       <workItem from="1563324474170" duration="3542000" />
-      <workItem from="1563329912647" duration="308000" />
+      <workItem from="1563329912647" duration="343000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>
@@ -233,15 +233,21 @@
       <option name="project" value="LOCAL" />
       <updated>1563330085380</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="more final">
+      <created>1563330232138</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1563330232138</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29193000" />
+    <option name="totallyTimeSpent" value="29228000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -356,7 +362,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/green-map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
+        <state relative-caret-position="533">
           <caret line="2134" column="2" lean-forward="true" selection-start-line="2134" selection-start-column="2" selection-end-line="2134" selection-end-column="2" />
           <folding>
             <element signature="e#14158#25570#0" />
