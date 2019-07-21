@@ -844,16 +844,6 @@ let MapLayers = {
     name: 'ghiaAOI',
 
     /**
-     * The x coordinate of the lower left corner of the GHIA area of interest in British National Grid. (EPSG:27700).
-     */
-    xmin: 351672.35,
-
-    /**
-     * The y coordinate of the lower left corner of the GHIA area of interest in British National Grid. (EPSG:27700).
-     */
-    ymin: 381166.0433,
-
-    /**
      * The named basemap layers.
      */
     namedBasemapLayers: {
@@ -1033,76 +1023,27 @@ let MapLayers = {
 
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
-        style: function(feature) {
-          return MapLayers.ghiaAOI.namedBasemapLayers[namedBaseMap].defaultStyle;
-        },
+        /**
+         * Instruct leaflet.pm to ignore this layer.
+         */
+        pmIgnore: true,
 
         /**
-         * Define the behaviour of each feature.
+         * Style the features of the layer using the associated default style defined for this layer.
+         * The default style for this layer depends on the selected background map.
          *
-         * @param feature - The feature whose behaviour will be defined.
-         * @param layer - The internal layer of each feature.
+         * @param feature - The feature to style.
+         * @returns {Style} - A Style capable of styling polygon features.
          */
-        // onEachFeature: function(feature, layer) {
-        //   layer.on({
-        //
-        //     /**
-        //      * Raised when the mouse is over a feature.
-        //      */
-        //     mouseover: function() {
-        //       MapLayers.nuts3.showTooltip(layer);
-        //       MapLayers.nuts3.highlightNuts3(feature, layer);
-        //     },
-        //
-        //     /**
-        //      * Raised when the mouse is going out of a feature.
-        //      */
-        //     mouseout: function() {
-        //       MapLayers.nuts3.hideTooltip(layer);
-        //       MapLayers.nuts3.resetNuts3Style(feature, layer, false);
-        //       MapLayers.nuts3.reselectNuts3();
-        //     },
-        //
-        //     /**
-        //      * Raised when a feature is clicked.
-        //      */
-        //     click: function() {
-        //       MapLayers.nuts3.selectNuts3(feature, layer);
-        //       MapLayers.nuts3.updateInfo(feature);
-        //     },
-        //
-        //     /**
-        //      * Raised when a feature is double clicked.
-        //      */
-        //     dblclick: function() {
-        //       //MapLayers.nuts3.resetNuts3Style(feature, layer);
-        //       //alert('double clicked');
-        //       //map.doubleClickZoom.disable();
-        //       //map.doubleClickZoom.enable()
-        //       // TODO: This is a problem. A click event is fired before the double click. We need to change this behaviour.
-        //       //Spatial.map.fitBounds(layer.getBounds());
-        //     }
-        //
-        //   });
-        // }
+        style: function(feature) {
+          return MapLayers.ghiaAOI.namedBasemapLayers[namedBaseMap].defaultStyle;
+        }
+
       });
 
       // Add the layer in to the map and make sure it is visible.
       this.mapLayer.addTo(Spatial.map);
       this.mapLayer.bringToFront();
-
-      // Loop through all the internal layers.
-      // Create the feature to internal layer dictionary and bind the layer tooltips.
-      // this.mapLayer.eachLayer(function(layer) {
-      //   MapLayers.nuts3.featureToInternalLayerDictionary[layer.feature.properties.NUTS_ID] = layer._leaflet_id;
-      //
-      //   layer.bindTooltip('', {
-      //     // TODO: RESIN - Check here the final tooltip options.
-      //     direction: 'top', // TODO: RESIN - APPVAR
-      //     offset: [0, -30], // TODO: RESIN - APPVAR
-      //     sticky: true
-      //   });
-      // });
 
     },
 
@@ -1149,7 +1090,6 @@ let MapLayers = {
     //   MapLayers.nuts3.reselectNuts3();
     //
     // },
-
 
   },
 
@@ -1309,16 +1249,6 @@ let MapLayers = {
     },
 
     /**
-     * The columns of the GHIA 1 km tiles.
-     */
-    columns: 55,
-
-    /**
-     * The rows of the GHIA 1 km tiles.
-     */
-    rows: 40,
-
-    /**
      * The leaflet map layer.
      */
     mapLayer: null,
@@ -1353,76 +1283,27 @@ let MapLayers = {
 
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
+        /**
+         * Instruct leaflet.pm to ignore this layer.
+         */
+        pmIgnore: true,
+
+        /**
+         * Style the features of the layer using the associated default style defined for this layer.
+         * The default style for this layer depends on the selected background map.
+         *
+         * @param feature - The feature to style.
+         * @returns {Style} - A Style capable of styling polygon features.
+         */
         style: function(feature) {
           return MapLayers.ghiaTiles1000.namedBasemapLayers[namedBaseMap].defaultStyle;
         },
 
-        /**
-         * Define the behaviour of each feature.
-         *
-         * @param feature - The feature whose behaviour will be defined.
-         * @param layer - The internal layer of each feature.
-         */
-        // onEachFeature: function(feature, layer) {
-        //   layer.on({
-        //
-        //     /**
-        //      * Raised when the mouse is over a feature.
-        //      */
-        //     mouseover: function() {
-        //       MapLayers.nuts3.showTooltip(layer);
-        //       MapLayers.nuts3.highlightNuts3(feature, layer);
-        //     },
-        //
-        //     /**
-        //      * Raised when the mouse is going out of a feature.
-        //      */
-        //     mouseout: function() {
-        //       MapLayers.nuts3.hideTooltip(layer);
-        //       MapLayers.nuts3.resetNuts3Style(feature, layer, false);
-        //       MapLayers.nuts3.reselectNuts3();
-        //     },
-        //
-        //     /**
-        //      * Raised when a feature is clicked.
-        //      */
-        //     click: function() {
-        //       MapLayers.nuts3.selectNuts3(feature, layer);
-        //       MapLayers.nuts3.updateInfo(feature);
-        //     },
-        //
-        //     /**
-        //      * Raised when a feature is double clicked.
-        //      */
-        //     dblclick: function() {
-        //       //MapLayers.nuts3.resetNuts3Style(feature, layer);
-        //       //alert('double clicked');
-        //       //map.doubleClickZoom.disable();
-        //       //map.doubleClickZoom.enable()
-        //       // TODO: This is a problem. A click event is fired before the double click. We need to change this behaviour.
-        //       //Spatial.map.fitBounds(layer.getBounds());
-        //     }
-        //
-        //   });
-        // }
       });
 
       // Add the layer in to the map and make sure it is visible.
       this.mapLayer.addTo(Spatial.map);
       this.mapLayer.bringToFront();
-
-      // Loop through all the internal layers.
-      // Create the feature to internal layer dictionary and bind the layer tooltips.
-      // this.mapLayer.eachLayer(function(layer) {
-      //   MapLayers.nuts3.featureToInternalLayerDictionary[layer.feature.properties.NUTS_ID] = layer._leaflet_id;
-      //
-      //   layer.bindTooltip('', {
-      //     // TODO: RESIN - Check here the final tooltip options.
-      //     direction: 'top', // TODO: RESIN - APPVAR
-      //     offset: [0, -30], // TODO: RESIN - APPVAR
-      //     sticky: true
-      //   });
-      // });
 
     },
 
@@ -1469,7 +1350,6 @@ let MapLayers = {
     //   MapLayers.nuts3.reselectNuts3();
     //
     // },
-
 
   },
 
@@ -1787,62 +1667,26 @@ let MapLayers = {
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
         /**
+         * Instruct leaflet.pm to ignore this layer.
+         */
+        pmIgnore: true,
+
+        /**
          * The LSOA layer attribution to insert on the map.
          */
         attribution: MapLayers.lsoa.attribution,
 
+        /**
+         * Style the features of the layer using the associated default style defined for this layer.
+         * The default style for this layer depends on the selected background map.
+         *
+         * @param feature - The feature to style.
+         * @returns {Style} - A Style capable of styling polygon features.
+         */
         style: function(feature) {
           return MapLayers.lsoa.namedBasemapLayers[namedBaseMap].defaultStyle;
-        },
+        }
 
-        /**
-         * Define the behaviour of each feature.
-         *
-         * @param feature - The feature whose behaviour will be defined.
-         * @param layer - The internal layer of each feature.
-         */
-        // onEachFeature: function(feature, layer) {
-        //   layer.on({
-        //
-        //     /**
-        //      * Raised when the mouse is over a feature.
-        //      */
-        //     mouseover: function() {
-        //       MapLayers.nuts3.showTooltip(layer);
-        //       MapLayers.nuts3.highlightNuts3(feature, layer);
-        //     },
-        //
-        //     /**
-        //      * Raised when the mouse is going out of a feature.
-        //      */
-        //     mouseout: function() {
-        //       MapLayers.nuts3.hideTooltip(layer);
-        //       MapLayers.nuts3.resetNuts3Style(feature, layer, false);
-        //       MapLayers.nuts3.reselectNuts3();
-        //     },
-        //
-        //     /**
-        //      * Raised when a feature is clicked.
-        //      */
-        //     click: function() {
-        //       MapLayers.nuts3.selectNuts3(feature, layer);
-        //       MapLayers.nuts3.updateInfo(feature);
-        //     },
-        //
-        //     /**
-        //      * Raised when a feature is double clicked.
-        //      */
-        //     dblclick: function() {
-        //       //MapLayers.nuts3.resetNuts3Style(feature, layer);
-        //       //alert('double clicked');
-        //       //map.doubleClickZoom.disable();
-        //       //map.doubleClickZoom.enable()
-        //       // TODO: This is a problem. A click event is fired before the double click. We need to change this behaviour.
-        //       //Spatial.map.fitBounds(layer.getBounds());
-        //     }
-        //
-        //   });
-        // }
       });
 
       // Add the layer in to the map and make sure it is visible.
@@ -1908,7 +1752,6 @@ let MapLayers = {
     //
     // },
 
-
   }
 
 };
@@ -1942,18 +1785,6 @@ let Spatial = {
   sidebar: null,
 
   /**
-   * The EPSG definition for the WGS84 Projection. (EPSG:4326).
-   */
-  // +proj=longlat +datum=WGS84 +no_defs
-  wgs84Projection: '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs',
-
-  /**
-   * The EPSG definition for the British National Grid Projection. (EPSG:27700).
-   */
-  // '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=446.448,-125.157,542.06,0.15,0.247,0.842,-20.489 +units=m +no_defs',
-  osgbProjection: '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs',
-
-  /**
    * The map of the application.
    */
   map: null,
@@ -1985,19 +1816,17 @@ let Spatial = {
 
     Spatial.map.on('click', function(e) {
 
-      let coords = proj4(Spatial.wgs84Projection, Spatial.osgbProjection, [e.latlng.lng, e.latlng.lat]);
-
-      let tile = Spatial.getTile1000(coords);
-
-      let coordsMessage = 'Lon: ' + e.latlng.lng + ' Lat: ' + e.latlng.lat + '\r\n' +
-                          'x: ' + coords[0] + ' y: ' + coords[1] + '\r\n' +
-                          'tile: ' + tile;
-      alert(coordsMessage);
-
       Spatial.getReport(e.latlng.lat, e.latlng.lng);
 
-      // alert(coords[0]);
-      // alert(coords[1]);
+    });
+
+    Spatial.map.pm.addControls({
+      position: 'topleft',
+      drawCircle: false,
+      drawPolyline: false,
+      drawRectangle: false,
+      dragMode: false,
+      cutPolygon: false
     });
 
     // Move the attribution control to the bottom-left.
@@ -2037,24 +1866,6 @@ let Spatial = {
 
   },
 
-  /**
-   * Returns the Tile1000.
-   *
-   * @param coords - The array of x and y coordinates in British National Grid (EPSG:27700)
-   *                 used to retrieve the 1km tile.
-   * @returns {number[]} - A 2 position array having the x and y index of the tile.
-   */
-  getTile1000: function(coords) {
-
-    let nx = Math.floor((coords[0] - MapLayers.ghiaAOI.xmin) / 1000);
-
-    let ny = Math.floor((MapLayers.ghiaAOI.ymin + (MapLayers.ghiaTiles1000.rows * 1000) - coords[1]) / 1000);
-
-    return [nx, ny];
-
-  },
-
-
   getReport: function(lat, lon) {
 
     // http://maps.humanities.manchester.ac.uk/resin/
@@ -2076,38 +1887,12 @@ let Spatial = {
     // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/0';
 
 
-    // let url = 'http://localhost:3000';
     // let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/raster-metadata';
+    // let url = 'http://localhost:8083/raster-metadata';
     let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
+    // let url = 'http://localhost:8083/report/@' + lat + ',' + lon;
     // let url = 'http://maps.humanities.manchester.ac.uk/spatial/geoserver/commute-flow/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=commute-flow:commute-flow-thin-filtered-epsg-4326&cql_filter=rc=102004008&outputFormat=application/json';
 
-
-
-    // $.ajax({
-    //   url: url,
-    //   type: 'GET',
-    //   crossDomain: true,
-    //   dataType: 'json',
-    //   success: function(result) {
-    //
-    //     let resultJSON = JSON.stringify(result);
-    //
-    //     alert(resultJSON);
-    //
-    //   },
-    //   error: function(xhr, status, error) {
-    //
-    //     let message = 'status:' + status + '\r\n' + 'error:' + error + '\r\n';
-    //
-    //     alert(message);
-    //
-    //   }
-    // });
-
-
-    // responseType: 'json'
-
-    // axios
 
     axios({
       method: 'get',
@@ -2128,7 +1913,6 @@ let Spatial = {
       .finally(function () {
         // always executed
       });
-
 
   }
 
