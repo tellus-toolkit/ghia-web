@@ -1824,9 +1824,14 @@ let Spatial = {
 
       if (feature.geometry.type === 'Point') {
         Spatial.getReportByPoint(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+
+        // Spatial.testPost1();
       }
       else if (feature.geometry.type === 'Polygon') {
+
         Spatial.getReportByPolygon(feature.geometry);
+
+        // Spatial.testPost1();
       }
 
       e.layer.options.editOptions.editTools.featuresLayer.clearLayers();
@@ -1871,91 +1876,201 @@ let Spatial = {
 
   },
 
+
+
   getReportByPoint: function(lat, lon) {
 
-    // http://maps.humanities.manchester.ac.uk/resin/
-    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/:level
-    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/0
-    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/1
-    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/2
-    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/3
-    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/:level/:prev_levels_nuts_code
-    // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/3/AT11
-    // http://maps.humanities.manchester.ac.uk/resin/typology/:name
-    // http://maps.humanities.manchester.ac.uk/resin/typology/supergroups
-    // http://maps.humanities.manchester.ac.uk/resin/typology/groups
-    // http://maps.humanities.manchester.ac.uk/resin/typology/indicators
-    // http://maps.humanities.manchester.ac.uk/resin/geospatial/:geometry_type/:nuts_id
-    // http://maps.humanities.manchester.ac.uk/resin/geospatial/centroids/EL512
-    // http://maps.humanities.manchester.ac.uk/resin/geospatial/polygons/EL512
-
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/0';
-
-
-    // let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/raster-metadata';
-    // let url = 'http://localhost:8083/raster-metadata';
     let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
-    // let url = 'http://localhost:8083/report/@' + lat + ',' + lon;
-    // let url = 'http://localhost:8083/report/@' + lat + ',' + lon;
-    // let url = 'http://maps.humanities.manchester.ac.uk/spatial/geoserver/commute-flow/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=commute-flow:commute-flow-thin-filtered-epsg-4326&cql_filter=rc=102004008&outputFormat=application/json';
 
+    axios.get(url)
+      .then(function(response) {
 
-    axios({
-      method: 'get',
-      url: url,
-      responseType: 'application/json'
-    })
-      .then(function (response) {
-
-        let result = JSON.stringify(response);
+        let result =
+          'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
+          'STATUS: '      + response.status + '\r\n' +
+          'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
+          'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
+          'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
+          'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
+          'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
 
         alert(result);
 
-      })
-      .catch(function (error) {
-        let errorMessage = JSON.stringify(error);
-        alert(errorMessage);
-      })
-      .finally(function () {
-        // always executed
-      });
+      }).catch(function(error) {
+
+      let result =
+        'ERROR:\r\n'  + '----------------------------------------\r\n' +
+        'MESSAGE: '     + error.message + '\r\n' +
+        'STACK: \r\n'   + error.stack + '\r\n\r\n' +
+        'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
+        'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
+        'STATUS: '      + error.status + '\r\n' +
+        'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
+        'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
+        'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+
+      alert(result);
+
+    }).finally(function() {
+
+    });
 
   },
 
-  getReportByPolygon: function(polygon) {
+  testGet1: function(lat, lon) {
 
-    // let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin2/';
 
-    let url = 'http://localhost:8083/report/?polygon={"type": "Polygon", "coordinates": [[[-2.2576904296875004, 53.46837962792356], [-2.226791381835938, 53.47900545831375], [-2.19503402709961, 53.45882432637676], [-2.227392196655274, 53.45867101524035], [-2.2594928741455083, 53.4496246783658], [-2.2576904296875004, 53.46837962792356]]]}';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/:level';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/0';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/1';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/2';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/3';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/:level/:prev_levels_nuts_code';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/3/AT11';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/typology/:name';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/typology/supergroups';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/typology/groups';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/typology/indicators';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/geospatial/:geometry_type/:nuts_id';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/geospatial/centroids/EL512';
+    // let url = 'http://maps.humanities.manchester.ac.uk/resin/geospatial/polygons/EL512';
 
-    // let json = JSON.stringify(polygon);
+    // let url = 'http://maps.humanities.manchester.ac.uk/spatial/geoserver/commute-flow/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=commute-flow:commute-flow-thin-filtered-epsg-4326&cql_filter=rc=102004008&outputFormat=application/json';
 
-    // let json = '{"type": "Polygon", "coordinates": [[[-2.2576904296875004, 53.46837962792356], [-2.226791381835938, 53.47900545831375], [-2.19503402709961, 53.45882432637676], [-2.227392196655274, 53.45867101524035], [-2.2594928741455083, 53.4496246783658], [-2.2576904296875004, 53.46837962792356]]]}';
 
-    axios({
-      method: 'post',
-      url: url,
-      data: {
-        polygon: json
-      },
-      responseType: 'application/json'
-    })
-      .then(function (response) {
+    // let url = 'localhost:8083';
+    // let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server';
+    // let url = 'localhost:8083/raster-metadata';
+    // let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/raster-metadata';
+    // let url = 'localhost:8083/report/@' + lat + ',' + lon;
+    let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
 
-        let result = JSON.stringify(response);
+
+    axios.get(url)
+      .then(function(response) {
+
+        let result =
+          'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
+          'STATUS: '      + response.status + '\r\n' +
+          'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
+          'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
+          'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
+          'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
+          'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
 
         alert(result);
 
-      })
-      .catch(function (error) {
-        let errorMessage = JSON.stringify(error);
-        alert(errorMessage);
-      })
-      .finally(function () {
-        // always executed
-      });
+    }).catch(function(error) {
+
+      let result =
+        'ERROR:\r\n'  + '----------------------------------------\r\n' +
+        'MESSAGE: '     + error.message + '\r\n' +
+        'STACK: \r\n'   + error.stack + '\r\n\r\n' +
+        'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
+        'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
+        'STATUS: '      + error.status + '\r\n' +
+        'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
+        'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
+        'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+
+      alert(result);
+
+    }).finally(function() {
+
+    });
+
+  },
+
+
+  getReportByPolygon: function(polygon) {
+
+    let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report';
+    // let url = 'http://localhost:8083/report';
+
+    axios.post(url, {
+      polygon: polygon
+    }).then(function(response) {
+
+      let result =
+        'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
+        'STATUS: '      + response.status + '\r\n' +
+        'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
+        'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
+        'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
+        'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
+        'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
+
+      alert(result);
+
+    }).catch(function(error) {
+
+      let result =
+        'ERROR:\r\n'  + '----------------------------------------\r\n' +
+        'MESSAGE: '     + error.message + '\r\n' +
+        'STACK: \r\n'   + error.stack + '\r\n\r\n' +
+        'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
+        'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
+        'STATUS: '      + error.status + '\r\n' +
+        'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
+        'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
+        'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+
+      alert(result);
+
+    }).finally(function() {
+
+    });
+
+
+  },
+
+  testPost1: function() {
+
+    // let url = 'http://localhost:8083/report/?polygon={"type": "Polygon", "coordinates": [[[-2.2576904296875004, 53.46837962792356], [-2.226791381835938, 53.47900545831375], [-2.19503402709961, 53.45882432637676], [-2.227392196655274, 53.45867101524035], [-2.2594928741455083, 53.4496246783658], [-2.2576904296875004, 53.46837962792356]]]}';
+
+    // let json = '{"type": "Polygon", "coordinates": [[[-2.2576904296875004, 53.46837962792356], [-2.226791381835938, 53.47900545831375], [-2.19503402709961, 53.45882432637676], [-2.227392196655274, 53.45867101524035], [-2.2594928741455083, 53.4496246783658], [-2.2576904296875004, 53.46837962792356]]]}';
+
+    let url = 'http://localhost:8083/testpost1/';
+
+    axios.post(url, {
+      id: 12345
+    }).then(function(response) {
+
+      let result =
+        'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
+        'STATUS: '      + response.status + '\r\n' +
+        'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
+        'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
+        'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
+        'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
+        'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
+
+      alert(result);
+
+    }).catch(function(error) {
+
+      let result =
+        'ERROR:\r\n'  + '----------------------------------------\r\n' +
+        'MESSAGE: '     + error.message + '\r\n' +
+        'STACK: \r\n'   + error.stack + '\r\n\r\n' +
+        'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
+        'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
+        'STATUS: '      + error.status + '\r\n' +
+        'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
+        'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
+        'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+
+      alert(result);
+
+    }).finally(function() {
+
+    });
 
   }
+
+
 
 };
 
