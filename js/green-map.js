@@ -1811,22 +1811,26 @@ let Spatial = {
       center: Spatial.mapOptions.center,
       zoom: Spatial.mapOptions.zoom,
       minZoom: Spatial.mapOptions.minZoom,
-      maxZoom: Spatial.mapOptions.maxZoom
+      maxZoom: Spatial.mapOptions.maxZoom,
+      doubleClickZoom: false,
+      editable: true
     });
 
-    Spatial.map.on('click', function(e) {
+    Spatial.map.on('editable:drawing:end', function(e) {
 
-      Spatial.getReport(e.latlng.lat, e.latlng.lng);
+      let fLayers = e.layer.options.editOptions.editTools.featuresLayer.getLayers();
 
-    });
+      let feature = fLayers[0].toGeoJSON();
 
-    Spatial.map.pm.addControls({
-      position: 'topleft',
-      drawCircle: false,
-      drawPolyline: false,
-      drawRectangle: false,
-      dragMode: false,
-      cutPolygon: false
+      if (feature.geometry.type === 'Point') {
+        Spatial.getReportByPoint(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+      }
+      else if (feature.geometry.type === 'Polygon') {
+        Spatial.getReportByPolygon(feature.geometry);
+      }
+
+      e.layer.options.editOptions.editTools.featuresLayer.clearLayers();
+
     });
 
     // Move the attribution control to the bottom-left.
@@ -1836,6 +1840,7 @@ let Spatial = {
     // TODO: RESIN
     Spatial.sidebar = L.control.sidebar(Spatial.Members.sidebarName, { position: Spatial.Members.sidebarPosition });
     Spatial.sidebar.addTo(Spatial.map);
+
 
     BaseMapLayers.setNamedBasemapLayers();
     BaseMapLayers.createBaseMapLayers();
@@ -1866,7 +1871,7 @@ let Spatial = {
 
   },
 
-  getReport: function(lat, lon) {
+  getReportByPoint: function(lat, lon) {
 
     // http://maps.humanities.manchester.ac.uk/resin/
     // http://maps.humanities.manchester.ac.uk/resin/nuts/codes/:level
@@ -1891,12 +1896,48 @@ let Spatial = {
     // let url = 'http://localhost:8083/raster-metadata';
     let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
     // let url = 'http://localhost:8083/report/@' + lat + ',' + lon;
+    // let url = 'http://localhost:8083/report/@' + lat + ',' + lon;
     // let url = 'http://maps.humanities.manchester.ac.uk/spatial/geoserver/commute-flow/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=commute-flow:commute-flow-thin-filtered-epsg-4326&cql_filter=rc=102004008&outputFormat=application/json';
 
 
     axios({
       method: 'get',
       url: url,
+      responseType: 'application/json'
+    })
+      .then(function (response) {
+
+        let result = JSON.stringify(response);
+
+        alert(result);
+
+      })
+      .catch(function (error) {
+        let errorMessage = JSON.stringify(error);
+        alert(errorMessage);
+      })
+      .finally(function () {
+        // always executed
+      });
+
+  },
+
+  getReportByPolygon: function(polygon) {
+
+    // let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/';
+
+    let url = 'http://localhost:8083/report/?polygon={"type": "Polygon", "coordinates": [[[-2.2576904296875004, 53.46837962792356], [-2.226791381835938, 53.47900545831375], [-2.19503402709961, 53.45882432637676], [-2.227392196655274, 53.45867101524035], [-2.2594928741455083, 53.4496246783658], [-2.2576904296875004, 53.46837962792356]]]}';
+
+    // let json = JSON.stringify(polygon);
+
+    // let json = '{"type": "Polygon", "coordinates": [[[-2.2576904296875004, 53.46837962792356], [-2.226791381835938, 53.47900545831375], [-2.19503402709961, 53.45882432637676], [-2.227392196655274, 53.45867101524035], [-2.2594928741455083, 53.4496246783658], [-2.2576904296875004, 53.46837962792356]]]}';
+
+    axios({
+      method: 'post',
+      url: url,
+      data: {
+        polygon: json
+      },
       responseType: 'application/json'
     })
       .then(function (response) {
@@ -2061,6 +2102,49 @@ let toggleBaseMapViewModel = new Vue({
   }
 
 });
+
+
+
+
+let reportViewModel = new Vue({
+
+  /**
+   * The name of the view model.
+   */
+  el: '#reportVM',
+
+  /**
+   * The model of the view model.
+   */
+  data: {
+
+  },
+
+  /**
+   * The methods of the view model.
+   */
+  methods: {
+
+    reportByPoint(point) {
+      Spatial.map.editTools.startMarker();
+    },
+
+
+    reportByPolygon(polygon) {
+      // alert('polygon');
+
+      Spatial.map.editTools.startPolygon();
+
+    }
+
+  }
+
+});
+
+
+
+
+
 
 /**
  * The symbologyViewModel provides tha data and logic

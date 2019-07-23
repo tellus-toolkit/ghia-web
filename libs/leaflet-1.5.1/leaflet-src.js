@@ -4391,7 +4391,7 @@ var Map = Evented.extend({
 		this._fireDOMEvent(e, type);
 	},
 
-	_mouseEvents: ['click', 'dblclick', 'mouseover', 'mouseout', 'contextmenu'],
+  _mouseEvents: ['click', 'dblclick', 'mouseover', 'mouseout', 'contextmenu'],
 
 	_fireDOMEvent: function (e, type, targets) {
 
