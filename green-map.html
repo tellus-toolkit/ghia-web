@@ -13,7 +13,7 @@
   <!--<link rel="shortcut icon" href="images/favicons/favicon.ico" type="image/x-icon">-->
 
   <!-- Fonts -->
-  <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 
   <!-- Bootstrap -->
   <!--<link rel="stylesheet" href="libs/bootstrap-material-design-v4.1.1/css/bootstrap-material-design.css" >-->
@@ -58,7 +58,7 @@
 <body>
 
 <!-- Component: Navigation Menu -->
-<nav id="navBarHost" class="navbar fixed-top navbar-expand-lg navbar-dark primary-color">
+<nav id="navBarHost" class="navbar fixed-top navbar-expand-lg navbar-dark indigo">
   <!--<nav id="navBarHost" class="navbar navbar-expand-lg navbar-dark primary-color">-->
   <!--<nav class="navbar navbar-expand-lg navbar-dark primary-color">-->
   <a class="navbar-brand" href="index.html">GHIA</a>
@@ -153,12 +153,6 @@
   </div>
 
 
-  <!-- Component: NUTS3 Profile -->
-  <!--<div id="nuts3ProfileVM" class="nuts3-profile-vm collapse">-->
-
-
-  <!--</div>-->
-
 
   <div class="map-container">
 
@@ -183,7 +177,7 @@
       <div class="btn-group-toggle" role="group">
         <!--dropdown-toggle-->
         <!--data-toggle="tooltip" data-placement="bottom" v-bind:title="Click to change Basemap"-->
-        <button id="basemapDropdownButtonGroup" type="button" class="btn btn-danger btn-raised dropdown-toggle"
+        <button id="basemapDropdownButtonGroup" type="button" class="btn btn-indigo btn-raised dropdown-toggle"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 v-bind:aria-label="dictionary[currentBaseMap].description">
           <!--v-bind:aria-pressed="[currentBaseMap === 'dark' ? 'true' : 'false']"-->
@@ -197,59 +191,83 @@
         </button>
 
         <div class="dropdown-menu" aria-labelledby="basemapDropdownButtonGroup">
-          <button id="lightButton" type="button" class="btn dropdown-item dropdown-item-basemap"
+          <button id="lightButton" type="button" class="btn dropdown-item dropdown-item-basemap mb-1"
                   v-bind:aria-label="dictionary['light'].description"
                   v-bind:aria-pressed="[currentBaseMap === 'light' ? 'true' : 'false']"
-                  v-bind:class="[currentBaseMap === 'light' ? 'btn-danger btn-raised' : 'btn-dark']"
+                  v-bind:class="[currentBaseMap === 'light' ? 'btn-indigo btn-raised' : '']"
                   v-on:click="setCurrentBaseMap('light')">
-            <i class="material-icons text-dark" v-text="dictionary['light'].iconName"></i>
-            <div class="crt-ver-sep"></div>
-            <div v-text="dictionary['light'].name"></div>
+            <div class="pt-2 pb-2">
+              <i class="material-icons v-allign-middle"
+                 v-bind:class="[currentBaseMap === 'light' ? '' : 'text-dark']"
+                 v-text="dictionary['light'].iconName">
+              </i>
+              <span class="v-allign-middle" v-text="dictionary['light'].name"></span>
+            </div>
           </button>
-          <button id="darkButton" type="button" class="btn dropdown-item dropdown-item-basemap"
+          <button id="darkButton" type="button" class="btn dropdown-item dropdown-item-basemap mb-1"
                   v-bind:aria-label="dictionary['dark'].description"
-                  v-bind:aria-pressed="[currentBaseMap === 'dark' ? 'true' : 'false']"
-                  v-bind:class="[currentBaseMap === 'dark' ? 'btn-danger btn-raised' : 'btn-dark']"
+                  v-bind:aria-pressed="[currentBaseMap === 'light' ? 'true' : 'false']"
+                  v-bind:class="[currentBaseMap === 'dark' ? 'btn-indigo btn-raised' : '']"
                   v-on:click="setCurrentBaseMap('dark')">
-            <i class="material-icons text-dark" v-text="dictionary['dark'].iconName"></i>
-            <div class="crt-ver-sep"></div>
-            <div v-text="dictionary['dark'].name"></div>
+            <div class="pt-2 pb-2">
+              <i class="material-icons v-allign-middle"
+                 v-bind:class="[currentBaseMap === 'dark' ? '' : 'text-dark']"
+                 v-text="dictionary['dark'].iconName">
+              </i>
+              <span class="v-allign-middle" v-text="dictionary['dark'].name"></span>
+            </div>
           </button>
-          <button id="roadsButton" type="button" class="btn dropdown-item dropdown-item-basemap"
+          <button id="roadsButton" type="button" class="btn dropdown-item dropdown-item-basemap mb-1"
                   v-bind:aria-label="dictionary['roads'].description"
-                  v-bind:aria-pressed="[currentBaseMap === 'roads' ? 'true' : 'false']"
-                  v-bind:class="[currentBaseMap === 'roads' ? 'btn-danger btn-raised' : 'btn-dark']"
+                  v-bind:aria-pressed="[currentBaseMap === 'light' ? 'true' : 'false']"
+                  v-bind:class="[currentBaseMap === 'roads' ? 'btn-indigo btn-raised' : '']"
                   v-on:click="setCurrentBaseMap('roads')">
-            <i class="material-icons text-dark" v-text="dictionary['roads'].iconName"></i>
-            <div class="crt-ver-sep"></div>
-            <div v-text="dictionary['roads'].name"></div>
+            <div class="pt-2 pb-2">
+              <i class="material-icons v-allign-middle"
+                 v-bind:class="[currentBaseMap === 'roads' ? '' : 'text-dark']"
+                 v-text="dictionary['roads'].iconName">
+              </i>
+              <span class="v-allign-middle" v-text="dictionary['roads'].name"></span>
+            </div>
           </button>
-          <button id="physicalButton" type="button" class="btn dropdown-item dropdown-item-basemap"
+          <button id="physicalButton" type="button" class="btn dropdown-item dropdown-item-basemap mb-1"
                   v-bind:aria-label="dictionary['physical'].description"
-                  v-bind:aria-pressed="[currentBaseMap === 'physical' ? 'true' : 'false']"
-                  v-bind:class="[currentBaseMap === 'physical' ? 'btn-danger btn-raised' : 'btn-dark']"
+                  v-bind:aria-pressed="[currentBaseMap === 'light' ? 'true' : 'false']"
+                  v-bind:class="[currentBaseMap === 'physical' ? 'btn-indigo btn-raised' : '']"
                   v-on:click="setCurrentBaseMap('physical')">
-            <i class="material-icons text-dark" v-text="dictionary['physical'].iconName"></i>
-            <div class="crt-ver-sep"></div>
-            <div v-text="dictionary['physical'].name"></div>
+            <div class="pt-2 pb-2">
+              <i class="material-icons v-allign-middle"
+                 v-bind:class="[currentBaseMap === 'physical' ? '' : 'text-dark']"
+                 v-text="dictionary['physical'].iconName">
+              </i>
+              <span class="v-allign-middle" v-text="dictionary['physical'].name"></span>
+            </div>
           </button>
-          <button id="terrainButton" type="button" class="btn dropdown-item dropdown-item-basemap"
+          <button id="terrainButton" type="button" class="btn dropdown-item dropdown-item-basemap mb-1"
                   v-bind:aria-label="dictionary['terrain'].description"
-                  v-bind:aria-pressed="[currentBaseMap === 'terrain' ? 'true' : 'false']"
-                  v-bind:class="[currentBaseMap === 'terrain' ? 'btn-danger btn-raised' : 'btn-dark']"
+                  v-bind:aria-pressed="[currentBaseMap === 'light' ? 'true' : 'false']"
+                  v-bind:class="[currentBaseMap === 'terrain' ? 'btn-indigo btn-raised' : '']"
                   v-on:click="setCurrentBaseMap('terrain')">
-            <i class="material-icons text-dark" v-text="dictionary['terrain'].iconName"></i>
-            <div class="crt-ver-sep"></div>
-            <div v-text="dictionary['terrain'].name"></div>
+            <div class="pt-2 pb-2">
+              <i class="material-icons v-allign-middle"
+                 v-bind:class="[currentBaseMap === 'terrain' ? '' : 'text-dark']"
+                 v-text="dictionary['terrain'].iconName">
+              </i>
+              <span class="v-allign-middle" v-text="dictionary['terrain'].name"></span>
+            </div>
           </button>
-          <button id="satelliteButton" type="button" class="btn dropdown-item dropdown-item-basemap"
+          <button id="satelliteButton" type="button" class="btn dropdown-item dropdown-item-basemap mb-1"
                   v-bind:aria-label="dictionary['satellite'].description"
-                  v-bind:aria-pressed="[currentBaseMap === 'satellite' ? 'true' : 'false']"
-                  v-bind:class="[currentBaseMap === 'satellite' ? 'btn-danger btn-raised' : 'btn-dark']"
+                  v-bind:aria-pressed="[currentBaseMap === 'light' ? 'true' : 'false']"
+                  v-bind:class="[currentBaseMap === 'satellite' ? 'btn-indigo btn-raised' : '']"
                   v-on:click="setCurrentBaseMap('satellite')">
-            <i class="material-icons text-dark" v-text="dictionary['satellite'].iconName"></i>
-            <div class="crt-ver-sep"></div>
-            <div v-text="dictionary['satellite'].name"></div>
+            <div class="pt-2 pb-2">
+              <i class="material-icons v-allign-middle"
+                 v-bind:class="[currentBaseMap === 'satellite' ? '' : 'text-dark']"
+                 v-text="dictionary['satellite'].iconName">
+              </i>
+              <span class="v-allign-middle" v-text="dictionary['satellite'].name"></span>
+            </div>
           </button>
 
         </div>
@@ -272,21 +290,21 @@
             <!--<a href="#info" role="tab"><i class="fas fa-bars"></i></a>-->
             <!--<a href="#info" role="tab"><i class="fas fa-bars"></i></a>-->
             <!--<a href="#map-controls" role="tab">-->
-            <!--<i class="crt-material-icons">menu</i>-->
+            <!--<i class="ghia-material-icons">menu</i>-->
             <!--</a>-->
             <!--<a href="#map-controls" role="tab"><i class="fas fa-map"></i></a>-->
             <a href="#map-controls" role="tab">
-              <!--<i class="crt-material-icons">chrome_reader_mode</i>-->
-
-              <i class="fas fa-bars"></i>
-
+<!--              <i class="fas fa-bars"></i>-->
+<!--              <i class="ghia-material-icons text-dark">chrome_reader_mode</i>-->
+<!--              <i class="material-icons">web</i>-->
+              <i class="ghia-material-icons text-dark">menu</i>
             </a>
           </li>
           <!--<li id="typology-info-button" title="Show / Hide Typology Information"-->
               <!--data-toggle="tooltip" data-placement="left" aria-label="Show / Hide Typology Information"-->
               <!--v-on:click="hideTooltip('#typology-info-button')">-->
             <!--<a href="#typology-info" role="tab">-->
-              <!--<i class="crt-material-icons">assignment</i>-->
+              <!--<i class="ghia-material-icons">assignment</i>-->
             <!--</a>-->
           <!--</li>-->
         </ul>
@@ -315,7 +333,7 @@
                     By Point
                   </button>
 
-                  <div class="crt-ver-sep"></div>
+                  <div class="ghia-ver-sep"></div>
 
                   <button type="button" class="btn btn-primary btn-outline-primary"
                           v-on:click="reportByPolygon">
@@ -329,9 +347,7 @@
 
 
 
-
-
-
+            <div>
             <!--&lt;!&ndash; Component: Symbology &ndash;&gt;-->
             <!--<div id="symbologyVM" class="h-100"-->
             <!--v-bind:class="[isVisible === false ? 'd-none' : '']">-->
@@ -3398,7 +3414,7 @@
             <!--Select All-->
             <!--</button>-->
 
-            <!--<div class="crt-ver-sep"></div>-->
+            <!--<div class="ghia-ver-sep"></div>-->
 
             <!--<button type="button" class="btn btn-danger btn-outline-danger"-->
             <!--v-on:click="deselectAll">-->
@@ -3643,15 +3659,17 @@
             <!--</div>-->
 
             <!--</div>-->
+            </div>
+
 
           </div>
 
         </div>
 
         <!-- Component: Typology Info -->
-        <div class="sidebar-pane h-100" id="typology-info">
-          <p>Typo Info</p>
-        </div>
+<!--        <div class="sidebar-pane h-100" id="typology-info">-->
+<!--          <p>Typo Info</p>-->
+<!--        </div>-->
 
       </div>
 

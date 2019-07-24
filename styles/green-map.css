@@ -193,6 +193,9 @@ body {
   padding: 0 12px 0 12px;
 }
 
+.v-allign-middle {
+  vertical-align: middle;
+}
 
 
 
@@ -228,28 +231,28 @@ body {
 
 
 
-.crt-row {
+.ghia-row {
   /*margin: 10px 0 0 0;*/
   /*margin: 10px;*/
 }
 
-.crt-row-internal {
+.ghia-row-internal {
   display: flex;
   flex-wrap: wrap;
   margin-right: 0;
   margin-left: 0;
 }
 
-.crt-hor-sep {
+.ghia-hor-sep {
   margin: 20px 0 0 0;
 }
 
-.crt-ver-sep {
+.ghia-ver-sep {
   margin: 0 10px 0 0;
 }
 
 /* Material Icons */
-.crt-material-icons {
+.ghia-material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
@@ -271,25 +274,25 @@ body {
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
-.crt-material-icons.md-18 { font-size: 18px; }
-.crt-material-icons.md-24 { font-size: 24px; }
-.crt-material-icons.md-36 { font-size: 36px; }
-.crt-material-icons.md-48 { font-size: 48px; }
+.ghia-material-icons.md-18 { font-size: 18px; }
+.ghia-material-icons.md-24 { font-size: 24px; }
+.ghia-material-icons.md-36 { font-size: 36px; }
+.ghia-material-icons.md-48 { font-size: 48px; }
 
 /* Rules for using icons as black on a light background. */
 .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
 .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
-.crt-material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-.crt-material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.ghia-material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.ghia-material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
 /* Rules for using icons as white on a dark background. */
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
-.crt-material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.crt-material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.ghia-material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.ghia-material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
 .material-icons.orange600 { color: #FB8C00; }
-.crt-material-icons.orange600 { color: #FB8C00; }
+.ghia-material-icons.orange600 { color: #FB8C00; }
 
 
 
@@ -532,7 +535,21 @@ body {
 .sidebar-tabs > ul > li.active {
   color: #fff;
   /*background-color: #337ab7; !*#0074d9;*!*/
-  background-color: #f44336; /*#d9534f;*/ /*#0074d9;*/
+  /*background-color: #f44336; !*#d9534f;*! !*#0074d9;*!*/
+
+  /*background-color: #007bff; !* Blue *!*/
+  /*background-color: #6610f2; !* Indigo *!*/
+  /*background-color: #6f42c1; !* Purple *!*/
+  /*background-color: #e83e8c; !* Pink *!*/
+  /*background-color: #dc3545; !* Red *!*/
+  /*background-color: #fd7e14; !* Orange *!*/
+  background-color: #ffc107; /* Yellow */
+  /*background-color: #28a745; !* Green *!*/
+  /*background-color: #20c997; !* Teal *!*/
+  /*background-color: #17a2b8; !* Cyan *!*/
+  /*background-color: #6c757d; !* Gray *!*/
+  /*background-color: #343a40; !* Gray Dark *!*/
+  /*background-color: #6c757d; !* Secondary *!*/
 }
 
 .sidebar-tabs > li.disabled,
