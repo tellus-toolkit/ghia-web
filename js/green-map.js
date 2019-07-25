@@ -9,6 +9,15 @@
 // ================================================================================
 
 
+// https://stackoverflow.com/questions/14338683/how-can-i-support-cors-when-using-restify
+// https://github.com/Tabcorp/restify-cors-middleware
+// https://codepunk.io/using-cors-with-restify-in-nodejs/
+// https://www.npmjs.com/package/restify-cors-middleware
+// https://www.google.com/search?q=restify+CORS&rlz=1C1GCEU_en&oq=restify+CORS&aqs=chrome..69i57.5679j0j7&sourceid=chrome&ie=UTF-8
+// https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe/43881141
+// https://stackoverflow.com/questions/35588699/response-to-preflight-request-doesnt-pass-access-control-check
+
+
 let GlobalFunctions = {
 
   /**
@@ -895,7 +904,7 @@ let MapLayers = {
         defaultStyle: {
           stroke: true,
           color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
+          weight: 1,
           opacity: 1,
           fill: true,
           fillColor: '#ffffff',
@@ -987,7 +996,7 @@ let MapLayers = {
         defaultStyle: {
           stroke: true,
           color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
+          weight: 1,
           opacity: 1,
           fill: true,
           fillColor: '#ffffff',
@@ -1036,11 +1045,6 @@ let MapLayers = {
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
         /**
-         * Instruct leaflet.pm to ignore this layer.
-         */
-        pmIgnore: true,
-
-        /**
          * Style the features of the layer using the associated default style defined for this layer.
          * The default style for this layer depends on the selected background map.
          *
@@ -1060,48 +1064,23 @@ let MapLayers = {
     },
 
     /**
-     * Renders the NUTS3 layer.
+     * Renders the GHIA Area of Interest layer.
      */
-    // renderLayer: function() {
-    //
-    //   // Get the current basemap. This is used to decide the symbology of the NUTS3 polygons.
-    //   let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
-    //
-    //   // Get the current tab.
-    //   let currentTab = symbologyViewModel.currentTab;
-    //
-    //   // Check whether NUTS3 features exist or not.
-    //   if (this.geoJSON !== undefined || this.geoJSON !== null) {
-    //
-    //     // Loop through the NUTS3 features.
-    //     for (i = 0; i < this.geoJSON.features.length; i++) {
-    //
-    //       // Get the NUTS3 feature, attribute name and the class value.
-    //       let feature = this.geoJSON.features[i];
-    //
-    //       if (currentTab !== 'indicators') {
-    //         // Render the layer based on typology classes (supergroups or groups).
-    //         let attributeName = this.typologyLevelDictionary[currentTab].attributeName;
-    //         let classValue = feature.properties[attributeName].toString();
-    //
-    //         // Render the NUTS3 polygon having the specified typology class.
-    //         this.renderNuts3PolygonByTypologyClass(feature, classValue, currentTab, currentBaseMap);
-    //       }
-    //       else {
-    //         let indicator = symbologyViewModel.selectedIndicators[symbologyViewModel.currentDomain][0];
-    //         let zscore = feature.properties[indicator + 'Z'];
-    //
-    //         // Render the layer based on the selected indicator.
-    //         this.renderNuts3PolygonByIndicator(feature, indicator, zscore);
-    //       }
-    //
-    //     }
-    //
-    //   }
-    //
-    //   MapLayers.nuts3.reselectNuts3();
-    //
-    // },
+    renderLayer: function() {
+
+      // Get the current basemap. This is used to decide the symbology of the GHIA Area of Interest polygons.
+      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Check whether GHIA area of Interest features exist or not.
+      if (this.geoJSON !== undefined || this.geoJSON !== null) {
+
+        this.mapLayer.eachLayer(function(layer) {
+          layer.setStyle(MapLayers.ghiaAOI.namedBasemapLayers[currentBaseMap].defaultStyle);
+        });
+
+      }
+
+    }
 
   },
 
@@ -1154,7 +1133,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.blue900.hex,
+          color: ColorPalettes.Material.amber.hex,
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1246,8 +1225,8 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.blue900.hex,
-          weight: 0.5,
+          color: ColorPalettes.Material.amber.hex,
+          weight: 0.7,
           opacity: 1,
           fill: true,
           fillColor: '#ffffff',
@@ -1296,11 +1275,6 @@ let MapLayers = {
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
         /**
-         * Instruct leaflet.pm to ignore this layer.
-         */
-        pmIgnore: true,
-
-        /**
          * Style the features of the layer using the associated default style defined for this layer.
          * The default style for this layer depends on the selected background map.
          *
@@ -1320,48 +1294,23 @@ let MapLayers = {
     },
 
     /**
-     * Renders the NUTS3 layer.
+     * Renders the GHIA Tiles 1000 layer.
      */
-    // renderLayer: function() {
-    //
-    //   // Get the current basemap. This is used to decide the symbology of the NUTS3 polygons.
-    //   let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
-    //
-    //   // Get the current tab.
-    //   let currentTab = symbologyViewModel.currentTab;
-    //
-    //   // Check whether NUTS3 features exist or not.
-    //   if (this.geoJSON !== undefined || this.geoJSON !== null) {
-    //
-    //     // Loop through the NUTS3 features.
-    //     for (i = 0; i < this.geoJSON.features.length; i++) {
-    //
-    //       // Get the NUTS3 feature, attribute name and the class value.
-    //       let feature = this.geoJSON.features[i];
-    //
-    //       if (currentTab !== 'indicators') {
-    //         // Render the layer based on typology classes (supergroups or groups).
-    //         let attributeName = this.typologyLevelDictionary[currentTab].attributeName;
-    //         let classValue = feature.properties[attributeName].toString();
-    //
-    //         // Render the NUTS3 polygon having the specified typology class.
-    //         this.renderNuts3PolygonByTypologyClass(feature, classValue, currentTab, currentBaseMap);
-    //       }
-    //       else {
-    //         let indicator = symbologyViewModel.selectedIndicators[symbologyViewModel.currentDomain][0];
-    //         let zscore = feature.properties[indicator + 'Z'];
-    //
-    //         // Render the layer based on the selected indicator.
-    //         this.renderNuts3PolygonByIndicator(feature, indicator, zscore);
-    //       }
-    //
-    //     }
-    //
-    //   }
-    //
-    //   MapLayers.nuts3.reselectNuts3();
-    //
-    // },
+    renderLayer: function() {
+
+      // Get the current basemap. This is used to decide the symbology of the GHIA Tiles 1000 polygons.
+      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Check whether GHIA Tiles 1000 features exist or not.
+      if (this.geoJSON !== undefined || this.geoJSON !== null) {
+
+        this.mapLayer.eachLayer(function(layer) {
+          layer.setStyle(MapLayers.ghiaTiles1000.namedBasemapLayers[currentBaseMap].defaultStyle);
+        });
+
+      }
+
+    }
 
   },
 
@@ -1396,7 +1345,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: '#282828', //'#4169E1',
+          color: '#282828',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1432,8 +1381,8 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: '#d3d3d3',
-          weight: 0.1,
+          color: '#dcdcdc',
+          weight: 0.3,
           opacity: 1,
           fill: true,
           fillColor: '#515151',
@@ -1468,7 +1417,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: '#2f4f4f', //'#2e8b57', //'#4b0082',
+          color: '#2f4f4f',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1504,7 +1453,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: '#282828', //'#4169E1',
+          color: '#282828',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1540,7 +1489,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: '#282828', //'#4169E1',
+          color: '#282828',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1576,7 +1525,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: '#282828', //'#4169E1',
+          color: '#dcdcdc',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1679,11 +1628,6 @@ let MapLayers = {
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
         /**
-         * Instruct leaflet.pm to ignore this layer.
-         */
-        pmIgnore: true,
-
-        /**
          * The LSOA layer attribution to insert on the map.
          */
         attribution: MapLayers.lsoa.attribution,
@@ -1708,7 +1652,7 @@ let MapLayers = {
       // Loop through all the internal layers.
       // Create the feature to internal layer dictionary and bind the layer tooltips.
       // this.mapLayer.eachLayer(function(layer) {
-      //   MapLayers.nuts3.featureToInternalLayerDictionary[layer.feature.properties.NUTS_ID] = layer._leaflet_id;
+      //   MapLayers.lsoa.featureToInternalLayerDictionary[layer.feature.properties.lsoa11cd] = layer._leaflet_id;
       //
       //   layer.bindTooltip('', {
       //     // TODO: RESIN - Check here the final tooltip options.
@@ -1721,46 +1665,21 @@ let MapLayers = {
     },
 
     /**
-     * Renders the NUTS3 layer.
+     * Renders the LSOA layer.
      */
     renderLayer: function() {
 
-      // Get the current basemap. This is used to decide the symbology of the NUTS3 polygons.
+      // Get the current basemap. This is used to decide the symbology of the LSOA polygons.
       let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
-      // Get the current tab.
-      let currentTab = symbologyViewModel.currentTab;
-
-      // Check whether NUTS3 features exist or not.
+      // Check whether LSOA features exist or not.
       if (this.geoJSON !== undefined || this.geoJSON !== null) {
 
-        // Loop through the NUTS3 features.
-        for (i = 0; i < this.geoJSON.features.length; i++) {
-
-          // Get the NUTS3 feature, attribute name and the class value.
-          let feature = this.geoJSON.features[i];
-
-          if (currentTab !== 'indicators') {
-            // Render the layer based on typology classes (supergroups or groups).
-            let attributeName = this.typologyLevelDictionary[currentTab].attributeName;
-            let classValue = feature.properties[attributeName].toString();
-
-            // Render the NUTS3 polygon having the specified typology class.
-            this.renderNuts3PolygonByTypologyClass(feature, classValue, currentTab, currentBaseMap);
-          }
-          else {
-            let indicator = symbologyViewModel.selectedIndicators[symbologyViewModel.currentDomain][0];
-            let zscore = feature.properties[indicator + 'Z'];
-
-            // Render the layer based on the selected indicator.
-            this.renderNuts3PolygonByIndicator(feature, indicator, zscore);
-          }
-
-        }
+        this.mapLayer.eachLayer(function(layer) {
+          layer.setStyle(MapLayers.lsoa.namedBasemapLayers[currentBaseMap].defaultStyle);
+        });
 
       }
-
-      MapLayers.nuts3.reselectNuts3();
 
     }
 
@@ -2248,8 +2167,9 @@ let toggleBaseMapViewModel = new Vue({
       baseLayer.addTo(Spatial.map);
       baseLayer.bringToBack();
 
-      //MapLayers.nuts3.renderLayer();
       MapLayers.lsoa.renderLayer();
+      MapLayers.ghiaTiles1000.renderLayer();
+      MapLayers.ghiaAOI.renderLayer();
 
     }
 
