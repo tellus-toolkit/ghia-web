@@ -139,7 +139,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="NBKnowledgePane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -166,7 +166,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="NBKnowledgePane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -231,6 +231,7 @@
       <workItem from="1563992562589" duration="5766000" />
       <workItem from="1564051704278" duration="11245000" />
       <workItem from="1564084043872" duration="881000" />
+      <workItem from="1564337462066" duration="592000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>
@@ -264,7 +265,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120340000" />
+    <option name="totallyTimeSpent" value="120932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
