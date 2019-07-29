@@ -18,6 +18,9 @@
 // https://stackoverflow.com/questions/35588699/response-to-preflight-request-doesnt-pass-access-control-check
 
 
+/**
+ * Provides functions used globally.
+ */
 let GlobalFunctions = {
 
   /**
@@ -44,475 +47,6 @@ let GlobalFunctions = {
 
 };
 
-
-
-
-
-let raster = {
-  metadata: {
-    columns:          5440, // 5500
-    rows:             3987, // 4000
-    xLowerLeftCorner: 351672.35,
-    yLowerLeftCorner: 381166.0433,
-    cellSize:         10,
-    noData:           -1
-  },
-  lookup: {
-    '11': {
-      count: 1890363,
-      form: "Built",
-      function: "Urban Other",
-      landscape: "Urban Other Built"
-    },
-    '13': {
-      count: 1082581,
-      form: "Built",
-      function: "Domestic Gardens",
-      landscape: "Domestic Gardens Built"
-    },
-    '14': {
-      count: 65683,
-      form: "Built",
-      function: "Public Recreation",
-      landscape: "Public Recreation Built"
-    },
-    '15': {
-      count: 251800,
-      form: "Built",
-      function: "Amenity",
-      landscape: "Amenity Built"
-    },
-    '16': {
-      count: 33834,
-      form: "Built",
-      function: "Previously Developed",
-      landscape: "Previously Developed Built"
-    },
-    '17': {
-      count: 93415,
-      form: "Built",
-      function: "Institutional",
-      landscape: "Institutional Built"
-    },
-    '18': {
-      count: 60,
-      form: "Built",
-      function: "Urban Other",
-      landscape: "Urban Other Built"
-    },
-    '21': {
-      count: 9262,
-      form: "Water",
-      function: "Urban Other",
-      landscape: "Urban Other Water"
-    },
-    '23': {
-      count: 1949,
-      form: "Water",
-      function: "Domestic Gardens",
-      landscape: "Domestic Gardens Water"
-    },
-    '24': {
-      count: 90817,
-      form: "Water",
-      function: "Public Recreation",
-      landscape: "Public Recreation Water"
-    },
-    '25': {
-      count: 37082,
-      form: "Water",
-      function: "Amenity",
-      landscape: "Amenity Water"
-    },
-    '26': {
-      count: 232,
-      form: "Water",
-      function: "Previously Developed",
-      landscape: "Previously Developed Water"
-    },
-    '27': {
-      count: 302,
-      form: "Water",
-      function: "Institutional",
-      landscape: "Institutional Water"
-    },
-    '28': {
-      count: 87463,
-      form: "Water",
-      function: "Peri-urban",
-      landscape: "Peri-urban Water"
-    },
-    '31': {
-      count: 152910,
-      form: "Grasses",
-      function: "Urban Other",
-      landscape: "Urban Other Grasses"
-    },
-    '33': {
-      count: 312356,
-      form: "Grasses",
-      function: "Domestic Gardens",
-      landscape: "Domestic Gardens Grasses"
-    },
-    '34': {
-      count: 270989,
-      form: "Grasses",
-      function: "Public Recreation",
-      landscape: "Public Recreation Grasses"
-    },
-    '35': {
-      count: 368232,
-      form: "Grasses",
-      function: "Amenity",
-      landscape: "Amenity Grasses"
-    },
-    '36': {
-      count: 4803,
-      form: "Grasses",
-      function: "Previously Developed",
-      landscape: "Previously Developed Grasses"
-    },
-    '37': {
-      count: 52626,
-      form: "Grasses",
-      function: "Institutional",
-      landscape: "Institutional Grasses"
-    },
-    '38': {
-      count: 959678,
-      form: "Grasses",
-      function: "Peri-urban",
-      landscape: "Peri-urban Grasses"
-    },
-    '41': {
-      count: 205147,
-      form: "Forbs and shrubs",
-      function: "Urban Other",
-      landscape: "Urban Other Forbs and shrubs"
-    },
-    '43': {
-      count: 422170,
-      form: "Forbs and shrubs",
-      function: "Domestic Gardens",
-      landscape: "Domestic Gardens Forbs and shrubs"
-    },
-    '44': {
-      count: 349814,
-      form: "Forbs and shrubs",
-      function: "Public Recreation",
-      landscape: "Public Recreation Forbs and shrubs"
-    },
-    '45': {
-      count: 778452,
-      form: "Forbs and shrubs",
-      function: "Amenity",
-      landscape: "Amenity Forbs and shrubs"
-    },
-    '46': {
-      count: 11460,
-      form: "Forbs and shrubs",
-      function: "Previously Developed",
-      landscape: "Previously Developed Forbs and shrubs"
-    },
-    '47': {
-      count: 57490,
-      form: "Forbs and shrubs",
-      function: "Institutional",
-      landscape: "Institutional Forbs and shrubs"
-    },
-    '48': {
-      count: 2557302,
-      form: "Forbs and shrubs",
-      function: "Peri-urban",
-      landscape: "Peri-urban Forbs and shrubs"
-    },
-    '51': {
-      count: 266714,
-      form: "Tree canopy",
-      function: "Urban Other",
-      landscape: "Urban Other Tree canopy"
-    },
-    '53': {
-      count: 557844,
-      form: "Tree canopy",
-      function: "Domestic Gardens",
-      landscape: "Domestic Gardens Tree canopy"
-    },
-    '54': {
-      count: 401480,
-      form: "Tree canopy",
-      function: "Public Recreation",
-      landscape: "Public Recreation Tree canopy"
-    },
-    '55': {
-      count: 795895,
-      form: "Tree canopy",
-      function: "Amenity",
-      landscape: "Amenity Tree canopy"
-    },
-    '56': {
-      count: 7136,
-      form: "Tree canopy",
-      function: "Previously Developed",
-      landscape: "Previously Developed Tree canopy"
-    },
-    '57': {
-      count: 46286,
-      form: "Tree canopy",
-      function: "Institutional",
-      landscape: "Institutional Tree canopy"
-    },
-    '58': {
-      count: 535310,
-      form: "Tree canopy",
-      function: "Peri-urban",
-      landscape: "Peri-urban Tree canopy"
-    }
-  },
-  dictionary: [
-    {
-      field: "form",
-      term: "Built",
-      description: "Sealed surfaces including roads, buildings and hardstanding"
-    },
-    {
-      field: "form",
-      term: "Water",
-      description: "Areas covered by natural and man-made water bodies and water courses"
-    },
-    {
-      field: "form",
-      term: "Grasses",
-      description: "Areas covered by lawns, mown grass or grass-like (graminoid) crops"
-    },
-    {
-      field: "form",
-      term: "Forbs and shrubs",
-      description: "Land dominated by herbaceous flowering plants and shrubs"
-    },
-    {
-      field: "form",
-      term: "Tree Canopy",
-      description: "Tree canopy"
-    },
-    {
-      field: "function",
-      term: "Urban Other",
-      description: "Land-use not assigned to any other function in this list and existing in urban areas"
-    },
-    {
-      field: "function",
-      term: "Domestic Gardens",
-      description: "Private domestic gardens"
-    },
-    {
-      field: "function",
-      term: "Public Recreation",
-      description: "Public Parks and Recreation. Accessible sites designated for leisure and recreation"
-    },
-    {
-      field: "function",
-      term: "Amenity",
-      description: "Green areas primarily aimed at increasing aesthetic value located between buildings, roads and other land-uses"
-    },
-    {
-      field: "function",
-      term: "Previously Developed",
-      description: "Brownfield sites and transitional land-use"
-    },
-    {
-      field: "function",
-      term: "Institutional",
-      description: "Intitutional land (e.g. on hospital, adminstrative or school grounds)"
-    },
-    {
-      field: "function",
-      term: "Peri-urban",
-      description: "Non-urban land-use within Greater Manchester"
-    },
-    {
-      field: "function",
-      term: "Urban Other Built",
-      description: "Land-use: Urban other; Land-cover: Built"
-    },
-    {
-      field: "function",
-      term: "Urban Other Water",
-      description: "Land-use: Urban other; Land-cover: Water"
-    },
-    {
-      field: "function",
-      term: "Urban Other Grasses",
-      description: "Land-use: Urban other; Land-cover: Grasses"
-    },
-    {
-      field: "function",
-      term: "Urban Other Forbs and shrubs",
-      description: "Land-use: Urban other; Land-cover: Forbs and Shrubs"
-    },
-    {
-      field: "function",
-      term: "Urban Other Tree canopy",
-      description: "Land-use: Urban other; Land-cover: Tree Canopy"
-    },
-    {
-      field: "function",
-      term: "Public Recreation Built",
-      description: "Land-use: Public Parks and Recreation: Land-cover: Built"
-    },
-    {
-      field: "function",
-      term: "Public Recreation Water",
-      description: "Land-use: Public Parks and Recreation: Land-cover: Water"
-    },
-    {
-      field: "function",
-      term: "Public Recreation Grasses",
-      description: "Land-use: Public Parks and Recreation: Land-cover: Grasses"
-    },
-    {
-      field: "function",
-      term: "Public Recreation Forbs and shrubs",
-      description: "Land-use: Public Parks and Recreation: Land-cover: Forbs and Shrubs"
-    },
-    {
-      field: "function",
-      term: "Public Recreation Tree canopy",
-      description: "Land-use: Public Parks and Recreation: Land-cover: Tree Canopy"
-    },
-    {
-      field: "function",
-      term: "Amenity Built",
-      description: "Land-use: Amenity; Land-cover: Built"
-    },
-    {
-      field: "function",
-      term: "Amenity Water",
-      description: "Land-use: Amenity; Land-cover: Water"
-    },
-    {
-      field: "function",
-      term: "Amenity Grasses",
-      description: "Land-use: Amenity; Land-cover: Grasses"
-    },
-    {
-      field: "function",
-      term: "Amenity Forbs and Shrubs",
-      description: "Land-use: Amenity; Land-cover: Forbs and Shrubs"
-    },
-    {
-      field: "function",
-      term: "Amenity Tree canopy",
-      description: "Land-use: Amenity; Land-cover: Tree Canopy"
-    },
-    {
-      field: "function",
-      term: "Domestic Gardens Buillt",
-      description: "Land-use: Domestic Gardens; Land-cover: Built"
-    },
-    {
-      field: "function",
-      term: "Domestic Gardens Water",
-      description: "Land-use: Domestic Gardens; Land-cover: Water"
-    },
-    {
-      field: "function",
-      term: "Domestic Gardens Grasses",
-      description: "Land-use: Domestic Gardens; Land-cover: Grasses"
-    },
-    {
-      field: "function",
-      term: "Domestic Gardens Forbs and Shrubs",
-      description: "Land-use: Domestic Gardens; Land-cover: Forbs and Shrubs"
-    },
-    {
-      field: "function",
-      term: "Domestic Gardens Tree canopy",
-      description: "Land-use: Domestic Gardens; Land-cover: Tree Canopy"
-    },
-    {
-      field: "function",
-      term: "Institutional Built",
-      description: "Land-use: Institutional Land; Land-cover: Built"
-    },
-    {
-      field: "function",
-      term: "Institutional Water",
-      description: "Land-use: Institutional Land; Land-cover: Water"
-    },
-    {
-      field: "function",
-      term: "Institutional Grasses",
-      description: "Land-use: Institutional Land; Land-cover: Grasses"
-    },
-    {
-      field: "function",
-      term: "Institutional Forbs and shrubs",
-      description: "Land-use: Institutional Land; Land-cover: Forbs and Shrubs"
-    },
-    {
-      field: "function",
-      term: "Institutional Tree canopy",
-      description: "Land-use: Institutional Land; Land-cover: Tree Canopy"
-    },
-    {
-      field: "function",
-      term: "Previously Developed Built",
-      description: "Land-use: Previously developed; Land-cover: Built"
-    },
-    {
-      field: "function",
-      term: "Previously Developed Water",
-      description: "Land-use: Previously developed; Land-cover: Water"
-    },
-    {
-      field: "function",
-      term: "Previously Developed Grasses",
-      description: "Land-use: Previously developed; Land-cover: Grasses"
-    },
-    {
-      field: "function",
-      term: "Previously Developed Forbs",
-      description: "Land-use: Previously developed; Land-cover: Forbs and Shrubs"
-    },
-    {
-      field: "function",
-      term: "Previously Developed Tree canopy",
-      description: "Land-use: Previously developed; Land-cover: Tree Canopy"
-    },
-    {
-      field: "function",
-      term: "Peri-urban Built",
-      description: "Land-use: Peri-urban; Land-cover: Built"
-    },
-    {
-      field: "function",
-      term: "Peri-urban Water",
-      description: "Land-use: Peri-urban; Land-cover: Water"
-    },
-    {
-      field: "function",
-      term: "Peri-urban Grasses",
-      description: "Land-use: Peri-urban; Land-cover: Grasses"
-    },
-    {
-      field: "function",
-      term: "Peri-urban Forbs and shrubs",
-      description: "Land-use: Peri-urban; Land-cover: Forbs and Shrubs"
-    },
-    {
-      field: "function",
-      term: "Peri-urban Tree canopy",
-      description: "Land-use: Peri-urban; Land-cover: Tree Canopy"
-    }
-  ]
-};
-
-
-
-
-
-
 /**
  * The AppState object holds the application state.
  */
@@ -526,30 +60,7 @@ let AppState = {
   /**
    * The transparent color is used in those cases that a highly transparent color needs to be rendered.
    */
-  transparentColor: { fillColor: '#ffffff', fillOpacity: 0.01 },
-
-  /**
-   * The NUTS3 panel displayed currently on the sidebar.
-   */
-  currentNuts3Panel: 'symbology', // ['symbology' | 'overview' | 'details']
-
-  // Overview
-  // 1.blur_on, 2.local_library, 3.center_focus_weak, all_out, language, wallpaper, calendar_today, 360, trip_origin, fullscreen, public
-  //
-  // Details
-  // 1.blur_circular, 2.event_note, 3.[center_focus_strong, crop_free], book, class, extension, pageview, library_books, menu
-
-
-
-  /**
-   * Sets the visibility of the panels of the web page.
-   */
-  setPanelsVisibility: function() {
-    symbologyViewModel.isVisible = (AppState.currentNuts3Panel === 'symbology');
-    overviewInfoViewModel.isVisible = (AppState.currentNuts3Panel === 'overview');
-    // TODO: RESIN - UNCOMMENT THIS !!!
-    // detailsInfoViewModel.isVisible = (AppState.currentNuts3Panel === 'details');
-  }
+  transparentColor: { fillColor: '#ffffff', fillOpacity: 0.01 }
 
 };
 
@@ -1325,7 +836,7 @@ let MapLayers = {
     name: 'lsoa',
 
     /**
-     * The attribution to add on the map related to the NUTS3 layer.
+     * The attribution to add on the map related to the LSOA layer.
      */
     attribution: 'Data source: ' +
       '<a href="https://www.ordnancesurvey.co.uk/" target="_cf">Crown Copyright - Ordnance Survey</a>',
@@ -1449,7 +960,7 @@ let MapLayers = {
       physical: {
 
         /**
-         * The default style used to render NUTS3 polygons on top of the Physical Basemap.
+         * The default style used to render LSOA polygons on top of the Physical Basemap.
          */
         defaultStyle: {
           stroke: true,
@@ -1464,7 +975,7 @@ let MapLayers = {
         },
 
         /**
-         * The default style used to highlight the current NUTS3 polygon on top of the Physical Basemap.
+         * The default style used to highlight the current LSOA polygon on top of the Physical Basemap.
          */
         defaultHighlightingStyle: {
           stroke: true,
@@ -1810,6 +1321,17 @@ let Spatial = {
 
 };
 
+/**
+ * Used to provide the raster metadata and to hold the extracted values.
+ */
+let Raster = {
+  metadata: undefined,
+  query: {
+    type: undefined,
+    data: undefined
+  },
+  data: undefined
+};
 
 /**
  * Provides methods to get raster information from the REST GHIA raster server.
@@ -1820,6 +1342,41 @@ let RestClient = {
    * The base url of the GHIA raster server.
    */
   baseURL: 'http://maps.humanities.manchester.ac.uk/ghia-raster-server',
+
+  /**
+   * Gets the raster metadata.
+   */
+  getMetadata: function() {
+
+    let url = this.baseURL + '/raster-metadata';
+
+    axios.get(url)
+      .then(function(response) {
+
+        Raster.metadata = response.data;
+
+      }).catch(function(error) {
+
+        // TODO: Change this Alert !!!
+
+        let result =
+          'ERROR:\r\n'  + '----------------------------------------\r\n' +
+          'MESSAGE: '     + error.message + '\r\n' +
+          'STACK: \r\n'   + error.stack + '\r\n\r\n' +
+          'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
+          'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
+          'STATUS: '      + error.status + '\r\n' +
+          'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
+          'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
+          'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+
+        alert(result);
+
+      }).finally(function() {
+        // TODO: Decide about finally.
+      });
+
+  },
 
   /**
    * Gets the raster cells report using a geographic location.
@@ -1862,7 +1419,7 @@ let RestClient = {
       alert(result);
 
     }).finally(function() {
-
+      // TODO: Decide about finally.
     });
 
   },
@@ -1942,6 +1499,71 @@ let RestClient = {
   getReportByPolygon: function(polygon) {
 
     let url = this.baseURL + '/report';
+
+    let data =  {
+      polygon: {
+        geographic: {
+          type: "Polygon",
+          coordinates: [[[-2.283783, 53.54602], [-2.242584, 53.545204], [-2.248764, 53.512143], [-2.318802, 53.508876], [-2.283783, 53.54602]]]
+        },
+        projected: {
+          type: "Polygon",
+          coordinates: [[
+            [381293.28000357543, 405524.4198418361],
+            [384022.91574372555, 405423.53947639425],
+            [383600.5501975797, 401746.7627054498],
+            [378954.3333445564, 401401.8078244587],
+            [381293.28000357543, 405524.4198418361]
+          ]]
+        }
+      },
+      rasterExtract: {
+        envelope: {
+          minRow: 1564,
+          minCol: 2728,
+          maxRow: 1976,
+          maxCol: 3235
+        },
+        histogram: {
+          11: 18641,
+          13: 14676,
+          14: 1825,
+          15: 1779,
+          16: 199,
+          17: 1449,
+          21: 35,
+          23: 7,
+          24: 2181,
+          25: 478,
+          26: 1,
+          28: 383,
+          31: 2491,
+          33: 6553,
+          34: 5895,
+          35: 1852,
+          36: 44,
+          37: 378,
+          38: 1676,
+          41: 1635,
+          43: 4894,
+          44: 9426,
+          45: 4453,
+          46: 15,
+          47: 520,
+          48: 3581,
+          51: 4658,
+          53: 12297,
+          54: 21948,
+          55: 15365,
+          56: 149,
+          57: 721,
+          58: 2847,
+          totalCells: 143052
+        }
+      }
+    };
+
+
 
     axios.post(url, {
       polygon: polygon
@@ -2129,11 +1751,11 @@ let toggleBaseMapViewModel = new Vue({
      * The descriptions can be used in aria-labels or as tooltips.
      */
     dictionary: {
-      'light':     { name: 'Light',     iconName: 'map',            description: 'Light Basemap' },
-      'dark':      { name: 'Dark',      iconName: 'map',            description: 'Dark Basemap' },
-      'roads':     { name: 'Roads',     iconName: 'directions_car', description: 'Roads Basemap' },
-      'physical':  { name: 'Physical',  iconName: 'panorama',       description: 'Physical Basemap' }, /* 'image, panorama, photo' */
-      'terrain':   { name: 'Terrain',   iconName: 'terrain',        description: 'Terrain Basemap' },  /* 'terrain, landscape' */
+      'light':     { name: 'Light',     iconName: 'map',            description: 'Light Basemap'     },
+      'dark':      { name: 'Dark',      iconName: 'map',            description: 'Dark Basemap'      },
+      'roads':     { name: 'Roads',     iconName: 'directions_car', description: 'Roads Basemap'     },
+      'physical':  { name: 'Physical',  iconName: 'panorama',       description: 'Physical Basemap'  }, /* 'image, panorama, photo' */
+      'terrain':   { name: 'Terrain',   iconName: 'terrain',        description: 'Terrain Basemap'   },  /* 'terrain, landscape' */
       'satellite': { name: 'Satellite', iconName: 'healing',        description: 'Satellite Basemap' } /* 'satellite, cast, healing, photo_camera, local_see' */
     }
 
@@ -2229,6 +1851,8 @@ $(document).ready(function(){
   AppState.bootstrapMaterialTooltipEnabled = true;
   $('[data-toggle="tooltip"]').tooltip();
 });
+
+Raster.metadata = RestClient.getMetadata();
 
 Spatial.initializeMap();
 
