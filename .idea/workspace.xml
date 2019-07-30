@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08924dda-c242-485d-8acf-b4c899821e4b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/green-map.html" beforeDir="false" afterPath="$PROJECT_DIR$/green-map.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/green-map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/green-map.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -40,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/green-map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3349">
-              <caret line="3694" column="73" selection-start-line="3694" selection-start-column="73" selection-end-line="3694" selection-end-column="73" />
+            <state relative-caret-position="638">
+              <caret line="358" column="42" selection-start-line="358" selection-start-column="42" selection-end-line="358" selection-end-column="42" />
               <folding>
                 <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -55,7 +56,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/green-map.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4114">
+            <state relative-caret-position="819">
               <caret line="242" column="17" selection-start-line="242" selection-start-column="17" selection-end-line="242" selection-end-column="17" />
             </state>
           </provider>
@@ -64,42 +65,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/green-map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="1331" column="4" selection-start-line="1331" selection-start-column="4" selection-end-line="1331" selection-end-column="4" />
+            <state relative-caret-position="282">
+              <caret line="1266" column="6" selection-start-line="1266" selection-start-column="6" selection-end-line="1266" selection-end-column="6" />
               <folding>
-                <element signature="e#1087#1655#0" />
-                <element signature="e#1654#2368#0" />
-                <element signature="e#15029#26441#0" />
-                <element signature="e#26654#32866#0" />
-                <element signature="e#26798#30919#0" />
-                <element signature="e#26970#27479#0" />
-                <element signature="e#27648#28154#0" />
-                <element signature="e#28326#28835#0" />
-                <element signature="e#29016#29528#0" />
-                <element signature="e#29706#30217#0" />
-                <element signature="e#30401#30912#0" />
-                <element signature="e#32928#39087#0" />
-                <element signature="e#33078#37131#0" />
-                <element signature="e#33244#33747#0" />
-                <element signature="e#33910#34411#0" />
-                <element signature="e#34577#35080#0" />
-                <element signature="e#35255#35762#0" />
-                <element signature="e#35934#36440#0" />
-                <element signature="e#36618#37124#0" />
-                <element signature="e#39505#45944#0" />
-                <element signature="e#39651#40570#0" />
-                <element signature="e#40713#41630#0" />
-                <element signature="e#41776#42695#0" />
-                <element signature="e#42850#43777#0" />
-                <element signature="e#43929#44852#0" />
-                <element signature="e#45010#45937#0" />
-                <element signature="e#49727#52325#0" />
-                <element signature="e#39553#39578#0" />
-                <element signature="e#54194#57495#0" />
-                <element signature="e#46102#46634#0" />
-                <element signature="e#46301#46655#0" />
-                <element signature="e#46692#46798#0" />
-                <element signature="e#59066#61039#0" />
+                <element signature="e#2129#13541#0" />
+                <element signature="e#13754#19966#0" />
+                <element signature="e#20028#26187#0" />
+                <element signature="e#39519#39620#0" />
+                <element signature="e#39931#40860#0" />
+                <element signature="e#41125#42491#0" />
+                <element signature="e#42525#45826#0" />
+                <element signature="e#46053#48851#0" />
+                <element signature="e#48878#50851#0" />
               </folding>
             </state>
           </provider>
@@ -109,7 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>font-awe</find>
       <find>materia</find>
       <find>font</find>
       <find>mdb-ic</find>
@@ -139,6 +115,7 @@
       <find>pmigno</find>
       <find>renderlayer</find>
       <find>nuts3</find>
+      <find>key</find>
     </findStrings>
     <replaceStrings>
       <replace>ghia-</replace>
@@ -176,6 +153,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,13 +174,18 @@
             <path>
               <item name="ghia-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="ghia-web" type="462c0819:PsiDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
+              <item name="mdb" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ghia-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ghia-web" type="462c0819:PsiDirectoryNode" />
               <item name="styles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="NBKnowledgePane" />
     </panes>
   </component>
@@ -270,6 +253,7 @@
       <workItem from="1564084043872" duration="881000" />
       <workItem from="1564337462066" duration="592000" />
       <workItem from="1564411579789" duration="8104000" />
+      <workItem from="1564490909636" duration="11945000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>
@@ -303,12 +287,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129036000" />
+    <option name="totallyTimeSpent" value="140981000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2489339" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2489339" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="DB Browser" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -443,10 +427,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/styles/green-map.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="242" column="17" selection-start-line="242" selection-start-column="17" selection-end-line="242" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/green-map.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3349">
-          <caret line="3694" column="73" selection-start-line="3694" selection-start-column="73" selection-end-line="3694" selection-end-column="73" />
+        <state relative-caret-position="638">
+          <caret line="358" column="42" selection-start-line="358" selection-start-column="42" selection-end-line="358" selection-end-column="42" />
           <folding>
             <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -456,51 +447,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/green-map.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4114">
-          <caret line="242" column="17" selection-start-line="242" selection-start-column="17" selection-end-line="242" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/green-map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="1331" column="4" selection-start-line="1331" selection-start-column="4" selection-end-line="1331" selection-end-column="4" />
+        <state relative-caret-position="282">
+          <caret line="1266" column="6" selection-start-line="1266" selection-start-column="6" selection-end-line="1266" selection-end-column="6" />
           <folding>
-            <element signature="e#1087#1655#0" />
-            <element signature="e#1654#2368#0" />
-            <element signature="e#15029#26441#0" />
-            <element signature="e#26654#32866#0" />
-            <element signature="e#26798#30919#0" />
-            <element signature="e#26970#27479#0" />
-            <element signature="e#27648#28154#0" />
-            <element signature="e#28326#28835#0" />
-            <element signature="e#29016#29528#0" />
-            <element signature="e#29706#30217#0" />
-            <element signature="e#30401#30912#0" />
-            <element signature="e#32928#39087#0" />
-            <element signature="e#33078#37131#0" />
-            <element signature="e#33244#33747#0" />
-            <element signature="e#33910#34411#0" />
-            <element signature="e#34577#35080#0" />
-            <element signature="e#35255#35762#0" />
-            <element signature="e#35934#36440#0" />
-            <element signature="e#36618#37124#0" />
-            <element signature="e#39505#45944#0" />
-            <element signature="e#39651#40570#0" />
-            <element signature="e#40713#41630#0" />
-            <element signature="e#41776#42695#0" />
-            <element signature="e#42850#43777#0" />
-            <element signature="e#43929#44852#0" />
-            <element signature="e#45010#45937#0" />
-            <element signature="e#49727#52325#0" />
-            <element signature="e#39553#39578#0" />
-            <element signature="e#54194#57495#0" />
-            <element signature="e#46102#46634#0" />
-            <element signature="e#46301#46655#0" />
-            <element signature="e#46692#46798#0" />
-            <element signature="e#59066#61039#0" />
+            <element signature="e#2129#13541#0" />
+            <element signature="e#13754#19966#0" />
+            <element signature="e#20028#26187#0" />
+            <element signature="e#39519#39620#0" />
+            <element signature="e#39931#40860#0" />
+            <element signature="e#41125#42491#0" />
+            <element signature="e#42525#45826#0" />
+            <element signature="e#46053#48851#0" />
+            <element signature="e#48878#50851#0" />
           </folding>
         </state>
       </provider>

@@ -318,32 +318,78 @@
 
           <div class="pane-container h-100" >
 
+            <p>Select how to query the map.</p>
 
+            <!-- Component: Query State Buttons -->
+            <div id="queryStateVM">
+              <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row">
 
-            <div id="reportVM">
+                <button type="button" class="btn btn-primary mr-1"
+                        v-bind:class="[states.point.isCurrent ? 'active' : '']"
+                        v-on:click="setCurrentState('point')">
+                  <i class="mr-2"
+                     v-bind:class="[states.point.icon]">
+                  </i>
+                  <span v-text="states.point.buttonText"></span>
+                </button>
 
-              <p>Report</p>
+                <button type="button" class="btn btn-primary ml-1 mr-1"
+                        v-bind:class="[states.polygon.isCurrent ? 'active' : '']"
+                        v-on:click="setCurrentState('polygon')">
+                  <i class="mr-2"
+                     v-bind:class="[states.polygon.icon]">
+                  </i>
+                  <span v-text="states.polygon.buttonText"></span>
+                </button>
 
-              <!-- Component: Report Buttons -->
+                <button type="button" class="btn btn-primary ml-1"
+                        v-bind:class="[states.lsoa.isCurrent ? 'active' : '']"
+                        v-on:click="setCurrentState('lsoa')">
+                  <i class="mr-2"
+                     v-bind:class="[states.lsoa.icon]">
+                  </i>
+                  <span v-text="states.lsoa.buttonText"></span>
+                </button>
+
+              </div>
+
+              <div class="ghia-hor-sep"></div>
+
               <div>
-                <div class="btn-group btn-group-justified" role="group">
-                  <button type="button" class="btn btn-primary btn-outline-primary"
-                          v-on:click="reportByPoint">
-                    <i class="fas fa-map-marker-alt mr-2"></i>
-                    By Point
-                  </button>
-
-                  <div class="ghia-ver-sep"></div>
-
-                  <button type="button" class="btn btn-primary btn-outline-primary"
-                          v-on:click="reportByPolygon">
-                    <i class="fas fa-draw-polygon mr-2"></i>
-                    By Polygon
-                  </button>
-                </div>
+                <p v-text="getHelpText()"></p>
               </div>
 
             </div>
+
+
+
+
+<!--            <div id="reportVM">-->
+
+<!--              <p>Report</p>-->
+
+<!--              &lt;!&ndash; Component: Report Buttons &ndash;&gt;-->
+<!--              <div>-->
+<!--                <div class="btn-group btn-group-justified" role="group">-->
+<!--                  <button type="button" class="btn btn-primary btn-outline-primary"-->
+<!--                          v-on:click="reportByPoint">-->
+<!--                    <i class="fas fa-map-marker-alt mr-2"></i>-->
+<!--                    By Point-->
+<!--                  </button>-->
+
+<!--                  <div class="ghia-ver-sep"></div>-->
+
+<!--                  <button type="button" class="btn btn-primary btn-outline-primary"-->
+<!--                          v-on:click="reportByPolygon">-->
+<!--                    <i class="fas fa-draw-polygon mr-2"></i>-->
+<!--                    By Polygon-->
+<!--                  </button>-->
+<!--                </div>-->
+<!--              </div>-->
+
+<!--              <div class="ghia-hor-sep"></div>-->
+<!--              -->
+<!--            </div>-->
 
 
 

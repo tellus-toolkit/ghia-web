@@ -1236,7 +1236,7 @@ let Spatial = {
    */
   mapOptions: {
     //54.5
-    center: [53.505, -2.24],
+    center: [53.505, -2.14],
     zoom: 11,
     minZoom: 3,
     maxZoom: 18
@@ -1681,7 +1681,7 @@ let RestClient = {
 
 
 /**
- * The sidebarTabsViewModel provides tha data and logic to toggle the sidebar itself or its contents.
+ * The sidebarTabsViewModel provides the data and logic to toggle the sidebar itself or its contents.
  *
  * @type {Vue} - A Vue object with the model and methods used in the view model.
  */
@@ -1724,7 +1724,7 @@ let sidebarTabsViewModel = new Vue({
 
 
 /**
- * The toggleBaseMapViewModel provides tha data and logic to toggle the BaseMap layer.
+ * The toggleBaseMapViewModel provides the data and logic to toggle the BaseMap layer.
  *
  * @type {Vue} - A Vue object with the model and methods used in the view model.
  */
@@ -1799,6 +1799,110 @@ let toggleBaseMapViewModel = new Vue({
 
 });
 
+/**
+ * The queryStateViewModel provides the data and logic to toggle the query state of the application.
+ *
+ * @type {Vue} - A Vue object with the model and methods used in the view model.
+ */
+let queryStateViewModel = new Vue({
+
+  /**
+   * The name of the view model.
+   */
+  el: "#queryStateVM",
+
+  /**
+   * The model of the view model.
+   */
+  data: {
+
+    /**
+     * The possible states of the query mechanism.
+     */
+    states: {
+      point: {
+        isCurrent: true,
+        icon: 'fas fa-map-marker-alt',
+        buttonText: 'By Point',
+        helpText: 'Click on the map to get a report of the green cover. A square of 1 km size with its centre positioned on the clicked location will be used to retrieve the information.'
+      },
+      polygon: {
+        isCurrent: false,
+        icon: 'fas fa-draw-polygon',
+        buttonText: 'By Polygon',
+        helpText: 'Click on the map to draw a polygon. Double click to finish the polygon. A report will be generated with details about the green cover inside the drawn polygon.'
+      },
+      lsoa: {
+        isCurrent: false,
+        icon: 'fas fa-draw-polygon',
+        buttonText: 'By LSOA',
+        helpText: 'Click on the map to select an LSOA polygon. A report will be generated with details about the green cover inside the LSOA polygon.'
+      }
+    },
+
+    getCurrentState: function() {
+
+      let currentState = '';
+
+      for (let property in this.states) {
+        if (this.states.hasOwnProperty(property)) {
+          if (this.states[property].isCurrent) {
+            currentState = property;
+            break;
+          }
+        }
+      }
+
+      return currentState;
+
+    },
+
+    getHelpText: function() {
+
+      let helpText = '';
+
+      for (let property in this.states) {
+        if (this.states.hasOwnProperty(property)) {
+          if (this.states[property].isCurrent) {
+            helpText = this.states[property].helpText;
+            break;
+          }
+        }
+      }
+
+      return helpText;
+
+    }
+
+  },
+
+  /**
+   * The methods of the view model.
+   */
+  methods: {
+
+    /**
+     * Sets the current query mechanism state.
+     *
+     * @param state - The state of the query mechanism. Valid values are: {'point' | 'polygon' | 'lsoa'}.
+     */
+    setCurrentState(state) {
+
+      for (let property in this.states) {
+        if (this.states.hasOwnProperty(property)) {
+          this.states[property].isCurrent = property === state;
+        }
+      }
+
+    }
+
+  }
+
+
+
+});
+
+
 
 
 
@@ -1855,8 +1959,6 @@ $(document).ready(function(){
 Raster.metadata = RestClient.getMetadata();
 
 Spatial.initializeMap();
-
-
 
 Spatial.sidebar.open('map-controls');
 
