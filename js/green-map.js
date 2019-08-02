@@ -1235,7 +1235,6 @@ let Spatial = {
    * The options used to create the map.
    */
   mapOptions: {
-    //54.5
     center: [53.505, -2.14],
     zoom: 11,
     minZoom: 3,
@@ -1258,26 +1257,46 @@ let Spatial = {
       editable: true
     });
 
+    Spatial.map.editTools.drawingCanceled = false;
+
+    /**
+     * Event occurs once the editable drawing operation is canceled.
+     */
+    Spatial.map.on('editable:drawing:cancel', function(e) {
+
+      e.editTools.drawingCanceled = true;
+
+    });
+
+    /**
+     * Event occurs once the editable drawing operation ends.
+     */
     Spatial.map.on('editable:drawing:end', function(e) {
 
-      let fLayers = e.layer.options.editOptions.editTools.featuresLayer.getLayers();
+      if (e.editTools.drawingCanceled) {
+        e.editTools.drawingCanceled = false;
+        return;
+      }
+
+      // let fLayers = e.layer.options.editOptions.editTools.featuresLayer.getLayers();
+      let fLayers = e.editTools.featuresLayer.getLayers();
 
       let feature = fLayers[0].toGeoJSON();
+      // feature.geometry.type === 'Point' | 'Polygon';
 
-      if (feature.geometry.type === 'Point') {
-
+      if (queryStateViewModel.getCurrentState() === 'point') {
         RestClient.getReportByPoint(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
-
-        // Spatial.testPost1();
+        Spatial.map.editTools.startMarker();
       }
-      else if (feature.geometry.type === 'Polygon') {
-
+      else if (queryStateViewModel.getCurrentState() === 'polygon') {
         RestClient.getReportByPolygon(feature.geometry);
-
-        // Spatial.testPost1();
+        Spatial.map.editTools.startPolygon();
+      }
+      else if (queryStateViewModel.getCurrentState() === 'lsoa') {
+        //RestClient.getReportByPolygon(feature.geometry);
       }
 
-      e.layer.options.editOptions.editTools.featuresLayer.clearLayers();
+      e.editTools.featuresLayer.clearLayers();
 
     });
 
@@ -1289,14 +1308,12 @@ let Spatial = {
     Spatial.sidebar = L.control.sidebar(Spatial.Members.sidebarName, { position: Spatial.Members.sidebarPosition });
     Spatial.sidebar.addTo(Spatial.map);
 
-
     BaseMapLayers.setNamedBasemapLayers();
     BaseMapLayers.createBaseMapLayers();
 
     MapLayers.ghiaTiles1000.createLayer();
     MapLayers.ghiaAOI.createLayer();
     MapLayers.lsoa.createLayer();
-
 
     Spatial.setInitialBaseMapLayer();
 
@@ -1325,12 +1342,69 @@ let Spatial = {
  * Used to provide the raster metadata and to hold the extracted values.
  */
 let Raster = {
+
+  /**
+   * The metadata of the raster.
+   */
   metadata: undefined,
+
+  /**
+   * The query used to extract the data from the raster.
+   */
   query: {
+
+    /**
+     * The type of the query.
+     * Valid values are 'point' | 'polygon' | 'lsoa'.
+     */
     type: undefined,
+
+    /**
+     * The data used to define the query.
+     */
     data: undefined
+
   },
-  data: undefined
+
+  /**
+   * The data of the raster that have been extracted by the query.
+   */
+  data: undefined,
+
+  /**
+   * Sets the raster data.
+   *
+   * @param rasterExtract - The raster data extract to set.
+   */
+  setData(rasterExtract) {
+
+    this.data = {};
+
+    this.data.envelope = rasterExtract.envelope;
+    this.data.histogram = {};
+
+    let lookup = this.metadata.band.lookup;
+
+    for (let key in lookup) {
+      if (rasterExtract.histogram.hasOwnProperty(key)) {
+        this.data.histogram[key] = rasterExtract.histogram[key];
+      }
+      else {
+        this.data.histogram[key] = 0;
+      }
+    }
+
+    let noDataValue = this.metadata.band.noDataValue;
+
+    if (rasterExtract.histogram.hasOwnProperty(noDataValue)) {
+      this.data.histogram[noDataValue] = rasterExtract.histogram[noDataValue];
+    }
+    else {
+      this.data.histogram[noDataValue] = 0;
+    }
+
+  }
+
 };
 
 /**
@@ -1392,16 +1466,27 @@ let RestClient = {
     axios.get(url)
       .then(function(response) {
 
-        let result =
-          'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
-          'STATUS: '      + response.status + '\r\n' +
-          'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
-          'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
-          'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
-          'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
-          'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
+        let data = response.data;
 
-        alert(result);
+        Raster.query.type = queryStateViewModel.getCurrentState();
+        Raster.query.data = {
+          location: data.location,
+          rectangle: data.rectangle,
+          polygon: undefined
+        };
+
+        Raster.setData(data.rasterExtract);
+
+        // let result =
+        //   'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
+        //   'STATUS: '      + response.status + '\r\n' +
+        //   'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
+        //   'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
+        //   'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
+        //   'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
+        //   'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
+        //
+        // alert(result);
 
       }).catch(function(error) {
 
@@ -1563,42 +1648,53 @@ let RestClient = {
       }
     };
 
+    //let data = response.data;
+
+    Raster.query.type = queryStateViewModel.getCurrentState();
+    Raster.query.data = {
+      location: undefined,
+      rectangle: undefined,
+      polygon: data.polygon
+    };
+
+    Raster.setData(data.rasterExtract);
+
+    alert(JSON.stringify(Raster.data));
 
 
-    axios.post(url, {
-      polygon: polygon
-    }).then(function(response) {
-
-      let result =
-        'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
-        'STATUS: '      + response.status + '\r\n' +
-        'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
-        'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
-        'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
-        'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
-        'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
-
-      alert(result);
-
-    }).catch(function(error) {
-
-      let result =
-        'ERROR:\r\n'  + '----------------------------------------\r\n' +
-        'MESSAGE: '     + error.message + '\r\n' +
-        'STACK: \r\n'   + error.stack + '\r\n\r\n' +
-        'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
-        'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
-        'STATUS: '      + error.status + '\r\n' +
-        'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
-        'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
-        'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
-
-      alert(result);
-
-    }).finally(function() {
-
-    });
-
+    // axios.post(url, {
+    //   polygon: polygon
+    // }).then(function(response) {
+    //
+    //   let result =
+    //     'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
+    //     'STATUS: '      + response.status + '\r\n' +
+    //     'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
+    //     'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
+    //     'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
+    //     'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
+    //     'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
+    //
+    //   alert(result);
+    //
+    // }).catch(function(error) {
+    //
+    //   let result =
+    //     'ERROR:\r\n'  + '----------------------------------------\r\n' +
+    //     'MESSAGE: '     + error.message + '\r\n' +
+    //     'STACK: \r\n'   + error.stack + '\r\n\r\n' +
+    //     'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
+    //     'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
+    //     'STATUS: '      + error.status + '\r\n' +
+    //     'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
+    //     'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
+    //     'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+    //
+    //   alert(result);
+    //
+    // }).finally(function() {
+    //
+    // });
 
   },
 
@@ -1751,12 +1847,12 @@ let toggleBaseMapViewModel = new Vue({
      * The descriptions can be used in aria-labels or as tooltips.
      */
     dictionary: {
-      'light':     { name: 'Light',     iconName: 'map',            description: 'Light Basemap'     },
-      'dark':      { name: 'Dark',      iconName: 'map',            description: 'Dark Basemap'      },
-      'roads':     { name: 'Roads',     iconName: 'directions_car', description: 'Roads Basemap'     },
-      'physical':  { name: 'Physical',  iconName: 'panorama',       description: 'Physical Basemap'  }, /* 'image, panorama, photo' */
-      'terrain':   { name: 'Terrain',   iconName: 'terrain',        description: 'Terrain Basemap'   },  /* 'terrain, landscape' */
-      'satellite': { name: 'Satellite', iconName: 'healing',        description: 'Satellite Basemap' } /* 'satellite, cast, healing, photo_camera, local_see' */
+      'light':     { name: 'Light',     description: 'Light Basemap',     iconName: 'map'            },
+      'dark':      { name: 'Dark',      description: 'Dark Basemap',      iconName: 'map'            },
+      'roads':     { name: 'Roads',     description: 'Roads Basemap',     iconName: 'directions_car' },
+      'physical':  { name: 'Physical',  description: 'Physical Basemap',  iconName: 'panorama'       }, /* 'image, panorama, photo' */
+      'terrain':   { name: 'Terrain',   description: 'Terrain Basemap',   iconName: 'terrain'        }, /* 'terrain, landscape' */
+      'satellite': { name: 'Satellite', description: 'Satellite Basemap', iconName: 'healing'        }  /* 'satellite, cast, healing, photo_camera, local_see' */
     }
 
   },
@@ -1840,6 +1936,11 @@ let queryStateViewModel = new Vue({
       }
     },
 
+    /**
+     * Gets the current query mechanism state.
+     *
+     * @returns {string} - A string with the query mechanism state name.
+     */
     getCurrentState: function() {
 
       let currentState = '';
@@ -1857,6 +1958,11 @@ let queryStateViewModel = new Vue({
 
     },
 
+    /**
+     * Gets the help text associated with the current query mechanism state.
+     *
+     * @returns {string} - A string with the query mechanism help text.
+     */
     getHelpText: function() {
 
       let helpText = '';
@@ -1894,11 +2000,122 @@ let queryStateViewModel = new Vue({
         }
       }
 
+      if (state === 'point' || state === 'lsoa') {
+        if (Spatial.map.editTools.drawing()) {
+          Spatial.map.editTools.stopDrawing();
+        }
+
+        Spatial.map.editTools.startMarker();
+      }
+      else if (state === 'polygon') {
+        if (Spatial.map.editTools.drawing()) {
+          Spatial.map.editTools.stopDrawing();
+        }
+
+        Spatial.map.editTools.startPolygon();
+      }
+
     }
 
   }
 
+});
 
+
+
+
+let displayResultsViewModel = new Vue({
+
+  /**
+   * The name of the view model.
+   */
+  el: "#displayResultsVM",
+
+  /**
+   * The model of the view model.
+   */
+  data: {
+
+    /**
+     * The possible methods of displaying the results.
+     */
+    methods: {
+      report: {
+        isCurrent: true,
+        icon: 'fas fa-book',
+        buttonText: 'Report'
+      },
+      diagram: {
+        isCurrent: false,
+        icon: 'fas fa-poll', // 'fas fa-chart-line', 'fas fa-chart-pie'
+        buttonText: 'Diagram'
+      }
+    },
+
+    /**
+     * Gets the current method of displaying the results.
+     *
+     * @returns {string} - A string with the method of displaying the results.
+     */
+    getCurrentMethod: function() {
+
+      let currentMethod = '';
+
+      for (let property in this.methods) {
+        if (this.states.hasOwnProperty(property)) {
+          if (this.methods[property].isCurrent) {
+            currentMethod = property;
+            break;
+          }
+        }
+      }
+
+      return currentMethod;
+
+    }
+
+  },
+
+  /**
+   * The methods of the view model.
+   */
+  methods: {
+
+    /**
+     * Sets the current method of displaying the results.
+     *
+     * @param method - The method of displaying the results. Valid values are: {'report' | 'diagram'}.
+     */
+    setCurrentMethod(method) {
+
+      for (let property in this.methods) {
+        if (this.methods.hasOwnProperty(property)) {
+          this.methods[property].isCurrent = property === method;
+        }
+      }
+
+      if (method === 'report') {
+        // if (Spatial.map.editTools.drawing()) {
+        //   Spatial.map.editTools.stopDrawing();
+        // }
+        //
+        // Spatial.map.editTools.startMarker();
+
+        alert('report');
+      }
+      else if (method === 'diagram') {
+        // if (Spatial.map.editTools.drawing()) {
+        //   Spatial.map.editTools.stopDrawing();
+        // }
+        //
+        // Spatial.map.editTools.startPolygon();
+
+        alert('diagram');
+      }
+
+    }
+
+  }
 
 });
 
@@ -1906,6 +2123,13 @@ let queryStateViewModel = new Vue({
 
 
 
+
+/**
+ * The reportViewModel provides the data and logic to render on the web page
+ * the report with the green cover of the queried area.
+ *
+ * @type {Vue} - A Vue object with the model and methods used in the view model.
+ */
 let reportViewModel = new Vue({
 
   /**
@@ -1925,17 +2149,6 @@ let reportViewModel = new Vue({
    */
   methods: {
 
-    reportByPoint(point) {
-      Spatial.map.editTools.startMarker();
-    },
-
-
-    reportByPolygon(polygon) {
-      // alert('polygon');
-
-      Spatial.map.editTools.startPolygon();
-
-    }
 
   }
 
