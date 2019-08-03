@@ -50,6 +50,8 @@
 
   <script type="text/javascript" src="libs/fontawesome-free-5.9.0-web/js/all.min.js"></script>
 
+  <script type="text/javascript" src="js/raster.js"></script>
+
   <!--<script type="text/javascript" src="js/data.js"></script>-->
 
   <!--<script type="text/javascript" src="js/shared.js"></script>-->
@@ -401,198 +403,49 @@
                   </div>
 
 
+<!--                  <div class="mb-auto h-100 ver-scrollbars border-left border-bottom border-right">-->
+                  <div class="mb-auto h-100 ver-scrollbars">
+
+                    <div id="reportVM" v-bind:class="[isViewVisible() ? '' : 'hidden']">
+                      <div class="card card-body">
+
+                        <table class="table-bordered table-striped table-hover raster-value-table">
+                          <thead style="background-color: #c9ceea;">
+                          <tr>
+                            <th scope="col" class="raster-value-value">Value</th>
+                            <th scope="col" class="raster-value-function">Function</th>
+                            <th scope="col" class="raster-value-form">Form</th>
+                            <th scope="col" class="raster-value-count text-right">Count</th>
+                            <th scope="col" class="raster-value-percentage text-right">%</th>
+                          </tr>
+                          </thead>
+                          <tbody v-for="(entry, index) in histogram"
+                                 v-if="histogramEntriesCount !== 0">
+<!--                            <tr v-bind:class="[isOdd(index) ? 'table-light' : '']">-->
+                            <tr>
+                              <td class="raster-value-value" v-text="entry.value"></td>
+                              <td class="raster-value-function" v-text="entry.function"></td>
+                              <td class="raster-value-form" v-text="entry.form"></td>
+                              <td class="raster-value-count text-right" v-text="entry.count"></td>
+                              <td class="raster-value-percentage text-right" v-text="percentage(entry).toFixed(3)"></td>
+                            </tr>
 
 
+                          </tbody>
+                        </table>
+
+                      </div>
+                    </div>
+
+                    <div id="diagramVM" v-bind:class="[isViewVisible() ? '' : 'hidden']">
+                      <p>This is the diagram area</p>
+                    </div>
+
+                  </div>
 
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-<!--            <ul id="reportTabsList" class="nav nav-tabs nav-justified md-tabs indigo" role="tablist">-->
-<!--              <li class="nav-item">-->
-<!--                <a class="nav-link active" id="home-tab-just" data-toggle="tab" href="#home-just" role="tab" aria-controls="home-just"-->
-<!--                   aria-selected="true">-->
-<!--                  Home-->
-<!--                </a>-->
-<!--              </li>-->
-<!--              <li class="nav-item">-->
-<!--                <a class="nav-link" id="profile-tab-just" data-toggle="tab" href="#profile-just" role="tab" aria-controls="profile-just"-->
-<!--                   aria-selected="false">-->
-<!--                  Profile-->
-<!--                </a>-->
-<!--              </li>-->
-<!--              <li class="nav-item">-->
-<!--                <a class="nav-link" id="contact-tab-just" data-toggle="tab" href="#contact-just" role="tab" aria-controls="contact-just"-->
-<!--                   aria-selected="false">-->
-<!--                  Contact-->
-<!--                </a>-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--            <div id="reportTabsContents" class="tab-content card pt-5" >-->
-<!--              <div class="tab-pane fade show active" id="home-just" role="tabpanel" aria-labelledby="home-tab-just">-->
-<!--                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro-->
-<!--                  synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher-->
-<!--                  retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip-->
-<!--                  placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>-->
-<!--              </div>-->
-<!--              <div class="tab-pane fade" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-just">-->
-<!--                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1-->
-<!--                  labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft-->
-<!--                  beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad-->
-<!--                  vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar-->
-<!--                  helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes-->
-<!--                  anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party-->
-<!--                  scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>-->
-<!--              </div>-->
-<!--              <div class="tab-pane fade" id="contact-just" role="tabpanel" aria-labelledby="contact-tab-just">-->
-<!--                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro-->
-<!--                  fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone-->
-<!--                  skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings-->
-<!--                  gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork-->
-<!--                  biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl-->
-<!--                  craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>-->
-<!--              </div>-->
-<!--            </div>-->
-
-
-
-
-<!--            &lt;!&ndash; Component: Report &ndash;&gt;-->
-<!--            <div id="reportVM">-->
-
-<!--              <p>Report</p>-->
-
-
-
-<!--&lt;!&ndash;              &lt;!&ndash; Component: Green Report Table &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;              <div class="mb-auto h-100 ver-scrollbars border-left border-bottom border-right">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                &lt;!&ndash; Component: Indicator Domain Tab Panels (overview) &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                <div v-for="(domain, dIndex) in dictionary.domains" v-if="dictionary.domains.length !== 0"&ndash;&gt;-->
-<!--&lt;!&ndash;                     class="tab-pane fade"&ndash;&gt;-->
-<!--&lt;!&ndash;                     role="tabpanel"&ndash;&gt;-->
-<!--&lt;!&ndash;                     v-bind:id="[domain.key + '-o-tabpanel']"&ndash;&gt;-->
-<!--&lt;!&ndash;                     v-bind:aria-labelledby="[domain.key + '-o-tab']"&ndash;&gt;-->
-<!--&lt;!&ndash;                     v-bind:class="[currentDomain === domain.key ? 'show active' : 'collapse']">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                  <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="card card-body">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                      <table class="table-bordered table-striped table-hover ind-table">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <thead style="background-color: #c9ceea;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                          &lt;!&ndash;<th scope="col" class="text text-right ind-index">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                          &lt;!&ndash;<i class="material-icons md-18 text-danger align-middle" v-text="infoIconName"></i>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                          &lt;!&ndash;</th>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                          <th scope="col" class="ind-name">Name</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                          <th scope="col" class="text-right ind-value">Value</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                          <th scope="col" class="text-right ind-unit">Unit</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                          <th scope="col" class="text-right ind-value">Z Score</th>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </thead>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <tbody v-for="(indicator, iIndex) in domainDictionaryIndicators[domain.fullName]"&ndash;&gt;-->
-<!--&lt;!&ndash;                               v-if="domainDictionaryIndicators[domain.fullName].length !== 0">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <tr v-bind:class="[isOdd(iIndex) ? 'table-light' : '']">&ndash;&gt;-->
-<!--&lt;!&ndash;                          &lt;!&ndash;<th scope="row" class="text-right help ind-index"&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                          &lt;!&ndash;data-toggle="tooltip" data-html="true" data-placement="left"&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                          &lt;!&ndash;v-bind:title="indicatorTooltips[domain.name][iIndex]">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                          &lt;!&ndash;{{ iIndex + 1 }}&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                          &lt;!&ndash;</th>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                          <td class="ind-name">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <a data-toggle="collapse" aria-expanded="false"&ndash;&gt;-->
-<!--&lt;!&ndash;                               v-bind:href="['#o-details-' + indicator.name]"&ndash;&gt;-->
-<!--&lt;!&ndash;                               v-bind:aria-controls="['o-details-' + indicator.name]"&ndash;&gt;-->
-<!--&lt;!&ndash;                               v-on:click="toggleDetails(domain.fullName, iIndex)">&ndash;&gt;-->
-<!--&lt;!&ndash;                              {{ indicator.description }}&ndash;&gt;-->
-<!--&lt;!&ndash;                            </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                          </td>&ndash;&gt;-->
-<!--&lt;!&ndash;                          <td class="text-right ind-value"&ndash;&gt;-->
-<!--&lt;!&ndash;                              v-text="domainDictionaryIndicatorValues !== undefined ? domainDictionaryIndicatorValues[domain.fullName][iIndex].value : ''">&ndash;&gt;-->
-<!--&lt;!&ndash;                          </td>&ndash;&gt;-->
-<!--&lt;!&ndash;                          <td class="text-right ind-unit"&ndash;&gt;-->
-<!--&lt;!&ndash;                              v-text="domainDictionaryIndicatorValues !== undefined ? domainDictionaryIndicatorValues[domain.fullName][iIndex].unit : ''">&ndash;&gt;-->
-<!--&lt;!&ndash;                          </td>&ndash;&gt;-->
-<!--&lt;!&ndash;                          <td class="text-right ind-value"&ndash;&gt;-->
-<!--&lt;!&ndash;                              v-text="domainDictionaryIndicatorValues !== undefined ? domainDictionaryIndicatorValues[domain.fullName][iIndex].zscore : ''"&ndash;&gt;-->
-<!--&lt;!&ndash;                              v-bind:class="[domainDictionaryIndicatorValues !== undefined && domainDictionaryIndicatorValues[domain.fullName][iIndex].zscore < 0 ? 'text-danger' : '']">&ndash;&gt;-->
-<!--&lt;!&ndash;                          </td>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </tr>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        <tr v-bind:id="['o-details-' + indicator.name]" class="collapse">&ndash;&gt;-->
-<!--&lt;!&ndash;                          <td colspan="4">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <div class="card card-body p-2">&ndash;&gt;-->
-<!--&lt;!&ndash;                              <div class="text-right">&ndash;&gt;-->
-<!--&lt;!&ndash;                                <button type="button" class="btn btn-typology-help"&ndash;&gt;-->
-<!--&lt;!&ndash;                                        data-toggle="tooltip" data-placement="bottom"&ndash;&gt;-->
-<!--&lt;!&ndash;                                        v-bind:aria-label="[dictionary.indicators[indicator.name].isInformationPanelVisible ? 'Hide the indicator information' : 'Show the indicator information']"&ndash;&gt;-->
-<!--&lt;!&ndash;                                        v-bind:aria-pressed="[dictionary.indicators[indicator.name].isInformationPanelVisible]"&ndash;&gt;-->
-<!--&lt;!&ndash;                                        v-bind:class="[dictionary.indicators[indicator.name].isInformationPanelVisible ? 'btn-raised btn-danger btn-typology-help-raised' : 'btn-light btn-outline-dark']"&ndash;&gt;-->
-<!--&lt;!&ndash;                                        v-on:click="toggleInfo(indicator.name)">&ndash;&gt;-->
-<!--&lt;!&ndash;                                  <i class="material-icons" v-text="infoIconName"&ndash;&gt;-->
-<!--&lt;!&ndash;                                     v-bind:class="[dictionary.indicators[indicator.name].isInformationPanelVisible ? '' : 'text-dark']">&ndash;&gt;-->
-<!--&lt;!&ndash;                                  </i>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </button>&ndash;&gt;-->
-<!--&lt;!&ndash;                              </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                              <div class="mt-2 collapse"&ndash;&gt;-->
-<!--&lt;!&ndash;                                   v-bind:class="[dictionary.indicators[indicator.name].isInformationPanelVisible ? 'show' : '']">&ndash;&gt;-->
-<!--&lt;!&ndash;                                <div class="card">&ndash;&gt;-->
-<!--&lt;!&ndash;                                  <div class="card-header bg-dark">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    &lt;!&ndash;<i class="display-2 text-center text-danger material-icons">@@icon@@</i>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <i class="display-2 text-danger info-icon"&ndash;&gt;-->
-<!--&lt;!&ndash;                                       v-bind:class="[dictionary.indicators[indicator.name].icon]">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </i>&ndash;&gt;-->
-<!--&lt;!&ndash;                                  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                  <div class="card-body">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <h6 class="card-title"><strong><em v-text="indicator.description"></em></strong></h6>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <h6 class="card-title text-right"><strong><em v-text="indicator.unit"></em></strong></h6>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <p class="card-text" v-html="indicator.details"></p>&ndash;&gt;-->
-<!--&lt;!&ndash;                                  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                              </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                              <div class="mt-2">&ndash;&gt;-->
-<!--&lt;!&ndash;                                <div style="height: 250px;"&ndash;&gt;-->
-<!--&lt;!&ndash;                                     v-bind:id="['o-histogram-container-' + indicator.name]">&ndash;&gt;-->
-<!--&lt;!&ndash;                                  &lt;!&ndash;style="border: 1px solid #000000;"&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                                  &lt;!&ndash;<canvas id="radar-diagram" style="border: 1px solid #000000;"></canvas>&ndash;&gt;&ndash;&gt;-->
-
-<!--&lt;!&ndash;                                  <canvas height="250"&ndash;&gt;-->
-<!--&lt;!&ndash;                                          v-bind:id="['o-canvas-histogram-' + indicator.name]">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                                  </canvas>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                              </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                          </td>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </tbody>&ndash;&gt;-->
-<!--&lt;!&ndash;                      </table>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;              </div>&ndash;&gt;-->
-
-
-
-
-<!--              <div class="ghia-hor-sep"></div>-->
-
-<!--            </div>-->
-
-
 
           </div>
 

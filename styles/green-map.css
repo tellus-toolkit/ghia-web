@@ -220,13 +220,13 @@ body {
   margin-left: 20px;
 }
 
-#typology-results-table {
-  margin-bottom: 0;
-}
+/*#typology-results-table {*/
+/*  margin-bottom: 0;*/
+/*}*/
 
-.indicator-details-panel {
-  padding: 0.75rem;
-}
+/*.indicator-details-panel {*/
+/*  padding: 0.75rem;*/
+/*}*/
 
 
 
@@ -296,38 +296,39 @@ body {
 
 
 
-.indicators-container {
-  margin-left: 10px;
-}
 
-.ind-table {
+.raster-value-table {
   margin: -10px;
 
 }
 
-.ind-index {
+.raster-value-index {
   padding-left: 3px;
   padding-right: 3px;
 }
 
-.ind-name {
+.raster-value-value {
   padding-left: 3px;
   padding-right: 3px;
 }
 
-/* TODO: RESIN - Perhaps remove this one? */
-.ind-tooltip {
-  /*.875rem;*/
-
+.raster-value-form {
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
-.ind-value {
+.raster-value-function {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.raster-value-count {
   padding-left: 3px;
   padding-right: 3px;
   width: 60px;
 }
 
-.ind-unit {
+.raster-value-percentage {
   padding-left: 3px;
   padding-right: 3px;
   width: 40px;

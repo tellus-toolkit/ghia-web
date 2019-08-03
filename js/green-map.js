@@ -1341,71 +1341,611 @@ let Spatial = {
 /**
  * Used to provide the raster metadata and to hold the extracted values.
  */
-let Raster = {
-
-  /**
-   * The metadata of the raster.
-   */
-  metadata: undefined,
-
-  /**
-   * The query used to extract the data from the raster.
-   */
-  query: {
-
-    /**
-     * The type of the query.
-     * Valid values are 'point' | 'polygon' | 'lsoa'.
-     */
-    type: undefined,
-
-    /**
-     * The data used to define the query.
-     */
-    data: undefined
-
-  },
-
-  /**
-   * The data of the raster that have been extracted by the query.
-   */
-  data: undefined,
-
-  /**
-   * Sets the raster data.
-   *
-   * @param rasterExtract - The raster data extract to set.
-   */
-  setData(rasterExtract) {
-
-    this.data = {};
-
-    this.data.envelope = rasterExtract.envelope;
-    this.data.histogram = {};
-
-    let lookup = this.metadata.band.lookup;
-
-    for (let key in lookup) {
-      if (rasterExtract.histogram.hasOwnProperty(key)) {
-        this.data.histogram[key] = rasterExtract.histogram[key];
-      }
-      else {
-        this.data.histogram[key] = 0;
-      }
-    }
-
-    let noDataValue = this.metadata.band.noDataValue;
-
-    if (rasterExtract.histogram.hasOwnProperty(noDataValue)) {
-      this.data.histogram[noDataValue] = rasterExtract.histogram[noDataValue];
-    }
-    else {
-      this.data.histogram[noDataValue] = 0;
-    }
-
-  }
-
-};
+// let Raster = {
+//
+//   /**
+//    * The metadata of the raster.
+//    */
+//   metadata: {
+//     cellSize: 10,
+//     tileSize: 1000,
+//     minimumX: 351672.3499999996,
+//     minimumY: 381166.0432999991,
+//     columns: 5500,
+//     rows: 4000,
+//     band: {
+//       dataType: "UInt32",
+//       noDataValue: 4294967295,
+//       statistics: {
+//         minimum: 11,
+//         maximum: 58,
+//         average: 36.751935525663,
+//         standardDeviation: 16.283957789472
+//       },
+//       lookup: {
+//         11: {
+//           count: 1890363,
+//           form: "Built",
+//           function: "Urban Other",
+//           landscape: "Urban Other Built"
+//         },
+//         13: {
+//           count: 1082581,
+//           form: "Built",
+//           function: "Domestic Gardens",
+//           landscape: "Domestic Gardens Built"
+//         },
+//         14: {
+//           count: 65683,
+//           form: "Built",
+//           function: "Public Recreation",
+//           landscape: "Public Recreation Built"
+//         },
+//         15: {
+//           count: 251800,
+//           form: "Built",
+//           function: "Amenity",
+//           landscape: "Amenity Built"
+//         },
+//         16: {
+//           count: 33834,
+//           form: "Built",
+//           function: "Previously Developed",
+//           landscape: "Previously Developed Built"
+//         },
+//         17: {
+//           count: 93415,
+//           form: "Built",
+//           function: "Institutional",
+//           landscape: "Institutional Built"
+//         },
+//         18: {
+//           count: 60,
+//           form: "Built",
+//           function: "Urban Other",
+//           landscape: "Urban Other Built"
+//         },
+//         21: {
+//           count: 9262,
+//           form: "Water",
+//           function: "Urban Other",
+//           landscape: "Urban Other Water"
+//         },
+//         23: {
+//           count: 1949,
+//           form: "Water",
+//           function: "Domestic Gardens",
+//           landscape: "Domestic Gardens Water"
+//         },
+//         24: {
+//           count: 90817,
+//           form: "Water",
+//           function: "Public Recreation",
+//           landscape: "Public Recreation Water"
+//         },
+//         25: {
+//           count: 37082,
+//           form: "Water",
+//           function: "Amenity",
+//           landscape: "Amenity Water"
+//         },
+//         26: {
+//           count: 232,
+//           form: "Water",
+//           function: "Previously Developed",
+//           landscape: "Previously Developed Water"
+//         },
+//         27: {
+//           count: 302,
+//           form: "Water",
+//           function: "Institutional",
+//           landscape: "Institutional Water"
+//         },
+//         28: {
+//           count: 87463,
+//           form: "Water",
+//           function: "Peri-urban",
+//           landscape: "Peri-urban Water"
+//         },
+//         31: {
+//           count: 152910,
+//           form: "Grasses",
+//           function: "Urban Other",
+//           landscape: "Urban Other Grasses"
+//         },
+//         33: {
+//           count: 312356,
+//           form: "Grasses",
+//           function: "Domestic Gardens",
+//           landscape: "Domestic Gardens Grasses"
+//         },
+//         34: {
+//           count: 270989,
+//           form: "Grasses",
+//           function: "Public Recreation",
+//           landscape: "Public Recreation Grasses"
+//         },
+//         35: {
+//           count: 368232,
+//           form: "Grasses",
+//           function: "Amenity",
+//           landscape: "Amenity Grasses"
+//         },
+//         36: {
+//           count: 4803,
+//           form: "Grasses",
+//           function: "Previously Developed",
+//           landscape: "Previously Developed Grasses"
+//         },
+//         37: {
+//           count: 52626,
+//           form: "Grasses",
+//           function: "Institutional",
+//           landscape: "Institutional Grasses"
+//         },
+//         38: {
+//           count: 959678,
+//           form: "Grasses",
+//           function: "Peri-urban",
+//           landscape: "Peri-urban Grasses"
+//         },
+//         41: {
+//           count: 205147,
+//           form: "Forbs and shrubs",
+//           function: "Urban Other",
+//           landscape: "Urban Other Forbs and shrubs"
+//         },
+//         43: {
+//           count: 422170,
+//           form: "Forbs and shrubs",
+//           function: "Domestic Gardens",
+//           landscape: "Domestic Gardens Forbs and shrubs"
+//         },
+//         44: {
+//           count: 349814,
+//           form: "Forbs and shrubs",
+//           function: "Public Recreation",
+//           landscape: "Public Recreation Forbs and shrubs"
+//         },
+//         45: {
+//           count: 778452,
+//           form: "Forbs and shrubs",
+//           function: "Amenity",
+//           landscape: "Amenity Forbs and shrubs"
+//         },
+//         46: {
+//           count: 11460,
+//           form: "Forbs and shrubs",
+//           function: "Previously Developed",
+//           landscape: "Previously Developed Forbs and shrubs"
+//         },
+//         47: {
+//           count: 57490,
+//           form: "Forbs and shrubs",
+//           function: "Institutional",
+//           landscape: "Institutional Forbs and shrubs"
+//         },
+//         48: {
+//           count: 2557302,
+//           form: "Forbs and shrubs",
+//           function: "Peri-urban",
+//           landscape: "Peri-urban Forbs and shrubs"
+//         },
+//         51: {
+//           count: 266714,
+//           form: "Tree canopy",
+//           function: "Urban Other",
+//           landscape: "Urban Other Tree canopy"
+//         },
+//         53: {
+//           count: 557844,
+//           form: "Tree canopy",
+//           function: "Domestic Gardens",
+//           landscape: "Domestic Gardens Tree canopy"
+//         },
+//         54: {
+//           count: 401480,
+//           form: "Tree canopy",
+//           function: "Public Recreation",
+//           landscape: "Public Recreation Tree canopy"
+//         },
+//         55: {
+//           count: 795895,
+//           form: "Tree canopy",
+//           function: "Amenity",
+//           landscape: "Amenity Tree canopy"
+//         },
+//         56: {
+//           count: 7136,
+//           form: "Tree canopy",
+//           function: "Previously Developed",
+//           landscape: "Previously Developed Tree canopy"
+//         },
+//         57: {
+//           count: 46286,
+//           form: "Tree canopy",
+//           function: "Institutional",
+//           landscape: "Institutional Tree canopy"
+//         },
+//         58: {
+//           count: 535310,
+//           form: "Tree canopy",
+//           function: "Peri-urban",
+//           landscape: "Peri-urban Tree canopy"
+//         }
+//       },
+//       dictionary: [
+//         {
+//           field: "form",
+//           term: "Built",
+//           description: "Sealed surfaces including roads, buildings and hardstanding"
+//         },
+//         {
+//           field: "form",
+//           term: "Water",
+//           description: "Areas covered by natural and man-made water bodies and water courses"
+//         },
+//         {
+//           field: "form",
+//           term: "Grasses",
+//           description: "Areas covered by lawns, mown grass or grass-like (graminoid) crops"
+//         },
+//         {
+//           field: "form",
+//           term: "Forbs and shrubs",
+//           description: "Land dominated by herbaceous flowering plants and shrubs"
+//         },
+//         {
+//           field: "form",
+//           term: "Tree Canopy",
+//           description: "Tree canopy"
+//         },
+//         {
+//           field: "function",
+//           term: "Urban Other",
+//           description: "Land-use not assigned to any other function in this list and existing in urban areas"
+//         },
+//         {
+//           field: "function",
+//           term: "Domestic Gardens",
+//           description: "Private domestic gardens"
+//         },
+//         {
+//           field: "function",
+//           term: "Public Recreation",
+//           description: "Public Parks and Recreation. Accessible sites designated for leisure and recreation"
+//         },
+//         {
+//           field: "function",
+//           term: "Amenity",
+//           description: "Green areas primarily aimed at increasing aesthetic value located between buildings, roads and other land-uses"
+//         },
+//         {
+//           field: "function",
+//           term: "Previously Developed",
+//           description: "Brownfield sites and transitional land-use"
+//         },
+//         {
+//           field: "function",
+//           term: "Institutional",
+//           description: "Intitutional land (e.g. on hospital, adminstrative or school grounds)"
+//         },
+//         {
+//           field: "function",
+//           term: "Peri-urban",
+//           description: "Non-urban land-use within Greater Manchester"
+//         },
+//         {
+//           field: "function",
+//           term: "Urban Other Built",
+//           description: "Land-use: Urban other; Land-cover: Built"
+//         },
+//         {
+//           field: "function",
+//           term: "Urban Other Water",
+//           description: "Land-use: Urban other; Land-cover: Water"
+//         },
+//         {
+//           field: "function",
+//           term: "Urban Other Grasses",
+//           description: "Land-use: Urban other; Land-cover: Grasses"
+//         },
+//         {
+//           field: "function",
+//           term: "Urban Other Forbs and shrubs",
+//           description: "Land-use: Urban other; Land-cover: Forbs and Shrubs"
+//         },
+//         {
+//           field: "function",
+//           term: "Urban Other Tree canopy",
+//           description: "Land-use: Urban other; Land-cover: Tree Canopy"
+//         },
+//         {
+//           field: "function",
+//           term: "Public Recreation Built",
+//           description: "Land-use: Public Parks and Recreation: Land-cover: Built"
+//         },
+//         {
+//           field: "function",
+//           term: "Public Recreation Water",
+//           description: "Land-use: Public Parks and Recreation: Land-cover: Water"
+//         },
+//         {
+//           field: "function",
+//           term: "Public Recreation Grasses",
+//           description: "Land-use: Public Parks and Recreation: Land-cover: Grasses"
+//         },
+//         {
+//           field: "function",
+//           term: "Public Recreation Forbs and shrubs",
+//           description: "Land-use: Public Parks and Recreation: Land-cover: Forbs and Shrubs"
+//         },
+//         {
+//           field: "function",
+//           term: "Public Recreation Tree canopy",
+//           description: "Land-use: Public Parks and Recreation: Land-cover: Tree Canopy"
+//         },
+//         {
+//           field: "function",
+//           term: "Amenity Built",
+//           description: "Land-use: Amenity; Land-cover: Built"
+//         },
+//         {
+//           field: "function",
+//           term: "Amenity Water",
+//           description: "Land-use: Amenity; Land-cover: Water"
+//         },
+//         {
+//           field: "function",
+//           term: "Amenity Grasses",
+//           description: "Land-use: Amenity; Land-cover: Grasses"
+//         },
+//         {
+//           field: "function",
+//           term: "Amenity Forbs and Shrubs",
+//           description: "Land-use: Amenity; Land-cover: Forbs and Shrubs"
+//         },
+//         {
+//           field: "function",
+//           term: "Amenity Tree canopy",
+//           description: "Land-use: Amenity; Land-cover: Tree Canopy"
+//         },
+//         {
+//           field: "function",
+//           term: "Domestic Gardens Buillt",
+//           description: "Land-use: Domestic Gardens; Land-cover: Built"
+//         },
+//         {
+//           field: "function",
+//           term: "Domestic Gardens Water",
+//           description: "Land-use: Domestic Gardens; Land-cover: Water"
+//         },
+//         {
+//           field: "function",
+//           term: "Domestic Gardens Grasses",
+//           description: "Land-use: Domestic Gardens; Land-cover: Grasses"
+//         },
+//         {
+//           field: "function",
+//           term: "Domestic Gardens Forbs and Shrubs",
+//           description: "Land-use: Domestic Gardens; Land-cover: Forbs and Shrubs"
+//         },
+//         {
+//           field: "function",
+//           term: "Domestic Gardens Tree canopy",
+//           description: "Land-use: Domestic Gardens; Land-cover: Tree Canopy"
+//         },
+//         {
+//           field: "function",
+//           term: "Institutional Built",
+//           description: "Land-use: Institutional Land; Land-cover: Built"
+//         },
+//         {
+//           field: "function",
+//           term: "Institutional Water",
+//           description: "Land-use: Institutional Land; Land-cover: Water"
+//         },
+//         {
+//           field: "function",
+//           term: "Institutional Grasses",
+//           description: "Land-use: Institutional Land; Land-cover: Grasses"
+//         },
+//         {
+//           field: "function",
+//           term: "Institutional Forbs and shrubs",
+//           description: "Land-use: Institutional Land; Land-cover: Forbs and Shrubs"
+//         },
+//         {
+//           field: "function",
+//           term: "Institutional Tree canopy",
+//           description: "Land-use: Institutional Land; Land-cover: Tree Canopy"
+//         },
+//         {
+//           field: "function",
+//           term: "Previously Developed Built",
+//           description: "Land-use: Previously developed; Land-cover: Built"
+//         },
+//         {
+//           field: "function",
+//           term: "Previously Developed Water",
+//           description: "Land-use: Previously developed; Land-cover: Water"
+//         },
+//         {
+//           field: "function",
+//           term: "Previously Developed Grasses",
+//           description: "Land-use: Previously developed; Land-cover: Grasses"
+//         },
+//         {
+//           field: "function",
+//           term: "Previously Developed Forbs",
+//           description: "Land-use: Previously developed; Land-cover: Forbs and Shrubs"
+//         },
+//         {
+//           field: "function",
+//           term: "Previously Developed Tree canopy",
+//           description: "Land-use: Previously developed; Land-cover: Tree Canopy"
+//         },
+//         {
+//           field: "function",
+//           term: "Peri-urban Built",
+//           description: "Land-use: Peri-urban; Land-cover: Built"
+//         },
+//         {
+//           field: "function",
+//           term: "Peri-urban Water",
+//           description: "Land-use: Peri-urban; Land-cover: Water"
+//         },
+//         {
+//           field: "function",
+//           term: "Peri-urban Grasses",
+//           description: "Land-use: Peri-urban; Land-cover: Grasses"
+//         },
+//         {
+//           field: "function",
+//           term: "Peri-urban Forbs and shrubs",
+//           description: "Land-use: Peri-urban; Land-cover: Forbs and Shrubs"
+//         },
+//         {
+//           field: "function",
+//           term: "Peri-urban Tree canopy",
+//           description: "Land-use: Peri-urban; Land-cover: Tree Canopy"
+//         }
+//       ]
+//     }
+//   },
+//
+//   /**
+//    * The query used to extract the data from the raster.
+//    */
+//   query: {
+//
+//     /**
+//      * The type of the query.
+//      * Valid values are 'point' | 'polygon' | 'lsoa'.
+//      */
+//     type: undefined,
+//
+//     /**
+//      * The data used to define the query.
+//      */
+//     data: undefined
+//
+//   },
+//
+//   /**
+//    * The data of the raster that have been extracted by the query.
+//    */
+//   data: {
+//     envelope: {
+//
+//     },
+//     histogram: {
+//       11: 0,
+//       13: 0,
+//       14: 0,
+//       15: 0
+//
+//     }
+//   },
+//
+//   /**
+//    * Sets the raster data.
+//    *
+//    * @param rasterExtract - The raster data extract to set.
+//    */
+//   setData(rasterExtract) {
+//
+//     this.data = {};
+//
+//     this.data.envelope = rasterExtract.envelope;
+//     this.data.histogram = {};
+//
+//     let lookup = this.metadata.band.lookup;
+//
+//     for (let key in lookup) {
+//       if (rasterExtract.histogram.hasOwnProperty(key)) {
+//         this.data.histogram[key] = rasterExtract.histogram[key];
+//       }
+//       else {
+//         this.data.histogram[key] = 0;
+//       }
+//     }
+//
+//     let noDataValue = this.metadata.band.noDataValue;
+//
+//     if (rasterExtract.histogram.hasOwnProperty(noDataValue)) {
+//       this.data.histogram[noDataValue] = rasterExtract.histogram[noDataValue];
+//     }
+//     else {
+//       this.data.histogram[noDataValue] = 0;
+//     }
+//
+//   },
+//
+//
+//
+//
+//   setData2(rasterExtract) {
+//
+//     this.data = {};
+//
+//     this.data.envelope = rasterExtract.envelope;
+//     this.data.histogram = {};
+//
+//     let lookup = this.metadata.band.lookup;
+//     let dictionary = this.metadata.band.dictionary;
+//
+//     let keys = Object.keys(Raster.data.lookup);
+//     let rasterValues = [];
+//
+//     keys.forEach(k => rasterValues.push(parseInt(k)));
+//
+//     rasterValues.sort();
+//
+//     let index = 0;
+//
+//     for (let i = 0; i < rasterValues.length; i++) {
+//
+//       let rasterValue = rasterValues[i];
+//
+//       if (rasterExtract.histogram.hasOwnProperty(rasterValue)) {
+//
+//         index++;
+//
+//         let formDescription = dictionary(el => el.field === 'form' && el.term === lookup[rasterValue].form);
+//         let functionDescription = dictionary(el => el.field === 'function' && el.term === lookup[rasterValue].function);
+//
+//         this.data.histogram[index] = {
+//           value: rasterValue,
+//           count: rasterExtract.histogram[rasterValue],
+//           form: Raster.metadata.band.lookup[rasterValue].form,
+//           formDescription: formDescription,
+//           function: Raster.metadata.band.lookup[rasterValue].function,
+//           functionDescription: functionDescription
+//         };
+//
+//       }
+//
+//     }
+//
+//     let noDataValue = this.metadata.band.noDataValue;
+//
+//     if (rasterExtract.histogram.hasOwnProperty(noDataValue)) {
+//
+//       this.data.histogram[index++] = {
+//         value: noDataValue,
+//         count: rasterExtract.histogram[noDataValue],
+//         form: 'Outside Greater Manchester',
+//         formDescription: 'A portion of the area is located outside the borders of Greater Manchester',
+//         function: 'Outside Greater Manchester',
+//         functionDescription: 'A portion of the area is located outside the borders of Greater Manchester'
+//       };
+//
+//     }
+//
+//   }
+//
+// };
 
 /**
  * Provides methods to get raster information from the REST GHIA raster server.
@@ -1475,7 +2015,15 @@ let RestClient = {
           polygon: undefined
         };
 
-        Raster.setData(data.rasterExtract);
+        // Raster.setData(data.rasterExtract);
+        Raster.setData2(data.rasterExtract);
+
+        if (displayResultsViewModel.getCurrentMethod() === 'report') {
+          reportViewModel.updateView();
+        }
+        else {
+          diagramViewModel.updateView();
+        }
 
         // let result =
         //   'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
@@ -1509,72 +2057,6 @@ let RestClient = {
 
   },
 
-  testGet1: function(lat, lon) {
-
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin2/';
-
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/:level';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/0';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/1';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/2';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/3';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/:level/:prev_levels_nuts_code';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/nuts/codes/3/AT11';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/typology/:name';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/typology/supergroups';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/typology/groups';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/typology/indicators';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/geospatial/:geometry_type/:nuts_id';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/geospatial/centroids/EL512';
-    // let url = 'http://maps.humanities.manchester.ac.uk/resin/geospatial/polygons/EL512';
-
-    // let url = 'http://maps.humanities.manchester.ac.uk/spatial/geoserver/commute-flow/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=commute-flow:commute-flow-thin-filtered-epsg-4326&cql_filter=rc=102004008&outputFormat=application/json';
-
-
-    // let url = 'localhost:8083';
-    // let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server';
-    // let url = 'localhost:8083/raster-metadata';
-    // let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/raster-metadata';
-    // let url = 'localhost:8083/report/@' + lat + ',' + lon;
-    let url = 'http://maps.humanities.manchester.ac.uk/ghia-raster-server/report/@' + lat + ',' + lon;
-
-
-    axios.get(url)
-      .then(function(response) {
-
-        let result =
-          'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
-          'STATUS: '      + response.status + '\r\n' +
-          'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
-          'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
-          'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
-          'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
-          'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
-
-        alert(result);
-
-      }).catch(function(error) {
-
-      let result =
-        'ERROR:\r\n'  + '----------------------------------------\r\n' +
-        'MESSAGE: '     + error.message + '\r\n' +
-        'STACK: \r\n'   + error.stack + '\r\n\r\n' +
-        'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
-        'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
-        'STATUS: '      + error.status + '\r\n' +
-        'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
-        'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
-        'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
-
-      alert(result);
-
-    }).finally(function() {
-
-    });
-
-  },
-
   /**
    * Gets the raster cells report using a geographic polygon.
    * Uses the POST verb.
@@ -1585,142 +2067,102 @@ let RestClient = {
 
     let url = this.baseURL + '/report';
 
-    let data =  {
-      polygon: {
-        geographic: {
-          type: "Polygon",
-          coordinates: [[[-2.283783, 53.54602], [-2.242584, 53.545204], [-2.248764, 53.512143], [-2.318802, 53.508876], [-2.283783, 53.54602]]]
-        },
-        projected: {
-          type: "Polygon",
-          coordinates: [[
-            [381293.28000357543, 405524.4198418361],
-            [384022.91574372555, 405423.53947639425],
-            [383600.5501975797, 401746.7627054498],
-            [378954.3333445564, 401401.8078244587],
-            [381293.28000357543, 405524.4198418361]
-          ]]
-        }
-      },
-      rasterExtract: {
-        envelope: {
-          minRow: 1564,
-          minCol: 2728,
-          maxRow: 1976,
-          maxCol: 3235
-        },
-        histogram: {
-          11: 18641,
-          13: 14676,
-          14: 1825,
-          15: 1779,
-          16: 199,
-          17: 1449,
-          21: 35,
-          23: 7,
-          24: 2181,
-          25: 478,
-          26: 1,
-          28: 383,
-          31: 2491,
-          33: 6553,
-          34: 5895,
-          35: 1852,
-          36: 44,
-          37: 378,
-          38: 1676,
-          41: 1635,
-          43: 4894,
-          44: 9426,
-          45: 4453,
-          46: 15,
-          47: 520,
-          48: 3581,
-          51: 4658,
-          53: 12297,
-          54: 21948,
-          55: 15365,
-          56: 149,
-          57: 721,
-          58: 2847,
-          totalCells: 143052
-        }
-      }
-    };
-
-    //let data = response.data;
-
-    Raster.query.type = queryStateViewModel.getCurrentState();
-    Raster.query.data = {
-      location: undefined,
-      rectangle: undefined,
-      polygon: data.polygon
-    };
-
-    Raster.setData(data.rasterExtract);
-
-    alert(JSON.stringify(Raster.data));
-
-
-    // axios.post(url, {
-    //   polygon: polygon
-    // }).then(function(response) {
-    //
-    //   let result =
-    //     'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
-    //     'STATUS: '      + response.status + '\r\n' +
-    //     'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
-    //     'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
-    //     'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
-    //     'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
-    //     'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
-    //
-    //   alert(result);
-    //
-    // }).catch(function(error) {
-    //
-    //   let result =
-    //     'ERROR:\r\n'  + '----------------------------------------\r\n' +
-    //     'MESSAGE: '     + error.message + '\r\n' +
-    //     'STACK: \r\n'   + error.stack + '\r\n\r\n' +
-    //     'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
-    //     'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
-    //     'STATUS: '      + error.status + '\r\n' +
-    //     'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
-    //     'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
-    //     'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
-    //
-    //   alert(result);
-    //
-    // }).finally(function() {
-    //
-    // });
-
-  },
-
-  testPost1: function() {
-
-    // let url = 'http://localhost:8083/report/?polygon={"type": "Polygon", "coordinates": [[[-2.2576904296875004, 53.46837962792356], [-2.226791381835938, 53.47900545831375], [-2.19503402709961, 53.45882432637676], [-2.227392196655274, 53.45867101524035], [-2.2594928741455083, 53.4496246783658], [-2.2576904296875004, 53.46837962792356]]]}';
-
-    // let json = '{"type": "Polygon", "coordinates": [[[-2.2576904296875004, 53.46837962792356], [-2.226791381835938, 53.47900545831375], [-2.19503402709961, 53.45882432637676], [-2.227392196655274, 53.45867101524035], [-2.2594928741455083, 53.4496246783658], [-2.2576904296875004, 53.46837962792356]]]}';
-
-    let url = 'http://localhost:8083/testpost1/';
-
+    // let data =  {
+    //   polygon: {
+    //     geographic: {
+    //       type: "Polygon",
+    //       coordinates: [[[-2.283783, 53.54602], [-2.242584, 53.545204], [-2.248764, 53.512143], [-2.318802, 53.508876], [-2.283783, 53.54602]]]
+    //     },
+    //     projected: {
+    //       type: "Polygon",
+    //       coordinates: [[
+    //         [381293.28000357543, 405524.4198418361],
+    //         [384022.91574372555, 405423.53947639425],
+    //         [383600.5501975797, 401746.7627054498],
+    //         [378954.3333445564, 401401.8078244587],
+    //         [381293.28000357543, 405524.4198418361]
+    //       ]]
+    //     }
+    //   },
+    //   rasterExtract: {
+    //     envelope: {
+    //       minRow: 1564,
+    //       minCol: 2728,
+    //       maxRow: 1976,
+    //       maxCol: 3235
+    //     },
+    //     histogram: {
+    //       11: 18641,
+    //       13: 14676,
+    //       14: 1825,
+    //       15: 1779,
+    //       16: 199,
+    //       17: 1449,
+    //       21: 35,
+    //       23: 7,
+    //       24: 2181,
+    //       25: 478,
+    //       26: 1,
+    //       28: 383,
+    //       31: 2491,
+    //       33: 6553,
+    //       34: 5895,
+    //       35: 1852,
+    //       36: 44,
+    //       37: 378,
+    //       38: 1676,
+    //       41: 1635,
+    //       43: 4894,
+    //       44: 9426,
+    //       45: 4453,
+    //       46: 15,
+    //       47: 520,
+    //       48: 3581,
+    //       51: 4658,
+    //       53: 12297,
+    //       54: 21948,
+    //       55: 15365,
+    //       56: 149,
+    //       57: 721,
+    //       58: 2847,
+    //       totalCells: 143052
+    //     }
+    //   }
+    // };
 
     axios.post(url, {
-      id: 12345
+      polygon: polygon
     }).then(function(response) {
 
-      let result =
-        'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
-        'STATUS: '      + response.status + '\r\n' +
-        'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
-        'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
-        'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
-        'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
-        'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
+      let data = response.data;
 
-      alert(result);
+      Raster.query.type = queryStateViewModel.getCurrentState();
+      Raster.query.data = {
+        location: undefined,
+        rectangle: undefined,
+        polygon: data.polygon
+      };
+
+      // Raster.setData(data.rasterExtract);
+      Raster.setData2(data.rasterExtract);
+
+      if (displayResultsViewModel.getCurrentMethod() === 'report') {
+        reportViewModel.updateView();
+      }
+      else {
+        diagramViewModel.updateView();
+      }
+
+      // let result =
+      //   'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
+      //   'STATUS: '      + response.status + '\r\n' +
+      //   'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
+      //   'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
+      //   'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
+      //   'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
+      //   'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
+      //
+      // alert(result);
 
     }).catch(function(error) {
 
@@ -1813,11 +2255,6 @@ let sidebarTabsViewModel = new Vue({
   }
 
 });
-
-
-
-
-
 
 /**
  * The toggleBaseMapViewModel provides the data and logic to toggle the BaseMap layer.
@@ -2021,9 +2458,12 @@ let queryStateViewModel = new Vue({
 
 });
 
-
-
-
+/**
+ * The displayResultsViewModel provides the data and logic to toggle
+ * the method of displaying the results of the queried raster.
+ *
+ * @type {Vue} - A Vue object with the model and methods used in the view model.
+ */
 let displayResultsViewModel = new Vue({
 
   /**
@@ -2062,7 +2502,7 @@ let displayResultsViewModel = new Vue({
       let currentMethod = '';
 
       for (let property in this.methods) {
-        if (this.states.hasOwnProperty(property)) {
+        if (this.methods.hasOwnProperty(property)) {
           if (this.methods[property].isCurrent) {
             currentMethod = property;
             break;
@@ -2095,22 +2535,10 @@ let displayResultsViewModel = new Vue({
       }
 
       if (method === 'report') {
-        // if (Spatial.map.editTools.drawing()) {
-        //   Spatial.map.editTools.stopDrawing();
-        // }
-        //
-        // Spatial.map.editTools.startMarker();
-
-        alert('report');
+        reportViewModel.updateView();
       }
-      else if (method === 'diagram') {
-        // if (Spatial.map.editTools.drawing()) {
-        //   Spatial.map.editTools.stopDrawing();
-        // }
-        //
-        // Spatial.map.editTools.startPolygon();
-
-        alert('diagram');
+      else {
+        diagramViewModel.updateView();
       }
 
     }
@@ -2118,11 +2546,6 @@ let displayResultsViewModel = new Vue({
   }
 
 });
-
-
-
-
-
 
 /**
  * The reportViewModel provides the data and logic to render on the web page
@@ -2142,6 +2565,56 @@ let reportViewModel = new Vue({
    */
   data: {
 
+    /**
+     * Determines if a number is odd.
+     *
+     * @param number - The number to check.
+     */
+    isOdd(number) {
+      return number % 2;
+    },
+
+    /**
+     * Gets the envelope of the extracted values.
+     */
+    envelope: {},
+
+    /**
+     * Gets the histogram of extracted raster values.
+     */
+    histogram: {},
+
+    /**
+     * Gets the count of the histogram.
+     */
+    histogramCount: 0,
+
+    /**
+     * Gets the count of the histogram entries.
+     *
+     * @returns {number} - A number with the counted entries.
+     */
+    histogramEntriesCount: function () {
+      return Object.keys(Raster.data.histogram).length;
+    },
+
+    /**
+     * Gets the percentage of the specified histogram entry raster values compared to the total extracted raster values.
+     *
+     * @param histogramEntry - The entry of the histogram whose raster values count will be used to calculate the percentage.
+     * @returns {number} - A number representing the percentage.
+     */
+    percentage(histogramEntry) {
+      return (histogramEntry.count / this.histogramCount) * 100;
+    },
+
+    /**
+     * Gets whether the view is visible or not.
+     */
+    isViewVisible() {
+      return displayResultsViewModel.methods.report.isCurrent;
+    }
+
   },
 
   /**
@@ -2149,13 +2622,83 @@ let reportViewModel = new Vue({
    */
   methods: {
 
+    /**
+     * Updates the view with the new extracted raster values.
+     */
+    updateView() {
+
+      this.envelope = Raster.data.envelope;
+      this.histogram = Raster.data.histogram;
+      this.histogramCount = Raster.data.count;
+
+    }
 
   }
 
 });
 
 
+/**
+ * The diagramViewModel provides the data and logic to render on the web page
+ * the diagram displaying the green cover of the queried area.
+ *
+ * @type {Vue} - A Vue object with the model and methods used in the view model.
+ */
+let diagramViewModel = new Vue({
 
+  /**
+   * The name of the view model.
+   */
+  el: '#diagramVM',
+
+  /**
+   * The model of the view model.
+   */
+  data: {
+
+    /**
+     * Gets the envelope of the extracted values.
+     */
+    envelope: {},
+
+    /**
+     * Gets the histogram of extracted raster values.
+     */
+    histogram: {},
+
+    /**
+     * Gets the count of the histogram.
+     */
+    histogramCount: 0,
+
+    /**
+     * Gets whether the view is visible or not.
+     */
+    isViewVisible() {
+      return displayResultsViewModel.methods.diagram.isCurrent;
+    }
+
+  },
+
+  /**
+   * The methods of the view model.
+   */
+  methods: {
+
+    /**
+     * Updates the view with the new extracted raster values.
+     */
+    updateView() {
+
+      this.envelope = Raster.data.envelope;
+      this.histogram = Raster.data.histogram;
+      this.histogramCount = Raster.data.count;
+
+    }
+
+  }
+
+});
 
 //
 // ================================================================================
@@ -2169,11 +2712,13 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
 
-Raster.metadata = RestClient.getMetadata();
+// Raster.metadata = RestClient.getMetadata();
 
 Spatial.initializeMap();
 
 Spatial.sidebar.open('map-controls');
+
+queryStateViewModel.setCurrentState('point');
 
 //
 // ================================================================================
