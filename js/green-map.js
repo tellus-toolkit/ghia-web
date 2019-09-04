@@ -2356,20 +2356,26 @@ let queryStateViewModel = new Vue({
       point: {
         isCurrent: true,
         icon: 'fas fa-map-marker-alt',
-        buttonText: 'By Point',
+        buttonText: 'Point',
         helpText: 'Click on the map to get a report of the green cover. A square of 1 km size with its centre positioned on the clicked location will be used to retrieve the information.'
       },
       polygon: {
         isCurrent: false,
         icon: 'fas fa-draw-polygon',
-        buttonText: 'By Polygon',
+        buttonText: 'Polygon',
         helpText: 'Click on the map to draw a polygon. Double click to finish the polygon. A report will be generated with details about the green cover inside the drawn polygon.'
       },
       lsoa: {
         isCurrent: false,
-        icon: 'fas fa-draw-polygon',
-        buttonText: 'By LSOA',
+        icon: 'fas fa-map-marked-alt',
+        buttonText: 'LSOA',
         helpText: 'Click on the map to select an LSOA polygon. A report will be generated with details about the green cover inside the LSOA polygon.'
+      },
+      wards: {
+        isCurrent: false,
+        icon: 'fas fa-map-marked-alt',
+        buttonText: 'Ward',
+        helpText: 'Click on the map to select a ward polygon. A report will be generated with details about the green cover inside the ward polygon.'
       }
     },
 
@@ -2480,15 +2486,15 @@ let displayResultsViewModel = new Vue({
      * The possible methods of displaying the results.
      */
     methods: {
-      report: {
-        isCurrent: true,
-        icon: 'fas fa-book',
-        buttonText: 'Report'
-      },
       diagram: {
-        isCurrent: false,
+        isCurrent: true,
         icon: 'fas fa-poll', // 'fas fa-chart-line', 'fas fa-chart-pie'
         buttonText: 'Diagram'
+      },
+      report: {
+        isCurrent: false,
+        icon: 'fas fa-book',
+        buttonText: 'Report'
       }
     },
 

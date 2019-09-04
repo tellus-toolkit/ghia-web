@@ -360,6 +360,15 @@
                         <span v-text="states.lsoa.buttonText"></span>
                       </button>
 
+                      <button type="button" class="btn btn-primary m-1"
+                              v-bind:class="[states.wards.isCurrent ? 'active' : '']"
+                              v-on:click="setCurrentState('wards')">
+                        <i class="mr-2"
+                           v-bind:class="[states.wards.icon]">
+                        </i>
+                        <span v-text="states.wards.buttonText"></span>
+                      </button>
+
                     </div>
 
                     <div class="ghia-hor-sep"></div>
@@ -375,21 +384,21 @@
                     <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row">
 
                       <button type="button" class="btn btn-primary m-1"
-                              v-bind:class="[methods.report.isCurrent ? 'active' : '']"
-                              v-on:click="setCurrentMethod('report')">
-                        <i class="mr-2"
-                           v-bind:class="[methods.report.icon]">
-                        </i>
-                        <span v-text="methods.report.buttonText"></span>
-                      </button>
-
-                      <button type="button" class="btn btn-primary m-1"
                               v-bind:class="[methods.diagram.isCurrent ? 'active' : '']"
                               v-on:click="setCurrentMethod('diagram')">
                         <i class="mr-2"
                            v-bind:class="[methods.diagram.icon]">
                         </i>
                         <span v-text="methods.diagram.buttonText"></span>
+                      </button>
+
+                      <button type="button" class="btn btn-primary m-1"
+                              v-bind:class="[methods.report.isCurrent ? 'active' : '']"
+                              v-on:click="setCurrentMethod('report')">
+                        <i class="mr-2"
+                           v-bind:class="[methods.report.icon]">
+                        </i>
+                        <span v-text="methods.report.buttonText"></span>
                       </button>
 
                     </div>
@@ -405,6 +414,10 @@
 
 <!--                  <div class="mb-auto h-100 ver-scrollbars border-left border-bottom border-right">-->
                   <div class="mb-auto h-100 ver-scrollbars">
+
+                    <div id="diagramVM" v-bind:class="[isViewVisible() ? '' : 'hidden']">
+                      <p>This is the diagram area</p>
+                    </div>
 
                     <div id="reportVM" v-bind:class="[isViewVisible() ? '' : 'hidden']">
                       <div class="card card-body">
@@ -435,10 +448,6 @@
                         </table>
 
                       </div>
-                    </div>
-
-                    <div id="diagramVM" v-bind:class="[isViewVisible() ? '' : 'hidden']">
-                      <p>This is the diagram area</p>
                     </div>
 
                   </div>

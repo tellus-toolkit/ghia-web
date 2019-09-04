@@ -587,9 +587,9 @@ var Raster = {
       this.data.histogram[index++] = {
         value: noDataValue,
         count: rasterExtract.histogram[noDataValue],
-        form: 'Outside Greater Manchester',
+        form: 'No Data',
         formDescription: 'A portion of the area is located outside the borders of Greater Manchester',
-        function: 'Outside Greater Manchester',
+        function: 'No Data',
         functionDescription: 'A portion of the area is located outside the borders of Greater Manchester'
       };
 
