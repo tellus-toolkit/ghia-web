@@ -411,6 +411,19 @@
 
                   </div>
 
+                  <div>
+
+                    <div id="diagramHeaderVM">
+
+                    </div>
+
+                    <div id="reportHeaderVM">
+                      <p>
+                        Summary results for user selected point
+                      </p>
+                    </div>
+
+                  </div>
 
 <!--                  <div class="mb-auto h-100 ver-scrollbars border-left border-bottom border-right">-->
                   <div class="mb-auto h-100 ver-scrollbars">
@@ -420,26 +433,27 @@
                     </div>
 
                     <div id="reportVM" v-bind:class="[isViewVisible() ? '' : 'hidden']">
+
                       <div class="card card-body">
 
                         <table class="table-bordered table-striped table-hover raster-value-table">
-                          <thead style="background-color: #c9ceea;">
+                          <thead style="background-color: #4285f4; color: white;">
                           <tr>
-                            <th scope="col" class="raster-value-value">Value</th>
-                            <th scope="col" class="raster-value-function">Function</th>
+<!--                            <th scope="col" class="raster-value-value">Value</th>-->
                             <th scope="col" class="raster-value-form">Form</th>
-                            <th scope="col" class="raster-value-count text-right">Count</th>
-                            <th scope="col" class="raster-value-percentage text-right">%</th>
+                            <th scope="col" class="raster-value-function">Function</th>
+<!--                            <th scope="col" class="raster-value-count text-right">Count</th>-->
+                            <th scope="col" class="raster-value-percentage text-right">Area%</th>
                           </tr>
                           </thead>
                           <tbody v-for="(entry, index) in histogram"
                                  v-if="histogramEntriesCount !== 0">
 <!--                            <tr v-bind:class="[isOdd(index) ? 'table-light' : '']">-->
                             <tr>
-                              <td class="raster-value-value" v-text="entry.value"></td>
-                              <td class="raster-value-function" v-text="entry.function"></td>
+<!--                              <td class="raster-value-value" v-text="entry.value"></td>-->
                               <td class="raster-value-form" v-text="entry.form"></td>
-                              <td class="raster-value-count text-right" v-text="entry.count"></td>
+                              <td class="raster-value-function" v-text="entry.function"></td>
+<!--                              <td class="raster-value-count text-right" v-text="entry.count"></td>-->
                               <td class="raster-value-percentage text-right" v-text="percentage(entry).toFixed(3)"></td>
                             </tr>
 
