@@ -1,76 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <title>Material Design Bootstrap</title>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="libs/mdb/css/bootstrap.min.css" rel="stylesheet">
-  <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
-  <!-- Material Design Bootstrap -->
-  <link href="libs/mdb/css/mdb.min.css" rel="stylesheet">
-  <!--<link href="css/mdb.min.css" rel="stylesheet">-->
-  <!-- Your custom styles (optional) -->
-  <link href="libs/mdb/css/style.css" rel="stylesheet">
-  <!--<link href="css/style.css" rel="stylesheet">-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="TellUs Toolkit Ltd" name="author">
+    <title>GHIA Mapping Application Tool</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="libs/mdb/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="libs/mdb/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="libs/mdb/css/style.css" rel="stylesheet">
+    <link href="styles/footer.css" rel="stylesheet">
 </head>
-
 <body>
-
-  <!-- Start your project here-->
-  <div style="height: 100vh;">
-
-    <nav class="navbar navbar-expand-lg navbar-dark indigo">
-      <a class="navbar-brand" href="#">GHIA</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark indigo">
+    <a class="navbar-brand" href="#"><img src="mini-Q/img/ghia-logo.jpg" alt="GHIA" height="30px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="map.html">Map</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="green-map.html">Green Map</a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link" href="map.html">Map</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="green-map.html">Green Map</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="mini-Q/">mini Q survey</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="mini-Q/q-map.html">mini Q map</a>
+            </li>
         </ul>
-      </div>
-    </nav>
-
-    <div class="flex-center flex-column" style="height: 100vh;">
-
-      <h1 class="text-hide animated fadeIn mb-4"
-        style="background-image: url('https://mdbootstrap.com/img/logo/mdb-transparent-250px.png'); width: 250px; height: 90px;">
-        MDBootstrap</h1>
-      <h5 class="animated fadeIn mb-3">Thank you for using our product. We're glad you're with us.</h5>
-
-      <p class="animated fadeIn text-muted">MDB Team</p>
-
-
-
     </div>
-  </div>
-  <!-- /Start your project here-->
+</nav>
 
-  <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="libs/mdb/js/jquery-3.4.0.min.js"></script>
-  <!--<script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>-->
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="libs/mdb/js/popper.min.js"></script>
-  <!--<script type="text/javascript" src="js/popper.min.js"></script>-->
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="libs/mdb/js/bootstrap.min.js"></script>
-  <!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="libs/mdb/js/mdb.min.js"></script>
-  <!--<script type="text/javascript" src="js/mdb.min.js"></script>-->
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">GHIA mapping tools</h1>
+        <p>The GHIA mapping tools provide information about your use of green space in Greater Manchester.</p>
+        <p><a class="btn btn-primary btn-lg" href="https://ghia.org.uk/" target="_blank" role="button">Learn more about
+            GHIA &raquo;</a></p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Green Map</h2>
+            <p>Use the map to get a report of the type and amount of green cover in your area. You can click a single
+                point, draw your own polygon or select an 'LSOA' census polygon.</p>
+            <p>A report will be generated with details about the green cover within either a square of 1 km size, inside
+                your drawn polygon or inside the LSOA polygon.</p>
+            <p><a class="btn btn-success" href="green-map.html" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>mini Q survey</h2>
+            <p>This survey is for residents of Greater Manchester. The survey asks your views on how urban
+                green spaces and water in Greater Manchester affect your health and wellbeing.</p>
+            <p>The survey takes about 5-10 minutes to complete and you will then see your results mapped and get an
+                opportunity to see how your views compares with those of other people</p>
+            <p><a class="btn btn-success" href="mini-q/" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>mini Q map</h2>
+            <p>Once you have filled in the survey you can see what other people are saying by searching around the map
+                of Greater Manchester.</p>
+            <p><a class="btn btn-success" href="mini-Q/map.html" role="button">View details &raquo;</a></p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <button aria-controls="collapseExample" aria-expanded="false" class="btn btn-success"
+                    data-target="#collapseExample" data-toggle="collapse" type="button">Data Privacy &amp; Ethics
+                &raquo;
+            </button>
+        </div>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <hr/>
+                <p>Taking part and all questions within this survey are voluntary. From section 2
+                    onwards there are no right or wrong answers - we are interested purely in your
+                    opinion.</p>
+                <p>The information provided by people taking part in this survey will only be used for
+                    research purposes. It will not be used for commercial reasons. All data will be
+                    treated in accordance with the Data Protection Act (1998).</p>
+                <p>We will not collect people’s names, phone numbers or IP addresses. We will however,
+                    ask for the postcode of your home address to be provided. This is in order to locate
+                    your responses on a map anonymously. In circumstances where there are very few
+                    households within a postcode area, providing your postcode could link your answers
+                    to your household. However, in practice it is unlikely you would be identifiable
+                    from providing your postcode, and this is not an aim of the research. Your postcode
+                    will not be published, and at no time will your data be used in a way which
+                    compromises your right to confidentiality.</p>
+                <p>Your data will be stored on a secure, password protected server and protected through
+                    encryption where appropriate. Anonymised research data will be archived at the UK
+                    Data Archive Service or similar, in order to make it available to other researchers
+                    in line with current data sharing practices.</p>
+                <p>It is important to understand that, by saying you consent to taking part in this
+                    survey, you agree that:</p>
+                <ul>
+                    <li>you understand you can withdraw your answers at any time during or at the end of
+                        the survey
+                    </li>
+                    <li>your information will stored in line with data protection policy</li>
+                    <li>your words (but no identifiable information) may be quoted in publications,
+                        reports, web pages, and other research outputs
+                    </li>
+                    <li>you consent to confidential and protected data sharing with all members of our
+                        research team
+                    </li>
+                    <li>your information can be archived at a suitable social science data archiving
+                        service
+                    </li>
+                    <li>you understand other genuine researchers will have access to this data and may
+                        use your words in research outputs if they agree to preserve your
+                        confidentiality as requested in this form
+                    </li>
+                </ul>
+                <p>Thank you and we hope you enjoy participating.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">Built and developed by TellUs Toolkit Ltd.</span>
+        <ul class="custom-control-inline">
+            <li class="custom-control-inline"><a class="nav-link" href="https://www.tellus-toolkit.com"
+                                                 target="_blank">
+                <img alt="The TellUs Toolkit" height="30px"
+                     src="https://www.tellus-toolkit.com/img/TellUs-logo-200.png"/></a></li>
+        </ul>
+    </div>
+</footer>
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="libs/mdb/js/jquery-3.4.0.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="libs/mdb/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="libs/mdb/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="libs/mdb/js/mdb.min.js"></script>
 </body>
-
 </html>
