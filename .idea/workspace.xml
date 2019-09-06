@@ -2,229 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08924dda-c242-485d-8acf-b4c899821e4b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/styles/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/green-map.html" beforeDir="false" afterPath="$PROJECT_DIR$/green-map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/map.html" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/map.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57103">
-              <caret line="3359" column="32" selection-start-line="3359" selection-start-column="32" selection-end-line="3359" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/green-map.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="422" column="22" selection-start-line="422" selection-start-column="22" selection-end-line="422" selection-end-column="22" />
-              <folding>
-                <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#1;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/styles/green-map.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5491">
-              <caret line="323" selection-start-line="323" selection-end-line="323" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/green-map.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="2375" column="36" selection-start-line="2375" selection-start-column="36" selection-end-line="2375" selection-end-column="36" />
-              <folding>
-                <element signature="e#1052#1620#0" />
-                <element signature="e#1698#2011#0" />
-                <element signature="e#2264#6197#0" />
-                <element signature="e#6335#8152#0" />
-                <element signature="e#8221#9126#0" />
-                <element signature="e#9218#12757#0" />
-                <element signature="e#13647#36714#0" />
-                <element signature="e#13754#19966#0" />
-                <element signature="e#13898#18019#0" />
-                <element signature="e#18470#19382#0" />
-                <element signature="e#19477#19961#0" />
-                <element signature="e#20028#26187#0" />
-                <element signature="e#20178#24231#0" />
-                <element signature="e#24682#25615#0" />
-                <element signature="e#25704#26182#0" />
-                <element signature="e#26239#36711#0" />
-                <element signature="e#26604#33041#0" />
-                <element signature="e#34557#36181#0" />
-                <element signature="e#36259#36706#0" />
-                <element signature="e#38130#39081#0" />
-                <element signature="e#40213#40230#0" />
-                <element signature="e#62749#62765#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>typology</find>
-      <find>typology-class-header</find>
-      <find>cover-name</find>
-      <find>cover-</find>
-      <find>&quot;count&quot;</find>
-      <find>&quot;count&quot;:</find>
-      <find>&quot;form&quot;:</find>
-      <find>&quot;landscape&quot;:</find>
-      <find>&quot;term&quot;:</find>
-      <find>&quot;description&quot;:</find>
-      <find>raster</find>
-      <find>let rast</find>
-      <find>Raster.data</find>
-      <find>let rastert</find>
-      <find>let raster</find>
-      <find>envelop</find>
-      <find>histogramke</find>
-      <find>histogram</find>
-      <find>let ras</find>
-      <find>hasownpr</find>
-      <find>restclient</find>
-      <find>Object</find>
-      <find>setData</find>
-      <find>rasterExtract</find>
-      <find>tree canopy</find>
-      <find>getrepoi</find>
-      <find>percentage</find>
-      <find>button</find>
-      <find>diagramvm</find>
-      <find>states</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>ghia-</replace>
-      <replace>cover-</replace>
-      <replace>raster-value-</replace>
-      <replace>count:</replace>
-      <replace>form:</replace>
-      <replace>function:</replace>
-      <replace>landscape:</replace>
-      <replace>field:</replace>
-      <replace>term:</replace>
-      <replace>description:</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/js/map.js" />
-        <option value="$PROJECT_DIR$/js/ghia-ilm-v-1-1-aoi.geojson" />
-        <option value="$PROJECT_DIR$/js/ghia-ilm-v-1-1-tiles1000.js" />
-        <option value="$PROJECT_DIR$/js/ghia-ilm-v-1-1-aoi.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/libs/leaflet-1.5.1/leaflet-src.js" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/map.html" />
-        <option value="$PROJECT_DIR$/styles/green-map.css" />
-        <option value="$PROJECT_DIR$/js/raster.js" />
-        <option value="$PROJECT_DIR$/js/green-map.js" />
-        <option value="$PROJECT_DIR$/green-map.html" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="55" />
-    <option name="y" value="15" />
-    <option name="width" value="1800" />
-    <option name="height" value="1005" />
-  </component>
+  <component name="ProjectId" id="1QSorf7FpAtdSgf5vZL0CxR0sjG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="NBKnowledgePane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ghia-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ghia-web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ghia-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ghia-web" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ghia-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ghia-web" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ghia-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ghia-web" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
-              <item name="mdb" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ghia-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ghia-web" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ghia-raster-service" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="$USER_HOME$/AppData/Roaming/npm/node_modules/eslint" />
@@ -296,6 +103,11 @@
       <workItem from="1567270780946" duration="598000" />
       <workItem from="1567594287274" duration="5281000" />
       <workItem from="1567623266540" duration="2791000" />
+      <workItem from="1567773042824" duration="116000" />
+      <workItem from="1567773572207" duration="1065000" />
+      <workItem from="1567775179531" duration="1420000" />
+      <workItem from="1567777125373" duration="1805000" />
+      <workItem from="1567780420252" duration="4149000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>
@@ -328,40 +140,21 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204054000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2489339" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="DB Browser" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="GraphQL" order="0" weight="0.32963374" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.3973363" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32963374" />
-      <window_info anchor="bottom" id="DB Execution Console" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" weight="0.32963374" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50053304" side_tool="true" weight="0.32963374" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32991204" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="right" id="R Packages" order="4" />
-      <window_info anchor="right" id="Mongo Explorer" order="5" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="more now" />
@@ -376,196 +169,5 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1312" column="90" lean-forward="true" selection-start-line="1312" selection-start-column="90" selection-end-line="1312" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/ghia-ilm-v-1-1-aoi.geojson" />
-    <entry file="file://$PROJECT_DIR$/js/manchester-lsoa-super-generalised.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="24" lean-forward="true" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/ghia-ilm-v-1-1-aoi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="15" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/ghia-ilm-v-1-1-tiles1000.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/green-map2.js" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/mdb/js/bootstrap.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="5" column="1509" selection-start-line="5" selection-start-column="1509" selection-end-line="5" selection-end-column="1509" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/material-design-icons-3.0.1/index.js" />
-    <entry file="file://$PROJECT_DIR$/libs/leaflet-1.5.1/leaflet-src.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="13141" column="3" lean-forward="true" selection-start-line="13141" selection-start-column="3" selection-end-line="13141" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/mdb/css/mdb.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/precision04/Manchester_LSOA_SuperGeneralised.geojson">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="61" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/color-palettes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2771">
-          <caret line="38" column="69" lean-forward="true" selection-start-line="38" selection-start-column="69" selection-end-line="38" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/vue-2.6.10/vue.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="1870" column="6" selection-start-line="1870" selection-start-column="6" selection-end-line="1870" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/leaflet-plugins/leaflet-providers-2018-04-11/leaflet-providers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#6#0" expanded="true" />
-            <element signature="e#10#16#0" expanded="true" />
-            <element signature="e#10#16#0" expanded="true" />
-            <element signature="e#102#108#1" expanded="true" />
-            <element signature="e#51#57#0" expanded="true" />
-            <element signature="e#51#57#0" expanded="true" />
-            <element signature="e#51#57#0" expanded="true" />
-            <element signature="e#0#6#0" expanded="true" />
-            <element signature="e#107#114#1" expanded="true" />
-            <element signature="e#94#101#1" expanded="true" />
-            <element signature="e#64#71#1" expanded="true" />
-            <element signature="e#127#134#1" expanded="true" />
-            <element signature="e#9#15#0" expanded="true" />
-            <element signature="e#4#10#0" expanded="true" />
-            <element signature="e#28#34#0" expanded="true" />
-            <element signature="e#14#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/raster.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="542" column="48" lean-forward="true" selection-start-line="542" selection-start-column="48" selection-end-line="542" selection-end-column="48" />
-          <folding>
-            <element signature="e#446#6152#0" />
-            <element signature="e#6172#14022#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57103">
-          <caret line="3359" column="32" selection-start-line="3359" selection-start-column="32" selection-end-line="3359" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/green-map.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5491">
-          <caret line="323" selection-start-line="323" selection-end-line="323" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/green-map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="2375" column="36" selection-start-line="2375" selection-start-column="36" selection-end-line="2375" selection-end-column="36" />
-          <folding>
-            <element signature="e#1052#1620#0" />
-            <element signature="e#1698#2011#0" />
-            <element signature="e#2264#6197#0" />
-            <element signature="e#6335#8152#0" />
-            <element signature="e#8221#9126#0" />
-            <element signature="e#9218#12757#0" />
-            <element signature="e#13647#36714#0" />
-            <element signature="e#13754#19966#0" />
-            <element signature="e#13898#18019#0" />
-            <element signature="e#18470#19382#0" />
-            <element signature="e#19477#19961#0" />
-            <element signature="e#20028#26187#0" />
-            <element signature="e#20178#24231#0" />
-            <element signature="e#24682#25615#0" />
-            <element signature="e#25704#26182#0" />
-            <element signature="e#26239#36711#0" />
-            <element signature="e#26604#33041#0" />
-            <element signature="e#34557#36181#0" />
-            <element signature="e#36259#36706#0" />
-            <element signature="e#38130#39081#0" />
-            <element signature="e#40213#40230#0" />
-            <element signature="e#62749#62765#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/green-map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="422" column="22" selection-start-line="422" selection-start-column="22" selection-end-line="422" selection-end-column="22" />
-          <folding>
-            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
