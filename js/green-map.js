@@ -2494,7 +2494,7 @@ let displayResultsViewModel = new Vue({
       report: {
         isCurrent: false,
         icon: 'fas fa-book',
-        buttonText: 'Report'
+        buttonText: 'Selected Data'
       }
     },
 
