@@ -838,8 +838,10 @@ let MapLayers = {
     /**
      * The attribution to add on the map related to the LSOA layer.
      */
-    attribution: 'Data source: ' +
-      '<a href="https://www.ordnancesurvey.co.uk/" target="_cf">Crown Copyright - Ordnance Survey</a>',
+    // TODO: Check attribution of LSOA
+    // attribution: 'Data source: ' +
+    //   '<a href="https://www.ordnancesurvey.co.uk/" target="_cf">Crown Copyright - Ordnance Survey</a>',
+    attribution: '',
 
     /**
      * The named basemap layers.
@@ -1091,39 +1093,6 @@ let MapLayers = {
     selectedInternalLayer: null,
 
     /**
-     * The classes metadata in the form of a dictionary whose keys are the values of classes.
-     */
-    classes: {
-      '1': {
-        class: 1, visible: true, name: 'Younger Low Income'
-      },
-      '2': {
-        class: 2, visible: true, name: 'Younger Medium Income'
-      },
-      '3': {
-        class: 3, visible: true, name: 'Younger High Income'
-      },
-      '4': {
-        class: 4, visible: true, name: 'Middle Low Income'
-      },
-      '5': {
-        class: 5, visible: true, name: 'Middle Medium Income'
-      },
-      '6': {
-        class: 6, visible: true, name: 'Middle High Income'
-      },
-      '7': {
-        class: 7, visible: true, name: 'Older Low Income'
-      },
-      '8': {
-        class: 8, visible: true, name: 'Older Middle Income'
-      },
-      '9': {
-        class: 9, visible: true, name: 'Older Higher Income'
-      }
-    },
-
-    /**
      * Creates the LSOA layer.
      */
     createLayer: function() {
@@ -1134,7 +1103,9 @@ let MapLayers = {
       // Get the named basemap layer.
       let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
-      this.geoJSON = AppData.lsoaPolygons;
+      if (this.geoJSON === null) {
+        this.geoJSON = AppData.lsoaPolygons;
+      }
 
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
@@ -1157,8 +1128,8 @@ let MapLayers = {
       });
 
       // Add the layer in to the map and make sure it is visible.
-      this.mapLayer.addTo(Spatial.map);
-      this.mapLayer.bringToFront();
+      //this.mapLayer.addTo(Spatial.map);
+      //this.mapLayer.bringToFront();
 
       // Loop through all the internal layers.
       // Create the feature to internal layer dictionary and bind the layer tooltips.
@@ -1190,6 +1161,1113 @@ let MapLayers = {
           layer.setStyle(MapLayers.lsoa.namedBasemapLayers[currentBaseMap].defaultStyle);
         });
 
+      }
+
+    },
+
+    /**
+     * Adds the LSOA layer on the map.
+     */
+    addLayer: function() {
+
+      if (!Spatial.map.hasLayer(this.mapLayer)) {
+        Spatial.map.addLayer(this.mapLayer);
+        this.mapLayer.bringToFront();
+      }
+
+    },
+
+    /**
+     * Removes the LSOA layer from the map.
+     */
+    removeLayer: function() {
+
+      if (Spatial.map.hasLayer(this.mapLayer)) {
+        Spatial.map.removeLayer(this.mapLayer);
+      }
+
+    }
+
+  },
+
+  /**
+   * The Wards polygons layer
+   */
+  wards: {
+
+    /**
+     * The name of the layer.
+     */
+    name: 'wards',
+
+    /**
+     * The attribution to add on the map related to the Wards layer.
+     */
+    // TODO: Check attribution of Wards
+    // attribution: 'Data source: ' +
+    //   '<a href="https://www.ordnancesurvey.co.uk/" target="_cf">Crown Copyright - Ordnance Survey</a>',
+    attribution: '',
+
+    /**
+     * The named basemap layers.
+     */
+    namedBasemapLayers: {
+
+      /**
+       * Object light is used to define the styles used to render the wards layer on top of the Light Basemap.
+       */
+      light: {
+
+        /**
+         * The default style used to render wards polygons on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Light Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#4169e1',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object dark is used to define the styles used to render the wards layer on top of the Dark Basemap.
+       */
+      dark: {
+
+        /**
+         * The default style used to render wards polygons on top of the Dark Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Dark Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#ff4500',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object roads is used to define the styles used to render the wards layer on top of the Roads Basemap.
+       */
+      roads: {
+
+        /**
+         * The default style used to render wards polygons on top of the Roads Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Roads Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#2f4f4f',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object physical is used to define the styles used to render the wards layer on top of the Physical Basemap.
+       */
+      physical: {
+
+        /**
+         * The default style used to render wards polygons on top of the Physical Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Physical Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#4169e1',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object terrain is used to define the styles used to render the wards layer on top of the Terrain Basemap.
+       */
+      terrain: {
+
+        /**
+         * The default style used to render wards polygons on top of the Terrain Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Terrain Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#4169e1',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object satellite is used to define the styles used to render the wards layer on top of the Satellite Basemap.
+       */
+      satellite: {
+
+        /**
+         * The default style used to render wards polygons on top of the Satellite Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Satellite Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#4169e1',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      }
+
+    },
+
+    /**
+     * The leaflet map layer.
+     */
+    mapLayer: null,
+
+    /**
+     * The GeoJSON used to create the leaflet map layer.
+     */
+    geoJSON: null,
+
+    /**
+     * The dictionary used to retrieve an internal feature layer based on a feature key.
+     * The key used in this case is the ward feature code.
+     */
+    featureToInternalLayerDictionary: {},
+
+    /**
+     * The ward feature selected by the user.
+     */
+    selectedFeature: null,
+
+    /**
+     * The internal layer of the selected ward feature.
+     */
+    selectedInternalLayer: null,
+
+    /**
+     * Creates the wards layer.
+     */
+    createLayer: function() {
+
+      // TODO: RESIN - Check next line.
+      // spinnerViewModel.isVisible = true;
+
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      if (this.geoJSON === null) {
+        this.geoJSON = AppData.wardsPolygons;
+      }
+
+      this.mapLayer = L.geoJSON(this.geoJSON, {
+
+        /**
+         * The wards layer attribution to insert on the map.
+         */
+        attribution: MapLayers.wards.attribution,
+
+        /**
+         * Style the features of the layer using the associated default style defined for this layer.
+         * The default style for this layer depends on the selected background map.
+         *
+         * @param feature - The feature to style.
+         * @returns {Style} - A Style capable of styling polygon features.
+         */
+        style: function(feature) {
+          return MapLayers.wards.namedBasemapLayers[namedBaseMap].defaultStyle;
+        }
+
+      });
+
+      // Add the layer in to the map and make sure it is visible.
+      // this.mapLayer.addTo(Spatial.map);
+      // this.mapLayer.bringToFront();
+
+      // Loop through all the internal layers.
+      // Create the feature to internal layer dictionary and bind the layer tooltips.
+      // this.mapLayer.eachLayer(function(layer) {
+      //   MapLayers.lsoa.featureToInternalLayerDictionary[layer.feature.properties.lsoa11cd] = layer._leaflet_id;
+      //
+      //   layer.bindTooltip('', {
+      //     // TODO: RESIN - Check here the final tooltip options.
+      //     direction: 'top', // TODO: RESIN - APPVAR
+      //     offset: [0, -30], // TODO: RESIN - APPVAR
+      //     sticky: true
+      //   });
+      // });
+
+    },
+
+    /**
+     * Renders the wards layer.
+     */
+    renderLayer: function() {
+
+      // Get the current basemap. This is used to decide the symbology of the wards polygons.
+      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Check whether wards features exist or not.
+      if (this.geoJSON !== undefined || this.geoJSON !== null) {
+
+        this.mapLayer.eachLayer(function(layer) {
+          layer.setStyle(MapLayers.wards.namedBasemapLayers[currentBaseMap].defaultStyle);
+        });
+
+      }
+
+    },
+
+    /**
+     * Adds the wards layer on the map.
+     */
+    addLayer: function() {
+
+      if (!Spatial.map.hasLayer(this.mapLayer)) {
+        Spatial.map.addLayer(this.mapLayer);
+        this.mapLayer.bringToFront();
+      }
+
+    },
+
+    /**
+     * Removes the wards layer from the map.
+     */
+    removeLayer: function() {
+
+      if (Spatial.map.hasLayer(this.mapLayer)) {
+        Spatial.map.removeLayer(this.mapLayer);
+      }
+
+    }
+
+  },
+
+  /**
+   * The polygons of the queried locations.
+   */
+  queriedPolygons: {
+
+    /**
+     * The name of the layer.
+     */
+    name: 'queriedPolygons',
+
+    /**
+     * The named basemap layers.
+     */
+    namedBasemapLayers: {
+
+      /**
+       * Object light is used to define the styles used to render the wards layer on top of the Light Basemap.
+       */
+      light: {
+
+        /**
+         * The default style used to render queried polygons on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.5
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current queried polygon on top of the Light Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.amber.hex,
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object dark is used to define the styles used to render the wards layer on top of the Dark Basemap.
+       */
+      dark: {
+
+        /**
+         * The default style used to render queried polygons on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.5
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current queried polygon on top of the Light Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.amber.hex,
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object roads is used to define the styles used to render the wards layer on top of the Roads Basemap.
+       */
+      roads: {
+
+        /**
+         * The default style used to render queried polygons on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.5
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current queried polygon on top of the Light Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.amber.hex,
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object physical is used to define the styles used to render the wards layer on top of the Physical Basemap.
+       */
+      physical: {
+
+        /**
+         * The default style used to render queried polygons on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.5
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current queried polygon on top of the Light Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.amber.hex,
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object terrain is used to define the styles used to render the wards layer on top of the Terrain Basemap.
+       */
+      terrain: {
+
+        /**
+         * The default style used to render queried polygons on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.5
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current queried polygon on top of the Light Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.amber.hex,
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object satellite is used to define the styles used to render the wards layer on top of the Satellite Basemap.
+       */
+      satellite: {
+
+        /**
+         * The default style used to render queried polygons on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.5
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current queried polygon on top of the Light Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.amber.hex,
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      }
+
+    },
+
+    /**
+     * The leaflet map layer.
+     */
+    mapLayer: null,
+
+    /**
+     * The GeoJSON used to create the leaflet map layer.
+     */
+    geoJSON: null,
+
+    /**
+     * The dictionary used to retrieve an internal feature layer based on a feature key.
+     * The key used in this case is the ward feature code.
+     */
+    featureToInternalLayerDictionary: {},
+
+    /**
+     * The queried polygon feature selected by the user.
+     */
+    selectedFeature: null,
+
+    /**
+     * The internal layer of the selected queried polygon feature.
+     */
+    selectedInternalLayer: null,
+
+    /**
+     * Creates the queried polygons layer.
+     */
+    createLayer: function() {
+
+      // TODO: RESIN - Check next line.
+      // spinnerViewModel.isVisible = true;
+
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      if (this.geoJSON === null) {
+        this.geoJSON = AppData.wardsPolygons;
+      }
+
+      this.mapLayer = L.geoJSON(this.geoJSON, {
+
+        /**
+         * The wards layer attribution to insert on the map.
+         */
+        attribution: MapLayers.queriedPolygons.attribution,
+
+        /**
+         * Style the features of the layer using the associated default style defined for this layer.
+         * The default style for this layer depends on the selected background map.
+         *
+         * @param feature - The feature to style.
+         * @returns {Style} - A Style capable of styling polygon features.
+         */
+        style: function(feature) {
+          return MapLayers.queriedPolygons.namedBasemapLayers[namedBaseMap].defaultStyle;
+        }
+
+      });
+
+      // Add the layer in to the map and make sure it is visible.
+      // this.mapLayer.addTo(Spatial.map);
+      // this.mapLayer.bringToFront();
+
+      // Loop through all the internal layers.
+      // Create the feature to internal layer dictionary and bind the layer tooltips.
+      // this.mapLayer.eachLayer(function(layer) {
+      //   MapLayers.lsoa.featureToInternalLayerDictionary[layer.feature.properties.lsoa11cd] = layer._leaflet_id;
+      //
+      //   layer.bindTooltip('', {
+      //     // TODO: RESIN - Check here the final tooltip options.
+      //     direction: 'top', // TODO: RESIN - APPVAR
+      //     offset: [0, -30], // TODO: RESIN - APPVAR
+      //     sticky: true
+      //   });
+      // });
+
+    },
+
+    /**
+     * Renders the queried polygons layer.
+     */
+    renderLayer: function() {
+
+      // Get the current basemap. This is used to decide the symbology of the wards polygons.
+      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Check whether wards features exist or not.
+      if (this.geoJSON !== undefined || this.geoJSON !== null) {
+
+        this.mapLayer.eachLayer(function(layer) {
+          layer.setStyle(MapLayers.queriedPolygons.namedBasemapLayers[currentBaseMap].defaultStyle);
+        });
+
+      }
+
+    },
+
+    /**
+     * Adds the queried polygons layer on the map.
+     */
+    addLayer: function() {
+
+      if (!Spatial.map.hasLayer(this.mapLayer)) {
+        Spatial.map.addLayer(this.mapLayer);
+        this.mapLayer.bringToFront();
+      }
+
+    },
+
+    /**
+     * Removes the queried polygons layer from the map.
+     */
+    removeLayer: function() {
+
+      if (Spatial.map.hasLayer(this.mapLayer)) {
+        Spatial.map.removeLayer(this.mapLayer);
+      }
+
+    }
+
+  },
+
+  queriedPolygons: {
+
+    /**
+     * The name of the layer.
+     */
+    name: 'wards',
+
+    /**
+     * The attribution to add on the map related to the Wards layer.
+     */
+    // TODO: Check attribution of Wards
+    // attribution: 'Data source: ' +
+    //   '<a href="https://www.ordnancesurvey.co.uk/" target="_cf">Crown Copyright - Ordnance Survey</a>',
+    attribution: '',
+
+    /**
+     * The named basemap layers.
+     */
+    namedBasemapLayers: {
+
+      /**
+       * Object light is used to define the styles used to render the wards layer on top of the Light Basemap.
+       */
+      light: {
+
+        /**
+         * The default style used to render wards polygons on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Light Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#4169e1',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object dark is used to define the styles used to render the wards layer on top of the Dark Basemap.
+       */
+      dark: {
+
+        /**
+         * The default style used to render wards polygons on top of the Dark Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Dark Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#ff4500',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object roads is used to define the styles used to render the wards layer on top of the Roads Basemap.
+       */
+      roads: {
+
+        /**
+         * The default style used to render wards polygons on top of the Roads Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Roads Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#2f4f4f',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object physical is used to define the styles used to render the wards layer on top of the Physical Basemap.
+       */
+      physical: {
+
+        /**
+         * The default style used to render wards polygons on top of the Physical Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Physical Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#4169e1',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object terrain is used to define the styles used to render the wards layer on top of the Terrain Basemap.
+       */
+      terrain: {
+
+        /**
+         * The default style used to render wards polygons on top of the Terrain Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Terrain Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#4169e1',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object satellite is used to define the styles used to render the wards layer on top of the Satellite Basemap.
+       */
+      satellite: {
+
+        /**
+         * The default style used to render wards polygons on top of the Satellite Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red900.hex,
+          weight: 0.5,
+          opacity: 1,
+          fill: true,
+          fillColor: '#515151',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        },
+
+        /**
+         * The default style used to highlight the current wards polygon on top of the Satellite Basemap.
+         */
+        defaultHighlightingStyle: {
+          stroke: true,
+          color: '#4169e1',
+          dashArray: '',
+          weight: 5,
+          opacity: 1,
+          fillOpacity: 0.4
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      }
+
+    },
+
+    /**
+     * The leaflet map layer.
+     */
+    mapLayer: null,
+
+    /**
+     * The GeoJSON used to create the leaflet map layer.
+     */
+    geoJSON: null,
+
+    /**
+     * The dictionary used to retrieve an internal feature layer based on a feature key.
+     * The key used in this case is the ward feature code.
+     */
+    featureToInternalLayerDictionary: {},
+
+    /**
+     * The ward feature selected by the user.
+     */
+    selectedFeature: null,
+
+    /**
+     * The internal layer of the selected ward feature.
+     */
+    selectedInternalLayer: null,
+
+    /**
+     * Creates the wards layer.
+     */
+    createLayer: function() {
+
+      // TODO: RESIN - Check next line.
+      // spinnerViewModel.isVisible = true;
+
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      if (this.geoJSON === null) {
+        this.geoJSON = AppData.wardsPolygons;
+      }
+
+      this.mapLayer = L.geoJSON(this.geoJSON, {
+
+        /**
+         * The wards layer attribution to insert on the map.
+         */
+        attribution: MapLayers.wards.attribution,
+
+        /**
+         * Style the features of the layer using the associated default style defined for this layer.
+         * The default style for this layer depends on the selected background map.
+         *
+         * @param feature - The feature to style.
+         * @returns {Style} - A Style capable of styling polygon features.
+         */
+        style: function(feature) {
+          return MapLayers.wards.namedBasemapLayers[namedBaseMap].defaultStyle;
+        }
+
+      });
+
+      // Add the layer in to the map and make sure it is visible.
+      // this.mapLayer.addTo(Spatial.map);
+      // this.mapLayer.bringToFront();
+
+      // Loop through all the internal layers.
+      // Create the feature to internal layer dictionary and bind the layer tooltips.
+      // this.mapLayer.eachLayer(function(layer) {
+      //   MapLayers.lsoa.featureToInternalLayerDictionary[layer.feature.properties.lsoa11cd] = layer._leaflet_id;
+      //
+      //   layer.bindTooltip('', {
+      //     // TODO: RESIN - Check here the final tooltip options.
+      //     direction: 'top', // TODO: RESIN - APPVAR
+      //     offset: [0, -30], // TODO: RESIN - APPVAR
+      //     sticky: true
+      //   });
+      // });
+
+    },
+
+    /**
+     * Renders the wards layer.
+     */
+    renderLayer: function() {
+
+      // Get the current basemap. This is used to decide the symbology of the wards polygons.
+      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Check whether wards features exist or not.
+      if (this.geoJSON !== undefined || this.geoJSON !== null) {
+
+        this.mapLayer.eachLayer(function(layer) {
+          layer.setStyle(MapLayers.wards.namedBasemapLayers[currentBaseMap].defaultStyle);
+        });
+
+      }
+
+    },
+
+    /**
+     * Adds the wards layer on the map.
+     */
+    addLayer: function() {
+
+      if (!Spatial.map.hasLayer(this.mapLayer)) {
+        Spatial.map.addLayer(this.mapLayer);
+        this.mapLayer.bringToFront();
+      }
+
+    },
+
+    /**
+     * Removes the wards layer from the map.
+     */
+    removeLayer: function() {
+
+      if (Spatial.map.hasLayer(this.mapLayer)) {
+        Spatial.map.removeLayer(this.mapLayer);
       }
 
     }
@@ -1311,9 +2389,10 @@ let Spatial = {
     BaseMapLayers.setNamedBasemapLayers();
     BaseMapLayers.createBaseMapLayers();
 
-    MapLayers.ghiaTiles1000.createLayer();
-    MapLayers.ghiaAOI.createLayer();
+    // MapLayers.ghiaTiles1000.createLayer();
+    // MapLayers.ghiaAOI.createLayer();
     MapLayers.lsoa.createLayer();
+    MapLayers.wards.createLayer();
 
     Spatial.setInitialBaseMapLayer();
 
@@ -1337,615 +2416,6 @@ let Spatial = {
   }
 
 };
-
-/**
- * Used to provide the raster metadata and to hold the extracted values.
- */
-// let Raster = {
-//
-//   /**
-//    * The metadata of the raster.
-//    */
-//   metadata: {
-//     cellSize: 10,
-//     tileSize: 1000,
-//     minimumX: 351672.3499999996,
-//     minimumY: 381166.0432999991,
-//     columns: 5500,
-//     rows: 4000,
-//     band: {
-//       dataType: "UInt32",
-//       noDataValue: 4294967295,
-//       statistics: {
-//         minimum: 11,
-//         maximum: 58,
-//         average: 36.751935525663,
-//         standardDeviation: 16.283957789472
-//       },
-//       lookup: {
-//         11: {
-//           count: 1890363,
-//           form: "Built",
-//           function: "Urban Other",
-//           landscape: "Urban Other Built"
-//         },
-//         13: {
-//           count: 1082581,
-//           form: "Built",
-//           function: "Domestic Gardens",
-//           landscape: "Domestic Gardens Built"
-//         },
-//         14: {
-//           count: 65683,
-//           form: "Built",
-//           function: "Public Recreation",
-//           landscape: "Public Recreation Built"
-//         },
-//         15: {
-//           count: 251800,
-//           form: "Built",
-//           function: "Amenity",
-//           landscape: "Amenity Built"
-//         },
-//         16: {
-//           count: 33834,
-//           form: "Built",
-//           function: "Previously Developed",
-//           landscape: "Previously Developed Built"
-//         },
-//         17: {
-//           count: 93415,
-//           form: "Built",
-//           function: "Institutional",
-//           landscape: "Institutional Built"
-//         },
-//         18: {
-//           count: 60,
-//           form: "Built",
-//           function: "Urban Other",
-//           landscape: "Urban Other Built"
-//         },
-//         21: {
-//           count: 9262,
-//           form: "Water",
-//           function: "Urban Other",
-//           landscape: "Urban Other Water"
-//         },
-//         23: {
-//           count: 1949,
-//           form: "Water",
-//           function: "Domestic Gardens",
-//           landscape: "Domestic Gardens Water"
-//         },
-//         24: {
-//           count: 90817,
-//           form: "Water",
-//           function: "Public Recreation",
-//           landscape: "Public Recreation Water"
-//         },
-//         25: {
-//           count: 37082,
-//           form: "Water",
-//           function: "Amenity",
-//           landscape: "Amenity Water"
-//         },
-//         26: {
-//           count: 232,
-//           form: "Water",
-//           function: "Previously Developed",
-//           landscape: "Previously Developed Water"
-//         },
-//         27: {
-//           count: 302,
-//           form: "Water",
-//           function: "Institutional",
-//           landscape: "Institutional Water"
-//         },
-//         28: {
-//           count: 87463,
-//           form: "Water",
-//           function: "Peri-urban",
-//           landscape: "Peri-urban Water"
-//         },
-//         31: {
-//           count: 152910,
-//           form: "Grasses",
-//           function: "Urban Other",
-//           landscape: "Urban Other Grasses"
-//         },
-//         33: {
-//           count: 312356,
-//           form: "Grasses",
-//           function: "Domestic Gardens",
-//           landscape: "Domestic Gardens Grasses"
-//         },
-//         34: {
-//           count: 270989,
-//           form: "Grasses",
-//           function: "Public Recreation",
-//           landscape: "Public Recreation Grasses"
-//         },
-//         35: {
-//           count: 368232,
-//           form: "Grasses",
-//           function: "Amenity",
-//           landscape: "Amenity Grasses"
-//         },
-//         36: {
-//           count: 4803,
-//           form: "Grasses",
-//           function: "Previously Developed",
-//           landscape: "Previously Developed Grasses"
-//         },
-//         37: {
-//           count: 52626,
-//           form: "Grasses",
-//           function: "Institutional",
-//           landscape: "Institutional Grasses"
-//         },
-//         38: {
-//           count: 959678,
-//           form: "Grasses",
-//           function: "Peri-urban",
-//           landscape: "Peri-urban Grasses"
-//         },
-//         41: {
-//           count: 205147,
-//           form: "Forbs and shrubs",
-//           function: "Urban Other",
-//           landscape: "Urban Other Forbs and shrubs"
-//         },
-//         43: {
-//           count: 422170,
-//           form: "Forbs and shrubs",
-//           function: "Domestic Gardens",
-//           landscape: "Domestic Gardens Forbs and shrubs"
-//         },
-//         44: {
-//           count: 349814,
-//           form: "Forbs and shrubs",
-//           function: "Public Recreation",
-//           landscape: "Public Recreation Forbs and shrubs"
-//         },
-//         45: {
-//           count: 778452,
-//           form: "Forbs and shrubs",
-//           function: "Amenity",
-//           landscape: "Amenity Forbs and shrubs"
-//         },
-//         46: {
-//           count: 11460,
-//           form: "Forbs and shrubs",
-//           function: "Previously Developed",
-//           landscape: "Previously Developed Forbs and shrubs"
-//         },
-//         47: {
-//           count: 57490,
-//           form: "Forbs and shrubs",
-//           function: "Institutional",
-//           landscape: "Institutional Forbs and shrubs"
-//         },
-//         48: {
-//           count: 2557302,
-//           form: "Forbs and shrubs",
-//           function: "Peri-urban",
-//           landscape: "Peri-urban Forbs and shrubs"
-//         },
-//         51: {
-//           count: 266714,
-//           form: "Tree canopy",
-//           function: "Urban Other",
-//           landscape: "Urban Other Tree canopy"
-//         },
-//         53: {
-//           count: 557844,
-//           form: "Tree canopy",
-//           function: "Domestic Gardens",
-//           landscape: "Domestic Gardens Tree canopy"
-//         },
-//         54: {
-//           count: 401480,
-//           form: "Tree canopy",
-//           function: "Public Recreation",
-//           landscape: "Public Recreation Tree canopy"
-//         },
-//         55: {
-//           count: 795895,
-//           form: "Tree canopy",
-//           function: "Amenity",
-//           landscape: "Amenity Tree canopy"
-//         },
-//         56: {
-//           count: 7136,
-//           form: "Tree canopy",
-//           function: "Previously Developed",
-//           landscape: "Previously Developed Tree canopy"
-//         },
-//         57: {
-//           count: 46286,
-//           form: "Tree canopy",
-//           function: "Institutional",
-//           landscape: "Institutional Tree canopy"
-//         },
-//         58: {
-//           count: 535310,
-//           form: "Tree canopy",
-//           function: "Peri-urban",
-//           landscape: "Peri-urban Tree canopy"
-//         }
-//       },
-//       dictionary: [
-//         {
-//           field: "form",
-//           term: "Built",
-//           description: "Sealed surfaces including roads, buildings and hardstanding"
-//         },
-//         {
-//           field: "form",
-//           term: "Water",
-//           description: "Areas covered by natural and man-made water bodies and water courses"
-//         },
-//         {
-//           field: "form",
-//           term: "Grasses",
-//           description: "Areas covered by lawns, mown grass or grass-like (graminoid) crops"
-//         },
-//         {
-//           field: "form",
-//           term: "Forbs and shrubs",
-//           description: "Land dominated by herbaceous flowering plants and shrubs"
-//         },
-//         {
-//           field: "form",
-//           term: "Tree Canopy",
-//           description: "Tree canopy"
-//         },
-//         {
-//           field: "function",
-//           term: "Urban Other",
-//           description: "Land-use not assigned to any other function in this list and existing in urban areas"
-//         },
-//         {
-//           field: "function",
-//           term: "Domestic Gardens",
-//           description: "Private domestic gardens"
-//         },
-//         {
-//           field: "function",
-//           term: "Public Recreation",
-//           description: "Public Parks and Recreation. Accessible sites designated for leisure and recreation"
-//         },
-//         {
-//           field: "function",
-//           term: "Amenity",
-//           description: "Green areas primarily aimed at increasing aesthetic value located between buildings, roads and other land-uses"
-//         },
-//         {
-//           field: "function",
-//           term: "Previously Developed",
-//           description: "Brownfield sites and transitional land-use"
-//         },
-//         {
-//           field: "function",
-//           term: "Institutional",
-//           description: "Intitutional land (e.g. on hospital, adminstrative or school grounds)"
-//         },
-//         {
-//           field: "function",
-//           term: "Peri-urban",
-//           description: "Non-urban land-use within Greater Manchester"
-//         },
-//         {
-//           field: "function",
-//           term: "Urban Other Built",
-//           description: "Land-use: Urban other; Land-cover: Built"
-//         },
-//         {
-//           field: "function",
-//           term: "Urban Other Water",
-//           description: "Land-use: Urban other; Land-cover: Water"
-//         },
-//         {
-//           field: "function",
-//           term: "Urban Other Grasses",
-//           description: "Land-use: Urban other; Land-cover: Grasses"
-//         },
-//         {
-//           field: "function",
-//           term: "Urban Other Forbs and shrubs",
-//           description: "Land-use: Urban other; Land-cover: Forbs and Shrubs"
-//         },
-//         {
-//           field: "function",
-//           term: "Urban Other Tree canopy",
-//           description: "Land-use: Urban other; Land-cover: Tree Canopy"
-//         },
-//         {
-//           field: "function",
-//           term: "Public Recreation Built",
-//           description: "Land-use: Public Parks and Recreation: Land-cover: Built"
-//         },
-//         {
-//           field: "function",
-//           term: "Public Recreation Water",
-//           description: "Land-use: Public Parks and Recreation: Land-cover: Water"
-//         },
-//         {
-//           field: "function",
-//           term: "Public Recreation Grasses",
-//           description: "Land-use: Public Parks and Recreation: Land-cover: Grasses"
-//         },
-//         {
-//           field: "function",
-//           term: "Public Recreation Forbs and shrubs",
-//           description: "Land-use: Public Parks and Recreation: Land-cover: Forbs and Shrubs"
-//         },
-//         {
-//           field: "function",
-//           term: "Public Recreation Tree canopy",
-//           description: "Land-use: Public Parks and Recreation: Land-cover: Tree Canopy"
-//         },
-//         {
-//           field: "function",
-//           term: "Amenity Built",
-//           description: "Land-use: Amenity; Land-cover: Built"
-//         },
-//         {
-//           field: "function",
-//           term: "Amenity Water",
-//           description: "Land-use: Amenity; Land-cover: Water"
-//         },
-//         {
-//           field: "function",
-//           term: "Amenity Grasses",
-//           description: "Land-use: Amenity; Land-cover: Grasses"
-//         },
-//         {
-//           field: "function",
-//           term: "Amenity Forbs and Shrubs",
-//           description: "Land-use: Amenity; Land-cover: Forbs and Shrubs"
-//         },
-//         {
-//           field: "function",
-//           term: "Amenity Tree canopy",
-//           description: "Land-use: Amenity; Land-cover: Tree Canopy"
-//         },
-//         {
-//           field: "function",
-//           term: "Domestic Gardens Buillt",
-//           description: "Land-use: Domestic Gardens; Land-cover: Built"
-//         },
-//         {
-//           field: "function",
-//           term: "Domestic Gardens Water",
-//           description: "Land-use: Domestic Gardens; Land-cover: Water"
-//         },
-//         {
-//           field: "function",
-//           term: "Domestic Gardens Grasses",
-//           description: "Land-use: Domestic Gardens; Land-cover: Grasses"
-//         },
-//         {
-//           field: "function",
-//           term: "Domestic Gardens Forbs and Shrubs",
-//           description: "Land-use: Domestic Gardens; Land-cover: Forbs and Shrubs"
-//         },
-//         {
-//           field: "function",
-//           term: "Domestic Gardens Tree canopy",
-//           description: "Land-use: Domestic Gardens; Land-cover: Tree Canopy"
-//         },
-//         {
-//           field: "function",
-//           term: "Institutional Built",
-//           description: "Land-use: Institutional Land; Land-cover: Built"
-//         },
-//         {
-//           field: "function",
-//           term: "Institutional Water",
-//           description: "Land-use: Institutional Land; Land-cover: Water"
-//         },
-//         {
-//           field: "function",
-//           term: "Institutional Grasses",
-//           description: "Land-use: Institutional Land; Land-cover: Grasses"
-//         },
-//         {
-//           field: "function",
-//           term: "Institutional Forbs and shrubs",
-//           description: "Land-use: Institutional Land; Land-cover: Forbs and Shrubs"
-//         },
-//         {
-//           field: "function",
-//           term: "Institutional Tree canopy",
-//           description: "Land-use: Institutional Land; Land-cover: Tree Canopy"
-//         },
-//         {
-//           field: "function",
-//           term: "Previously Developed Built",
-//           description: "Land-use: Previously developed; Land-cover: Built"
-//         },
-//         {
-//           field: "function",
-//           term: "Previously Developed Water",
-//           description: "Land-use: Previously developed; Land-cover: Water"
-//         },
-//         {
-//           field: "function",
-//           term: "Previously Developed Grasses",
-//           description: "Land-use: Previously developed; Land-cover: Grasses"
-//         },
-//         {
-//           field: "function",
-//           term: "Previously Developed Forbs",
-//           description: "Land-use: Previously developed; Land-cover: Forbs and Shrubs"
-//         },
-//         {
-//           field: "function",
-//           term: "Previously Developed Tree canopy",
-//           description: "Land-use: Previously developed; Land-cover: Tree Canopy"
-//         },
-//         {
-//           field: "function",
-//           term: "Peri-urban Built",
-//           description: "Land-use: Peri-urban; Land-cover: Built"
-//         },
-//         {
-//           field: "function",
-//           term: "Peri-urban Water",
-//           description: "Land-use: Peri-urban; Land-cover: Water"
-//         },
-//         {
-//           field: "function",
-//           term: "Peri-urban Grasses",
-//           description: "Land-use: Peri-urban; Land-cover: Grasses"
-//         },
-//         {
-//           field: "function",
-//           term: "Peri-urban Forbs and shrubs",
-//           description: "Land-use: Peri-urban; Land-cover: Forbs and Shrubs"
-//         },
-//         {
-//           field: "function",
-//           term: "Peri-urban Tree canopy",
-//           description: "Land-use: Peri-urban; Land-cover: Tree Canopy"
-//         }
-//       ]
-//     }
-//   },
-//
-//   /**
-//    * The query used to extract the data from the raster.
-//    */
-//   query: {
-//
-//     /**
-//      * The type of the query.
-//      * Valid values are 'point' | 'polygon' | 'lsoa'.
-//      */
-//     type: undefined,
-//
-//     /**
-//      * The data used to define the query.
-//      */
-//     data: undefined
-//
-//   },
-//
-//   /**
-//    * The data of the raster that have been extracted by the query.
-//    */
-//   data: {
-//     envelope: {
-//
-//     },
-//     histogram: {
-//       11: 0,
-//       13: 0,
-//       14: 0,
-//       15: 0
-//
-//     }
-//   },
-//
-//   /**
-//    * Sets the raster data.
-//    *
-//    * @param rasterExtract - The raster data extract to set.
-//    */
-//   setData(rasterExtract) {
-//
-//     this.data = {};
-//
-//     this.data.envelope = rasterExtract.envelope;
-//     this.data.histogram = {};
-//
-//     let lookup = this.metadata.band.lookup;
-//
-//     for (let key in lookup) {
-//       if (rasterExtract.histogram.hasOwnProperty(key)) {
-//         this.data.histogram[key] = rasterExtract.histogram[key];
-//       }
-//       else {
-//         this.data.histogram[key] = 0;
-//       }
-//     }
-//
-//     let noDataValue = this.metadata.band.noDataValue;
-//
-//     if (rasterExtract.histogram.hasOwnProperty(noDataValue)) {
-//       this.data.histogram[noDataValue] = rasterExtract.histogram[noDataValue];
-//     }
-//     else {
-//       this.data.histogram[noDataValue] = 0;
-//     }
-//
-//   },
-//
-//
-//
-//
-//   setData2(rasterExtract) {
-//
-//     this.data = {};
-//
-//     this.data.envelope = rasterExtract.envelope;
-//     this.data.histogram = {};
-//
-//     let lookup = this.metadata.band.lookup;
-//     let dictionary = this.metadata.band.dictionary;
-//
-//     let keys = Object.keys(Raster.data.lookup);
-//     let rasterValues = [];
-//
-//     keys.forEach(k => rasterValues.push(parseInt(k)));
-//
-//     rasterValues.sort();
-//
-//     let index = 0;
-//
-//     for (let i = 0; i < rasterValues.length; i++) {
-//
-//       let rasterValue = rasterValues[i];
-//
-//       if (rasterExtract.histogram.hasOwnProperty(rasterValue)) {
-//
-//         index++;
-//
-//         let formDescription = dictionary(el => el.field === 'form' && el.term === lookup[rasterValue].form);
-//         let functionDescription = dictionary(el => el.field === 'function' && el.term === lookup[rasterValue].function);
-//
-//         this.data.histogram[index] = {
-//           value: rasterValue,
-//           count: rasterExtract.histogram[rasterValue],
-//           form: Raster.metadata.band.lookup[rasterValue].form,
-//           formDescription: formDescription,
-//           function: Raster.metadata.band.lookup[rasterValue].function,
-//           functionDescription: functionDescription
-//         };
-//
-//       }
-//
-//     }
-//
-//     let noDataValue = this.metadata.band.noDataValue;
-//
-//     if (rasterExtract.histogram.hasOwnProperty(noDataValue)) {
-//
-//       this.data.histogram[index++] = {
-//         value: noDataValue,
-//         count: rasterExtract.histogram[noDataValue],
-//         form: 'Outside Greater Manchester',
-//         formDescription: 'A portion of the area is located outside the borders of Greater Manchester',
-//         function: 'Outside Greater Manchester',
-//         functionDescription: 'A portion of the area is located outside the borders of Greater Manchester'
-//       };
-//
-//     }
-//
-//   }
-//
-// };
 
 /**
  * Provides methods to get raster information from the REST GHIA raster server.
@@ -2322,9 +2792,15 @@ let toggleBaseMapViewModel = new Vue({
       baseLayer.addTo(Spatial.map);
       baseLayer.bringToBack();
 
-      MapLayers.lsoa.renderLayer();
-      MapLayers.ghiaTiles1000.renderLayer();
-      MapLayers.ghiaAOI.renderLayer();
+      if (queryStateViewModel.getCurrentState() === 'lsoa') {
+        MapLayers.lsoa.renderLayer();
+      }
+      if (queryStateViewModel.getCurrentState() === 'wards') {
+        MapLayers.wards.renderLayer();
+      }
+
+      // MapLayers.ghiaTiles1000.renderLayer();
+      // MapLayers.ghiaAOI.renderLayer();
 
     }
 
@@ -2443,12 +2919,19 @@ let queryStateViewModel = new Vue({
         }
       }
 
-      if (state === 'point' || state === 'lsoa') {
+      if (state === 'point') {
         if (Spatial.map.editTools.drawing()) {
           Spatial.map.editTools.stopDrawing();
         }
 
         Spatial.map.editTools.startMarker();
+
+        if (MapLayers.lsoa.mapLayer !== null) {
+          MapLayers.lsoa.removeLayer();
+        }
+        if (MapLayers.wards.mapLayer !== null) {
+          MapLayers.wards.removeLayer();
+        }
       }
       else if (state === 'polygon') {
         if (Spatial.map.editTools.drawing()) {
@@ -2456,6 +2939,31 @@ let queryStateViewModel = new Vue({
         }
 
         Spatial.map.editTools.startPolygon();
+
+        MapLayers.lsoa.removeLayer();
+        MapLayers.wards.removeLayer();
+      }
+      else if (state === 'lsoa') {
+        if (Spatial.map.editTools.drawing()) {
+          Spatial.map.editTools.stopDrawing();
+        }
+
+        Spatial.map.editTools.startMarker();
+
+        MapLayers.wards.removeLayer();
+        MapLayers.lsoa.renderLayer();
+        MapLayers.lsoa.addLayer();
+      }
+      else if (state === 'wards') {
+        if (Spatial.map.editTools.drawing()) {
+          Spatial.map.editTools.stopDrawing();
+        }
+
+        Spatial.map.editTools.startMarker();
+
+        MapLayers.lsoa.removeLayer();
+        MapLayers.wards.renderLayer();
+        MapLayers.wards.addLayer();
       }
 
     }

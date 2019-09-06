@@ -9,5 +9,8 @@
     <file url="file://$PROJECT_DIR$/js/manchester-lsoa-full.js" />
     <file url="file://$PROJECT_DIR$/js/manchester-lsoa-generalised.js" />
     <file url="file://$PROJECT_DIR$/js/manchester-lsoa-super-generalised.js" />
+    <file url="file://$PROJECT_DIR$/js/manchester-wards-full.js" />
+    <file url="file://$PROJECT_DIR$/js/manchester-wards-generalised.js" />
+    <file url="file://$PROJECT_DIR$/js/manchester-wards-super-generalised.js" />
   </component>
 </project>
