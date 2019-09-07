@@ -152,6 +152,47 @@ body {
 }
 
 
+/*
+ *  ================================================================================
+ *    Map Icons
+ *  ================================================================================
+ */
+.simple-red-div-icon {
+  width: 25px;
+  height: 25px;
+  background: red;
+  border: 2px solid black;
+}
+
+.simple-yellow-div-icon {
+  width: 25px;
+  height: 25px;
+  background: yellow;
+  border: 2px solid black;
+}
+
+
+
+
+
+/*.fa-div-icon {*/
+
+/*}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  *  ================================================================================
@@ -197,9 +238,6 @@ body {
   vertical-align: middle;
 }
 
-
-
-
 .ver-scrollbars {
   overflow-y: auto;
 }
@@ -227,9 +265,6 @@ body {
 /*.indicator-details-panel {*/
 /*  padding: 0.75rem;*/
 /*}*/
-
-
-
 
 .ghia-row {
   /*margin: 10px 0 0 0;*/
@@ -391,6 +426,7 @@ body {
 /*text-shadow: -1px 0 #696969, 0 1px #696969, 1px 0 #696969, 0 -1px #696969;*/
 /*!*text-shadow: -1px 0 #808080, 0 1px #808080, 1px 0 #808080, 0 -1px #808080;*!*/
 /*}*/
+
 
 /*
  *  ================================================================================

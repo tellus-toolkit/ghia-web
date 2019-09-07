@@ -342,7 +342,7 @@
                       <button type="button" class="btn btn-primary m-1"
                               v-bind:class="[states.point.isCurrent ? 'active' : '']"
                               v-on:click="setCurrentState('point')">
-                        <i class="mr-2"
+                        <i class="amber-text mr-2"
                            v-bind:class="[states.point.icon]">
                         </i>
                         <span v-text="states.point.buttonText"></span>
@@ -351,7 +351,7 @@
                       <button type="button" class="btn btn-primary m-1"
                               v-bind:class="[states.polygon.isCurrent ? 'active' : '']"
                               v-on:click="setCurrentState('polygon')">
-                        <i class="mr-2"
+                        <i class="amber-text mr-2"
                            v-bind:class="[states.polygon.icon]">
                         </i>
                         <span v-text="states.polygon.buttonText"></span>
@@ -360,7 +360,7 @@
                       <button type="button" class="btn btn-primary m-1"
                               v-bind:class="[states.lsoa.isCurrent ? 'active' : '']"
                               v-on:click="setCurrentState('lsoa')">
-                        <i class="mr-2"
+                        <i class="amber-text mr-2"
                            v-bind:class="[states.lsoa.icon]">
                         </i>
                         <span v-text="states.lsoa.buttonText"></span>
@@ -369,7 +369,7 @@
                       <button type="button" class="btn btn-primary m-1"
                               v-bind:class="[states.wards.isCurrent ? 'active' : '']"
                               v-on:click="setCurrentState('wards')">
-                        <i class="mr-2"
+                        <i class="amber-text mr-2"
                            v-bind:class="[states.wards.icon]">
                         </i>
                         <span v-text="states.wards.buttonText"></span>
@@ -392,7 +392,7 @@
                       <button type="button" class="btn btn-primary m-1"
                               v-bind:class="[methods.diagram.isCurrent ? 'active' : '']"
                               v-on:click="setCurrentMethod('diagram')">
-                        <i class="mr-2"
+                        <i class="amber-text mr-2"
                            v-bind:class="[methods.diagram.icon]">
                         </i>
                         <span v-text="methods.diagram.buttonText"></span>
@@ -401,7 +401,7 @@
                       <button type="button" class="btn btn-primary m-1"
                               v-bind:class="[methods.report.isCurrent ? 'active' : '']"
                               v-on:click="setCurrentMethod('report')">
-                        <i class="mr-2"
+                        <i class="amber-text mr-2"
                            v-bind:class="[methods.report.icon]">
                         </i>
                         <span v-text="methods.report.buttonText"></span>
@@ -527,12 +527,13 @@
 
 <!--<script type="text/javascript" src="js/data.js"></script>-->
 <script type="text/javascript" src="js/color-palettes.js"></script>
-<!--<script type="text/javascript" src="js/manchester-lsoa-full.js"></script>-->
-<script type="text/javascript" src="js/manchester-wards-generalised.js"></script>
-<script type="text/javascript" src="js/manchester-lsoa-generalised.js"></script>
-<!--<script type="text/javascript" src="js/ghia-ilm-v-1-1-aoi.js"></script>-->
-<!--<script type="text/javascript" src="js/ghia-ilm-v-1-1-tiles1000.js"></script>-->
-<!--<script type="text/javascript" src="js/manchester-lsoa-super-generalised.js"></script>-->
+<!--<script type="text/javascript" src="js/data/gm-lsoa-full.js"></script>-->
+<script type="text/javascript" src="js/data/gm-outline-generalised.js"></script>
+<script type="text/javascript" src="js/data/gm-wards-generalised.js"></script>
+<script type="text/javascript" src="js/data/gm-lsoa-generalised.js"></script>
+<!--<script type="text/javascript" src="js/data/ghia-ilm-v-1-1-aoi.js"></script>-->
+<!--<script type="text/javascript" src="js/data/ghia-ilm-v-1-1-tiles1000.js"></script>-->
+<!--<script type="text/javascript" src="js/data/gm-lsoa-super-generalised.js"></script>-->
 <script type="text/javascript" src="js/green-map.js"></script>
 
 <!--<script>-->

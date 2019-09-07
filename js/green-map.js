@@ -4,7 +4,7 @@
 //  https://www.tellus-toolkit.com/
 //
 //  Name:            green-map.js
-//  Original coding: Vasilis Vlastaras (@gisvlasta), 24/07/2019.
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 07/09/2019.
 //  Updated:
 // ================================================================================
 
@@ -817,6 +817,226 @@ let MapLayers = {
 
         this.mapLayer.eachLayer(function(layer) {
           layer.setStyle(MapLayers.ghiaTiles1000.namedBasemapLayers[currentBaseMap].defaultStyle);
+        });
+
+      }
+
+    }
+
+  },
+
+  /**
+   * The Greater Manchester Outline layer
+   */
+  greaterManchesterOutline: {
+
+    /**
+     * The name of the layer.
+     */
+    name: 'greaterManchesterOutline',
+
+    /**
+     * The named basemap layers.
+     */
+    namedBasemapLayers: {
+
+      /**
+       * Object light is used to define the styles used to render the
+       * Greater Manchester Outline layer on top of the Light Basemap.
+       */
+      light: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Light Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object dark is used to define the styles used to render the
+       * Greater Manchester Outline layer on top of the Dark Basemap.
+       */
+      dark: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Dark Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.orange.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object roads is used to define the styles used to render the
+       * Greater Manchester Outline layer on top of the Roads Basemap.
+       */
+      roads: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Roads Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object physical is used to define the styles used to render the
+       * Greater Manchester Outline layer on top of the Physical Basemap.
+       */
+      physical: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Physical Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.deepOrange.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object terrain is used to define the styles used to render the
+       * Greater Manchester Outline layer on top of the Terrain Basemap.
+       */
+      terrain: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Terrain Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.red.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      },
+
+      /**
+       * Object satellite is used to define the styles used to render the
+       * Greater Manchester Outline layer on top of the Satellite Basemap.
+       */
+      satellite: {
+
+        /**
+         * The default style used to render the GHIA Area of Interest layer on top of the Satellite Basemap.
+         */
+        defaultStyle: {
+          stroke: true,
+          color: ColorPalettes.Material.amber.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: '#ffffff',
+          fillOpacity: 0.01
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
+        }
+
+      }
+
+    },
+
+    /**
+     * The leaflet map layer.
+     */
+    mapLayer: null,
+
+    /**
+     * The GeoJSON used to create the leaflet map layer.
+     */
+    geoJSON: null,
+
+    /**
+     * Creates the Greater Manchester Outline layer.
+     */
+    createLayer: function() {
+
+      // TODO: RESIN - Check next line.
+      // spinnerViewModel.isVisible = true;
+
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      this.geoJSON = AppData.greaterManchesterOutline;
+
+      this.mapLayer = L.geoJSON(this.geoJSON, {
+
+        /**
+         * Style the features of the layer using the associated default style defined for this layer.
+         * The default style for this layer depends on the selected background map.
+         *
+         * @param feature - The feature to style.
+         * @returns {Style} - A Style capable of styling polygon features.
+         */
+        style: function(feature) {
+          return MapLayers.greaterManchesterOutline.namedBasemapLayers[namedBaseMap].defaultStyle;
+        }
+
+      });
+
+      // Add the layer in to the map and make sure it is visible.
+      this.mapLayer.addTo(Spatial.map);
+      this.mapLayer.bringToFront();
+
+    },
+
+    /**
+     * Renders the Greater Manchester Outline layer.
+     */
+    renderLayer: function() {
+
+      // Get the current basemap. This is used to decide the symbology of the Greater Manchester Outline polygons.
+      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Check whether Greater Manchester Outline features exist or not.
+      if (this.geoJSON !== undefined || this.geoJSON !== null) {
+
+        this.mapLayer.eachLayer(function(layer) {
+          layer.setStyle(MapLayers.greaterManchesterOutline.namedBasemapLayers[currentBaseMap].defaultStyle);
         });
 
       }
@@ -1796,7 +2016,31 @@ let MapLayers = {
     /**
      * The GeoJSON used to create the leaflet map layer.
      */
-    geoJSON: null,
+    geoJSON: {
+      type: "FeatureCollection",
+      features: [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              53.505, -2.14
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [53.515, -2.130], [53.515, -2.150], [53.495, -2.150], [53.495, -2.130], [53.515, -2.130]
+              ]
+            ]
+          }
+        }
+      ]
+    },
 
     /**
      * The dictionary used to retrieve an internal feature layer based on a feature key.
@@ -1825,16 +2069,7 @@ let MapLayers = {
       // Get the named basemap layer.
       let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
-      if (this.geoJSON === null) {
-        this.geoJSON = AppData.wardsPolygons;
-      }
-
       this.mapLayer = L.geoJSON(this.geoJSON, {
-
-        /**
-         * The wards layer attribution to insert on the map.
-         */
-        attribution: MapLayers.queriedPolygons.attribution,
 
         /**
          * Style the features of the layer using the associated default style defined for this layer.
@@ -1850,8 +2085,8 @@ let MapLayers = {
       });
 
       // Add the layer in to the map and make sure it is visible.
-      // this.mapLayer.addTo(Spatial.map);
-      // this.mapLayer.bringToFront();
+      this.mapLayer.addTo(Spatial.map);
+      this.mapLayer.bringToFront();
 
       // Loop through all the internal layers.
       // Create the feature to internal layer dictionary and bind the layer tooltips.
@@ -1873,10 +2108,10 @@ let MapLayers = {
      */
     renderLayer: function() {
 
-      // Get the current basemap. This is used to decide the symbology of the wards polygons.
+      // Get the current basemap. This is used to decide the symbology of the queried polygons.
       let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
-      // Check whether wards features exist or not.
+      // Check whether queried polygon features exist or not.
       if (this.geoJSON !== undefined || this.geoJSON !== null) {
 
         this.mapLayer.eachLayer(function(layer) {
@@ -1912,20 +2147,15 @@ let MapLayers = {
 
   },
 
-  queriedPolygons: {
+  /**
+   * The centroids of the queried locations.
+   */
+  queriedCentroids: {
 
     /**
      * The name of the layer.
      */
-    name: 'wards',
-
-    /**
-     * The attribution to add on the map related to the Wards layer.
-     */
-    // TODO: Check attribution of Wards
-    // attribution: 'Data source: ' +
-    //   '<a href="https://www.ordnancesurvey.co.uk/" target="_cf">Crown Copyright - Ordnance Survey</a>',
-    attribution: '',
+    name: 'queriedCentroids',
 
     /**
      * The named basemap layers.
@@ -1933,217 +2163,175 @@ let MapLayers = {
     namedBasemapLayers: {
 
       /**
-       * Object light is used to define the styles used to render the wards layer on top of the Light Basemap.
+       * Object light is used to define the icons used to render the queried centroids layer on top of the Light Basemap.
        */
       light: {
 
         /**
-         * The default style used to render wards polygons on top of the Light Basemap.
+         * The default icon used to render centroids on top of the Light Basemap.
          */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#515151',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultIcon: {
+          className: 'simple-red-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         },
 
         /**
-         * The default style used to highlight the current wards polygon on top of the Light Basemap.
+         * The default icons used to highlight the current centroids polygon on top of the Light Basemap.
          */
-        defaultHighlightingStyle: {
-          stroke: true,
-          color: '#4169e1',
-          dashArray: '',
-          weight: 5,
-          opacity: 1,
-          fillOpacity: 0.4
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultHighlightingIcon: {
+          className: 'simple-yellow-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         }
 
       },
 
       /**
-       * Object dark is used to define the styles used to render the wards layer on top of the Dark Basemap.
+       * Object dark is used to define the icons used to render the queried centroids layer on top of the Dark Basemap.
        */
       dark: {
 
         /**
-         * The default style used to render wards polygons on top of the Dark Basemap.
+         * The default icon used to render centroids on top of the Dark Basemap.
          */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#515151',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultIcon: {
+          className: 'simple-red-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         },
 
         /**
-         * The default style used to highlight the current wards polygon on top of the Dark Basemap.
+         * The default icons used to highlight the current centroids polygon on top of the Dark Basemap.
          */
-        defaultHighlightingStyle: {
-          stroke: true,
-          color: '#ff4500',
-          dashArray: '',
-          weight: 5,
-          opacity: 1,
-          fillOpacity: 0.4
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultHighlightingIcon: {
+          className: 'simple-yellow-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         }
 
       },
 
       /**
-       * Object roads is used to define the styles used to render the wards layer on top of the Roads Basemap.
+       * Object roads is used to define the icons used to render the queried centroids layer on top of the Roads Basemap.
        */
       roads: {
 
         /**
-         * The default style used to render wards polygons on top of the Roads Basemap.
+         * The default icon used to render centroids on top of the Roads Basemap.
          */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#515151',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultIcon: {
+          className: 'simple-red-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         },
 
         /**
-         * The default style used to highlight the current wards polygon on top of the Roads Basemap.
+         * The default icons used to highlight the current centroids polygon on top of the Roads Basemap.
          */
-        defaultHighlightingStyle: {
-          stroke: true,
-          color: '#2f4f4f',
-          dashArray: '',
-          weight: 5,
-          opacity: 1,
-          fillOpacity: 0.4
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultHighlightingIcon: {
+          className: 'simple-yellow-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         }
 
       },
 
       /**
-       * Object physical is used to define the styles used to render the wards layer on top of the Physical Basemap.
+       * Object physical is used to define the icons used to render the wards layer on top of the Physical Basemap.
        */
       physical: {
 
         /**
-         * The default style used to render wards polygons on top of the Physical Basemap.
+         * The default icon used to render centroids on top of the Physical Basemap.
          */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#515151',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultIcon: {
+          className: 'simple-red-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         },
 
         /**
-         * The default style used to highlight the current wards polygon on top of the Physical Basemap.
+         * The default icons used to highlight the current centroids polygon on top of the Physical Basemap.
          */
-        defaultHighlightingStyle: {
-          stroke: true,
-          color: '#4169e1',
-          dashArray: '',
-          weight: 5,
-          opacity: 1,
-          fillOpacity: 0.4
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultHighlightingIcon: {
+          className: 'simple-yellow-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         }
 
       },
 
       /**
-       * Object terrain is used to define the styles used to render the wards layer on top of the Terrain Basemap.
+       * Object terrain is used to define the icons used to render the wards layer on top of the Terrain Basemap.
        */
       terrain: {
 
         /**
-         * The default style used to render wards polygons on top of the Terrain Basemap.
+         * The default icon used to render centroids on top of the Terrain Basemap.
          */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#515151',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultIcon: {
+          className: 'simple-red-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         },
 
         /**
-         * The default style used to highlight the current wards polygon on top of the Terrain Basemap.
+         * The default icons used to highlight the current centroids polygon on top of the Terrain Basemap.
          */
-        defaultHighlightingStyle: {
-          stroke: true,
-          color: '#4169e1',
-          dashArray: '',
-          weight: 5,
-          opacity: 1,
-          fillOpacity: 0.4
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultHighlightingIcon: {
+          className: 'simple-yellow-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         }
 
       },
 
       /**
-       * Object satellite is used to define the styles used to render the wards layer on top of the Satellite Basemap.
+       * Object satellite is used to define the icons used to render the wards layer on top of the Satellite Basemap.
        */
       satellite: {
 
         /**
-         * The default style used to render wards polygons on top of the Satellite Basemap.
+         * The default icon used to render centroids on top of the Satellite Basemap.
          */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#515151',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultIcon: {
+          className: 'simple-red-div-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         },
 
         /**
-         * The default style used to highlight the current wards polygon on top of the Satellite Basemap.
+         * The default icons used to highlight the current centroids polygon on top of the Satellite Basemap.
          */
-        defaultHighlightingStyle: {
-          stroke: true,
-          color: '#4169e1',
-          dashArray: '',
-          weight: 5,
-          opacity: 1,
-          fillOpacity: 0.4
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
+        defaultHighlightingIcon: {
+          className: 'simple-yellowdiv-icon',
+          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+          iconAnchor: [0,0],
+          iconSize: null,
+          popupAnchor: [0,0]
         }
 
       }
@@ -2158,26 +2346,36 @@ let MapLayers = {
     /**
      * The GeoJSON used to create the leaflet map layer.
      */
-    geoJSON: null,
+    geoJSON: {
+      type: "FeatureCollection",
+      features: [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [53.505, -2.14]
+          }
+        }
+      ]
+    },
 
     /**
      * The dictionary used to retrieve an internal feature layer based on a feature key.
-     * The key used in this case is the ward feature code.
      */
     featureToInternalLayerDictionary: {},
 
     /**
-     * The ward feature selected by the user.
+     * The queried centroid feature selected by the user.
      */
     selectedFeature: null,
 
     /**
-     * The internal layer of the selected ward feature.
+     * The internal layer of the selected queried centroid feature.
      */
     selectedInternalLayer: null,
 
     /**
-     * Creates the wards layer.
+     * Creates the queried centroids layer.
      */
     createLayer: function() {
 
@@ -2186,10 +2384,6 @@ let MapLayers = {
 
       // Get the named basemap layer.
       let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
-
-      if (this.geoJSON === null) {
-        this.geoJSON = AppData.wardsPolygons;
-      }
 
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
@@ -2391,6 +2585,7 @@ let Spatial = {
 
     // MapLayers.ghiaTiles1000.createLayer();
     // MapLayers.ghiaAOI.createLayer();
+    MapLayers.greaterManchesterOutline.createLayer();
     MapLayers.lsoa.createLayer();
     MapLayers.wards.createLayer();
 
@@ -2801,6 +2996,7 @@ let toggleBaseMapViewModel = new Vue({
 
       // MapLayers.ghiaTiles1000.renderLayer();
       // MapLayers.ghiaAOI.renderLayer();
+      MapLayers.greaterManchesterOutline.renderLayer();
 
     }
 
