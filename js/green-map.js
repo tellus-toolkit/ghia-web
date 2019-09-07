@@ -853,10 +853,7 @@ let MapLayers = {
           stroke: true,
           color: ColorPalettes.Material.indigo.hex,
           weight: 2,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
+          opacity: 1
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -876,10 +873,7 @@ let MapLayers = {
           stroke: true,
           color: ColorPalettes.Material.orange.hex,
           weight: 2,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
+          opacity: 1
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -899,10 +893,7 @@ let MapLayers = {
           stroke: true,
           color: ColorPalettes.Material.indigo.hex,
           weight: 2,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
+          opacity: 1
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -922,10 +913,7 @@ let MapLayers = {
           stroke: true,
           color: ColorPalettes.Material.deepOrange.hex,
           weight: 2,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
+          opacity: 1
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -945,10 +933,7 @@ let MapLayers = {
           stroke: true,
           color: ColorPalettes.Material.red.hex,
           weight: 2,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
+          opacity: 1
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -968,10 +953,7 @@ let MapLayers = {
           stroke: true,
           color: ColorPalettes.Material.amber.hex,
           weight: 2,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
+          opacity: 1
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -1443,7 +1425,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.red900.hex,
+          color: '#282828',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1479,8 +1461,8 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
+          color: '#dcdcdc',
+          weight: 0.3,
           opacity: 1,
           fill: true,
           fillColor: '#515151',
@@ -1515,7 +1497,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.red900.hex,
+          color: '#2f4f4f',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1551,7 +1533,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.red900.hex,
+          color: '#282828',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1587,7 +1569,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.red900.hex,
+          color: '#282828',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -1623,7 +1605,7 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.red900.hex,
+          color: '#dcdcdc',
           weight: 0.5,
           opacity: 1,
           fill: true,
@@ -2022,19 +2004,10 @@ let MapLayers = {
         {
           "type": "Feature",
           "geometry": {
-            "type": "Point",
-            "coordinates": [
-              53.505, -2.14
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
             "type": "Polygon",
             "coordinates": [
               [
-                [53.515, -2.130], [53.515, -2.150], [53.495, -2.150], [53.495, -2.130], [53.515, -2.130]
+                [-2.130, 53.515], [-2.150, 53.515], [-2.150, 53.495], [-2.130, 53.495], [-2.130, 53.515]
               ]
             ]
           }
@@ -2353,7 +2326,7 @@ let MapLayers = {
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": [53.505, -2.14]
+            "coordinates": [-2.140, 53.505]
           }
         }
       ]
@@ -2585,9 +2558,10 @@ let Spatial = {
 
     // MapLayers.ghiaTiles1000.createLayer();
     // MapLayers.ghiaAOI.createLayer();
-    MapLayers.greaterManchesterOutline.createLayer();
     MapLayers.lsoa.createLayer();
     MapLayers.wards.createLayer();
+    MapLayers.queriedPolygons.createLayer();
+    MapLayers.greaterManchesterOutline.createLayer();
 
     Spatial.setInitialBaseMapLayer();
 
@@ -3149,6 +3123,7 @@ let queryStateViewModel = new Vue({
         MapLayers.wards.removeLayer();
         MapLayers.lsoa.renderLayer();
         MapLayers.lsoa.addLayer();
+        MapLayers.greaterManchesterOutline.mapLayer.bringToFront();
       }
       else if (state === 'wards') {
         if (Spatial.map.editTools.drawing()) {
@@ -3160,6 +3135,7 @@ let queryStateViewModel = new Vue({
         MapLayers.lsoa.removeLayer();
         MapLayers.wards.renderLayer();
         MapLayers.wards.addLayer();
+        MapLayers.greaterManchesterOutline.mapLayer.bringToFront();
       }
 
     }

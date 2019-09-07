@@ -190,7 +190,7 @@
                 v-bind:aria-label="dictionary[currentBaseMap].description">
           <!--v-bind:aria-pressed="[currentBaseMap === 'dark' ? 'true' : 'false']"-->
           <!--<i class="far fa-map"></i>-->
-          <i id="currentBaseMapIcon" class="material-icons md-18"
+          <i id="currentBaseMapIcon" class="material-icons amber-text md-18"
              v-text="dictionary[currentBaseMap].iconName">
           </i>
           <div id="currentBaseMapText">
@@ -206,7 +206,7 @@
                   v-on:click="setCurrentBaseMap('light')">
             <div class="pt-2 pb-2">
               <i class="material-icons v-allign-middle"
-                 v-bind:class="[currentBaseMap === 'light' ? '' : 'text-dark']"
+                 v-bind:class="[currentBaseMap === 'light' ? 'amber-text' : 'text-dark']"
                  v-text="dictionary['light'].iconName">
               </i>
               <span class="v-allign-middle" v-text="dictionary['light'].name"></span>
@@ -219,7 +219,7 @@
                   v-on:click="setCurrentBaseMap('dark')">
             <div class="pt-2 pb-2">
               <i class="material-icons v-allign-middle"
-                 v-bind:class="[currentBaseMap === 'dark' ? '' : 'text-dark']"
+                 v-bind:class="[currentBaseMap === 'dark' ? 'amber-text' : 'text-dark']"
                  v-text="dictionary['dark'].iconName">
               </i>
               <span class="v-allign-middle" v-text="dictionary['dark'].name"></span>
@@ -232,7 +232,7 @@
                   v-on:click="setCurrentBaseMap('roads')">
             <div class="pt-2 pb-2">
               <i class="material-icons v-allign-middle"
-                 v-bind:class="[currentBaseMap === 'roads' ? '' : 'text-dark']"
+                 v-bind:class="[currentBaseMap === 'roads' ? 'amber-text' : 'text-dark']"
                  v-text="dictionary['roads'].iconName">
               </i>
               <span class="v-allign-middle" v-text="dictionary['roads'].name"></span>
@@ -245,7 +245,7 @@
                   v-on:click="setCurrentBaseMap('physical')">
             <div class="pt-2 pb-2">
               <i class="material-icons v-allign-middle"
-                 v-bind:class="[currentBaseMap === 'physical' ? '' : 'text-dark']"
+                 v-bind:class="[currentBaseMap === 'physical' ? 'amber-text' : 'text-dark']"
                  v-text="dictionary['physical'].iconName">
               </i>
               <span class="v-allign-middle" v-text="dictionary['physical'].name"></span>
@@ -258,7 +258,7 @@
                   v-on:click="setCurrentBaseMap('terrain')">
             <div class="pt-2 pb-2">
               <i class="material-icons v-allign-middle"
-                 v-bind:class="[currentBaseMap === 'terrain' ? '' : 'text-dark']"
+                 v-bind:class="[currentBaseMap === 'terrain' ? 'amber-text' : 'text-dark']"
                  v-text="dictionary['terrain'].iconName">
               </i>
               <span class="v-allign-middle" v-text="dictionary['terrain'].name"></span>
@@ -271,7 +271,7 @@
                   v-on:click="setCurrentBaseMap('satellite')">
             <div class="pt-2 pb-2">
               <i class="material-icons v-allign-middle"
-                 v-bind:class="[currentBaseMap === 'satellite' ? '' : 'text-dark']"
+                 v-bind:class="[currentBaseMap === 'satellite' ? 'amber-text' : 'text-dark']"
                  v-text="dictionary['satellite'].iconName">
               </i>
               <span class="v-allign-middle" v-text="dictionary['satellite'].name"></span>
