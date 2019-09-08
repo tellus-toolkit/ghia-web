@@ -1,4 +1,4 @@
-
+//
 // ================================================================================
 //  TellUs Toolkit Ltd.
 //  https://www.tellus-toolkit.com/
@@ -1782,11 +1782,11 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.red.hex,
-          weight: 2,
+          color: ColorPalettes.Material.blue600.hex,
+          weight: 3,
           opacity: 1,
           fill: true,
-          fillColor: '#515151',
+          fillColor: ColorPalettes.Material.gray500.hex,
           fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
@@ -1798,10 +1798,9 @@ let MapLayers = {
         defaultHighlightingStyle: {
           stroke: true,
           color: ColorPalettes.Material.amber.hex,
-          dashArray: '',
-          weight: 5,
+          weight: 3,
           opacity: 1,
-          fillOpacity: 0.4
+          fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -1819,10 +1818,10 @@ let MapLayers = {
         defaultStyle: {
           stroke: true,
           color: ColorPalettes.Material.red.hex,
-          weight: 2,
+          weight: 3,
           opacity: 1,
           fill: true,
-          fillColor: '#515151',
+          fillColor: ColorPalettes.Material.blueGray100.hex,
           fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
@@ -1834,10 +1833,9 @@ let MapLayers = {
         defaultHighlightingStyle: {
           stroke: true,
           color: ColorPalettes.Material.amber.hex,
-          dashArray: '',
-          weight: 5,
+          weight: 3,
           opacity: 1,
-          fillOpacity: 0.4
+          fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -1854,11 +1852,11 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.red.hex,
-          weight: 2,
+          color: ColorPalettes.Material.blue600.hex,
+          weight: 3,
           opacity: 1,
           fill: true,
-          fillColor: '#515151',
+          fillColor: ColorPalettes.Material.gray500.hex,
           fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
@@ -1870,10 +1868,9 @@ let MapLayers = {
         defaultHighlightingStyle: {
           stroke: true,
           color: ColorPalettes.Material.amber.hex,
-          dashArray: '',
-          weight: 5,
+          weight: 3,
           opacity: 1,
-          fillOpacity: 0.4
+          fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -1891,10 +1888,10 @@ let MapLayers = {
         defaultStyle: {
           stroke: true,
           color: ColorPalettes.Material.red.hex,
-          weight: 2,
+          weight: 3,
           opacity: 1,
           fill: true,
-          fillColor: '#515151',
+          fillColor: ColorPalettes.Material.gray600.hex,
           fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
@@ -1906,10 +1903,9 @@ let MapLayers = {
         defaultHighlightingStyle: {
           stroke: true,
           color: ColorPalettes.Material.amber.hex,
-          dashArray: '',
-          weight: 5,
+          weight: 3,
           opacity: 1,
-          fillOpacity: 0.4
+          fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -1927,10 +1923,10 @@ let MapLayers = {
         defaultStyle: {
           stroke: true,
           color: ColorPalettes.Material.red.hex,
-          weight: 2,
+          weight: 3,
           opacity: 1,
           fill: true,
-          fillColor: '#515151',
+          fillColor: ColorPalettes.Material.gray600.hex,
           fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
@@ -1942,10 +1938,9 @@ let MapLayers = {
         defaultHighlightingStyle: {
           stroke: true,
           color: ColorPalettes.Material.amber.hex,
-          dashArray: '',
-          weight: 5,
+          weight: 3,
           opacity: 1,
-          fillOpacity: 0.4
+          fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -1962,11 +1957,11 @@ let MapLayers = {
          */
         defaultStyle: {
           stroke: true,
-          color: ColorPalettes.Material.red.hex,
-          weight: 2,
+          color: ColorPalettes.Material.amber.hex,
+          weight: 3,
           opacity: 1,
           fill: true,
-          fillColor: '#515151',
+          fillColor: ColorPalettes.Material.brown300.hex,
           fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
@@ -1978,10 +1973,9 @@ let MapLayers = {
         defaultHighlightingStyle: {
           stroke: true,
           color: ColorPalettes.Material.amber.hex,
-          dashArray: '',
-          weight: 5,
+          weight: 3,
           opacity: 1,
-          fillOpacity: 0.4
+          fillOpacity: 0.5
           //lineCap: 'round',  // butt | round | square | inherit
           //lineJoin: 'round'  // miter | round | bevel | inherit
         }
@@ -2007,7 +2001,7 @@ let MapLayers = {
             "type": "Polygon",
             "coordinates": [
               [
-                [-2.130, 53.515], [-2.150, 53.515], [-2.150, 53.495], [-2.130, 53.495], [-2.130, 53.515]
+                [0, 0], [0, 0.1], [0.1, 0.1], [0.1, 0], [0, 0]
               ]
             ]
           }
@@ -2116,6 +2110,42 @@ let MapLayers = {
         Spatial.map.removeLayer(this.mapLayer);
       }
 
+    },
+
+    /**
+     * Updates the Layer using newly retrieved data.
+     */
+    updateLayer: function(data) {
+
+      let r = null;
+      let polygon = null;
+
+      if (queryStateViewModel.getCurrentState() === 'point') {
+
+        r = data.rectangle.geographic;
+
+        polygon = {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [r.minLon, r.minLat], [r.minLon, r.maxLat], [r.maxLon, r.maxLat], [r.maxLon, r.minLat], [r.minLon, r.minLat]
+            ]
+          ]
+        };
+
+      }
+      else if (queryStateViewModel.getCurrentState() === 'polygon') {
+
+        polygon = data.polygon.geographic;
+
+      }
+
+      this.geoJSON.features = [];
+      this.geoJSON.features.push(polygon);
+      this.mapLayer.clearLayers();
+      this.mapLayer.addData(this.geoJSON);
+      this.renderLayer();
+
     }
 
   },
@@ -2136,176 +2166,320 @@ let MapLayers = {
     namedBasemapLayers: {
 
       /**
-       * Object light is used to define the icons used to render the queried centroids layer on top of the Light Basemap.
+       * Object light is used to define the styles used to render the queried centroids layer on top of the Light Basemap.
        */
       light: {
 
         /**
-         * The default icon used to render centroids on top of the Light Basemap.
+         * The default style used to render centroids on top of the Light Basemap.
          */
-        defaultIcon: {
-          className: 'simple-red-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultStyle: {
+          radius: 4,
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.amber.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         },
+        // defaultIcon: {
+        //   className: 'simple-red-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // },
 
         /**
-         * The default icons used to highlight the current centroids polygon on top of the Light Basemap.
+         * The default style used to highlight the current centroid on top of the Light Basemap.
          */
-        defaultHighlightingIcon: {
-          className: 'simple-yellow-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultHighlightingStyle: {
+          radius: 6,
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.yellow400.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         }
+        // defaultHighlightingIcon: {
+        //   className: 'simple-yellow-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // }
 
       },
 
       /**
-       * Object dark is used to define the icons used to render the queried centroids layer on top of the Dark Basemap.
+       * Object dark is used to define the styles used to render the queried centroids layer on top of the Dark Basemap.
        */
       dark: {
 
         /**
-         * The default icon used to render centroids on top of the Dark Basemap.
+         * The default style used to render centroids on top of the Dark Basemap.
          */
-        defaultIcon: {
-          className: 'simple-red-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultStyle: {
+          radius: 4,
+          stroke: true,
+          color: ColorPalettes.Material.orange.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.pink.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         },
+        // defaultIcon: {
+        //   className: 'simple-red-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // },
 
         /**
-         * The default icons used to highlight the current centroids polygon on top of the Dark Basemap.
+         * The default style used to highlight the current centroid on top of the Dark Basemap.
          */
-        defaultHighlightingIcon: {
-          className: 'simple-yellow-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultHighlightingStyle: {
+          radius: 3,
+          stroke: true,
+          color: ColorPalettes.Material.yellow600.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.yellow600.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         }
+        // defaultHighlightingIcon: {
+        //   className: 'simple-yellow-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // }
 
       },
 
       /**
-       * Object roads is used to define the icons used to render the queried centroids layer on top of the Roads Basemap.
+       * Object roads is used to define the styles used to render the queried centroids layer on top of the Roads Basemap.
        */
       roads: {
 
         /**
-         * The default icon used to render centroids on top of the Roads Basemap.
+         * The default style used to render centroids on top of the Roads Basemap.
          */
-        defaultIcon: {
-          className: 'simple-red-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultStyle: {
+          radius: 4,
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.amber.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         },
+        // defaultIcon: {
+        //   className: 'simple-red-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // },
 
         /**
-         * The default icons used to highlight the current centroids polygon on top of the Roads Basemap.
+         * The default style used to highlight the current centroid on top of the Roads Basemap.
          */
-        defaultHighlightingIcon: {
-          className: 'simple-yellow-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultHighlightingStyle: {
+          radius: 6,
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.yellow400.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         }
+        // defaultHighlightingIcon: {
+        //   className: 'simple-yellow-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // }
 
       },
 
       /**
-       * Object physical is used to define the icons used to render the wards layer on top of the Physical Basemap.
+       * Object physical is used to define the styles used to render the wards layer on top of the Physical Basemap.
        */
       physical: {
 
         /**
-         * The default icon used to render centroids on top of the Physical Basemap.
+         * The default style used to render centroids on top of the Physical Basemap.
          */
-        defaultIcon: {
-          className: 'simple-red-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultStyle: {
+          radius: 4,
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.amber.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         },
+        // defaultIcon: {
+        //   className: 'simple-red-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // },
 
         /**
-         * The default icons used to highlight the current centroids polygon on top of the Physical Basemap.
+         * The default style used to highlight the current centroid on top of the Physical Basemap.
          */
-        defaultHighlightingIcon: {
-          className: 'simple-yellow-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultHighlightingStyle: {
+          radius: 6,
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.yellow400.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         }
+        // defaultHighlightingIcon: {
+        //   className: 'simple-yellow-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // }
 
       },
 
       /**
-       * Object terrain is used to define the icons used to render the wards layer on top of the Terrain Basemap.
+       * Object terrain is used to define the styles used to render the wards layer on top of the Terrain Basemap.
        */
       terrain: {
 
         /**
-         * The default icon used to render centroids on top of the Terrain Basemap.
+         * The default style used to render centroids on top of the Terrain Basemap.
          */
-        defaultIcon: {
-          className: 'simple-red-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultStyle: {
+          radius: 4,
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.amber.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         },
+        // defaultIcon: {
+        //   className: 'simple-red-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // },
 
         /**
-         * The default icons used to highlight the current centroids polygon on top of the Terrain Basemap.
+         * The default style used to highlight the current centroid on top of the Terrain Basemap.
          */
-        defaultHighlightingIcon: {
-          className: 'simple-yellow-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultHighlightingStyle: {
+          radius: 6,
+          stroke: true,
+          color: ColorPalettes.Material.indigo.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.yellow400.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         }
+        // defaultHighlightingIcon: {
+        //   className: 'simple-yellow-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // }
 
       },
 
       /**
-       * Object satellite is used to define the icons used to render the wards layer on top of the Satellite Basemap.
+       * Object satellite is used to define the styles used to render the wards layer on top of the Satellite Basemap.
        */
       satellite: {
 
         /**
-         * The default icon used to render centroids on top of the Satellite Basemap.
+         * The default style used to render centroids on top of the Satellite Basemap.
          */
-        defaultIcon: {
-          className: 'simple-red-div-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultStyle: {
+          radius: 4,
+          stroke: true,
+          color: ColorPalettes.Material.pink.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.amber.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         },
+        // defaultIcon: {
+        //   className: 'simple-red-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // },
 
         /**
-         * The default icons used to highlight the current centroids polygon on top of the Satellite Basemap.
+         * The default style used to highlight the current centroid on top of the Satellite Basemap.
          */
-        defaultHighlightingIcon: {
-          className: 'simple-yellowdiv-icon',
-          // html:'<i class="fa fa-location-arrow fa-2x"></i>',
-          iconAnchor: [0,0],
-          iconSize: null,
-          popupAnchor: [0,0]
+        defaultHighlightingStyle: {
+          radius: 6,
+          stroke: true,
+          color: ColorPalettes.Material.pink.hex,
+          weight: 2,
+          opacity: 1,
+          fill: true,
+          fillColor: ColorPalettes.Material.amber.hex,
+          fillOpacity: 1
+          //lineCap: 'round',  // butt | round | square | inherit
+          //lineJoin: 'round'  // miter | round | bevel | inherit
         }
+        // defaultHighlightingIcon: {
+        //   className: 'simple-yellow-div-icon',
+        //   // html:'<i class="fa fa-location-arrow fa-2x"></i>',
+        //   iconAnchor: [0,0],
+        //   iconSize: null,
+        //   popupAnchor: [0,0]
+        // }
 
       }
 
@@ -2326,7 +2500,7 @@ let MapLayers = {
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": [-2.140, 53.505]
+            "coordinates": [0, 0]
           }
         }
       ]
@@ -2361,26 +2535,21 @@ let MapLayers = {
       this.mapLayer = L.geoJSON(this.geoJSON, {
 
         /**
-         * The wards layer attribution to insert on the map.
-         */
-        attribution: MapLayers.wards.attribution,
-
-        /**
          * Style the features of the layer using the associated default style defined for this layer.
          * The default style for this layer depends on the selected background map.
          *
          * @param feature - The feature to style.
-         * @returns {Style} - A Style capable of styling polygon features.
+         * @returns {CircleMarker} - A CircleMarker capable of styling point features.
          */
-        style: function(feature) {
-          return MapLayers.wards.namedBasemapLayers[namedBaseMap].defaultStyle;
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, MapLayers.queriedCentroids.namedBasemapLayers[namedBaseMap].defaultStyle);
         }
 
       });
 
       // Add the layer in to the map and make sure it is visible.
-      // this.mapLayer.addTo(Spatial.map);
-      // this.mapLayer.bringToFront();
+      this.mapLayer.addTo(Spatial.map);
+      this.mapLayer.bringToFront();
 
       // Loop through all the internal layers.
       // Create the feature to internal layer dictionary and bind the layer tooltips.
@@ -2398,18 +2567,18 @@ let MapLayers = {
     },
 
     /**
-     * Renders the wards layer.
+     * Renders the queried centroids layer.
      */
     renderLayer: function() {
 
-      // Get the current basemap. This is used to decide the symbology of the wards polygons.
+      // Get the current basemap. This is used to decide the symbology of the queried centroids polygons.
       let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
-      // Check whether wards features exist or not.
+      // Check whether queried centroids features exist or not.
       if (this.geoJSON !== undefined || this.geoJSON !== null) {
 
         this.mapLayer.eachLayer(function(layer) {
-          layer.setStyle(MapLayers.wards.namedBasemapLayers[currentBaseMap].defaultStyle);
+          layer.setStyle(MapLayers.queriedCentroids.namedBasemapLayers[currentBaseMap].defaultStyle);
         });
 
       }
@@ -2417,7 +2586,7 @@ let MapLayers = {
     },
 
     /**
-     * Adds the wards layer on the map.
+     * Adds the queried centroids layer on the map.
      */
     addLayer: function() {
 
@@ -2429,13 +2598,43 @@ let MapLayers = {
     },
 
     /**
-     * Removes the wards layer from the map.
+     * Removes the queried centroids layer from the map.
      */
     removeLayer: function() {
 
       if (Spatial.map.hasLayer(this.mapLayer)) {
         Spatial.map.removeLayer(this.mapLayer);
       }
+
+    },
+
+    /**
+     * Updates the Layer using newly retrieved data.
+     */
+    updateLayer: function(data) {
+
+      let point = null;
+
+      if (queryStateViewModel.getCurrentState() === 'point') {
+
+        let p = data.location.geographic;
+
+        point = {
+          "type": "Point",
+          "coordinates": [p.lon, p.lat]
+        };
+
+      }
+      else if (queryStateViewModel.getCurrentState() === 'polygon') {
+
+        point = data.centroid.geographic;
+
+      }
+
+      this.geoJSON.features[0].geometry = point;
+      this.mapLayer.clearLayers();
+      this.mapLayer.addData(this.geoJSON);
+      this.renderLayer();
 
     }
 
@@ -2561,6 +2760,7 @@ let Spatial = {
     MapLayers.lsoa.createLayer();
     MapLayers.wards.createLayer();
     MapLayers.queriedPolygons.createLayer();
+    MapLayers.queriedCentroids.createLayer();
     MapLayers.greaterManchesterOutline.createLayer();
 
     Spatial.setInitialBaseMapLayer();
@@ -2653,6 +2853,9 @@ let RestClient = {
           rectangle: data.rectangle,
           polygon: undefined
         };
+
+        MapLayers.queriedPolygons.updateLayer(data);
+        MapLayers.queriedCentroids.updateLayer(data);
 
         // Raster.setData(data.rasterExtract);
         Raster.setData2(data.rasterExtract);
@@ -2781,6 +2984,9 @@ let RestClient = {
         rectangle: undefined,
         polygon: data.polygon
       };
+
+      MapLayers.queriedPolygons.updateLayer(data);
+      MapLayers.queriedCentroids.updateLayer(data);
 
       // Raster.setData(data.rasterExtract);
       Raster.setData2(data.rasterExtract);
@@ -2970,6 +3176,8 @@ let toggleBaseMapViewModel = new Vue({
 
       // MapLayers.ghiaTiles1000.renderLayer();
       // MapLayers.ghiaAOI.renderLayer();
+      MapLayers.queriedPolygons.renderLayer();
+      MapLayers.queriedCentroids.renderLayer();
       MapLayers.greaterManchesterOutline.renderLayer();
 
     }
@@ -3123,6 +3331,8 @@ let queryStateViewModel = new Vue({
         MapLayers.wards.removeLayer();
         MapLayers.lsoa.renderLayer();
         MapLayers.lsoa.addLayer();
+        MapLayers.queriedPolygons.mapLayer.bringToFront();
+        MapLayers.queriedCentroids.mapLayer.bringToFront();
         MapLayers.greaterManchesterOutline.mapLayer.bringToFront();
       }
       else if (state === 'wards') {
@@ -3135,6 +3345,8 @@ let queryStateViewModel = new Vue({
         MapLayers.lsoa.removeLayer();
         MapLayers.wards.renderLayer();
         MapLayers.wards.addLayer();
+        MapLayers.queriedPolygons.mapLayer.bringToFront();
+        MapLayers.queriedCentroids.mapLayer.bringToFront();
         MapLayers.greaterManchesterOutline.mapLayer.bringToFront();
       }
 
