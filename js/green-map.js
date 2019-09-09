@@ -1325,6 +1325,55 @@ let MapLayers = {
          */
         style: function(feature) {
           return MapLayers.lsoa.namedBasemapLayers[namedBaseMap].defaultStyle;
+        },
+
+        /**
+         * Define the behaviour of each feature.
+         *
+         * @param feature - The feature whose behaviour will be defined.
+         * @param layer - The internal layer of each feature.
+         */
+        onEachFeature: function(feature, layer) {
+          layer.on({
+
+            /**
+             * Raised when the mouse is over a feature.
+             */
+            mouseover: function() {
+              //MapLayers.lsoa.showTooltip(layer);
+              MapLayers.nuts3.highlightNuts3(feature, layer);
+            },
+
+            /**
+             * Raised when the mouse is going out of a feature.
+             */
+            mouseout: function() {
+              // MapLayers.nuts3.hideTooltip(layer);
+              MapLayers.nuts3.resetNuts3Style(feature, layer, false);
+              // MapLayers.nuts3.reselectNuts3();
+            },
+
+            /**
+             * Raised when a feature is clicked.
+             */
+            click: function() {
+              MapLayers.nuts3.selectNuts3(feature, layer);
+              MapLayers.nuts3.updateInfo(feature);
+            },
+
+            /**
+             * Raised when a feature is double clicked.
+             */
+            dblclick: function() {
+              //MapLayers.nuts3.resetNuts3Style(feature, layer);
+              //alert('double clicked');
+              //map.doubleClickZoom.disable();
+              //map.doubleClickZoom.enable()
+              // TODO: This is a problem. A click event is fired before the double click. We need to change this behaviour.
+              //Spatial.map.fitBounds(layer.getBounds());
+            }
+
+          });
         }
 
       });
@@ -1388,6 +1437,170 @@ let MapLayers = {
         Spatial.map.removeLayer(this.mapLayer);
       }
 
+    },
+
+    /**
+     * Highlights a feature.
+     *
+     * @param feature - The feature that will be highlighted.
+     * @param layer - The internal layer of the feature that will be highlighted.
+     */
+    highlightFeature: function(feature, layer) {
+
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Highlight the current NUTS3.
+      layer.setStyle(this.namedBasemapLayers[namedBaseMap].defaultHighlightingStyle);
+
+      if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+      }
+
+    },
+
+    /**
+     * Resets the feature style. This is called once a mouseout event has been fired.
+     *
+     * @param feature - The feature that whose style will be reset.
+     * @param layer - The internal layer of the feature whose style will be reset.
+     * @param forceReset - Forces the function to reset the feature style.
+     */
+    resetFeatureStyle: function(feature, layer, forceReset) {
+
+      // Get the current basemap. This is used to decide the symbology of the NUTS3 polygons.
+      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Get the current tab.
+      let currentTab = symbologyViewModel.currentTab;
+
+      if (currentTab !== 'indicators') {
+        // Get the NUTS3 attribute name and the class value.
+        let attributeName = this.typologyLevelDictionary[currentTab].attributeName;
+        let classValue = feature.properties[attributeName].toString();
+
+        // Make sure styles of only the non selected NUTS3 polygons are reset.
+        if (this.selectedFeature !== feature || forceReset) {
+          // Render the NUTS3 polygon having the specified typology class.
+          this.renderNuts3PolygonByTypologyClass(feature, classValue, currentTab, currentBaseMap);
+        }
+
+        // // Render the layer based on typology classes (supergroups or groups).
+        // let attributeName = this.typologyLevelDictionary[currentTab].attributeName;
+        // let classValue = feature.properties[attributeName].toString();
+        //
+        // // Render the NUTS3 polygon having the specified typology class.
+        // this.renderNuts3PolygonByTypologyClass(feature, classValue, currentTab, currentBaseMap);
+      }
+      else {
+        let indicator = symbologyViewModel.selectedIndicators[symbologyViewModel.currentDomain][0];
+        let zscore = feature.properties[indicator + 'Z'];
+
+        // Make sure styles of only the non selected NUTS3 polygons are reset.
+        if (this.selectedFeature !== feature || forceReset) {
+          // Render the layer based on the selected indicator.
+          this.renderNuts3PolygonByIndicator(feature, indicator, zscore);
+        }
+      }
+
+    },
+
+    /**
+     * Select the specified feature feature.
+     *
+     * @param feature - The feature that will be selected.
+     * @param layer - The internal layer that will be selected.
+     */
+    selectFeature: function(feature, layer) {
+
+      // Set the current NUTS3 Panel.
+      if (AppState.currentNuts3Panel === 'symbology') {
+        AppState.currentNuts3Panel = 'overview';
+      }
+
+      // Unselect the NUTS3 feature if a selected one exists.
+      if (this.selectedFeature !== null) {
+        this.deselectNuts3();
+      }
+
+      // Select the NUTS3 feature.
+      this.selectedFeature = feature;
+      this.selectedInternalLayer = layer;
+
+      // Highlight the NUTS3 feature.
+      this.highlightNuts3(this.selectedFeature, this.selectedInternalLayer);
+
+      AppState.setPanelsVisibility();
+
+    },
+
+    /**
+     * Shows an information tooltip over a feature.
+     *
+     * @param layer - The internal layer whose information will be displayed over using the tooltip.
+     */
+    showTooltip: function(layer) {
+
+      // TODO: RESIN - This is what needs to change to support name of NUTS3 in native language.
+      //this.nuts3Name = AppData.nuts3[nuts3id].nameAscii;
+      //this.nuts3NativeName = AppData.nuts3[nuts3id].nutsName;
+
+      let properties = layer.feature.properties;
+
+      let nuts3id = properties.NUTS_ID;
+      let sg = properties.SG;
+      let g = properties.G;
+
+      let html = '<div>' +
+
+        // ASCII Name
+        '<div>' +
+        '<h5 class="text-danger">' + AppData.nuts3[nuts3id].nameAscii + '</h5>' +
+        '</div>' +
+
+        '<table class="table table-sm mt-4">' +
+        '<tbody>' +
+
+        // Supergroup
+        '<tr>' +
+        '<td class="pb-3">' +
+        '<div class="typology-class-header">Class:</div>' +
+        '<h6>' + MapLayers.nuts3.supergroups[sg].name + '</h6>' +
+        '</td>' +
+        '</tr>' +
+
+        // Group
+        '<tr>' +
+        '<td>' +
+        '<div class="typology-class-header">Subclass:</div>' +
+        '<h6>' + MapLayers.nuts3.groups[g].name + '</h6>' +
+        '</td>' +
+        '</tr>' +
+
+        '</tbody>' +
+        '</table>' +
+
+        '</div>';
+
+      layer.setTooltipContent(html);
+
+      if (!layer.isTooltipOpen()) {
+        layer.openTooltip();
+      }
+
+    },
+
+    /**
+     * Hides the information tooltip over a feature.
+     *
+     * @param layer - The internal layer whose tooltip will be hidden.
+     */
+    hideTooltip: function(layer) {
+      if (layer.isTooltipOpen()) {
+        layer.closeTooltip();
+      }
+
+      layer.setTooltipContent('');
     }
 
   },
