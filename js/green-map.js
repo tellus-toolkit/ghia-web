@@ -2985,7 +2985,7 @@ let RestClient = {
         polygon: data.polygon
       };
 
-      MapLayers.queriedPolygons.updateLayer(data);
+      MapLayers.queriedPolygons.updateLayer(feature.geometry);
       MapLayers.queriedCentroids.updateLayer(data);
 
       // Raster.setData(data.rasterExtract);
