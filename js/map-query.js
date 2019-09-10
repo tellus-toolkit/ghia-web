@@ -366,466 +366,6 @@ let MapLayers = {
   // TODO: Update the documentation.
 
   /**
-   * The GHIA raster Area of interest layer
-   */
-  ghiaAOI: {
-
-    /**
-     * The name of the layer.
-     */
-    name: 'ghiaAOI',
-
-    /**
-     * The named basemap layers.
-     */
-    namedBasemapLayers: {
-
-      /**
-       * Object light is used to define the styles used to render the
-       * GHIA Area of Interest layer on top of the Light Basemap.
-       */
-      light: {
-
-        /**
-         * The default style used to render the GHIA Area of Interest layer on top of the Light Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object dark is used to define the styles used to render the
-       * GHIA Area of Interest layer on top of the Dark Basemap.
-       */
-      dark: {
-
-        /**
-         * The default style used to render the GHIA Area of Interest layer on top of the Dark Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 1,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object roads is used to define the styles used to render the
-       * GHIA Area of Interest layer on top of the Roads Basemap.
-       */
-      roads: {
-
-        /**
-         * The default style used to render the GHIA Area of Interest layer on top of the Roads Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object physical is used to define the styles used to render the
-       * GHIA Area of Interest layer on top of the Physical Basemap.
-       */
-      physical: {
-
-        /**
-         * The default style used to render the GHIA Area of Interest layer on top of the Physical Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object terrain is used to define the styles used to render the
-       * GHIA Area of Interest layer on top of the Terrain Basemap.
-       */
-      terrain: {
-
-        /**
-         * The default style used to render the GHIA Area of Interest layer on top of the Terrain Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object satellite is used to define the styles used to render the
-       * GHIA Area of Interest layer on top of the Satellite Basemap.
-       */
-      satellite: {
-
-        /**
-         * The default style used to render the GHIA Area of Interest layer on top of the Satellite Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.red900.hex,
-          weight: 1,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      }
-
-    },
-
-    /**
-     * The leaflet map layer.
-     */
-    mapLayer: null,
-
-    /**
-     * The GeoJSON used to create the leaflet map layer.
-     */
-    geoJSON: null,
-
-    /**
-     * The LSOA feature selected by the user.
-     */
-    selectedFeature: null,
-
-    /**
-     * The internal layer of the selected LSOA feature.
-     */
-    selectedInternalLayer: null,
-
-    /**
-     * Creates the GHIA Area of Interest layer.
-     */
-    createLayer: function() {
-
-      // TODO: RESIN - Check next line.
-      // spinnerViewModel.isVisible = true;
-
-      // Get the named basemap layer.
-      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
-
-      this.geoJSON = AppData.ghiaAoi;
-
-      this.mapLayer = L.geoJSON(this.geoJSON, {
-
-        /**
-         * Style the features of the layer using the associated default style defined for this layer.
-         * The default style for this layer depends on the selected background map.
-         *
-         * @param feature - The feature to style.
-         * @returns {Style} - A Style capable of styling polygon features.
-         */
-        style: function(feature) {
-          return MapLayers.ghiaAOI.namedBasemapLayers[namedBaseMap].defaultStyle;
-        }
-
-      });
-
-      // Add the layer in to the map and make sure it is visible.
-      this.mapLayer.addTo(Spatial.map);
-      this.mapLayer.bringToFront();
-
-    },
-
-    /**
-     * Renders the GHIA Area of Interest layer.
-     */
-    renderLayer: function() {
-
-      // Get the current basemap. This is used to decide the symbology of the GHIA Area of Interest polygons.
-      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
-
-      // Check whether GHIA area of Interest features exist or not.
-      if (this.geoJSON !== undefined || this.geoJSON !== null) {
-
-        this.mapLayer.eachLayer(function(layer) {
-          layer.setStyle(MapLayers.ghiaAOI.namedBasemapLayers[currentBaseMap].defaultStyle);
-        });
-
-      }
-
-    }
-
-  },
-
-  /**
-   * The GHIA 1km tiles layer
-   */
-  ghiaTiles1000: {
-
-    /**
-     * The name of the layer.
-     */
-    name: 'ghiaTiles1000',
-
-    /**
-     * The named basemap layers.
-     */
-    namedBasemapLayers: {
-
-      /**
-       * Object light is used to define the styles used to render the
-       * GHIA 1 km tiles layer on top of the Light Basemap.
-       */
-      light: {
-
-        /**
-         * The default style used to render the GHIA 1km tiles layer on top of the Light Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.blue900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object dark is used to define the styles used to render the
-       * GHIA 1 km tiles layer on top of the Dark Basemap.
-       */
-      dark: {
-
-        /**
-         * The default style used to render the GHIA 1 km tiles layer on top of the Dark Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.amber.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object roads is used to define the styles used to render the
-       * GHIA 1 km tiles layer on top of the Roads Basemap.
-       */
-      roads: {
-
-        /**
-         * The default style used to render the GHIA 1km tiles layer on top of the Roads Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.blue900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object physical is used to define the styles used to render the
-       * GHIA 1 km tiles layer on top of the Physical Basemap.
-       */
-      physical: {
-
-        /**
-         * The default style used to render the GHIA 1 km tiles layer on top of the Physical Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.blue900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object terrain is used to define the styles used to render the
-       * GHIA 1 km tiles layer on top of the Terrain Basemap.
-       */
-      terrain: {
-
-        /**
-         * The default style used to render the GHIA 1 km tiles layer on top of the Terrain Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.blue900.hex,
-          weight: 0.5,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      },
-
-      /**
-       * Object satellite is used to define the styles used to render the
-       * GHIA 1 km tiles layer on top of the Satellite Basemap.
-       */
-      satellite: {
-
-        /**
-         * The default style used to render the GHIA 1 km tiles layer on top of the Satellite Basemap.
-         */
-        defaultStyle: {
-          stroke: true,
-          color: ColorPalettes.Material.amber.hex,
-          weight: 0.7,
-          opacity: 1,
-          fill: true,
-          fillColor: '#ffffff',
-          fillOpacity: 0.01
-          //lineCap: 'round',  // butt | round | square | inherit
-          //lineJoin: 'round'  // miter | round | bevel | inherit
-        }
-
-      }
-
-    },
-
-    /**
-     * The leaflet map layer.
-     */
-    mapLayer: null,
-
-    /**
-     * The GeoJSON used to create the leaflet map layer.
-     */
-    geoJSON: null,
-
-    /**
-     * The LSOA feature selected by the user.
-     */
-    selectedFeature: null,
-
-    /**
-     * The internal layer of the selected LSOA feature.
-     */
-    selectedInternalLayer: null,
-
-    /**
-     * Creates the GHIA Area of Interest layer.
-     */
-    createLayer: function() {
-
-      // TODO: RESIN - Check next line.
-      // spinnerViewModel.isVisible = true;
-
-      // Get the named basemap layer.
-      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
-
-      this.geoJSON = AppData.ghiaTiles1000Polygons;
-
-      this.mapLayer = L.geoJSON(this.geoJSON, {
-
-        /**
-         * Style the features of the layer using the associated default style defined for this layer.
-         * The default style for this layer depends on the selected background map.
-         *
-         * @param feature - The feature to style.
-         * @returns {Style} - A Style capable of styling polygon features.
-         */
-        style: function(feature) {
-          return MapLayers.ghiaTiles1000.namedBasemapLayers[namedBaseMap].defaultStyle;
-        },
-
-      });
-
-      // Add the layer in to the map and make sure it is visible.
-      this.mapLayer.addTo(Spatial.map);
-      this.mapLayer.bringToFront();
-
-    },
-
-    /**
-     * Renders the GHIA Tiles 1000 layer.
-     */
-    renderLayer: function() {
-
-      // Get the current basemap. This is used to decide the symbology of the GHIA Tiles 1000 polygons.
-      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
-
-      // Check whether GHIA Tiles 1000 features exist or not.
-      if (this.geoJSON !== undefined || this.geoJSON !== null) {
-
-        this.mapLayer.eachLayer(function(layer) {
-          layer.setStyle(MapLayers.ghiaTiles1000.namedBasemapLayers[currentBaseMap].defaultStyle);
-        });
-
-      }
-
-    }
-
-  },
-
-  /**
    * The Greater Manchester Outline layer
    */
   greaterManchesterOutline: {
@@ -1341,7 +881,7 @@ let MapLayers = {
              */
             mouseover: function() {
               //MapLayers.lsoa.showTooltip(layer);
-              MapLayers.nuts3.highlightNuts3(feature, layer);
+              MapLayers.lsoa.highlightFeature(feature, layer);
             },
 
             /**
@@ -1349,7 +889,7 @@ let MapLayers = {
              */
             mouseout: function() {
               // MapLayers.nuts3.hideTooltip(layer);
-              MapLayers.nuts3.resetNuts3Style(feature, layer, false);
+              MapLayers.lsoa.resetFeatureStyle(feature, layer);
               // MapLayers.nuts3.reselectNuts3();
             },
 
@@ -1357,20 +897,8 @@ let MapLayers = {
              * Raised when a feature is clicked.
              */
             click: function() {
-              MapLayers.nuts3.selectNuts3(feature, layer);
-              MapLayers.nuts3.updateInfo(feature);
-            },
-
-            /**
-             * Raised when a feature is double clicked.
-             */
-            dblclick: function() {
-              //MapLayers.nuts3.resetNuts3Style(feature, layer);
-              //alert('double clicked');
-              //map.doubleClickZoom.disable();
-              //map.doubleClickZoom.enable()
-              // TODO: This is a problem. A click event is fired before the double click. We need to change this behaviour.
-              //Spatial.map.fitBounds(layer.getBounds());
+              MapLayers.lsoa.selectFeature(feature);
+              // MapLayers.lsoa.updateInfo(feature);
             }
 
           });
@@ -1393,6 +921,16 @@ let MapLayers = {
       //     offset: [0, -30], // TODO: RESIN - APPVAR
       //     sticky: true
       //   });
+      // });
+
+      // this.mapLayer.eachLayer(function(layer) {
+      //
+      //   let f = layer.feature;
+      //
+      //   if (f.geometry.coordinates[0].length > 1) {
+      //     alert(f.properties.id + ' : ' + f.properties.cd + ' : '  + f.properties.nm + ' has a hole');
+      //   }
+      //
       // });
 
     },
@@ -1450,7 +988,7 @@ let MapLayers = {
       // Get the named basemap layer.
       let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
-      // Highlight the current NUTS3.
+      // Highlight the current LSOA feature.
       layer.setStyle(this.namedBasemapLayers[namedBaseMap].defaultHighlightingStyle);
 
       if (!L.Browser.ie && !L.Browser.opera) {
@@ -1464,73 +1002,38 @@ let MapLayers = {
      *
      * @param feature - The feature that whose style will be reset.
      * @param layer - The internal layer of the feature whose style will be reset.
-     * @param forceReset - Forces the function to reset the feature style.
      */
-    resetFeatureStyle: function(feature, layer, forceReset) {
+    resetFeatureStyle: function(feature, layer) {
 
-      // Get the current basemap. This is used to decide the symbology of the NUTS3 polygons.
-      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
-      // Get the current tab.
-      let currentTab = symbologyViewModel.currentTab;
+      // Render the LSOA feature using the default style.
+      layer.setStyle(this.namedBasemapLayers[namedBaseMap].defaultStyle);
 
-      if (currentTab !== 'indicators') {
-        // Get the NUTS3 attribute name and the class value.
-        let attributeName = this.typologyLevelDictionary[currentTab].attributeName;
-        let classValue = feature.properties[attributeName].toString();
-
-        // Make sure styles of only the non selected NUTS3 polygons are reset.
-        if (this.selectedFeature !== feature || forceReset) {
-          // Render the NUTS3 polygon having the specified typology class.
-          this.renderNuts3PolygonByTypologyClass(feature, classValue, currentTab, currentBaseMap);
-        }
-
-        // // Render the layer based on typology classes (supergroups or groups).
-        // let attributeName = this.typologyLevelDictionary[currentTab].attributeName;
-        // let classValue = feature.properties[attributeName].toString();
-        //
-        // // Render the NUTS3 polygon having the specified typology class.
-        // this.renderNuts3PolygonByTypologyClass(feature, classValue, currentTab, currentBaseMap);
-      }
-      else {
-        let indicator = symbologyViewModel.selectedIndicators[symbologyViewModel.currentDomain][0];
-        let zscore = feature.properties[indicator + 'Z'];
-
-        // Make sure styles of only the non selected NUTS3 polygons are reset.
-        if (this.selectedFeature !== feature || forceReset) {
-          // Render the layer based on the selected indicator.
-          this.renderNuts3PolygonByIndicator(feature, indicator, zscore);
-        }
+      if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToBack();
       }
 
     },
 
     /**
-     * Select the specified feature feature.
+     * Select the specified feature.
      *
      * @param feature - The feature that will be selected.
      * @param layer - The internal layer that will be selected.
      */
-    selectFeature: function(feature, layer) {
+    selectFeature: function(feature) {
 
-      // Set the current NUTS3 Panel.
-      if (AppState.currentNuts3Panel === 'symbology') {
-        AppState.currentNuts3Panel = 'overview';
-      }
+      let polygon = {
+        "type": "Polygon",
+        "coordinates": feature.geometry.coordinates[0]
+      };
 
-      // Unselect the NUTS3 feature if a selected one exists.
-      if (this.selectedFeature !== null) {
-        this.deselectNuts3();
-      }
+      //   feature.geometry;
+      // polygon.type = 'Polygon';
 
-      // Select the NUTS3 feature.
-      this.selectedFeature = feature;
-      this.selectedInternalLayer = layer;
-
-      // Highlight the NUTS3 feature.
-      this.highlightNuts3(this.selectedFeature, this.selectedInternalLayer);
-
-      AppState.setPanelsVisibility();
+      RestClient.getReportByPolygon(polygon);
 
     },
 
@@ -1903,6 +1406,43 @@ let MapLayers = {
          */
         style: function(feature) {
           return MapLayers.wards.namedBasemapLayers[namedBaseMap].defaultStyle;
+        },
+
+        /**
+         * Define the behaviour of each feature.
+         *
+         * @param feature - The feature whose behaviour will be defined.
+         * @param layer - The internal layer of each feature.
+         */
+        onEachFeature: function(feature, layer) {
+          layer.on({
+
+            /**
+             * Raised when the mouse is over a feature.
+             */
+            mouseover: function() {
+              //MapLayers.lsoa.showTooltip(layer);
+              MapLayers.wards.highlightFeature(feature, layer);
+            },
+
+            /**
+             * Raised when the mouse is going out of a feature.
+             */
+            mouseout: function() {
+              // MapLayers.nuts3.hideTooltip(layer);
+              MapLayers.wards.resetFeatureStyle(feature, layer);
+              // MapLayers.nuts3.reselectNuts3();
+            },
+
+            /**
+             * Raised when a feature is clicked.
+             */
+            click: function() {
+              MapLayers.wards.selectFeature(feature);
+              // MapLayers.lsoa.updateInfo(feature);
+            }
+
+          });
         }
 
       });
@@ -1922,6 +1462,16 @@ let MapLayers = {
       //     offset: [0, -30], // TODO: RESIN - APPVAR
       //     sticky: true
       //   });
+      // });
+
+      // this.mapLayer.eachLayer(function(layer) {
+      //
+      //   let f = layer.feature;
+      //
+      //   if (f.geometry.coordinates[0].length > 1) {
+      //     alert(f.properties.cmwd11cd + ' : '  + f.properties.cmwd11nm + ' has a hole');
+      //   }
+      //
       // });
 
     },
@@ -1966,6 +1516,135 @@ let MapLayers = {
         Spatial.map.removeLayer(this.mapLayer);
       }
 
+    },
+
+    /**
+     * Highlights a feature.
+     *
+     * @param feature - The feature that will be highlighted.
+     * @param layer - The internal layer of the feature that will be highlighted.
+     */
+    highlightFeature: function(feature, layer) {
+
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Highlight the current ward feature.
+      layer.setStyle(this.namedBasemapLayers[namedBaseMap].defaultHighlightingStyle);
+
+      if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+      }
+
+    },
+
+    /**
+     * Resets the feature style. This is called once a mouseout event has been fired.
+     *
+     * @param feature - The feature that whose style will be reset.
+     * @param layer - The internal layer of the feature whose style will be reset.
+     */
+    resetFeatureStyle: function(feature, layer) {
+
+      // Get the named basemap layer.
+      let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Render the ward feature using the default style.
+      layer.setStyle(this.namedBasemapLayers[namedBaseMap].defaultStyle);
+
+      if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToBack();
+      }
+
+    },
+
+    /**
+     * Select the specified feature.
+     *
+     * @param feature - The feature that will be selected.
+     * @param layer - The internal layer that will be selected.
+     */
+    selectFeature: function(feature) {
+
+      let polygon = {
+        "type": "Polygon",
+        "coordinates": feature.geometry.coordinates[0]
+      };
+
+      // let polygon = feature.geometry;
+      // polygon.type = 'Polygon';
+
+      RestClient.getReportByPolygon(polygon);
+
+    },
+
+    /**
+     * Shows an information tooltip over a feature.
+     *
+     * @param layer - The internal layer whose information will be displayed over using the tooltip.
+     */
+    showTooltip: function(layer) {
+
+      // TODO: RESIN - This is what needs to change to support name of NUTS3 in native language.
+      //this.nuts3Name = AppData.nuts3[nuts3id].nameAscii;
+      //this.nuts3NativeName = AppData.nuts3[nuts3id].nutsName;
+
+      let properties = layer.feature.properties;
+
+      let nuts3id = properties.NUTS_ID;
+      let sg = properties.SG;
+      let g = properties.G;
+
+      let html = '<div>' +
+
+        // ASCII Name
+        '<div>' +
+        '<h5 class="text-danger">' + AppData.nuts3[nuts3id].nameAscii + '</h5>' +
+        '</div>' +
+
+        '<table class="table table-sm mt-4">' +
+        '<tbody>' +
+
+        // Supergroup
+        '<tr>' +
+        '<td class="pb-3">' +
+        '<div class="typology-class-header">Class:</div>' +
+        '<h6>' + MapLayers.nuts3.supergroups[sg].name + '</h6>' +
+        '</td>' +
+        '</tr>' +
+
+        // Group
+        '<tr>' +
+        '<td>' +
+        '<div class="typology-class-header">Subclass:</div>' +
+        '<h6>' + MapLayers.nuts3.groups[g].name + '</h6>' +
+        '</td>' +
+        '</tr>' +
+
+        '</tbody>' +
+        '</table>' +
+
+        '</div>';
+
+      layer.setTooltipContent(html);
+
+      if (!layer.isTooltipOpen()) {
+        layer.openTooltip();
+      }
+
+    },
+
+    /**
+     * Hides the information tooltip over a feature.
+     *
+     * @param layer - The internal layer whose tooltip will be hidden.
+     */
+    hideTooltip: function(layer) {
+      if (layer.isTooltipOpen()) {
+        layer.closeTooltip();
+      }
+
+      layer.setTooltipContent('');
     }
 
   },
@@ -2347,7 +2026,7 @@ let MapLayers = {
         };
 
       }
-      else if (queryStateViewModel.getCurrentState() === 'polygon') {
+      else {
 
         polygon = data.polygon.geographic;
 
@@ -2838,11 +2517,13 @@ let MapLayers = {
         };
 
       }
-      else if (queryStateViewModel.getCurrentState() === 'polygon') {
+      else {
 
         point = data.centroid.geographic;
 
       }
+
+
 
       this.geoJSON.features[0].geometry = point;
       this.mapLayer.clearLayers();
@@ -3198,7 +2879,7 @@ let RestClient = {
         polygon: data.polygon
       };
 
-      MapLayers.queriedPolygons.updateLayer(feature.geometry);
+      MapLayers.queriedPolygons.updateLayer(data);
       MapLayers.queriedCentroids.updateLayer(data);
 
       // Raster.setData(data.rasterExtract);
