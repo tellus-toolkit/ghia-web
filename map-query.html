@@ -30,7 +30,6 @@
   <!--<link href="css/mdb.min.css" rel="stylesheet">-->
 
   <!-- Font-Awesome -->
-  <!--<link rel="stylesheet" href="libs/font-awesome-free-5.5.0-web/css/all.min.css">-->
   <link rel="stylesheet" href="libs/fontawesome-free-5.9.0-web/css/all.min.css">
 
 
@@ -39,6 +38,10 @@
   <link rel="stylesheet" href="libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.css">
   <!--  <link rel="stylesheet" href="libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.min.css">-->
   <link rel="stylesheet" href="libs/leaflet-plugins/leaflet-pm-2.1.0/leaflet.pm.css">
+
+  <!-- Chart.js -->
+  <link rel="stylesheet" type="text/css" href="libs/chart-js-2.8.0/Chart.css">
+<!--  <link rel="stylesheet" type="text/css" href="libs/chart-js-2.8.0/Chart.min.css">-->
 
   <link rel="stylesheet" href="styles/map-query.css">
   <link rel="stylesheet" href="styles/loader.css">
@@ -434,10 +437,71 @@
                   </div>
 
 <!--                  <div class="mb-auto h-100 ver-scrollbars border-left border-bottom border-right">-->
-                  <div class="mb-auto h-100 ver-scrollbars">
+                  <div class="mb-auto h-100 p-1 ver-scrollbars">
 
                     <div id="diagramVM" v-bind:class="[isViewVisible() ? '' : 'hidden']">
-                      <p>This is the diagram area</p>
+
+<!--                      <div>-->
+                      <div id="diagram-card" class="card card-body">
+
+                        <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row mb-2">
+                          <a class="btn-floating btn-sm btn-primary mr-1"
+                             v-bind:class="[diagrams.polarArea.isCurrent ? 'active' : '']">
+                            <i class="amber-text ghia-material-icons md-18"
+                               v-text="diagrams.polarArea.icon">
+                            </i>
+                          </a>
+                          <a class="btn-floating btn-sm btn-primary mr-1"
+                             v-bind:class="[diagrams.pie.isCurrent ? 'active' : '']">
+                            <i class="amber-text ghia-material-icons md-18"
+                               v-text="diagrams.pie.icon">
+                            </i>
+                          </a>
+                          <a class="btn-floating btn-sm btn-primary mr-1"
+                             v-bind:class="[diagrams.donut.isCurrent ? 'active' : '']">
+                            <i class="amber-text ghia-material-icons md-18"
+                               v-text="diagrams.donut.icon">
+                            </i>
+                          </a>
+                          <a class="btn-floating btn-sm btn-primary mr-1"
+                             v-bind:class="[diagrams.radar.isCurrent ? 'active' : '']">
+                            <i class="amber-text ghia-material-icons md-18"
+                               v-text="diagrams.radar.icon">
+                            </i>
+                          </a>
+                          <a class="btn-floating btn-sm btn-primary mr-1"
+                             v-bind:class="[diagrams.bar.isCurrent ? 'active' : '']">
+                            <i class="amber-text ghia-material-icons md-18"
+                               v-text="diagrams.bar.icon">
+                            </i>
+                          </a>
+
+
+
+<!--                          <button type="button" class="btn btn-primary m-1"-->
+<!--                                  v-bind:class="[states.point.isCurrent ? 'active' : '']"-->
+<!--                                  v-on:click="setCurrentState('point')">-->
+<!--                            <i class="amber-text mr-2"-->
+<!--                               v-bind:class="[states.point.icon]">-->
+<!--                            </i>-->
+<!--                            <span v-text="states.point.buttonText"></span>-->
+<!--                          </button>-->
+
+<!--                          <a type="button" class="btn-floating btn-primary btn-sm">P</a>-->
+<!--                          <a class="btn-floating btn-primary btn-sm">P</a>-->
+<!--                          <a class="btn-floating btn-sm btn-secondary"><i class="fas fa-star"></i></a>-->
+                        </div>
+
+                        <div id="diagram-container" style="background: yellowgreen;">
+
+                          <canvas id="diagram">
+
+                          </canvas>
+
+                        </div>
+
+                      </div>
+
                     </div>
 
                     <div id="reportVM" v-bind:class="[isViewVisible() ? '' : 'hidden']">
@@ -515,15 +579,16 @@
 <!--<script type="text/javascript" src="libs/leaflet-plugins/leaflet-pouch/leaflet.pouch.js"></script>-->
 <script type="text/javascript" src="libs/leaflet-plugins/leaflet-editable-1.2.0/leaflet-editable.js"></script>
 
+<script type="text/javascript" src="libs/chart-js-2.8.0/Chart.js"></script>
+<!--<script type="text/javascript" src="libs/chart-js-2.8.0/Chart.min.js"></script>-->
+
 <!--<script type="text/javascript" src="libs/bootstrap-material-design-v4.1.1/js/bootstrap-material-design.js"></script>-->
 <!--<script type="text/javascript" src="libs/bootstrap-material-design-v4.1.1/js/bootstrap-material-design.min.js"></script>-->
 
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="libs/mdb/js/bootstrap.min.js"></script>
-<!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="libs/mdb/js/mdb.min.js"></script>
-<!--<script type="text/javascript" src="js/mdb.min.js"></script>-->
 
 <!--<script type="text/javascript" src="libs/ps-math-stats/ps-math-stats.min.js"></script>-->
 

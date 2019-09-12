@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08924dda-c242-485d-8acf-b4c899821e4b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/libs/chart-js-2.8.0/Chart.bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/chart-js-2.8.0/Chart.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/chart-js-2.8.0/Chart.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/chart-js-2.8.0/Chart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/chart-js-2.8.0/Chart.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/chart-js-2.8.0/Chart.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/green-map.html" beforeDir="false" afterPath="$PROJECT_DIR$/map-query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/gm-lsoa-generalised.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-lsoa-generalised.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/green-map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/map-query.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/green-map.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/map-query.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/map-query.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/map-query.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/raster.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/raster.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map-query.html" beforeDir="false" afterPath="$PROJECT_DIR$/map-query.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/map-query.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/map-query.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,6 +121,8 @@
       <workItem from="1568025655475" duration="3085000" />
       <workItem from="1568036562178" duration="979000" />
       <workItem from="1568117345383" duration="18748000" />
+      <workItem from="1568298099683" duration="1738000" />
+      <workItem from="1568306821929" duration="12362000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>

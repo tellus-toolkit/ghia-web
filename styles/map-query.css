@@ -151,6 +151,18 @@ body {
   width: 100%;
 }
 
+#diagramVM {
+  height: 100%
+}
+
+#diagram-card {
+  height: 100%
+}
+
+#diagram-container {
+  height: 100%;
+}
+
 
 /*
  *  ================================================================================
@@ -305,11 +317,15 @@ body {
 
 /* Rules for sizing the icon. */
 .material-icons.md-875-rem { font-size: .875rem; }
+.material-icons.md-16 { font-size: 16px; }
 .material-icons.md-18 { font-size: 18px; }
+.material-icons.md-20 { font-size: 20px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
+.ghia-material-icons.md-16 { font-size: 16px; }
 .ghia-material-icons.md-18 { font-size: 18px; }
+.ghia-material-icons.md-20 { font-size: 20px; }
 .ghia-material-icons.md-24 { font-size: 24px; }
 .ghia-material-icons.md-36 { font-size: 36px; }
 .ghia-material-icons.md-48 { font-size: 48px; }

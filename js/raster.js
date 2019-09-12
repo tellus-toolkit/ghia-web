@@ -479,7 +479,7 @@ var Raster = {
 
     /**
      * The type of the query.
-     * Valid values are 'point' | 'polygon' | 'lsoa'.
+     * Valid values are 'point' | 'polygon' | 'lsoa' | 'wards'.
      */
     type: undefined,
 

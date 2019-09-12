@@ -3340,6 +3340,124 @@ let displayResultsViewModel = new Vue({
 });
 
 /**
+ * The diagramViewModel provides the data and logic to render on the web page
+ * the diagram displaying the green cover of the queried area.
+ *
+ * @type {Vue} - A Vue object with the model and methods used in the view model.
+ */
+let diagramViewModel = new Vue({
+
+  /**
+   * The name of the view model.
+   */
+  el: '#diagramVM',
+
+  /**
+   * The model of the view model.
+   */
+  data: {
+
+    /**
+     * The possible diagrams.
+     */
+    diagrams: {
+      polarArea: {
+        isCurrent: true,
+        icon: 'filter_tilt_shift',
+        tooltip: ''
+      },
+      pie: {
+        isCurrent: false,
+        icon: 'pie_chart',
+        tooltip: ''
+      },
+      donut: {
+        isCurrent: false,
+        icon: 'donut_large',
+        tooltip: ''
+      },
+      radar: {
+        isCurrent: false,
+        icon: 'control_camera',
+        tooltip: ''
+      },
+      bar: {
+        isCurrent: false,
+        icon: 'bar_chart',
+        tooltip: ''
+      }
+    },
+
+    /**
+     * Gets the current diagram.
+     *
+     * @returns {string} - A string with the diagram name.
+     */
+    getCurrentDiagram: function() {
+
+      let currentDiagram = '';
+
+      for (let property in this.diagrams) {
+        if (this.diagrams.hasOwnProperty(property)) {
+          if (this.diagrams[property].isCurrent) {
+            currentDiagram = property;
+            break;
+          }
+        }
+      }
+
+      return currentDiagram;
+
+    },
+
+
+
+
+    /**
+     * Gets the envelope of the extracted values.
+     */
+    envelope: {},
+
+    /**
+     * Gets the histogram of extracted raster values.
+     */
+    histogram: {},
+
+    /**
+     * Gets the count of the histogram.
+     */
+    histogramCount: 0,
+
+    /**
+     * Gets whether the view is visible or not.
+     */
+    isViewVisible() {
+      return displayResultsViewModel.methods.diagram.isCurrent;
+    }
+
+  },
+
+  /**
+   * The methods of the view model.
+   */
+  methods: {
+
+    /**
+     * Updates the view with the new extracted raster values.
+     */
+    updateView() {
+
+      this.envelope = Raster.data.envelope;
+      this.histogram = Raster.data.histogram;
+      this.histogramCount = Raster.data.count;
+
+    }
+
+  }
+
+});
+
+/**
  * The reportViewModel provides the data and logic to render on the web page
  * the report with the green cover of the queried area.
  *
@@ -3405,69 +3523,6 @@ let reportViewModel = new Vue({
      */
     isViewVisible() {
       return displayResultsViewModel.methods.report.isCurrent;
-    }
-
-  },
-
-  /**
-   * The methods of the view model.
-   */
-  methods: {
-
-    /**
-     * Updates the view with the new extracted raster values.
-     */
-    updateView() {
-
-      this.envelope = Raster.data.envelope;
-      this.histogram = Raster.data.histogram;
-      this.histogramCount = Raster.data.count;
-
-    }
-
-  }
-
-});
-
-
-/**
- * The diagramViewModel provides the data and logic to render on the web page
- * the diagram displaying the green cover of the queried area.
- *
- * @type {Vue} - A Vue object with the model and methods used in the view model.
- */
-let diagramViewModel = new Vue({
-
-  /**
-   * The name of the view model.
-   */
-  el: '#diagramVM',
-
-  /**
-   * The model of the view model.
-   */
-  data: {
-
-    /**
-     * Gets the envelope of the extracted values.
-     */
-    envelope: {},
-
-    /**
-     * Gets the histogram of extracted raster values.
-     */
-    histogram: {},
-
-    /**
-     * Gets the count of the histogram.
-     */
-    histogramCount: 0,
-
-    /**
-     * Gets whether the view is visible or not.
-     */
-    isViewVisible() {
-      return displayResultsViewModel.methods.diagram.isCurrent;
     }
 
   },
