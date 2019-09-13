@@ -2681,6 +2681,430 @@ let Spatial = {
 };
 
 /**
+ * The Diagrams object provides properties and methods related to data diagrams.
+ * @type {{}}
+ */
+let Diagrams = {
+
+  /**
+   * The name of the current diagram.
+   */
+  currentDiagram: '',
+
+  /**
+   * Holds the data associated with the form aspect of the raster.
+   */
+  form: {
+
+    /**
+     * The data object of the form aspect of the raster.
+     */
+    data: {
+
+      /**
+       * The labels of the datasets.
+       */
+      labels: [],
+
+      /**
+       * The datasets of the diagram.
+       */
+      datasets: [
+        {
+
+          /**
+           * The label of the user selected dataset.
+           */
+          label: 'Selected Data',
+
+          /**
+           * The actual user selected data.
+           */
+          data: [0, 0, 0, 0, 0]
+
+        },
+        {
+
+          /**
+           * The label of the Greater Manchester dataset.
+           */
+          label: 'GM Data',
+
+          /**
+           * The actual Greater Manchester data.
+           */
+          data: [0, 0, 0, 0, 0]
+
+        }
+      ]
+
+    },
+
+    /**
+     * Initializes the labels and Greater Manchester dataset of the form object.
+     */
+    initialize: function() {
+
+      let lookup = Raster.metadata.band.lookup;
+
+      for (let key in lookup) {
+        if (lookup.hasOwnProperty(key)) {
+
+          let index = -1;
+
+          let form = lookup[key].form;
+          index = this.data.labels.indexOf(form);
+
+          if (index === -1) {
+            this.data.labels.push(form);
+          }
+
+          index = this.data.labels.indexOf(form);
+          this.data.datasets[1].data[index] += lookup[key].count;
+
+        }
+      }
+
+    },
+
+    /**
+     * Updates the user selected data grouped based on the form aspect of the raster.
+     */
+    updateData: function() {
+
+      this.data.datasets[0].data = [0, 0, 0, 0, 0];
+
+      let histogram = Raster.data.histogram;
+
+      for (let key in histogram) {
+        if (histogram.hasOwnProperty(key)) {
+
+          let form = histogram[key].form;
+          index = this.data.labels.indexOf(form);
+
+          this.data.datasets[0].data[index] += histogram[key].count;
+
+        }
+      }
+
+      let data = this.data.datasets[0].data;
+
+      for (let i = 0; i < data.length; i++) {
+        data[i] = data[i] / Raster.data.count;
+      }
+
+    }
+
+  },
+
+  /**
+   * Holds the data associated with the landscape aspect of the raster.
+   */
+  landscape: {
+
+    /**
+     * The data object of the landscape aspect of the raster.
+     */
+    data: {
+
+      /**
+       * The labels of the datasets.
+       */
+      labels: [],
+
+      /**
+       * The datasets of the diagram.
+       */
+      datasets: [
+        {
+
+          /**
+           * The label of the user selected dataset.
+           */
+          label: 'Selected Data',
+
+          /**
+           * The actual user selected data.
+           */
+          data: [
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+          ]
+        },
+        {
+
+          /**
+           * The label of the Greater Manchester dataset.
+           */
+          label: 'GM Data',
+
+          /**
+           * The actual Greater Manchester data.
+           */
+          data: [
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0,
+          ]
+
+        }
+      ]
+
+    },
+
+    /**
+     * Initializes the labels and Greater Manchester dataset of the landscape object.
+     */
+    initialize: function() {
+
+      let lookup = Raster.metadata.band.lookup;
+
+      for (let key in lookup) {
+        if (lookup.hasOwnProperty(key)) {
+
+          let index = -1;
+
+          let landscape = lookup[key].landscape;
+          index = this.data.labels.indexOf(landscape);
+
+          if (index === -1) {
+            this.data.labels.push(landscape);
+          }
+
+          index = Diagrams.landscape.data.labels.indexOf(landscape);
+          this.data.datasets[1].data[index] = lookup[key].count;
+
+        }
+      }
+
+    },
+
+    /**
+     * Updates the user selected data grouped based on the landscape aspect of the raster.
+     */
+    /**
+     * Updates the user selected data grouped based on the form aspect of the raster.
+     */
+    updateData: function() {
+
+      this.data.datasets[0].data = [
+        0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0,
+      ];
+
+      let histogram = Raster.data.histogram;
+
+      for (let key in histogram) {
+        if (histogram.hasOwnProperty(key)) {
+
+          let landscape = histogram[key].landscape;
+          index = this.data.labels.indexOf(landscape);
+
+          this.data.datasets[0].data[index] = histogram[key].count;
+
+        }
+      }
+
+    }
+
+  },
+
+  /**
+   * The context of the canvas element used to create the diagram.
+   */
+  context: undefined,
+
+  /**
+   * The actual Chart.js chart object.
+   */
+  diagram: undefined,
+
+  /**
+   * Functionality related to polarArea diagram.
+   */
+  polarArea: {
+
+    update: function() {
+
+      // Check if the current diagram is a polarArea.
+      if (Diagrams.currentDiagram !== 'polarArea') {
+
+        // The current diagram is not a polarArea. Update it to be a polarArea.
+        Diagrams.currentDiagram = 'polarArea';
+
+        // Create a diagram definition.
+        let diagramDefinition = {
+
+          type: 'polarArea',
+
+          data: {
+            labels: Diagrams.form.data.labels,
+            datasets: [
+              {
+                label: Diagrams.form.data.datasets[0].label,
+                data: Diagrams.form.data.datasets[0].data
+              }
+            ]
+          },
+
+          options: {}
+
+        };
+
+        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+
+      }
+      else {
+        alert('Update polarArea');
+      }
+
+    }
+
+  },
+
+  /**
+   * Functionality related to pie diagram.
+   */
+  pie: {
+
+    update: function() {
+
+      if (Diagrams.currentDiagram !== 'pie') {
+        Diagrams.currentDiagram = 'pie';
+        alert('Create pie');
+      }
+      else {
+        alert('Update pie');
+      }
+
+    }
+
+  },
+
+  /**
+   * Functionality related to donut diagram.
+   */
+  donut: {
+
+    update: function() {
+
+      if (Diagrams.currentDiagram !== 'donut') {
+        Diagrams.currentDiagram = 'donut';
+        alert('Create donut');
+      }
+      else {
+        alert('Update donut');
+      }
+
+    }
+
+  },
+
+  /**
+   * Functionality related to radar diagram.
+   */
+  radar: {
+
+    update: function() {
+
+      if (Diagrams.currentDiagram !== 'radar') {
+        Diagrams.currentDiagram = 'radar';
+        alert('Create radar');
+      }
+      else {
+        alert('Update radar');
+      }
+
+    }
+
+  },
+
+  /**
+   * Functionality related to bar diagram.
+   */
+  bar: {
+
+    update: function() {
+
+      if (Diagrams.currentDiagram !== 'bar') {
+        Diagrams.currentDiagram = 'bar';
+        alert('Create bar');
+      }
+      else {
+        alert('Update bar');
+      }
+
+    }
+
+  },
+
+  // /**
+  //  * Updates the specified diagram.
+  //  *
+  //  * @param diagram - The diagram to update.
+  //  */
+  // updateDiagram: function(diagram) {
+  //
+  //   // Check whether to create a new diagram or not.
+  //   if (this.currentDiagram !== diagram) {
+  //     this.createDiagram(diagram);
+  //   }
+  //
+  // },
+  //
+  // /**
+  //  * Creates a new diagram.
+  //  *
+  //  * @param diagram - The name of the diagram to create.
+  //  */
+  // createDiagram: function(diagram) {
+  //
+  //   this.currentDiagram = diagram;
+  //
+  //   let functionName = 'create' + diagram + 'Diagram';
+  //
+  //   //this[functionName]();
+  //   this[functionName]();
+  //
+  //
+  // },
+
+  /**
+   * Initializes the Diagrams object.
+   *
+   * @param canvas - The canvas element name.
+   */
+  initialize: function(canvas) {
+
+    this.form.initialize();
+    this.landscape.initialize();
+
+    // Get the context of the canvas element.
+    this.context = document.getElementById(canvas).getContext('2d');
+
+  },
+
+  /**
+   * Updates the user selected data.
+   */
+  updateData: function() {
+
+    Diagrams.form.updateData();
+    Diagrams.landscape.updateData();
+
+  }
+
+};
+
+/**
  * Provides methods to get raster information from the REST GHIA raster server.
  */
 let RestClient = {
@@ -3181,7 +3605,7 @@ let queryStateViewModel = new Vue({
     /**
      * Sets the current query mechanism state.
      *
-     * @param state - The state of the query mechanism. Valid values are: {'point' | 'polygon' | 'lsoa'}.
+     * @param state - The state of the query mechanism. Valid values are: {'point' | 'polygon' | 'lsoa' | 'wards'}.
      */
     setCurrentState(state) {
 
@@ -3364,27 +3788,27 @@ let diagramViewModel = new Vue({
       polarArea: {
         isCurrent: true,
         icon: 'filter_tilt_shift',
-        tooltip: ''
+        tooltip: 'Polar Area Diagram'
       },
       pie: {
         isCurrent: false,
         icon: 'pie_chart',
-        tooltip: ''
+        tooltip: 'Pie Diagram'
       },
       donut: {
         isCurrent: false,
         icon: 'donut_large',
-        tooltip: ''
+        tooltip: 'Doughnut Diagram'
       },
       radar: {
         isCurrent: false,
         icon: 'control_camera',
-        tooltip: ''
+        tooltip: 'Radar Diagram'
       },
       bar: {
         isCurrent: false,
         icon: 'bar_chart',
-        tooltip: ''
+        tooltip: 'Bar Diagram'
       }
     },
 
@@ -3410,24 +3834,6 @@ let diagramViewModel = new Vue({
 
     },
 
-
-
-
-    /**
-     * Gets the envelope of the extracted values.
-     */
-    envelope: {},
-
-    /**
-     * Gets the histogram of extracted raster values.
-     */
-    histogram: {},
-
-    /**
-     * Gets the count of the histogram.
-     */
-    histogramCount: 0,
-
     /**
      * Gets whether the view is visible or not.
      */
@@ -3443,13 +3849,37 @@ let diagramViewModel = new Vue({
   methods: {
 
     /**
+     * Sets the current diagram.
+     *
+     * @param diagram - The diagram to be displayed. Valid values area: {'polarArea' | 'pie' | 'donut' | 'radar' | 'bar'}.
+     */
+    setCurrentDiagram(diagram) {
+
+      if (this.diagrams[diagram].isCurrent) {
+        return;
+      }
+
+      for (let property in this.diagrams) {
+        if (this.diagrams.hasOwnProperty(property)) {
+          this.diagrams[property].isCurrent = property === diagram;
+        }
+      }
+
+      Diagrams[diagram].update();
+
+    },
+
+    /**
      * Updates the view with the new extracted raster values.
      */
     updateView() {
 
-      this.envelope = Raster.data.envelope;
-      this.histogram = Raster.data.histogram;
-      this.histogramCount = Raster.data.count;
+      // Update the user selected data either in form or landscape.
+      // TODO: For the time being only form user selected data are updated.
+      Diagrams.updateData();
+
+      // Update the diagram.
+      Diagrams[this.getCurrentDiagram()].update();
 
     }
 
@@ -3554,12 +3984,14 @@ let reportViewModel = new Vue({
 // ================================================================================
 //  Main Body
 
-$(document).ready(function(){
-  AppState.bootstrapMaterialTooltipEnabled = true;
-  $('[data-toggle="tooltip"]').tooltip();
-});
+// $(document).ready(function(){
+//   //AppState.bootstrapMaterialTooltipEnabled = true;
+//   $('[data-toggle="tooltip"]').tooltip();
+// });
 
 // Raster.metadata = RestClient.getMetadata();
+
+Diagrams.initialize('diagram');
 
 Spatial.initializeMap();
 

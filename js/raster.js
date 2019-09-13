@@ -60,8 +60,8 @@ var Raster = {
         18: {
           count: 60,
           form: "Built",
-          function: "Urban Other",
-          landscape: "Urban Other Built"
+          function: "Peri-urban",
+          landscape: "Peri-urban Built"
         },
         21: {
           count: 9262,
@@ -294,177 +294,177 @@ var Raster = {
           description: "Non-urban land-use within Greater Manchester"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Urban Other Built",
           description: "Land-use: Urban other; Land-cover: Built"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Urban Other Water",
           description: "Land-use: Urban other; Land-cover: Water"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Urban Other Grasses",
           description: "Land-use: Urban other; Land-cover: Grasses"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Urban Other Forbs and shrubs",
           description: "Land-use: Urban other; Land-cover: Forbs and Shrubs"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Urban Other Tree canopy",
           description: "Land-use: Urban other; Land-cover: Tree canopy"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Public Recreation Built",
           description: "Land-use: Public Parks and Recreation: Land-cover: Built"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Public Recreation Water",
           description: "Land-use: Public Parks and Recreation: Land-cover: Water"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Public Recreation Grasses",
           description: "Land-use: Public Parks and Recreation: Land-cover: Grasses"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Public Recreation Forbs and shrubs",
           description: "Land-use: Public Parks and Recreation: Land-cover: Forbs and Shrubs"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Public Recreation Tree canopy",
           description: "Land-use: Public Parks and Recreation: Land-cover: Tree canopy"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Amenity Built",
           description: "Land-use: Amenity; Land-cover: Built"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Amenity Water",
           description: "Land-use: Amenity; Land-cover: Water"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Amenity Grasses",
           description: "Land-use: Amenity; Land-cover: Grasses"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Amenity Forbs and Shrubs",
           description: "Land-use: Amenity; Land-cover: Forbs and Shrubs"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Amenity Tree canopy",
           description: "Land-use: Amenity; Land-cover: Tree canopy"
         },
         {
-          field: "function",
-          term: "Domestic Gardens Buillt",
+          field: "landscape",
+          term: "Domestic Gardens Built",
           description: "Land-use: Domestic Gardens; Land-cover: Built"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Domestic Gardens Water",
           description: "Land-use: Domestic Gardens; Land-cover: Water"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Domestic Gardens Grasses",
           description: "Land-use: Domestic Gardens; Land-cover: Grasses"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Domestic Gardens Forbs and Shrubs",
           description: "Land-use: Domestic Gardens; Land-cover: Forbs and Shrubs"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Domestic Gardens Tree canopy",
           description: "Land-use: Domestic Gardens; Land-cover: Tree canopy"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Institutional Built",
           description: "Land-use: Institutional Land; Land-cover: Built"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Institutional Water",
           description: "Land-use: Institutional Land; Land-cover: Water"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Institutional Grasses",
           description: "Land-use: Institutional Land; Land-cover: Grasses"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Institutional Forbs and shrubs",
           description: "Land-use: Institutional Land; Land-cover: Forbs and Shrubs"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Institutional Tree canopy",
           description: "Land-use: Institutional Land; Land-cover: Tree canopy"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Previously Developed Built",
           description: "Land-use: Previously developed; Land-cover: Built"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Previously Developed Water",
           description: "Land-use: Previously developed; Land-cover: Water"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Previously Developed Grasses",
           description: "Land-use: Previously developed; Land-cover: Grasses"
         },
         {
-          field: "function",
-          term: "Previously Developed Forbs",
+          field: "landscape",
+          term: "Previously Developed Forbs and shrubs",
           description: "Land-use: Previously developed; Land-cover: Forbs and Shrubs"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Previously Developed Tree canopy",
           description: "Land-use: Previously developed; Land-cover: Tree canopy"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Peri-urban Built",
           description: "Land-use: Peri-urban; Land-cover: Built"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Peri-urban Water",
           description: "Land-use: Peri-urban; Land-cover: Water"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Peri-urban Grasses",
           description: "Land-use: Peri-urban; Land-cover: Grasses"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Peri-urban Forbs and shrubs",
           description: "Land-use: Peri-urban; Land-cover: Forbs and Shrubs"
         },
         {
-          field: "function",
+          field: "landscape",
           term: "Peri-urban Tree canopy",
           description: "Land-use: Peri-urban; Land-cover: Tree canopy"
         }

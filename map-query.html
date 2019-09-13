@@ -445,54 +445,49 @@
                       <div id="diagram-card" class="card card-body">
 
                         <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row mb-2">
-                          <a class="btn-floating btn-sm btn-primary mr-1"
-                             v-bind:class="[diagrams.polarArea.isCurrent ? 'active' : '']">
+                          <a class="btn-floating btn-sm btn-primary mr-1" data-toggle="tooltip"
+                             v-bind:class="[diagrams.polarArea.isCurrent ? 'active' : '']"
+                             v-bind:title="[diagrams.polarArea.tooltip]"
+                             v-on:click="setCurrentDiagram('polarArea')">
                             <i class="amber-text ghia-material-icons md-18"
                                v-text="diagrams.polarArea.icon">
                             </i>
                           </a>
-                          <a class="btn-floating btn-sm btn-primary mr-1"
-                             v-bind:class="[diagrams.pie.isCurrent ? 'active' : '']">
+                          <a class="btn-floating btn-sm btn-primary mr-1" data-toggle="tooltip"
+                             v-bind:class="[diagrams.pie.isCurrent ? 'active' : '']"
+                             v-bind:title="[diagrams.pie.tooltip]"
+                             v-on:click="setCurrentDiagram('pie')">
                             <i class="amber-text ghia-material-icons md-18"
                                v-text="diagrams.pie.icon">
                             </i>
                           </a>
-                          <a class="btn-floating btn-sm btn-primary mr-1"
-                             v-bind:class="[diagrams.donut.isCurrent ? 'active' : '']">
+                          <a class="btn-floating btn-sm btn-primary mr-1" data-toggle="tooltip"
+                             v-bind:class="[diagrams.donut.isCurrent ? 'active' : '']"
+                             v-bind:title="[diagrams.donut.tooltip]"
+                             v-on:click="setCurrentDiagram('donut')">
                             <i class="amber-text ghia-material-icons md-18"
                                v-text="diagrams.donut.icon">
                             </i>
                           </a>
-                          <a class="btn-floating btn-sm btn-primary mr-1"
-                             v-bind:class="[diagrams.radar.isCurrent ? 'active' : '']">
+                          <a class="btn-floating btn-sm btn-primary mr-1" data-toggle="tooltip"
+                             v-bind:class="[diagrams.radar.isCurrent ? 'active' : '']"
+                             v-bind:title="[diagrams.radar.tooltip]"
+                             v-on:click="setCurrentDiagram('radar')">
                             <i class="amber-text ghia-material-icons md-18"
                                v-text="diagrams.radar.icon">
                             </i>
                           </a>
-                          <a class="btn-floating btn-sm btn-primary mr-1"
-                             v-bind:class="[diagrams.bar.isCurrent ? 'active' : '']">
+                          <a class="btn-floating btn-sm btn-primary mr-1" data-toggle="tooltip"
+                             v-bind:class="[diagrams.bar.isCurrent ? 'active' : '']"
+                             v-bind:title="[diagrams.bar.tooltip]"
+                             v-on:click="setCurrentDiagram('bar')">
                             <i class="amber-text ghia-material-icons md-18"
                                v-text="diagrams.bar.icon">
                             </i>
                           </a>
-
-
-
-<!--                          <button type="button" class="btn btn-primary m-1"-->
-<!--                                  v-bind:class="[states.point.isCurrent ? 'active' : '']"-->
-<!--                                  v-on:click="setCurrentState('point')">-->
-<!--                            <i class="amber-text mr-2"-->
-<!--                               v-bind:class="[states.point.icon]">-->
-<!--                            </i>-->
-<!--                            <span v-text="states.point.buttonText"></span>-->
-<!--                          </button>-->
-
-<!--                          <a type="button" class="btn-floating btn-primary btn-sm">P</a>-->
-<!--                          <a class="btn-floating btn-primary btn-sm">P</a>-->
-<!--                          <a class="btn-floating btn-sm btn-secondary"><i class="fas fa-star"></i></a>-->
                         </div>
 
-                        <div id="diagram-container" style="background: yellowgreen;">
+                        <div id="diagram-container">
 
                           <canvas id="diagram">
 
