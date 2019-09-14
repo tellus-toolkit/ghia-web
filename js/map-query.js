@@ -3,7 +3,7 @@
 //  TellUs Toolkit Ltd.
 //  https://www.tellus-toolkit.com/
 //
-//  Name:            green-map.js
+//  Name:            map-query.js
 //  Original coding: Vasilis Vlastaras (@gisvlasta), 07/09/2019.
 //  Updated:
 // ================================================================================
@@ -2765,6 +2765,13 @@ let Diagrams = {
         }
       }
 
+      let data = this.data.datasets[0].data;
+
+      for (let i = 0; i < data.length; i++) {
+        data[i] = ((data[i] / Raster.data.count) * 100).toFixed(3);
+      }
+
+
     },
 
     /**
@@ -2790,7 +2797,7 @@ let Diagrams = {
       let data = this.data.datasets[0].data;
 
       for (let i = 0; i < data.length; i++) {
-        data[i] = data[i] / Raster.data.count;
+        data[i] = ((data[i] / Raster.data.count) * 100).toFixed(3);
       }
 
     }
@@ -3990,6 +3997,8 @@ let reportViewModel = new Vue({
 // });
 
 // Raster.metadata = RestClient.getMetadata();
+
+Raster.setNumberOfValues();
 
 Diagrams.initialize('diagram');
 

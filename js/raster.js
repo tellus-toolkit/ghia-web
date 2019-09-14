@@ -1,3 +1,12 @@
+//
+// ================================================================================
+//  TellUs Toolkit Ltd.
+//  https://www.tellus-toolkit.com/
+//
+//  Name:            raster.js
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 14/09/2019.
+//  Updated:
+// ================================================================================
 
 var Raster = {
 
@@ -11,6 +20,7 @@ var Raster = {
     minimumY: 381166.0432999991,
     columns: 5500,
     rows: 4000,
+    numberOfValues: 0,
     band: {
       dataType: "UInt32",
       noDataValue: 4294967295,
@@ -498,6 +508,27 @@ var Raster = {
   },
 
   /**
+   * Sets the number of values excluding no data returned in metadata.
+   */
+  setNumberOfValues() {
+
+    let lookup = this.metadata.band.lookup;
+
+    let numberOfValues = 0;
+
+    for (let key in lookup) {
+      if (lookup.hasOwnProperty(key)) {
+
+        numberOfValues += lookup[key].count;
+
+      }
+    }
+
+    this.metadata.numberOfValues = numberOfValues;
+
+  },
+
+  /**
    * Sets the raster data.
    *
    * @param rasterExtract - The raster data extract to set.
@@ -543,6 +574,10 @@ var Raster = {
     this.data.envelope = rasterExtract.envelope;
     this.data.histogram = {};
     this.data.count = rasterExtract.histogram.totalCells;
+
+    // Add the number of values equal to those of the total cells and
+    // subtract the number of no data values if such exist later.
+    this.data.countValues = rasterExtract.histogram.totalCells;
 
     let lookup = this.metadata.band.lookup;
     let dictionary = this.metadata.band.dictionary;
@@ -593,7 +628,17 @@ var Raster = {
         functionDescription: 'A portion of the area is located outside the borders of Greater Manchester'
       };
 
+      this.data.countValues -= rasterExtract.histogram[noDataValue];
+
     }
+
+  },
+
+  /**
+   * Sets the histogram of the values based on the Form.
+   * This is actually a grouping of all functions having the same form.
+   */
+  setFormHistogram() {
 
   }
 
