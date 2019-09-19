@@ -651,7 +651,7 @@ let MapLayers = {
          */
         defaultHighlightingStyle: {
           stroke: true,
-          color: '#ff4500',
+          color: ColorPalettes.Material.deepOrangeA400.hex,
           dashArray: '',
           weight: 5,
           opacity: 1,
@@ -795,7 +795,7 @@ let MapLayers = {
          */
         defaultHighlightingStyle: {
           stroke: true,
-          color: '#4169e1',
+          color: ColorPalettes.Material.deepOrangeA400.hex,
           dashArray: '',
           weight: 5,
           opacity: 1,
@@ -1192,7 +1192,7 @@ let MapLayers = {
          */
         defaultHighlightingStyle: {
           stroke: true,
-          color: '#ff4500',
+          color: ColorPalettes.Material.deepOrangeA400.hex,
           dashArray: '',
           weight: 5,
           opacity: 1,
@@ -1336,7 +1336,7 @@ let MapLayers = {
          */
         defaultHighlightingStyle: {
           stroke: true,
-          color: '#4169e1',
+          color: ColorPalettes.Material.deepOrangeA400.hex,
           dashArray: '',
           weight: 5,
           opacity: 1,

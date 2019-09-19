@@ -638,7 +638,9 @@ var Raster = {
    * Sets the histogram of the values based on the Form.
    * This is actually a grouping of all functions having the same form.
    */
-  setFormHistogram() {
+  setHistogramByForm() {
+
+
 
   }
 
