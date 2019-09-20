@@ -2682,7 +2682,6 @@ let Spatial = {
 
 /**
  * The Diagrams object provides properties and methods related to data diagrams.
- * @type {{}}
  */
 let Diagrams = {
 
@@ -3182,8 +3181,7 @@ let RestClient = {
         MapLayers.queriedPolygons.updateLayer(data);
         MapLayers.queriedCentroids.updateLayer(data);
 
-        // Raster.setData(data.rasterExtract);
-        Raster.setData2(data.rasterExtract);
+        Raster.setData(data.rasterExtract);
 
         if (displayResultsViewModel.getCurrentMethod() === 'report') {
           reportViewModel.updateView();
@@ -3191,17 +3189,6 @@ let RestClient = {
         else {
           diagramViewModel.updateView();
         }
-
-        // let result =
-        //   'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
-        //   'STATUS: '      + response.status + '\r\n' +
-        //   'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
-        //   'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
-        //   'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
-        //   'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
-        //   'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
-        //
-        // alert(result);
 
       }).catch(function(error) {
 
@@ -3313,8 +3300,7 @@ let RestClient = {
       MapLayers.queriedPolygons.updateLayer(data);
       MapLayers.queriedCentroids.updateLayer(data);
 
-      // Raster.setData(data.rasterExtract);
-      Raster.setData2(data.rasterExtract);
+      Raster.setData(data.rasterExtract);
 
       if (displayResultsViewModel.getCurrentMethod() === 'report') {
         reportViewModel.updateView();
@@ -3322,17 +3308,6 @@ let RestClient = {
       else {
         diagramViewModel.updateView();
       }
-
-      // let result =
-      //   'SUCCESS:\r\n'  + '----------------------------------------\r\n' +
-      //   'STATUS: '      + response.status + '\r\n' +
-      //   'STATUS TEXT: ' + response.statusText + '\r\n\r\n' +
-      //   'HEADERS: \r\n' + JSON.stringify(response.headers) + '\r\n\r\n' +
-      //   'DATA: \r\n'    + JSON.stringify(response.data) + '\r\n\r\n' +
-      //   'REQUEST: \r\n' + JSON.stringify(response.request) + '\r\n\r\n' +
-      //   'CONFIG: \r\n'  + JSON.stringify(response.config) + '\r\n';
-      //
-      // alert(result);
 
     }).catch(function(error) {
 
@@ -3927,32 +3902,32 @@ let reportViewModel = new Vue({
     envelope: {},
 
     /**
-     * Gets the histogram of extracted raster values.
+     * Gets a report of entries after the combination of histogram and formHistogram.
      */
-    histogram: {},
+    report: {}, // TODO: AB
 
     /**
-     * Gets the count of the histogram.
+     * Gets the total count of values (excluding nodata values).
      */
-    histogramCount: 0,
+    histogramCount: 0, // TODO: AB
 
     /**
-     * Gets the count of the histogram entries.
+     * Gets the count of the report entries.
      *
      * @returns {number} - A number with the counted entries.
      */
-    histogramEntriesCount: function () {
-      return Object.keys(Raster.data.histogram).length;
+    reportEntriesCount: function () {
+      return Object.keys(this.report).length; // TODO: AB
     },
 
     /**
-     * Gets the percentage of the specified histogram entry raster values compared to the total extracted raster values.
+     * Gets the percentage of the specified report entry raster value count compared to the histogramCount.
      *
-     * @param histogramEntry - The entry of the histogram whose raster values count will be used to calculate the percentage.
+     * @param histogramEntry - The entry of the report whose raster values count will be used to calculate the percentage.
      * @returns {number} - A number representing the percentage.
      */
-    percentage(histogramEntry) {
-      return (histogramEntry.count / this.histogramCount) * 100;
+    percentage(reportEntry) {
+      return (reportEntry.count / this.histogramCount) * 100;
     },
 
     /**
@@ -3975,8 +3950,46 @@ let reportViewModel = new Vue({
     updateView() {
 
       this.envelope = Raster.data.envelope;
-      this.histogram = Raster.data.histogram;
-      this.histogramCount = Raster.data.count;
+      this.histogramCount = Raster.data.countValues;
+
+      let report = {};
+
+      let index = 0;
+
+      for (let formKey in Raster.data.formHistogram) {
+        if (Raster.data.formHistogram.hasOwnProperty(formKey)) {
+
+          let formPercentage = (Raster.data.formHistogram[formKey].count / Raster.data.countValues) * 100;
+          let formEntry = Raster.data.formHistogram[formKey];
+
+          formEntry.percentage = formPercentage;
+          formEntry.form  += ' (total)';
+          formEntry.function = '';
+          formEntry.functionDescription = '';
+
+          report[index++] = formEntry;
+
+          for (let key in Raster.data.histogram) {
+            if (Raster.data.histogram.hasOwnProperty(key)) {
+
+              let entry = Raster.data.histogram[key];
+
+              let val = entry.value.toString().substring(0, 1) + '0';
+
+              if (formKey === val) {
+                let percentage = (entry.count / Raster.data.countValues) * 100;
+                entry.percentage = percentage;
+
+                report[index++] = entry;
+              }
+
+            }
+          }
+
+        }
+      }
+
+      this.report = report;
 
     }
 

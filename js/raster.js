@@ -537,42 +537,10 @@ var Raster = {
 
     this.data = {};
 
+    // Initialize variables and correct their values later in the process.
     this.data.envelope = rasterExtract.envelope;
     this.data.histogram = {};
-
-    let lookup = this.metadata.band.lookup;
-
-    for (let key in lookup) {
-      if (rasterExtract.histogram.hasOwnProperty(key)) {
-        this.data.histogram[key] = rasterExtract.histogram[key];
-      }
-      else {
-        this.data.histogram[key] = 0;
-      }
-    }
-
-    let noDataValue = this.metadata.band.noDataValue;
-
-    if (rasterExtract.histogram.hasOwnProperty(noDataValue)) {
-      this.data.histogram[noDataValue] = rasterExtract.histogram[noDataValue];
-    }
-    else {
-      this.data.histogram[noDataValue] = 0;
-    }
-
-  },
-
-  /**
-   * Sets the raster data.
-   *
-   * @param rasterExtract - The raster data extract to set.
-   */
-  setData2(rasterExtract) {
-
-    this.data = {};
-
-    this.data.envelope = rasterExtract.envelope;
-    this.data.histogram = {};
+    this.data.formHistogram = {};
     this.data.count = rasterExtract.histogram.totalCells;
 
     // Add the number of values equal to those of the total cells and
@@ -582,6 +550,9 @@ var Raster = {
     let lookup = this.metadata.band.lookup;
     let dictionary = this.metadata.band.dictionary;
 
+    //
+    // Get the keys and raster values and sort the values accordingly.
+    //
     let keys = Object.keys(lookup);
     let rasterValues = [];
 
@@ -589,8 +560,13 @@ var Raster = {
 
     rasterValues.sort();
 
+    //
+    // Set the histogram and formHistogram.
+    //
     let index = 0;
+    let formKey = 10;
 
+    // Loop though the raster values.
     for (let i = 0; i < rasterValues.length; i++) {
 
       let rasterValue = rasterValues[i];
@@ -599,9 +575,11 @@ var Raster = {
 
         index++;
 
+        // Get the entries for form and function.
         let formEntry = dictionary.find(el => el.field === 'form' && el.term === lookup[rasterValue].form);
         let functionEntry = dictionary.find(el => el.field === 'function' && el.term === lookup[rasterValue].function);
 
+        // Add a new object in the histogram.
         this.data.histogram[index] = {
           value: rasterValue,
           count: rasterExtract.histogram[rasterValue],
@@ -611,10 +589,34 @@ var Raster = {
           functionDescription: functionEntry.description
         };
 
+        if (formKey < rasterValue) {
+
+          // Add a new formKey.
+          this.data.formHistogram[formKey] = {
+            value: formKey,
+            count: rasterExtract.histogram[rasterValue],
+            form: Raster.metadata.band.lookup[rasterValue].form,
+            formDescription: formEntry.description
+          };
+
+          // Increase the key by 10.
+          formKey += 10;
+
+        }
+        else {
+
+          // Increase the value of the existing formKey.
+          this.data.formHistogram[formKey - 10].count += rasterExtract.histogram[rasterValue];
+
+        }
+
       }
 
     }
 
+    //
+    // Add the nodata in the histogram and update the countValues variable.
+    //
     let noDataValue = this.metadata.band.noDataValue;
 
     if (rasterExtract.histogram.hasOwnProperty(noDataValue)) {
@@ -632,21 +634,11 @@ var Raster = {
 
     }
 
-  },
-
-  /**
-   * Sets the histogram of the values based on the Form.
-   * This is actually a grouping of all functions having the same form.
-   */
-  setHistogramByForm() {
-
-
-
   }
 
 };
 
-Raster.setData2({
+Raster.setData({
   envelope: {
     minRow: 0,
     minCol: 0,

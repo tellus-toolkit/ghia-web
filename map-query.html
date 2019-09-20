@@ -513,15 +513,15 @@
                             <th scope="col" class="raster-value-percentage text-right">Area%</th>
                           </tr>
                           </thead>
-                          <tbody v-for="(entry, index) in histogram"
-                                 v-if="histogramEntriesCount !== 0">
+                          <tbody v-for="(entry, index) in report"
+                                 v-if="reportEntriesCount !== 0">
 <!--                            <tr v-bind:class="[isOdd(index) ? 'table-light' : '']">-->
                             <tr>
 <!--                              <td class="raster-value-value" v-text="entry.value"></td>-->
                               <td class="raster-value-form" v-text="entry.form"></td>
                               <td class="raster-value-function" v-text="entry.function"></td>
 <!--                              <td class="raster-value-count text-right" v-text="entry.count"></td>-->
-                              <td class="raster-value-percentage text-right" v-text="percentage(entry).toFixed(3)"></td>
+                              <td class="raster-value-percentage text-right" v-text="entry.percentage.toFixed(3)"></td>
                             </tr>
 
 
