@@ -503,7 +503,8 @@
 
                       <div class="card card-body">
 
-                        <table class="table-bordered table-striped table-hover raster-value-table">
+<!--                        <table class="table-bordered table-striped table-hover raster-value-table">-->
+                        <table class="table-bordered table-hover raster-value-table">
                           <thead style="background-color: #4285f4; color: white;">
                           <tr>
 <!--                            <th scope="col" class="raster-value-value">Value</th>-->
@@ -514,7 +515,8 @@
                           </tr>
                           </thead>
                           <tbody v-for="(entry, index) in report"
-                                 v-if="reportEntriesCount !== 0">
+                                 v-if="reportEntriesCount !== 0"
+                                 v-bind:class="[entry.style]">
 <!--                            <tr v-bind:class="[isOdd(index) ? 'table-light' : '']">-->
                             <tr>
 <!--                              <td class="raster-value-value" v-text="entry.value"></td>-->

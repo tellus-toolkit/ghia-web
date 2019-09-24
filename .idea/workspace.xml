@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/js/map-query.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/map-query.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/raster.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/raster.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map-query.html" beforeDir="false" afterPath="$PROJECT_DIR$/map-query.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/map-query.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/map-query.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -122,6 +123,9 @@
       <workItem from="1568645099394" duration="1231000" />
       <workItem from="1568891344331" duration="4269000" />
       <workItem from="1568992637247" duration="19216000" />
+      <workItem from="1569078082492" duration="9208000" />
+      <workItem from="1569255053011" duration="3706000" />
+      <workItem from="1569329910387" duration="6445000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>

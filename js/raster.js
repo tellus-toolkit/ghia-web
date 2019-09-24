@@ -483,6 +483,132 @@ var Raster = {
   },
 
   /**
+   * Styles used to render the GUI based on raster values.
+   */
+  styles: {
+    1: {
+      rowStyle: 'row-built-style'
+    },
+    11: {
+      rowStyle: 'row-built-style'
+    },
+    13: {
+      rowStyle: 'row-built-style'
+    },
+    14: {
+      rowStyle: 'row-built-style'
+    },
+    15: {
+      rowStyle: 'row-built-style'
+    },
+    16: {
+      rowStyle: 'row-built-style'
+    },
+    17: {
+      rowStyle: 'row-built-style'
+    },
+    18: {
+      rowStyle: 'row-built-style'
+    },
+    2: {
+      rowStyle: 'row-water-style'
+    },
+    21: {
+      rowStyle: 'row-water-style'
+    },
+    23: {
+      rowStyle: 'row-water-style'
+    },
+    24: {
+      rowStyle: 'row-water-style'
+    },
+    25: {
+      rowStyle: 'row-water-style'
+    },
+    26: {
+      rowStyle: 'row-water-style'
+    },
+    27: {
+      rowStyle: 'row-water-style'
+    },
+    28: {
+      rowStyle: 'row-water-style'
+    },
+    3: {
+      rowStyle: 'row-grass-style'
+    },
+    31: {
+      rowStyle: 'row-grass-style'
+    },
+    33: {
+      rowStyle: 'row-grass-style'
+    },
+    34: {
+      rowStyle: 'row-grass-style'
+    },
+    35: {
+      rowStyle: 'row-grass-style'
+    },
+    36: {
+      rowStyle: 'row-grass-style'
+    },
+    37: {
+      rowStyle: 'row-grass-style'
+    },
+    38: {
+      rowStyle: 'row-grass-style'
+    },
+    4: {
+      rowStyle: 'row-forbs-shrubs-style'
+    },
+    41: {
+      rowStyle: 'row-forbs-shrubs-style'
+    },
+    43: {
+      rowStyle: 'row-forbs-shrubs-style'
+    },
+    44: {
+      rowStyle: 'row-forbs-shrubs-style'
+    },
+    45: {
+      rowStyle: 'row-forbs-shrubs-style'
+    },
+    46: {
+      rowStyle: 'row-forbs-shrubs-style'
+    },
+    47: {
+      rowStyle: 'row-forbs-shrubs-style'
+    },
+    48: {
+      rowStyle: 'row-forbs-shrubs-style'
+    },
+    5: {
+      rowStyle: 'row-tree-canopy-style'
+    },
+    51: {
+      rowStyle: 'row-tree-canopy-style'
+    },
+    53: {
+      rowStyle: 'row-tree-canopy-style'
+    },
+    54: {
+      rowStyle: 'row-tree-canopy-style'
+    },
+    55: {
+      rowStyle: 'row-tree-canopy-style'
+    },
+    56: {
+      rowStyle: 'row-tree-canopy-style'
+    },
+    57: {
+      rowStyle: 'row-tree-canopy-style'
+    },
+    58: {
+      rowStyle: 'row-tree-canopy-style'
+    }
+  },
+
+  /**
    * The query used to extract the data from the raster.
    */
   query: {
@@ -544,43 +670,55 @@ var Raster = {
     this.data.count = rasterExtract.histogram.totalCells;
 
     // Add the number of values equal to those of the total cells and
-    // subtract the number of no data values if such exist later.
+    // subtract the number of no-data values if such exist later.
+
+    // Assume the number of actual values are equal to the number of extracted cells.
+    // Later correct the countValues if no-data has been found.
     this.data.countValues = rasterExtract.histogram.totalCells;
 
     let lookup = this.metadata.band.lookup;
     let dictionary = this.metadata.band.dictionary;
 
-    //
-    // Get the keys and raster values and sort the values accordingly.
-    //
+    // Get all the keys of the lookup.
     let keys = Object.keys(lookup);
+
+    // Create empty arrays to store the raster 'function' and 'form' values found in the raster extract.
     let rasterValues = [];
+    let formValues = [];
 
-    keys.forEach(k => rasterValues.push(parseInt(k)));
+    // Fill the rasterValues and formValues with the appropriate values.
+    keys.forEach(function(k) {
 
+      rasterValues.push(parseInt(k));
+
+      let f = parseInt(k.substring(0, 1));
+
+      if (formValues.indexOf(f) === -1) {
+        formValues.push(f);
+      }
+
+    });
+
+    // Make sure the arrays are sorted.
     rasterValues.sort();
+    formValues.sort();
 
     //
     // Set the histogram and formHistogram.
     //
-    let index = 0;
-    let formKey = 10;
-
-    // Loop though the raster values.
     for (let i = 0; i < rasterValues.length; i++) {
 
       let rasterValue = rasterValues[i];
+      let formValue = parseInt(rasterValue.toString().substring(0, 1));
 
       if (rasterExtract.histogram.hasOwnProperty(rasterValue)) {
-
-        index++;
 
         // Get the entries for form and function.
         let formEntry = dictionary.find(el => el.field === 'form' && el.term === lookup[rasterValue].form);
         let functionEntry = dictionary.find(el => el.field === 'function' && el.term === lookup[rasterValue].function);
 
         // Add a new object in the histogram.
-        this.data.histogram[index] = {
+        this.data.histogram[rasterValue] = {
           value: rasterValue,
           count: rasterExtract.histogram[rasterValue],
           form: Raster.metadata.band.lookup[rasterValue].form,
@@ -589,24 +727,21 @@ var Raster = {
           functionDescription: functionEntry.description
         };
 
-        if (formKey < rasterValue) {
+        if (!this.data.formHistogram.hasOwnProperty((formValue))) {
 
-          // Add a new formKey.
-          this.data.formHistogram[formKey] = {
-            value: formKey,
+          // Add a new form value.
+          this.data.formHistogram[formValue] = {
+            value: formValue,
             count: rasterExtract.histogram[rasterValue],
             form: Raster.metadata.band.lookup[rasterValue].form,
             formDescription: formEntry.description
           };
 
-          // Increase the key by 10.
-          formKey += 10;
-
         }
         else {
 
-          // Increase the value of the existing formKey.
-          this.data.formHistogram[formKey - 10].count += rasterExtract.histogram[rasterValue];
+          // Increase the count of the existing formValue.
+          this.data.formHistogram[formValue].count += rasterExtract.histogram[rasterValue];
 
         }
 
@@ -621,7 +756,7 @@ var Raster = {
 
     if (rasterExtract.histogram.hasOwnProperty(noDataValue)) {
 
-      this.data.histogram[index++] = {
+      this.data.histogram[noDataValue] = {
         value: noDataValue,
         count: rasterExtract.histogram[noDataValue],
         form: 'No Data',

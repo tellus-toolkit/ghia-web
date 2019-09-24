@@ -350,7 +350,6 @@ body {
 
 .raster-value-table {
   margin: -10px;
-
 }
 
 .raster-value-index {
@@ -432,6 +431,37 @@ body {
 .row-indigo {
   background-color: rgba(63, 81, 181, 0.1); /*#c9ceea*/
 }
+
+.row-built-style {
+  background-color: #ffffff; /* #f8f8ff */  /* #FFFDE7 */  /* #F9FBE7 */
+}
+
+.row-water-style {
+  /*color: #FFFFE0;*/
+  background-color: #90CAF9; /* blue200 */
+  /*background-color: #81D4FA; !* lightBlue200 *!*/
+  /*background-color: #03A9F4; !* lightBlue *!*/
+}
+
+.row-grass-style {
+  /*color: #311B92;*/
+  /*color: #FFFFE0;*/
+  background-color: #8BC34A; /* lightGreen500 */
+  /*background-color: #64DD17; !* lightGreenA700 *!*/
+  /*background-color: #76FF03; !* lightGreenA400 *!*/
+}
+
+.row-forbs-shrubs-style {
+  color: #FFFFE0;
+  background-color: #558B2F;
+}
+
+.row-tree-canopy-style {
+  color: #FFF8DC;
+  background-color: #1B5E20; /* #2E7D32 */
+}
+
+
 
 /*.yellow {*/
 /*color: #ff9c00;*/

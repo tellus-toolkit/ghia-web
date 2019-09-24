@@ -3966,6 +3966,7 @@ let reportViewModel = new Vue({
           formEntry.form  += ' (total)';
           formEntry.function = '';
           formEntry.functionDescription = '';
+          formEntry.style = Raster.styles[formKey].rowStyle;
 
           report[index++] = formEntry;
 
@@ -3974,13 +3975,16 @@ let reportViewModel = new Vue({
 
               let entry = Raster.data.histogram[key];
 
-              let val = entry.value.toString().substring(0, 1) + '0';
+              if (entry.value !== Raster.metadata.band.noDataValue) {
+                let form = key.substring(0, 1);
 
-              if (formKey === val) {
-                let percentage = (entry.count / Raster.data.countValues) * 100;
-                entry.percentage = percentage;
+                if (formKey === form) {
+                  let percentage = (entry.count / Raster.data.countValues) * 100;
+                  entry.percentage = percentage;
+                  entry.style = Raster.styles[key].rowStyle;
 
-                report[index++] = entry;
+                  report[index++] = entry;
+                }
               }
 
             }
