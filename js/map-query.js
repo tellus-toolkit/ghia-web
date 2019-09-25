@@ -910,28 +910,14 @@ let MapLayers = {
       //this.mapLayer.addTo(Spatial.map);
       //this.mapLayer.bringToFront();
 
-      // Loop through all the internal layers.
-      // Create the feature to internal layer dictionary and bind the layer tooltips.
-      // this.mapLayer.eachLayer(function(layer) {
-      //   MapLayers.lsoa.featureToInternalLayerDictionary[layer.feature.properties.lsoa11cd] = layer._leaflet_id;
-      //
-      //   layer.bindTooltip('', {
-      //     // TODO: RESIN - Check here the final tooltip options.
-      //     direction: 'top', // TODO: RESIN - APPVAR
-      //     offset: [0, -30], // TODO: RESIN - APPVAR
-      //     sticky: true
-      //   });
-      // });
-
-      // this.mapLayer.eachLayer(function(layer) {
-      //
-      //   let f = layer.feature;
-      //
-      //   if (f.geometry.coordinates[0].length > 1) {
-      //     alert(f.properties.id + ' : ' + f.properties.cd + ' : '  + f.properties.nm + ' has a hole');
-      //   }
-      //
-      // });
+      // Loop through all the internal layers and bind a tooltip.
+      this.mapLayer.eachLayer(function(layer) {
+        layer.bindTooltip(layer.feature.properties.nm, {
+          direction: 'top',
+          offset: [0, -10],
+          sticky: true
+        });
+      });
 
     },
 
@@ -1447,32 +1433,16 @@ let MapLayers = {
 
       });
 
-      // Add the layer in to the map and make sure it is visible.
-      // this.mapLayer.addTo(Spatial.map);
-      // this.mapLayer.bringToFront();
+      // Loop through all the internal layers and bind a tooltip.
+      this.mapLayer.eachLayer(function(layer) {
+        let ps = layer.feature.properties;
 
-      // Loop through all the internal layers.
-      // Create the feature to internal layer dictionary and bind the layer tooltips.
-      // this.mapLayer.eachLayer(function(layer) {
-      //   MapLayers.lsoa.featureToInternalLayerDictionary[layer.feature.properties.lsoa11cd] = layer._leaflet_id;
-      //
-      //   layer.bindTooltip('', {
-      //     // TODO: RESIN - Check here the final tooltip options.
-      //     direction: 'top', // TODO: RESIN - APPVAR
-      //     offset: [0, -30], // TODO: RESIN - APPVAR
-      //     sticky: true
-      //   });
-      // });
-
-      // this.mapLayer.eachLayer(function(layer) {
-      //
-      //   let f = layer.feature;
-      //
-      //   if (f.geometry.coordinates[0].length > 1) {
-      //     alert(f.properties.cmwd11cd + ' : '  + f.properties.cmwd11nm + ' has a hole');
-      //   }
-      //
-      // });
+        layer.bindTooltip(ps.lad11nm + '<br>' + ps.cmwd11nm, {
+          direction: 'top',
+          offset: [0, -10],
+          sticky: true
+        });
+      });
 
     },
 
@@ -3949,39 +3919,59 @@ let reportViewModel = new Vue({
      */
     updateView() {
 
+      if (!Raster.data.isNew) {
+        return;
+      }
+
+      Raster.data.isNew = false;
+
       this.envelope = Raster.data.envelope;
       this.histogramCount = Raster.data.countValues;
 
+      // Create an empty report object.
       let report = {};
 
       let index = 0;
 
+      // Loop through the formHistogram.
       for (let formKey in Raster.data.formHistogram) {
         if (Raster.data.formHistogram.hasOwnProperty(formKey)) {
 
+          // Calculate the form percentage and the get the form entry.
           let formPercentage = (Raster.data.formHistogram[formKey].count / Raster.data.countValues) * 100;
           let formEntry = Raster.data.formHistogram[formKey];
 
+          // Update the entry adding the percentage and style.
           formEntry.percentage = formPercentage;
-          formEntry.form  += ' (total)';
+          formEntry.form += ' (total)';
           formEntry.function = '';
           formEntry.functionDescription = '';
           formEntry.style = Raster.styles[formKey].rowStyle;
+          // delete formEntry['function'];
 
+          // Add the formEntry as an entry in the report.
           report[index++] = formEntry;
 
+          // Loop through the histogram.
           for (let key in Raster.data.histogram) {
             if (Raster.data.histogram.hasOwnProperty(key)) {
 
+              // Get the histogram entry.
               let entry = Raster.data.histogram[key];
 
+              // Make sure to exclude no-dat values.
               if (entry.value !== Raster.metadata.band.noDataValue) {
+
+                // Get the form of the entry.
                 let form = key.substring(0, 1);
 
+                // Add all histogram entries under their associated aggregated form entry.
                 if (formKey === form) {
                   let percentage = (entry.count / Raster.data.countValues) * 100;
+                  // entry.func = entry.function;
                   entry.percentage = percentage;
                   entry.style = Raster.styles[key].rowStyle;
+                  // delete entry['function'];
 
                   report[index++] = entry;
                 }
@@ -3993,6 +3983,7 @@ let reportViewModel = new Vue({
         }
       }
 
+      // Set the report.
       this.report = report;
 
     }

@@ -520,12 +520,17 @@
 <!--                            <tr v-bind:class="[isOdd(index) ? 'table-light' : '']">-->
                             <tr>
 <!--                              <td class="raster-value-value" v-text="entry.value"></td>-->
-                              <td class="raster-value-form" v-text="entry.form"></td>
+                              <td class="raster-value-form"
+                                  v-bind:class="[entry.function === '' ? 'font-weight-bold' : '']"
+                                  v-text="entry.form">
+                              </td>
                               <td class="raster-value-function" v-text="entry.function"></td>
 <!--                              <td class="raster-value-count text-right" v-text="entry.count"></td>-->
-                              <td class="raster-value-percentage text-right" v-text="entry.percentage.toFixed(3)"></td>
+                              <td class="raster-value-percentage text-right"
+                                  v-bind:class="[entry.function === '' ? 'font-weight-bold' : '']"
+                                  v-text="entry.percentage.toFixed(3)">
+                              </td>
                             </tr>
-
 
                           </tbody>
                         </table>

@@ -661,7 +661,9 @@ var Raster = {
    */
   setData(rasterExtract) {
 
-    this.data = {};
+    this.data = {
+      isNew: true
+    };
 
     // Initialize variables and correct their values later in the process.
     this.data.envelope = rasterExtract.envelope;
