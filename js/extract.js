@@ -3,8 +3,8 @@
 //  TellUs Toolkit Ltd.
 //  https://www.tellus-toolkit.com/
 //
-//  Name:            map-query.js
-//  Original coding: Vasilis Vlastaras (@gisvlasta), 07/09/2019.
+//  Name:            extract.js
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 22/10/2019.
 //  Updated:
 // ================================================================================
 
@@ -2926,7 +2926,7 @@ let Diagrams = {
             datasets: [
               {
                 label: Diagrams.form.data.datasets[0].label,
-                data: Diagrams.form.data.datasets[0].data
+                data: Diagrams.form.data.datasets[0].data,
               }
             ]
           },
@@ -3391,7 +3391,7 @@ let toggleBaseMapViewModel = new Vue({
     /**
      * The current base map.
      */
-    currentBaseMap: 'light',
+    currentBaseMap: 'physical',
 
     /**
      * The dictionary whose keys are the names of basemaps and items are objects providing the
@@ -3399,12 +3399,12 @@ let toggleBaseMapViewModel = new Vue({
      * The descriptions can be used in aria-labels or as tooltips.
      */
     dictionary: {
+      'physical':  { name: 'Physical',  description: 'Physical Basemap',  iconName: 'panorama'       }, /* 'image, panorama, photo' */
+      'satellite': { name: 'Satellite', description: 'Satellite Basemap', iconName: 'healing'        }, /* 'satellite, cast, healing, photo_camera, local_see' */
       'light':     { name: 'Light',     description: 'Light Basemap',     iconName: 'map'            },
       'dark':      { name: 'Dark',      description: 'Dark Basemap',      iconName: 'map'            },
       'roads':     { name: 'Roads',     description: 'Roads Basemap',     iconName: 'directions_car' },
-      'physical':  { name: 'Physical',  description: 'Physical Basemap',  iconName: 'panorama'       }, /* 'image, panorama, photo' */
-      'terrain':   { name: 'Terrain',   description: 'Terrain Basemap',   iconName: 'terrain'        }, /* 'terrain, landscape' */
-      'satellite': { name: 'Satellite', description: 'Satellite Basemap', iconName: 'healing'        }  /* 'satellite, cast, healing, photo_camera, local_see' */
+      'terrain':   { name: 'Terrain',   description: 'Terrain Basemap',   iconName: 'terrain'        }  /* 'terrain, landscape' */
     }
 
   },
@@ -3481,25 +3481,25 @@ let queryStateViewModel = new Vue({
         isCurrent: true,
         icon: 'fas fa-map-marker-alt',
         buttonText: 'Point',
-        helpText: 'Click on the map to get a report of the green cover. A square of 1 km size with its centre positioned on the clicked location will be used to retrieve the information.'
+        helpText: 'Click on the map to select a point location. Information will be generated with details about the land cover inside a square of 1km size centred on your point.'
       },
       polygon: {
         isCurrent: false,
         icon: 'fas fa-draw-polygon',
         buttonText: 'Polygon',
-        helpText: 'Click on the map to draw a polygon. Double click to finish the polygon. A report will be generated with details about the green cover inside the drawn polygon.'
+        helpText: 'Click on the map to draw a polygon. Double click to finish the polygon. Information will be generated about the land cover inside your drawn area.'
       },
       lsoa: {
         isCurrent: false,
         icon: 'fas fa-map-marked-alt',
         buttonText: 'LSOA',
-        helpText: 'Click on the map to select an LSOA polygon. A report will be generated with details about the green cover inside the LSOA polygon.'
+        helpText: 'Click on the map to select a lower-level census zone. Information will be generated about the land cover inside the administrative zone.'
       },
       wards: {
         isCurrent: false,
         icon: 'fas fa-map-marked-alt',
         buttonText: 'Ward',
-        helpText: 'Click on the map to select a ward polygon. A report will be generated with details about the green cover inside the ward polygon.'
+        helpText: 'Click on the map to select an administrative ward area. Information will be generated about the land cover inside the administrative zone.'
       }
     },
 
@@ -3656,7 +3656,7 @@ let displayResultsViewModel = new Vue({
       report: {
         isCurrent: false,
         icon: 'fas fa-book',
-        buttonText: 'Selected Data'
+        buttonText: 'Data Table'
       }
     },
 

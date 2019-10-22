@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="08924dda-c242-485d-8acf-b4c899821e4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/map-query.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/extract.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map-query.html" beforeDir="false" afterPath="$PROJECT_DIR$/extract/extract.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/explore/explore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/map-query.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/extract.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +40,14 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\SoftDev\Projects\TellUsToolkit\GHIA\ghia-web\explore" />
+      <recent name="G:\SoftDev\Projects\TellUsToolkit\GHIA\ghia-web\styles" />
+      <recent name="G:\SoftDev\Projects\TellUsToolkit\GHIA\ghia-web\js" />
+      <recent name="G:\SoftDev\Projects\TellUsToolkit\GHIA\ghia-web\extract" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -130,6 +144,8 @@
       <workItem from="1571424175529" duration="45000" />
       <workItem from="1571424380211" duration="1014000" />
       <workItem from="1571427657618" duration="580000" />
+      <workItem from="1571755823315" duration="1600000" />
+      <workItem from="1571765157145" duration="16082000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>
