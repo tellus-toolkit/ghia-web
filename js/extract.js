@@ -2917,11 +2917,6 @@ let Diagrams = {
   },
 
   /**
-   * The context of the canvas element used to create the diagram.
-   */
-  context: undefined,
-
-  /**
    * The actual Chart.js chart object.
    */
   diagram: undefined,
@@ -2959,7 +2954,10 @@ let Diagrams = {
 
         };
 
-        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+        $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
+        let element = $('#diagram');
+
+        Diagrams.diagram = new Chart(element, diagramDefinition);
 
       }
       else {
@@ -3003,9 +3001,10 @@ let Diagrams = {
 
         };
 
-        Diagrams.diagram.destroy();
+        $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
+        let element = $('#diagram');
 
-        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+        Diagrams.diagram = new Chart(element, diagramDefinition);
 
       }
       else {
@@ -3049,9 +3048,10 @@ let Diagrams = {
 
         };
 
-        Diagrams.diagram.destroy();
+        $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
+        let element = $('#diagram');
 
-        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+        Diagrams.diagram = new Chart(element, diagramDefinition);
 
       }
       else {
@@ -3095,9 +3095,10 @@ let Diagrams = {
 
         };
 
-        Diagrams.diagram.destroy();
+        $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
+        let element = $('#diagram');
 
-        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+        Diagrams.diagram = new Chart(element, diagramDefinition);
 
       }
       else {
@@ -3141,9 +3142,10 @@ let Diagrams = {
 
         };
 
-        Diagrams.diagram.destroy();
+        $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
+        let element = $('#diagram');
 
-        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+        Diagrams.diagram = new Chart(element, diagramDefinition);
 
       }
       else {
@@ -3197,7 +3199,8 @@ let Diagrams = {
     this.landscape.initialize();
 
     // Get the context of the canvas element.
-    this.context = document.getElementById(canvas).getContext('2d');
+    //this.context = document.getElementById(canvas).getContext('2d');
+    this.diagramElement = $('#' + canvas);
 
   },
 
