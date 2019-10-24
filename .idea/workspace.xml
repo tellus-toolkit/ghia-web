@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="08924dda-c242-485d-8acf-b4c899821e4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/map-query.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/extract.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map-query.html" beforeDir="false" afterPath="$PROJECT_DIR$/extract/extract.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/explore/explore.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/map-query.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/extract.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extract/extract.html" beforeDir="false" afterPath="$PROJECT_DIR$/extract/extract.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/extract.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/extract.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/raster.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/raster.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/extract.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/extract.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -146,6 +144,7 @@
       <workItem from="1571427657618" duration="580000" />
       <workItem from="1571755823315" duration="1600000" />
       <workItem from="1571765157145" duration="16082000" />
+      <workItem from="1571936495840" duration="7135000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>

@@ -4,7 +4,7 @@
 //  https://www.tellus-toolkit.com/
 //
 //  Name:            extract.js
-//  Original coding: Vasilis Vlastaras (@gisvlasta), 22/10/2019.
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 24/10/2019.
 //  Updated:
 // ================================================================================
 
@@ -2689,7 +2689,18 @@ let Diagrams = {
           /**
            * The actual user selected data.
            */
-          data: [0, 0, 0, 0, 0]
+          data: [0, 0, 0, 0, 0],
+
+          /**
+           * The background colors of the sections of the polar area diagram.
+           */
+          backgroundColor: [
+            ColorPalettes.Material.brown100.hex,
+            ColorPalettes.Material.blue200.hex,
+            ColorPalettes.Material.lightGreen500.hex,
+            ColorPalettes.Material.lightGreen800.hex,
+            ColorPalettes.Material.green900.hex
+          ]
 
         },
         {
@@ -2702,8 +2713,20 @@ let Diagrams = {
           /**
            * The actual Greater Manchester data.
            */
-          data: [0, 0, 0, 0, 0]
+          data: Raster.getFormCount(),
 
+          /**
+           * The border colors of the sections of the polar area diagram.
+           */
+          borderColor: [
+            ColorPalettes.Material.blueGray500.hex,
+            ColorPalettes.Material.blue900.hex,
+            ColorPalettes.Material.lightGreen700.hex,
+            ColorPalettes.Material.lightGreen900.hex,
+            ColorPalettes.Material.green500.hex
+          ],
+
+          borderWidth: 1
         }
       ]
 
@@ -2927,6 +2950,7 @@ let Diagrams = {
               {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
+                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
               }
             ]
           },
@@ -2939,7 +2963,8 @@ let Diagrams = {
 
       }
       else {
-        alert('Update polarArea');
+        Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.update();
       }
 
     }
@@ -2954,11 +2979,38 @@ let Diagrams = {
     update: function() {
 
       if (Diagrams.currentDiagram !== 'pie') {
+
+        // The current diagram is not a pie. Update it to be a pie.
         Diagrams.currentDiagram = 'pie';
-        alert('Create pie');
+
+        // Create a diagram definition.
+        let diagramDefinition = {
+
+          type: 'pie',
+
+          data: {
+            labels: Diagrams.form.data.labels,
+            datasets: [
+              {
+                label: Diagrams.form.data.datasets[0].label,
+                data: Diagrams.form.data.datasets[0].data,
+                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+              }
+            ]
+          },
+
+          options: {}
+
+        };
+
+        Diagrams.diagram.destroy();
+
+        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+
       }
       else {
-        alert('Update pie');
+        Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.update();
       }
 
     }
@@ -2966,18 +3018,45 @@ let Diagrams = {
   },
 
   /**
-   * Functionality related to donut diagram.
+   * Functionality related to doughnut diagram.
    */
-  donut: {
+  doughnut: {
 
     update: function() {
 
-      if (Diagrams.currentDiagram !== 'donut') {
-        Diagrams.currentDiagram = 'donut';
-        alert('Create donut');
+      if (Diagrams.currentDiagram !== 'doughnut') {
+
+        // The current diagram is not a doughnut. Update it to be a doughnut.
+        Diagrams.currentDiagram = 'doughnut';
+
+        // Create a diagram definition.
+        let diagramDefinition = {
+
+          type: 'doughnut',
+
+          data: {
+            labels: Diagrams.form.data.labels,
+            datasets: [
+              {
+                label: Diagrams.form.data.datasets[0].label,
+                data: Diagrams.form.data.datasets[0].data,
+                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+              }
+            ]
+          },
+
+          options: {}
+
+        };
+
+        Diagrams.diagram.destroy();
+
+        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+
       }
       else {
-        alert('Update donut');
+        Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.update();
       }
 
     }
@@ -2992,11 +3071,38 @@ let Diagrams = {
     update: function() {
 
       if (Diagrams.currentDiagram !== 'radar') {
+
+        // The current diagram is not a radar. Update it to be a radar.
         Diagrams.currentDiagram = 'radar';
-        alert('Create radar');
+
+        // Create a diagram definition.
+        let diagramDefinition = {
+
+          type: 'radar',
+
+          data: {
+            labels: Diagrams.form.data.labels,
+            datasets: [
+              {
+                label: Diagrams.form.data.datasets[0].label,
+                data: Diagrams.form.data.datasets[0].data,
+                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+              }
+            ]
+          },
+
+          options: {}
+
+        };
+
+        Diagrams.diagram.destroy();
+
+        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+
       }
       else {
-        alert('Update radar');
+        Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.update();
       }
 
     }
@@ -3011,11 +3117,38 @@ let Diagrams = {
     update: function() {
 
       if (Diagrams.currentDiagram !== 'bar') {
+
+        // The current diagram is not a bar. Update it to be a bar.
         Diagrams.currentDiagram = 'bar';
-        alert('Create bar');
+
+        // Create a diagram definition.
+        let diagramDefinition = {
+
+          type: 'bar',
+
+          data: {
+            labels: Diagrams.form.data.labels,
+            datasets: [
+              {
+                label: Diagrams.form.data.datasets[0].label,
+                data: Diagrams.form.data.datasets[0].data,
+                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+              }
+            ]
+          },
+
+          options: {}
+
+        };
+
+        Diagrams.diagram.destroy();
+
+        Diagrams.diagram = new Chart(Diagrams.context, diagramDefinition);
+
       }
       else {
-        alert('Update bar');
+        Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.update();
       }
 
     }
@@ -3747,7 +3880,7 @@ let diagramViewModel = new Vue({
         icon: 'pie_chart',
         tooltip: 'Pie Diagram'
       },
-      donut: {
+      doughnut: {
         isCurrent: false,
         icon: 'donut_large',
         tooltip: 'Doughnut Diagram'
@@ -3803,7 +3936,7 @@ let diagramViewModel = new Vue({
     /**
      * Sets the current diagram.
      *
-     * @param diagram - The diagram to be displayed. Valid values area: {'polarArea' | 'pie' | 'donut' | 'radar' | 'bar'}.
+     * @param diagram - The diagram to be displayed. Valid values area: {'polarArea' | 'pie' | 'doughnut' | 'radar' | 'bar'}.
      */
     setCurrentDiagram(diagram) {
 
@@ -3937,7 +4070,7 @@ let reportViewModel = new Vue({
       for (let formKey in Raster.data.formHistogram) {
         if (Raster.data.formHistogram.hasOwnProperty(formKey)) {
 
-          // Calculate the form percentage and the get the form entry.
+          // Calculate the form percentage and get the form entry.
           let formPercentage = (Raster.data.formHistogram[formKey].count / Raster.data.countValues) * 100;
           let formEntry = Raster.data.formHistogram[formKey];
 
@@ -3959,7 +4092,7 @@ let reportViewModel = new Vue({
               // Get the histogram entry.
               let entry = Raster.data.histogram[key];
 
-              // Make sure to exclude no-dat values.
+              // Make sure to exclude no-data values.
               if (entry.value !== Raster.metadata.band.noDataValue) {
 
                 // Get the form of the entry.
