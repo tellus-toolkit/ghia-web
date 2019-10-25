@@ -4,7 +4,7 @@
 //  https://www.tellus-toolkit.com/
 //
 //  Name:            extract.js
-//  Original coding: Vasilis Vlastaras (@gisvlasta), 24/10/2019.
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 25/10/2019.
 //  Updated:
 // ================================================================================
 
@@ -2708,12 +2708,23 @@ let Diagrams = {
           /**
            * The label of the Greater Manchester dataset.
            */
-          label: 'GM Data',
+          label: 'GM Average',
 
           /**
            * The actual Greater Manchester data.
            */
           data: Raster.getFormCount(),
+
+          /**
+           * The background colors of the sections of the polar area diagram.
+           */
+          backgroundColor: [
+            ColorPalettes.Material.brown100.hex,
+            ColorPalettes.Material.blue200.hex,
+            ColorPalettes.Material.lightGreen500.hex,
+            ColorPalettes.Material.lightGreen800.hex,
+            ColorPalettes.Material.green900.hex
+          ],
 
           /**
            * The border colors of the sections of the polar area diagram.
@@ -2922,22 +2933,21 @@ let Diagrams = {
   diagram: undefined,
 
   /**
-   * Functionality related to polarArea diagram.
+   * Functionality related to doughnut diagram.
    */
-  polarArea: {
+  doughnut: {
 
     update: function() {
 
-      // Check if the current diagram is a polarArea.
-      if (Diagrams.currentDiagram !== 'polarArea') {
+      if (Diagrams.currentDiagram !== 'doughnut') {
 
-        // The current diagram is not a polarArea. Update it to be a polarArea.
-        Diagrams.currentDiagram = 'polarArea';
+        // The current diagram is not a doughnut. Update it to be a doughnut.
+        Diagrams.currentDiagram = 'doughnut';
 
         // Create a diagram definition.
         let diagramDefinition = {
 
-          type: 'polarArea',
+          type: 'doughnut',
 
           data: {
             labels: Diagrams.form.data.labels,
@@ -2946,6 +2956,11 @@ let Diagrams = {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
                 backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+              },
+              {
+                label: Diagrams.form.data.datasets[1].label,
+                data: Diagrams.form.data.datasets[1].data,
+                backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
               }
             ]
           },
@@ -2993,6 +3008,11 @@ let Diagrams = {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
                 backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+              },
+              {
+                label: Diagrams.form.data.datasets[1].label,
+                data: Diagrams.form.data.datasets[1].data,
+                backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
               }
             ]
           },
@@ -3017,21 +3037,22 @@ let Diagrams = {
   },
 
   /**
-   * Functionality related to doughnut diagram.
+   * Functionality related to polarArea diagram.
    */
-  doughnut: {
+  polarArea: {
 
     update: function() {
 
-      if (Diagrams.currentDiagram !== 'doughnut') {
+      // Check if the current diagram is a polarArea.
+      if (Diagrams.currentDiagram !== 'polarArea') {
 
-        // The current diagram is not a doughnut. Update it to be a doughnut.
-        Diagrams.currentDiagram = 'doughnut';
+        // The current diagram is not a polarArea. Update it to be a polarArea.
+        Diagrams.currentDiagram = 'polarArea';
 
         // Create a diagram definition.
         let diagramDefinition = {
 
-          type: 'doughnut',
+          type: 'polarArea',
 
           data: {
             labels: Diagrams.form.data.labels,
@@ -3040,7 +3061,12 @@ let Diagrams = {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
                 backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
-              }
+              },
+              // {
+              //   label: Diagrams.form.data.datasets[1].label,
+              //   data: Diagrams.form.data.datasets[1].data,
+              //   backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
+              // }
             ]
           },
 
@@ -3087,7 +3113,12 @@ let Diagrams = {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
                 backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
-              }
+              },
+              // {
+              //   label: Diagrams.form.data.datasets[1].label,
+              //   data: Diagrams.form.data.datasets[1].data,
+              //   backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
+              // }
             ]
           },
 
@@ -3134,7 +3165,12 @@ let Diagrams = {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
                 backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
-              }
+              },
+              // {
+              //   label: Diagrams.form.data.datasets[1].label,
+              //   data: Diagrams.form.data.datasets[1].data,
+              //   backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
+              // }
             ]
           },
 
@@ -3157,37 +3193,6 @@ let Diagrams = {
 
   },
 
-  // /**
-  //  * Updates the specified diagram.
-  //  *
-  //  * @param diagram - The diagram to update.
-  //  */
-  // updateDiagram: function(diagram) {
-  //
-  //   // Check whether to create a new diagram or not.
-  //   if (this.currentDiagram !== diagram) {
-  //     this.createDiagram(diagram);
-  //   }
-  //
-  // },
-  //
-  // /**
-  //  * Creates a new diagram.
-  //  *
-  //  * @param diagram - The name of the diagram to create.
-  //  */
-  // createDiagram: function(diagram) {
-  //
-  //   this.currentDiagram = diagram;
-  //
-  //   let functionName = 'create' + diagram + 'Diagram';
-  //
-  //   //this[functionName]();
-  //   this[functionName]();
-  //
-  //
-  // },
-
   /**
    * Initializes the Diagrams object.
    *
@@ -3199,7 +3204,6 @@ let Diagrams = {
     this.landscape.initialize();
 
     // Get the context of the canvas element.
-    //this.context = document.getElementById(canvas).getContext('2d');
     this.diagramElement = $('#' + canvas);
 
   },
@@ -3873,20 +3877,20 @@ let diagramViewModel = new Vue({
      * The possible diagrams.
      */
     diagrams: {
-      polarArea: {
+      doughnut: {
         isCurrent: true,
-        icon: 'filter_tilt_shift',
-        tooltip: 'Polar Area Diagram'
+        icon: 'donut_large',
+        tooltip: 'Doughnut Diagram'
       },
       pie: {
         isCurrent: false,
         icon: 'pie_chart',
         tooltip: 'Pie Diagram'
       },
-      doughnut: {
+      polarArea: {
         isCurrent: false,
-        icon: 'donut_large',
-        tooltip: 'Doughnut Diagram'
+        icon: 'filter_tilt_shift',
+        tooltip: 'Polar Area Diagram'
       },
       radar: {
         isCurrent: false,
@@ -3939,7 +3943,7 @@ let diagramViewModel = new Vue({
     /**
      * Sets the current diagram.
      *
-     * @param diagram - The diagram to be displayed. Valid values area: {'polarArea' | 'pie' | 'doughnut' | 'radar' | 'bar'}.
+     * @param diagram - The diagram to be displayed. Valid values area: {'doughnut' | 'pie' | 'polarArea' | 'radar' | 'bar'}.
      */
     setCurrentDiagram(diagram) {
 

@@ -4,7 +4,7 @@
 //  https://www.tellus-toolkit.com/
 //
 //  Name:            raster.js
-//  Original coding: Vasilis Vlastaras (@gisvlasta), 14/09/2019.
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 24/10/2019.
 //  Updated:
 // ================================================================================
 
