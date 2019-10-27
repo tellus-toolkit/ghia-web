@@ -2684,7 +2684,7 @@ let Diagrams = {
           /**
            * The label of the user selected dataset.
            */
-          label: 'Selected Data',
+          label: 'Extracted Data',
 
           /**
            * The actual user selected data.
@@ -2700,7 +2700,28 @@ let Diagrams = {
             ColorPalettes.Material.lightGreen500.hex,
             ColorPalettes.Material.lightGreen800.hex,
             ColorPalettes.Material.green900.hex
-          ]
+          ],
+
+          radarBackgroundColor: "rgba(255, 255, 255, 0)",
+          radarBorderColor: "rgba(244, 67, 54, 1)",
+          radarPointBackgroundColor: [
+            ColorPalettes.Material.brown100.hex,
+            ColorPalettes.Material.blue200.hex,
+            ColorPalettes.Material.lightGreen500.hex,
+            ColorPalettes.Material.lightGreen800.hex,
+            ColorPalettes.Material.green900.hex
+          ],
+          radarPointBorderColor: [
+            ColorPalettes.Material.brown100.hex,
+            ColorPalettes.Material.blue200.hex,
+            ColorPalettes.Material.lightGreen500.hex,
+            ColorPalettes.Material.lightGreen800.hex,
+            ColorPalettes.Material.green900.hex
+          ],
+          radarPointRadius: 5,
+          radarHoverPointRadius: 6
+          // pointHoverBackgroundColor: this.colors.dataSeries.pointHoverBackgroundColor,
+          // pointHoverBorderColor: this.colors.dataSeries.pointHoverBorderColor,
 
         },
         {
@@ -2713,7 +2734,7 @@ let Diagrams = {
           /**
            * The actual Greater Manchester data.
            */
-          data: Raster.getFormCount(),
+          data: [0, 0, 0, 0, 0],
 
           /**
            * The background colors of the sections of the polar area diagram.
@@ -2737,7 +2758,28 @@ let Diagrams = {
             ColorPalettes.Material.green500.hex
           ],
 
-          borderWidth: 1
+          borderWidth: 1,
+
+          radarBackgroundColor: "rgba(255, 255, 255, 0)",
+          radarBorderColor: "rgba(63, 81, 181, 1)",
+          radarPointBackgroundColor: [
+            ColorPalettes.Material.brown100.hex,
+            ColorPalettes.Material.blue200.hex,
+            ColorPalettes.Material.lightGreen500.hex,
+            ColorPalettes.Material.lightGreen800.hex,
+            ColorPalettes.Material.green900.hex
+          ],
+          radarPointBorderColor: [
+            ColorPalettes.Material.brown100.hex,
+            ColorPalettes.Material.blue200.hex,
+            ColorPalettes.Material.lightGreen500.hex,
+            ColorPalettes.Material.lightGreen800.hex,
+            ColorPalettes.Material.green900.hex
+          ],
+          radarPointRadius: 3,
+          radarHoverPointRadius: 4
+          // pointHoverBackgroundColor: this.colors.dataSeries.pointHoverBackgroundColor,
+          // pointHoverBorderColor: this.colors.dataSeries.pointHoverBorderColor,
         }
       ]
 
@@ -2768,12 +2810,11 @@ let Diagrams = {
         }
       }
 
-      let data = this.data.datasets[0].data;
+      let data = this.data.datasets[1].data;
 
       for (let i = 0; i < data.length; i++) {
-        data[i] = ((data[i] / Raster.data.count) * 100).toFixed(3);
+        data[i] = ((data[i] / Raster.metadata.numberOfValues) * 100).toFixed(3);
       }
-
 
     },
 
@@ -3112,13 +3153,29 @@ let Diagrams = {
               {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
-                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+
+                backgroundColor: Diagrams.form.data.datasets[0].radarBackgroundColor,
+                borderColor: Diagrams.form.data.datasets[0].radarBorderColor,
+                pointBackgroundColor: Diagrams.form.data.datasets[0].radarPointBackgroundColor,
+                pointBorderColor: Diagrams.form.data.datasets[0].radarPointBorderColor,
+                pointRadius: Diagrams.form.data.datasets[0].radarPointRadius,
+                pointHoverRadius: Diagrams.form.data.datasets[0].radarHoverPointRadius
+                // pointHoverBackgroundColor: this.colors.dataSeries.pointHoverBackgroundColor,
+                // pointHoverBorderColor: this.colors.dataSeries.pointHoverBorderColor,
               },
-              // {
-              //   label: Diagrams.form.data.datasets[1].label,
-              //   data: Diagrams.form.data.datasets[1].data,
-              //   backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
-              // }
+              {
+                label: Diagrams.form.data.datasets[1].label,
+                data: Diagrams.form.data.datasets[1].data,
+
+                backgroundColor: Diagrams.form.data.datasets[1].radarBackgroundColor,
+                borderColor: Diagrams.form.data.datasets[1].radarBorderColor,
+                pointBackgroundColor: Diagrams.form.data.datasets[1].radarPointBackgroundColor,
+                pointBorderColor: Diagrams.form.data.datasets[1].radarPointBorderColor,
+                pointRadius: Diagrams.form.data.datasets[1].radarPointRadius,
+                pointHoverRadius: Diagrams.form.data.datasets[1].radarHoverPointRadius
+                // pointHoverBackgroundColor: this.colors.dataSeries.pointHoverBackgroundColor,
+                // pointHoverBorderColor: this.colors.dataSeries.pointHoverBorderColor,
+              },
             ]
           },
 
@@ -3166,11 +3223,11 @@ let Diagrams = {
                 data: Diagrams.form.data.datasets[0].data,
                 backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
               },
-              // {
-              //   label: Diagrams.form.data.datasets[1].label,
-              //   data: Diagrams.form.data.datasets[1].data,
-              //   backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
-              // }
+              {
+                label: Diagrams.form.data.datasets[1].label,
+                data: Diagrams.form.data.datasets[1].data,
+                backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
+              }
             ]
           },
 
@@ -3614,6 +3671,11 @@ let queryStateViewModel = new Vue({
   data: {
 
     /**
+     * Indicates whether the collapsible panel is collapsed or not.
+     */
+    isCollapsed: false,
+
+    /**
      * The possible states of the query mechanism.
      */
     states: {
@@ -3685,6 +3747,15 @@ let queryStateViewModel = new Vue({
 
       return helpText;
 
+    },
+
+    /**
+     * Gets the text to display next to the toggle collapsible area button.
+     *
+     * @returns {string} - The text to display next to the toggle collapsible area button.
+     */
+    getCollapsibleButtonText: function() {
+      return this.isCollapsed ? 'Show section' : 'Collapse section';
     }
 
   },
@@ -3693,6 +3764,15 @@ let queryStateViewModel = new Vue({
    * The methods of the view model.
    */
   methods: {
+
+    /**
+     * Toggle the collapsed state of the collapsible panel.
+     */
+    toggleCollapse() {
+      this.isCollapsed = !this.isCollapsed;
+      this.showDown = !this.showDown;
+      this.showUp = !this.showUp;
+    },
 
     /**
      * Sets the current query mechanism state.

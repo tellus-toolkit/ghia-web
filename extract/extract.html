@@ -291,68 +291,106 @@
               <div class="p-0 h-100">
                 <div class="d-flex align-content-stretch flex-column h-100">
 
-                  <div>
-                    <h6>
-                      Complete the following three steps to generate a report on green and
-                      blue land cover in your area.
-                    </h6>
-                    <h6><span class="font-weight-bold">Step 1: </span>Choose how you would like to select your study area</h6>
-                  </div>
-
                   <!-- Component: Query State Buttons -->
                   <div id="queryStateVM">
-                    <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row">
 
-                      <button type="button" class="btn btn-primary m-1"
-                              v-bind:class="[states.point.isCurrent ? 'active' : '']"
-                              v-on:click="setCurrentState('point')">
-                        <i class="amber-text mr-2"
-                           v-bind:class="[states.point.icon]">
-                        </i>
-                        <span v-text="states.point.buttonText"></span>
-                      </button>
+                    <div>
 
-                      <button type="button" class="btn btn-primary m-1"
-                              v-bind:class="[states.polygon.isCurrent ? 'active' : '']"
-                              v-on:click="setCurrentState('polygon')">
-                        <i class="amber-text mr-2"
-                           v-bind:class="[states.polygon.icon]">
+                      <a class="btn-floating btn-sm amber pt-0 pb-0 pl-1 pr-1"
+                         v-on:click="toggleCollapse()">
+                        <i class="material-icons mt-1"
+                           v-text="isCollapsed ? 'expand_less' : 'expand_more'">
                         </i>
-                        <span v-text="states.polygon.buttonText"></span>
-                      </button>
+                      </a>
 
-                      <button type="button" class="btn btn-primary m-1"
-                              v-bind:class="[states.lsoa.isCurrent ? 'active' : '']"
-                              v-on:click="setCurrentState('lsoa')">
-                        <i class="amber-text mr-2"
-                           v-bind:class="[states.lsoa.icon]">
-                        </i>
-                        <span v-text="states.lsoa.buttonText"></span>
-                      </button>
-
-                      <button type="button" class="btn btn-primary m-1"
-                              v-bind:class="[states.wards.isCurrent ? 'active' : '']"
-                              v-on:click="setCurrentState('wards')">
-                        <i class="amber-text mr-2"
-                           v-bind:class="[states.wards.icon]">
-                        </i>
-                        <span v-text="states.wards.buttonText"></span>
-                      </button>
+                      <span class="font-weight-bolder" style="vertical-align: top;"
+                            v-text="getCollapsibleButtonText()"></span>
 
                     </div>
 
-                    <div class="ghia-hor-sep"></div>
+                    <div id="collapsible-panel" class="collapse"
+                         v-bind:class="[isCollapsed ? '' : 'show']">
 
-                    <div>
-                      <h6><span class="font-weight-bold">Step 2: </span>Zoom into the map to find your area of interest.</h6>
+                      <div>
+                        <h6>
+                          Complete the following three steps to generate a report on green and
+                          blue land cover in your area.
+                        </h6>
+                        <h6><span class="font-weight-bold">Step 1: </span>Choose how you would like to select your study area</h6>
+                      </div>
 
-                      <p v-text="getHelpText()"></p>
+
+                      <div>
+
+                        <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row">
+
+                          <button type="button" class="btn btn-primary m-1"
+                                  v-bind:class="[states.point.isCurrent ? 'active' : '']"
+                                  v-on:click="setCurrentState('point')">
+                            <i class="amber-text mr-2"
+                               v-bind:class="[states.point.icon]">
+                            </i>
+                            <span v-text="states.point.buttonText"></span>
+                          </button>
+
+                          <button type="button" class="btn btn-primary m-1"
+                                  v-bind:class="[states.polygon.isCurrent ? 'active' : '']"
+                                  v-on:click="setCurrentState('polygon')">
+                            <i class="amber-text mr-2"
+                               v-bind:class="[states.polygon.icon]">
+                            </i>
+                            <span v-text="states.polygon.buttonText"></span>
+                          </button>
+
+                          <button type="button" class="btn btn-primary m-1"
+                                  v-bind:class="[states.lsoa.isCurrent ? 'active' : '']"
+                                  v-on:click="setCurrentState('lsoa')">
+                            <i class="amber-text mr-2"
+                               v-bind:class="[states.lsoa.icon]">
+                            </i>
+                            <span v-text="states.lsoa.buttonText"></span>
+                          </button>
+
+                          <button type="button" class="btn btn-primary m-1"
+                                  v-bind:class="[states.wards.isCurrent ? 'active' : '']"
+                                  v-on:click="setCurrentState('wards')">
+                            <i class="amber-text mr-2"
+                               v-bind:class="[states.wards.icon]">
+                            </i>
+                            <span v-text="states.wards.buttonText"></span>
+                          </button>
+
+                        </div>
+
+                      </div>
+
+                      <div class="ghia-hor-sep"></div>
+
+                      <div>
+                        <h6>
+                          <span class="font-weight-bold">Step 2: </span>Zoom into the map to find your area of interest.
+                        </h6>
+
+                        <p v-text="getHelpText()"></p>
+
+                        <div class="border-top mb-2"></div>
+                      </div>
+
                     </div>
 
                   </div>
 
                   <!-- Component: Display Results Buttons -->
                   <div id="displayResultsVM">
+
+                    <div>
+                      <h6>
+                        <span class="font-weight-bold">Step 3: </span>
+                        Select how to view the results. Your results will be displayed in comparison
+                        to the average land cover for Greater Manchester.
+                      </h6>
+                    </div>
+
                     <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row">
 
                       <button type="button" class="btn btn-primary m-1"
@@ -383,20 +421,11 @@
 
                   </div>
 
-                  <div>
-                    <h6>
-                      <span class="font-weight-bold">Step 3: </span>
-                      Select how to view the results. Your results will be displayed in comparison
-                      to the average land cover for Greater Manchester.
-                    </h6>
-                  </div>
-
 <!--                  <div class="mb-auto h-100 ver-scrollbars border-left border-bottom border-right">-->
                   <div class="mb-auto h-100 p-1 ver-scrollbars">
 
                     <div id="diagramVM" v-bind:class="[isViewVisible() ? '' : 'hidden']">
 
-<!--                      <div>-->
                       <div id="diagram-card" class="card card-body">
 
                         <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row mb-2">
@@ -491,10 +520,11 @@
                         </table>
 
                       </div>
+
                     </div>
 
                   </div>
-
+                  
                 </div>
               </div>
             </div>
@@ -502,11 +532,6 @@
           </div>
 
         </div>
-
-        <!-- Component: Typology Info -->
-<!--        <div class="sidebar-pane h-100" id="typology-info">-->
-<!--          <p>Typo Info</p>-->
-<!--        </div>-->
 
       </div>
 
@@ -526,9 +551,7 @@
 
 <script type="text/javascript" src="../libs/mdb/js/popper.min.js"></script>
 
-<!--<script type="text/javascript" src="../libs/leaflet-1.3.1/leaflet.js"></script>-->
 <!--<script type="text/javascript" src="../libs/leaflet-1.5.1/leaflet.js"></script>-->
-<!--<script type="text/javascript" src="../libs/leaflet-1.3.1/leaflet-src.js"></script>-->
 <script type="text/javascript" src="../libs/leaflet-1.5.1/leaflet-src.js"></script>
 <!--<script type="text/javascript" src="../libs/leaflet-plugins/leaflet-providers-1.1.17/leaflet-providers.js"></script>-->
 <script type="text/javascript" src="../libs/leaflet-plugins/leaflet-providers-2018-04-11/leaflet-providers.js"></script>

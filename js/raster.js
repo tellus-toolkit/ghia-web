@@ -636,25 +636,28 @@ var Raster = {
   /**
    * Gets the count of the values aggregated by Form.
    */
-  getFormCount() {
-
-    let lookup = Raster.metadata.band.lookup;
-
-    let formCount = [0, 0, 0, 0, 0];
-    let formKey = 1;
-    let count = 0;
-
-    for (let key in lookup) {
-      if (key.substring(0, 1) !== formKey.toString()) {
-        formKey++;
-      }
-
-      formCount[formKey] += lookup[key].count;
-    }
-
-    return formCount;
-
-  },
+  // getFormCount() {
+  //
+  //   let lookup = Raster.metadata.band.lookup;
+  //
+  //   let formCount = [0, 0, 0, 0, 0];
+  //   let formKey = 1;
+  //   let count = 0;
+  //
+  //   for (let key in lookup) {
+  //     if (key.substring(0, 1) !== formKey.toString()) {
+  //       formCount[formKey] = (formCount[formKey] / Raster.metadata.numberOfValues) * 100;
+  //       formKey++;
+  //     }
+  //
+  //     formCount[formKey] += lookup[key].count;
+  //   }
+  //
+  //   formCount[formCount.length - 1] = (formCount[formCount.length - 1] / Raster.metadata.numberOfValues) * 100;
+  //
+  //   return formCount;
+  //
+  // },
 
   /**
    * Sets the number of values excluding no data returned in metadata.
