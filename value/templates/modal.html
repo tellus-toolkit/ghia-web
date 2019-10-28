@@ -5,46 +5,48 @@
     <p ng-bind-html="message"></p>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-success" ng-click="ok()" ng-bind-html="okButton"></button>
-    <hr>
-    <div class="collapse" id="collapseEthics">
-        <div class="well text-left">
-            <h4>Data Privacy and Ethics</h4>
-            <p>Taking part and all questions within this survey are voluntary. From section 2 onwards there are no
-                right or wrong answers - we are interested purely in your opinion.</p>
-            <p>The information provided by people taking part in this survey will only be used for research
-                purposes. It will not be used for commercial reasons. All data will be treated in accordance with
-                the Data Protection Act (1998).</p>
-            <p>We will not collect people’s names, phone numbers or IP addresses. We will however, ask for the
-                postcode of your home address to be provided. This is in order to locate your responses on a map
-                anonymously. In circumstances where there are very few households within a postcode area, providing
-                your postcode could link your answers to your household. However, in practice it is unlikely you
-                would be identifiable from providing your postcode, and this is not an aim of the research. Your
-                postcode will not be published, and at no time will your data be used in a way which compromises
-                your right to confidentiality.</p>
-            <p>Your data will be stored on a secure, password protected server and protected through encryption
-                where appropriate. Anonymised research data will be archived at the UK Data Archive Service or
-                similar, in order to make it available to other researchers in line with current data sharing
-                practices.</p>
-            <p>It is important to understand that, by saying you consent to taking part in this survey, you agree
-                that:</p>
-            <ul>
-                <li>you understand you can withdraw your answers at any time during or at the end of the survey</li>
-                <li>your information will stored in line with data protection policy</li>
-                <li>your words (but no identifiable information) may be quoted in publications, reports, web pages,
-                    and other research outputs
-                </li>
-                <li>you consent to confidential and protected data sharing with all members of our research team
-                </li>
-                <li>your information can be archived at a suitable social science data archiving service</li>
-                <li>you understand other genuine researchers will have access to this data and may use your words in
-                    research outputs if they agree to preserve your confidentiality as requested in this form
-                </li>
-            </ul>
-            <p>Thank you and we hope you enjoy participating.</p>
+    <button class="btn btn-warning" data-toggle="collapse" href="#collapseEthics" aria-expanded="false" aria-controls="collapseExample">Data Privacy
+        and Ethics</button>
+        <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-success" ng-click="ok()" ng-bind-html="okButton"></button>
+        <hr>
+        <div class="collapse" id="collapseEthics">
+            <div class="well text-left">
+                <h4>Data Privacy and Ethics</h4>
+                <p>Taking part and all questions within this survey are voluntary. From section 2 onwards there are no
+                    right or wrong answers - we are interested purely in your opinion.</p>
+                <p>The information provided by people taking part in this survey will only be used for research
+                    purposes. It will not be used for commercial reasons. All data will be treated in accordance with
+                    the Data Protection Act (1998).</p>
+                <p>We will not collect people’s names, phone numbers or IP addresses. We will however, ask for the
+                    postcode of your home address to be provided. This is in order to locate your responses on a map
+                    anonymously. In circumstances where there are very few households within a postcode area, providing
+                    your postcode could link your answers to your household. However, in practice it is unlikely you
+                    would be identifiable from providing your postcode, and this is not an aim of the research. Your
+                    postcode will not be published, and at no time will your data be used in a way which compromises
+                    your right to confidentiality.</p>
+                <p>Your data will be stored on a secure, password protected server and protected through encryption
+                    where appropriate. Anonymised research data will be archived at the UK Data Archive Service or
+                    similar, in order to make it available to other researchers in line with current data sharing
+                    practices.</p>
+                <p>It is important to understand that, by saying you consent to taking part in this survey, you agree
+                    that:</p>
+                <ul>
+                    <li>you understand you can withdraw your answers at any time during or at the end of the survey</li>
+                    <li>your information will stored in line with data protection policy</li>
+                    <li>your words (but no identifiable information) may be quoted in publications, reports, web pages,
+                        and other research outputs
+                    </li>
+                    <li>you consent to confidential and protected data sharing with all members of our research team
+                    </li>
+                    <li>your information can be archived at a suitable social science data archiving service</li>
+                    <li>you understand other genuine researchers will have access to this data and may use your words in
+                        research outputs if they agree to preserve your confidentiality as requested in this form
+                    </li>
+                </ul>
+                <p>Thank you and we hope you enjoy participating.</p>
+            </div>
         </div>
-    </div>
 
 
 </div>

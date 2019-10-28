@@ -58,8 +58,6 @@
         Please click on the continue button. By opting to continue, you are agreeing to our {b}{a data-toggle="collapse"
         href="#collapseEthics" aria-expanded="false" aria-controls="collapseExample"}Data Privacy and Ethics{/a}{/b}. If
         you do not agree, select cancel to Exit.
-
-
     </item>
 
     <!-- user login, only displayed if access is restricted (see config-file) -->
@@ -105,13 +103,14 @@
 
     <!-- step2: sorting (leave blank to skip popup) -->
     <item id="step2Head">Step 2 of 3</item>
-    <item id="step2Text">Take the cards from the {b}"AGREE"{/b} pile and read them again. You can scroll through the
-        statements
-        by using the scroll bar. Next, select the two statements you most agree with and place them on right side of the
-        score sheet below the "+2".{br}{br}Now read the cards in the "DISAGREE" pile again. Just like before, select the
-        two statements you most disagree with and place them on the left side of the score sheet below the
-        "-2".{br}{br}Next, select the statements you second most agree/disagree with and place them under "+1"/"-1".
-        Follow this procedure for all cards in the "AGREE" and "DIAGREE" pile.{br}{br}
+    <item id="step2Text">
+        Re-read the cards from the {b}"AGREE"{/b} pile. Select the two statements you most agree with and place them on
+        right side of the score sheet below the "+2". You can scroll through the statements by using the scroll bar.
+        {br}{br}
+        Now read the cards in the "DISAGREE" pile again. Just like before, select the two statements you most disagree
+        with and place them on the left side of the score sheet below the "-2".{br}{br}Next, select the statements you
+        second most agree/disagree with and place them under "+1"/"-1". Follow this procedure for all cards in the
+        "AGREE" and "DISAGREE" pile.{br}{br}
         Finally, read the "NEUTRAL" cards again and arrange them in the remaining open boxes of the score sheet.
     </item>
 

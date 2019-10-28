@@ -2692,36 +2692,15 @@ let Diagrams = {
           data: [0, 0, 0, 0, 0],
 
           /**
-           * The background colors of the sections of the polar area diagram.
+           * The background colors of the cohorts of the diagrams.
            */
-          backgroundColor: [
+          backgroundColors: [
             ColorPalettes.Material.brown100.hex,
             ColorPalettes.Material.blue200.hex,
             ColorPalettes.Material.lightGreen500.hex,
             ColorPalettes.Material.lightGreen800.hex,
             ColorPalettes.Material.green900.hex
-          ],
-
-          radarBackgroundColor: "rgba(255, 255, 255, 0)",
-          radarBorderColor: "rgba(244, 67, 54, 1)",
-          radarPointBackgroundColor: [
-            ColorPalettes.Material.brown100.hex,
-            ColorPalettes.Material.blue200.hex,
-            ColorPalettes.Material.lightGreen500.hex,
-            ColorPalettes.Material.lightGreen800.hex,
-            ColorPalettes.Material.green900.hex
-          ],
-          radarPointBorderColor: [
-            ColorPalettes.Material.brown100.hex,
-            ColorPalettes.Material.blue200.hex,
-            ColorPalettes.Material.lightGreen500.hex,
-            ColorPalettes.Material.lightGreen800.hex,
-            ColorPalettes.Material.green900.hex
-          ],
-          radarPointRadius: 5,
-          radarHoverPointRadius: 6
-          // pointHoverBackgroundColor: this.colors.dataSeries.pointHoverBackgroundColor,
-          // pointHoverBorderColor: this.colors.dataSeries.pointHoverBorderColor,
+          ]
 
         },
         {
@@ -2737,49 +2716,16 @@ let Diagrams = {
           data: [0, 0, 0, 0, 0],
 
           /**
-           * The background colors of the sections of the polar area diagram.
+           * The background colors of the cohorts of the diagrams.
            */
-          backgroundColor: [
+          backgroundColors: [
             ColorPalettes.Material.brown100.hex,
             ColorPalettes.Material.blue200.hex,
             ColorPalettes.Material.lightGreen500.hex,
             ColorPalettes.Material.lightGreen800.hex,
             ColorPalettes.Material.green900.hex
-          ],
+          ]
 
-          /**
-           * The border colors of the sections of the polar area diagram.
-           */
-          borderColor: [
-            ColorPalettes.Material.blueGray500.hex,
-            ColorPalettes.Material.blue900.hex,
-            ColorPalettes.Material.lightGreen700.hex,
-            ColorPalettes.Material.lightGreen900.hex,
-            ColorPalettes.Material.green500.hex
-          ],
-
-          borderWidth: 1,
-
-          radarBackgroundColor: "rgba(255, 255, 255, 0)",
-          radarBorderColor: "rgba(63, 81, 181, 1)",
-          radarPointBackgroundColor: [
-            ColorPalettes.Material.brown100.hex,
-            ColorPalettes.Material.blue200.hex,
-            ColorPalettes.Material.lightGreen500.hex,
-            ColorPalettes.Material.lightGreen800.hex,
-            ColorPalettes.Material.green900.hex
-          ],
-          radarPointBorderColor: [
-            ColorPalettes.Material.brown100.hex,
-            ColorPalettes.Material.blue200.hex,
-            ColorPalettes.Material.lightGreen500.hex,
-            ColorPalettes.Material.lightGreen800.hex,
-            ColorPalettes.Material.green900.hex
-          ],
-          radarPointRadius: 3,
-          radarHoverPointRadius: 4
-          // pointHoverBackgroundColor: this.colors.dataSeries.pointHoverBackgroundColor,
-          // pointHoverBorderColor: this.colors.dataSeries.pointHoverBorderColor,
         }
       ]
 
@@ -2996,17 +2942,23 @@ let Diagrams = {
               {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
-                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+                backgroundColor: Diagrams.form.data.datasets[0].backgroundColors
               },
               {
                 label: Diagrams.form.data.datasets[1].label,
                 data: Diagrams.form.data.datasets[1].data,
-                backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
+                backgroundColor: Diagrams.form.data.datasets[1].backgroundColors
               }
             ]
           },
 
-          options: {}
+          options: {
+            legend: {
+              labels: {
+                boxWidth: 20
+              }
+            }
+          }
 
         };
 
@@ -3048,17 +3000,23 @@ let Diagrams = {
               {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
-                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+                backgroundColor: Diagrams.form.data.datasets[0].backgroundColors
               },
               {
                 label: Diagrams.form.data.datasets[1].label,
                 data: Diagrams.form.data.datasets[1].data,
-                backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
+                backgroundColor: Diagrams.form.data.datasets[1].backgroundColors
               }
             ]
           },
 
-          options: {}
+          options: {
+            legend: {
+              labels: {
+                boxWidth: 20
+              }
+            }
+          }
 
         };
 
@@ -3101,17 +3059,32 @@ let Diagrams = {
               {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
-                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+                backgroundColor: [
+                  GlobalFunctions.hexColourToRgbaString(ColorPalettes.Material.brown100.hex, 60),
+                  GlobalFunctions.hexColourToRgbaString(ColorPalettes.Material.blue200.hex, 60),
+                  GlobalFunctions.hexColourToRgbaString(ColorPalettes.Material.lightGreen500.hex, 60),
+                  GlobalFunctions.hexColourToRgbaString(ColorPalettes.Material.lightGreen800.hex, 60),
+                  GlobalFunctions.hexColourToRgbaString(ColorPalettes.Material.green900.hex, 60)
+                ],
+                borderColor: "rgba(255, 255, 255, 0)",
+                borderWidth: 0
               },
-              // {
-              //   label: Diagrams.form.data.datasets[1].label,
-              //   data: Diagrams.form.data.datasets[1].data,
-              //   backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
-              // }
+              {
+                label: Diagrams.form.data.datasets[1].label,
+                data: Diagrams.form.data.datasets[1].data,
+                backgroundColor: "rgba(255, 255, 255, 0)",
+                borderColor: ColorPalettes.Material.indigo.hex
+              },
             ]
           },
 
-          options: {}
+          options: {
+            legend: {
+              labels: {
+                boxWidth: 20
+              }
+            }
+          }
 
         };
 
@@ -3154,32 +3127,38 @@ let Diagrams = {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
 
-                backgroundColor: Diagrams.form.data.datasets[0].radarBackgroundColor,
-                borderColor: Diagrams.form.data.datasets[0].radarBorderColor,
-                pointBackgroundColor: Diagrams.form.data.datasets[0].radarPointBackgroundColor,
-                pointBorderColor: Diagrams.form.data.datasets[0].radarPointBorderColor,
-                pointRadius: Diagrams.form.data.datasets[0].radarPointRadius,
-                pointHoverRadius: Diagrams.form.data.datasets[0].radarHoverPointRadius
-                // pointHoverBackgroundColor: this.colors.dataSeries.pointHoverBackgroundColor,
-                // pointHoverBorderColor: this.colors.dataSeries.pointHoverBorderColor,
+                backgroundColor: "rgba(255, 255, 255, 0)",
+                borderColor: ColorPalettes.Material.red.hex,
+                pointBackgroundColor: Diagrams.form.data.datasets[0].backgroundColors,
+                pointBorderColor: ColorPalettes.Material.gray800.hex,
+                pointRadius: 5,
+                pointHoverRadius: 6
+                // pointHoverBackgroundColor: ,
+                // pointHoverBorderColor: ,
               },
               {
                 label: Diagrams.form.data.datasets[1].label,
                 data: Diagrams.form.data.datasets[1].data,
 
-                backgroundColor: Diagrams.form.data.datasets[1].radarBackgroundColor,
-                borderColor: Diagrams.form.data.datasets[1].radarBorderColor,
-                pointBackgroundColor: Diagrams.form.data.datasets[1].radarPointBackgroundColor,
-                pointBorderColor: Diagrams.form.data.datasets[1].radarPointBorderColor,
-                pointRadius: Diagrams.form.data.datasets[1].radarPointRadius,
-                pointHoverRadius: Diagrams.form.data.datasets[1].radarHoverPointRadius
-                // pointHoverBackgroundColor: this.colors.dataSeries.pointHoverBackgroundColor,
-                // pointHoverBorderColor: this.colors.dataSeries.pointHoverBorderColor,
+                backgroundColor: "rgba(255, 255, 255, 0)",
+                borderColor: ColorPalettes.Material.indigo.hex,
+                pointBackgroundColor: Diagrams.form.data.datasets[1].backgroundColors,
+                pointBorderColor: ColorPalettes.Material.gray800.hex,
+                pointRadius: 3,
+                pointHoverRadius: 4
+                // pointHoverBackgroundColor: ,
+                // pointHoverBorderColor: ,
               },
             ]
           },
 
-          options: {}
+          options: {
+            legend: {
+              labels: {
+                boxWidth: 20
+              }
+            }
+          }
 
         };
 
@@ -3221,17 +3200,27 @@ let Diagrams = {
               {
                 label: Diagrams.form.data.datasets[0].label,
                 data: Diagrams.form.data.datasets[0].data,
-                backgroundColor: Diagrams.form.data.datasets[0].backgroundColor
+                backgroundColor: Diagrams.form.data.datasets[0].backgroundColors,
+                borderColor: "rgba(255, 255, 255, 0)",
+                borderWidth: 0
               },
               {
                 label: Diagrams.form.data.datasets[1].label,
                 data: Diagrams.form.data.datasets[1].data,
-                backgroundColor: Diagrams.form.data.datasets[1].backgroundColor
+                backgroundColor: Diagrams.form.data.datasets[1].backgroundColors,
+                borderColor: ColorPalettes.Material.gray800.hex,
+                borderWidth: 3
               }
             ]
           },
 
-          options: {}
+          options: {
+            legend: {
+              labels: {
+                boxWidth: 20
+              }
+            }
+          }
 
         };
 
