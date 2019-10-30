@@ -88,32 +88,53 @@ if ($do == 'login') {
     if ($geocode['status'] !== null) {
         $d['lat'] = $output->results[0]->geometry->location->lat;
         $d['lng'] = $output->results[0]->geometry->location->lng;
-    }
-    // if the postcode if wrong or empty place all responses in NW corner of map
+        //$d['sid'] = null;
+        $d['uid'] = isset($_REQUEST['uid']) ? str_replace(array(';', '"', '\''), NULL, trim($_REQUEST['uid'])) : null;
+        $d['sort'] = isset($_REQUEST['sort']) ? str_replace('_', ' ', $_REQUEST['sort']) : null;
+        $d['npos'] = isset($_REQUEST['npos']) ? (int)$_REQUEST['npos'] : 0;
+        $d['nneu'] = isset($_REQUEST['nneu']) ? (int)$_REQUEST['nneu'] : 0;
+        $d['nneg'] = isset($_REQUEST['nneg']) ? (int)$_REQUEST['nneg'] : 0;
+
+        foreach (array_reverse($_REQUEST) as $k => $v) {
+            if (preg_match('/^(form|comment)[0-9]{1,3}$/', $k)) {
+                $d[$k] = str_replace(array(';', "\n", "\r"), array('.', "\\n", "\\r"), trim($v));
+            }
+        }
+
+        $d['dur0'] = isset($_REQUEST['dur0']) ? (int)$_REQUEST['dur0'] : 0;
+        $d['dur1'] = isset($_REQUEST['dur1']) ? (int)$_REQUEST['dur1'] : 0;
+        $d['dur2'] = isset($_REQUEST['dur2']) ? (int)$_REQUEST['dur2'] : 0;
+        $d['dur3'] = isset($_REQUEST['dur3']) ? (int)$_REQUEST['dur3'] : 0;
+        $d['dur4'] = isset($_REQUEST['dur4']) ? (int)$_REQUEST['dur4'] : 0;
+        $d['dur5'] = isset($_REQUEST['dur5']) ? (int)$_REQUEST['dur5'] : 0;
+        $d['datetime'] = date('Y-m-d H:i:s');
+
+    } // if the postcode if wrong or empty place all responses in NW corner of map
     if ($geocode['status'] == 'ZERO_RESULTS' || 'INVALID_REQUEST') {
         $d['lat'] = 53.68;
         $d['lng'] = -2.72;
-    }
-    //$d['sid'] = null;
-    $d['uid'] = isset($_REQUEST['uid']) ? str_replace(array(';', '"', '\''), NULL, trim($_REQUEST['uid'])) : null;
-    $d['sort'] = isset($_REQUEST['sort']) ? str_replace('_', ' ', $_REQUEST['sort']) : null;
-    $d['npos'] = isset($_REQUEST['npos']) ? (int)$_REQUEST['npos'] : 0;
-    $d['nneu'] = isset($_REQUEST['nneu']) ? (int)$_REQUEST['nneu'] : 0;
-    $d['nneg'] = isset($_REQUEST['nneg']) ? (int)$_REQUEST['nneg'] : 0;
+        //$d['sid'] = null;
+        $d['uid'] = isset($_REQUEST['uid']) ? str_replace(array(';', '"', '\''), NULL, trim($_REQUEST['uid'])) : null;
+        $d['sort'] = isset($_REQUEST['sort']) ? str_replace('_', ' ', $_REQUEST['sort']) : null;
+        $d['npos'] = isset($_REQUEST['npos']) ? (int)$_REQUEST['npos'] : 0;
+        $d['nneu'] = isset($_REQUEST['nneu']) ? (int)$_REQUEST['nneu'] : 0;
+        $d['nneg'] = isset($_REQUEST['nneg']) ? (int)$_REQUEST['nneg'] : 0;
 
-    foreach (array_reverse($_REQUEST) as $k => $v) {
-        if (preg_match('/^(form|comment)[0-9]{1,3}$/', $k)) {
-            $d[$k] = str_replace(array(';', "\n", "\r"), array('.', "\\n", "\\r"), trim($v));
+        foreach (array_reverse($_REQUEST) as $k => $v) {
+            if (preg_match('/^(form|comment)[0-9]{1,3}$/', $k)) {
+                $d[$k] = str_replace(array(';', "\n", "\r"), array('.', "\\n", "\\r"), trim($v));
+            }
         }
+
+        $d['dur0'] = isset($_REQUEST['dur0']) ? (int)$_REQUEST['dur0'] : 0;
+        $d['dur1'] = isset($_REQUEST['dur1']) ? (int)$_REQUEST['dur1'] : 0;
+        $d['dur2'] = isset($_REQUEST['dur2']) ? (int)$_REQUEST['dur2'] : 0;
+        $d['dur3'] = isset($_REQUEST['dur3']) ? (int)$_REQUEST['dur3'] : 0;
+        $d['dur4'] = isset($_REQUEST['dur4']) ? (int)$_REQUEST['dur4'] : 0;
+        $d['dur5'] = isset($_REQUEST['dur5']) ? (int)$_REQUEST['dur5'] : 0;
+        $d['datetime'] = date('Y-m-d H:i:s');
     }
 
-    $d['dur0'] = isset($_REQUEST['dur0']) ? (int)$_REQUEST['dur0'] : 0;
-    $d['dur1'] = isset($_REQUEST['dur1']) ? (int)$_REQUEST['dur1'] : 0;
-    $d['dur2'] = isset($_REQUEST['dur2']) ? (int)$_REQUEST['dur2'] : 0;
-    $d['dur3'] = isset($_REQUEST['dur3']) ? (int)$_REQUEST['dur3'] : 0;
-    $d['dur4'] = isset($_REQUEST['dur4']) ? (int)$_REQUEST['dur4'] : 0;
-    $d['dur5'] = isset($_REQUEST['dur5']) ? (int)$_REQUEST['dur5'] : 0;
-    $d['datetime'] = date('Y-m-d H:i:s');
 
     $status = STATUS_EXPORT_FAILED;
 
