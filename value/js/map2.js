@@ -156,12 +156,11 @@ var customLayer = L.geoJson(null, {
 
         if (feature.properties["latitude"] === 53.68) {
             popup += '<div class="well">No postcode was entered for this record so this is not the true location of this persons response.</div>';
-            console.log(latlng);
         }
 
-        if (feature.properties["form3"]) {
+        if (feature.properties["council"]) {
             var district;
-            var LA = (feature.properties["form3"]);
+            var LA = (feature.properties["council"]);
 
             // different coloured icons for each district
             // also puts district name in popup
