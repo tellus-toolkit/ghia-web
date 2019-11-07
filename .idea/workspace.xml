@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="08924dda-c242-485d-8acf-b4c899821e4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/extract.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/extract.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/raster.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/raster.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/value/data/GHIA_1_0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/value/data/GHIA_1_0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/value/settings/language.xml" beforeDir="false" afterPath="$PROJECT_DIR$/value/settings/language.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/value/templates/modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/value/templates/modal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/value/value-map.html" beforeDir="false" afterPath="$PROJECT_DIR$/value/value-map.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,6 +147,8 @@
       <workItem from="1572188084221" duration="17556000" />
       <workItem from="1572206225322" duration="2380000" />
       <workItem from="1572258971723" duration="12352000" />
+      <workItem from="1572638805617" duration="203000" />
+      <workItem from="1572644561629" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>
