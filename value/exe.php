@@ -7,6 +7,9 @@
  * // @author        Christian Hackert <www.hackert.biz/flashq>
  * // @version        FlashQ version: 1.0
  * // ===================================================
+ * //
+ * // Additional geocoding by Richard Kingston
+ * //
  */
 
 // default email address (optional)
@@ -85,11 +88,11 @@ if ($do == 'login') {
     $geocode = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=' . $cleanAddr . '&sensor=false&key=AIzaSyCr4Rjfb4CVaN6pCnYVwuBi2EbdoV5UO7I');
     $output = json_decode($geocode);
     // if postcode is valid get lat lng
-    //if ($geocode['status'] == "OK") {
     if ($geocode['status'] == 'OK') {
         $d['lat'] = $output->results[0]->geometry->location->lat;
         $d['lng'] = $output->results[0]->geometry->location->lng;
-    } else if ($geocode['status'] == 'ZERO_RESULTS' || 'INVALID_REQUEST') {
+    }  // if postcode is invalid locate it in NW corner of map
+    if ($geocode['status'] == 'ZERO_RESULTS' || 'INVALID_REQUEST') {
         $d['lat'] = 53.68;
         $d['lng'] = -2.72;
     }
