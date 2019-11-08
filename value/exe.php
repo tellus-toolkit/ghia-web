@@ -92,7 +92,7 @@ if ($do == 'login') {
         $d['lat'] = $output->results[0]->geometry->location->lat;
         $d['lng'] = $output->results[0]->geometry->location->lng;
     }  // if postcode is invalid locate it in NW corner of map
-    if ($geocode['status'] == 'ZERO_RESULTS' || 'INVALID_REQUEST') {
+    else if ($geocode['status'] == 'ZERO_RESULTS' || 'INVALID_REQUEST') {
         $d['lat'] = 53.68;
         $d['lng'] = -2.72;
     }
