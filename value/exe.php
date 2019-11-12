@@ -85,46 +85,23 @@ if ($do == 'login') {
     ///// convert postcode to lat lng
     $address = isset($_REQUEST['form2']) ? (string)$_REQUEST['form2'] : 0;
     $cleanAddr = str_replace(' ', '+', $address);
+    $geocode_url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $cleanAddr . '&sensor=false&key=AIzaSyCr4Rjfb4CVaN6pCnYVwuBi2EbdoV5UO7I';
+    $geocode_json = file_get_contents($geocode_url);
+    $geocode = json_decode($geocode_json);
 
-    $opts = array(
-      'http'=>array(
-        'method'=>"GET",
-        'header'=>"Accept-language: en\r\n"
-      )
-    );
+    // Get the status of the returned results.
+    $status = $geocode->status;
 
-    $context = stream_context_create($opts);
-
-    $geocode = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=' . $cleanAddr . '&sensor=false&key=AIzaSyCr4Rjfb4CVaN6pCnYVwuBi2EbdoV5UO7I', false, $context);
-
-    $output = json_decode($geocode);
-    // if postcode is valid get lat lng
-
-    $d['lat'] = $geocode->results[0]->geometry->location->lat;
-    $d['lng'] = $geocode->results[0]->geometry->location->lng;
-
-//    try {
-//        $d['lat'] = $geocode->results[0]->geometry->location->lat;
-//        $d['lng'] = $geocode->results[0]->geometry->location->lng;
-//    }
-//    catch (Exception $e) {
-//        $d['lat'] = $e->getMessage();
-//        $d['lng'] = -2.72;
-//    }
-
-//    finally {
-//        $d['lat'] = 53.68;
-//        $d['lng'] = -2.72;
-//    }
-
-//    if ($output['status'] == 'OK') {
-//        $d['lat'] = $output->results[0]->geometry->location->lat;
-//        $d['lng'] = $output->results[0]->geometry->location->lng;
-//    }  // if postcode is invalid locate it in NW corner of map
-//    else if ($output['status'] == 'ZERO_RESULTS' || 'INVALID_REQUEST') {
-//        $d['lat'] = 53.68;
-//        $d['lng'] = -2.72;
-//    }
+    if ($status == 'OK') {
+        // Postcode is valid and results have been returned.
+        $d['lat'] = $geocode->results[0]->geometry->location->lat;
+        $d['lng'] = $geocode->results[0]->geometry->location->lng;
+    }
+    else if ($status == 'ZERO_RESULTS' || 'INVALID_REQUEST') {
+        // Postcode is invalid locate it in NW corner of map.
+        $d['lat'] = 53.68;
+        $d['lng'] = -2.72;
+    }
 
     //$d['sid'] = null;
     $d['uid'] = isset($_REQUEST['uid']) ? str_replace(array(';', '"', '\''), NULL, trim($_REQUEST['uid'])) : null;

@@ -4,6 +4,7 @@
     <list default="true" id="08924dda-c242-485d-8acf-b4c899821e4b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/value/exe.php" beforeDir="false" afterPath="$PROJECT_DIR$/value/exe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/value/exe_old.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -162,6 +163,7 @@
       <workItem from="1573493633552" duration="3000" />
       <workItem from="1573497025023" duration="1407000" />
       <workItem from="1573504206291" duration="254000" />
+      <workItem from="1573572345903" duration="1166000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>
