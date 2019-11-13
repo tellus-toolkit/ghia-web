@@ -320,9 +320,10 @@
                         <h6><span class="font-weight-bold">Step 1: </span>Choose how you would like to select your study area</h6>
                       </div>
 
-                      <div class="btn-group btn-group-toggle d-flex flex-column flex-sm-row">
+<!--                      <div class="btn-group btn-group-toggle d-flex flex-column flex-sm-row">-->
+                      <div class="btn-group btn-group-toggle d-flex flex-sm-row">
 
-                        <button type="button" class="btn btn-primary m-1"
+                        <button type="button" class="btn btn-primary padding-small-below-sm m-1"
                                 v-bind:class="[states.point.isCurrent ? 'active' : '']"
                                 v-on:click="setCurrentState('point')">
                           <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
@@ -336,7 +337,7 @@
                           </span>
                         </button>
 
-                        <button type="button" class="btn btn-primary m-1"
+                        <button type="button" class="btn btn-primary padding-small-below-sm m-1"
                                 v-bind:class="[states.polygon.isCurrent ? 'active' : '']"
                                 v-on:click="setCurrentState('polygon')">
                           <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
@@ -350,7 +351,7 @@
                           </span>
                         </button>
 
-                        <button type="button" class="btn btn-primary m-1"
+                        <button type="button" class="btn btn-primary padding-small-below-sm m-1"
                                 v-bind:class="[states.lsoa.isCurrent ? 'active' : '']"
                                 v-on:click="setCurrentState('lsoa')">
                           <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
@@ -363,7 +364,7 @@
                           </span>
                         </button>
 
-                        <button type="button" class="btn btn-primary m-1"
+                        <button type="button" class="btn btn-primary padding-small-below-sm m-1"
                                 v-bind:class="[states.wards.isCurrent ? 'active' : '']"
                                 v-on:click="setCurrentState('wards')">
                           <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
