@@ -20,14 +20,15 @@
 
   <!-- Stylesheets -->
   <!-- Bootstrap core | Material Design Bootstrap CSS | Font-Awesome |
-       Leaflet | Leaflet Sidebar | Leaflet.pm | Chart.js -->
+       Leaflet | Leaflet Sidebar | Leaflet.pm | bruno Leaflet.Control.Fullscreen | Chart.js -->
   <link rel="stylesheet" type="text/css" href="../libs/mdb/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../libs/mdb/css/mdb.min.css">
   <link rel="stylesheet" type="text/css" href="../libs/fontawesome-free-5.9.0-web/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="../libs/leaflet-1.5.1/leaflet.css">
-  <link rel="stylesheet" type="text/css" href="../libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.css">
-  <!--  <link rel="stylesheet" type="text/css" href="../libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.min.css">-->
+<!--  <link rel="stylesheet" type="text/css" href="../libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.css">-->
+  <link rel="stylesheet" type="text/css" href="../libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.min.css">
   <link rel="stylesheet" type="text/css" href="../libs/leaflet-plugins/leaflet-pm-2.1.0/leaflet.pm.css">
+  <link rel="stylesheet" type="text/css" href="../libs/leaflet-plugins/brunob-leaflet.fullscreen-1.6.0/Control.FullScreen.css">
   <link rel="stylesheet" type="text/css" href="../libs/chart-js-2.8.0/Chart.css">
   <!--  <link rel="stylesheet" type="text/css" href="../libs/chart-js-2.8.0/Chart.min.css">-->
 
@@ -263,7 +264,7 @@
 
   <!-- Component: Sidebar -->
   <div>
-    <div id="sidebar" class="sidebar sidebar-right leaflet-touch">
+    <div id="sidebar" class="sidebar collapsed sidebar-right leaflet-touch">
 
       <!-- Component: Sidebar Tabs -->
       <div id="sidebarTabsVM" class="sidebar-tabs">
@@ -319,48 +320,61 @@
                         <h6><span class="font-weight-bold">Step 1: </span>Choose how you would like to select your study area</h6>
                       </div>
 
+                      <div class="btn-group btn-group-toggle d-flex flex-column flex-sm-row">
 
-                      <div>
+                        <button type="button" class="btn btn-primary m-1"
+                                v-bind:class="[states.point.isCurrent ? 'active' : '']"
+                                v-on:click="setCurrentState('point')">
+                          <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
+                             v-bind:class="[states.point.icon]">
+                          </i>
+                          <span v-text="states.point.buttonText"
+                                class="ml-xs-1 mr-xs-1 font-size-8 invisible-above-sm">
+                          </span>
+                          <span v-text="states.point.buttonText"
+                                class="ml-xs-1 mr-xs-1 invisible-below-sm">
+                          </span>
+                        </button>
 
-                        <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row">
+                        <button type="button" class="btn btn-primary m-1"
+                                v-bind:class="[states.polygon.isCurrent ? 'active' : '']"
+                                v-on:click="setCurrentState('polygon')">
+                          <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
+                             v-bind:class="[states.polygon.icon]">
+                          </i>
+                          <span v-text="states.polygon.buttonText"
+                                class="ml-xs-1 mr-xs-1 font-size-8 invisible-above-sm">
+                          </span>
+                          <span v-text="states.polygon.buttonText"
+                                class="ml-xs-1 mr-xs-1 invisible-below-sm">
+                          </span>
+                        </button>
 
-                          <button type="button" class="btn btn-primary m-1"
-                                  v-bind:class="[states.point.isCurrent ? 'active' : '']"
-                                  v-on:click="setCurrentState('point')">
-                            <i class="amber-text mr-2"
-                               v-bind:class="[states.point.icon]">
-                            </i>
-                            <span v-text="states.point.buttonText"></span>
-                          </button>
+                        <button type="button" class="btn btn-primary m-1"
+                                v-bind:class="[states.lsoa.isCurrent ? 'active' : '']"
+                                v-on:click="setCurrentState('lsoa')">
+                          <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
+                             v-bind:class="[states.lsoa.icon]">
+                          </i>
+                          <span v-text="states.lsoa.buttonText"
+                                class="ml-xs-1 mr-xs-1 font-size-8 invisible-above-sm"></span>
+                          <span v-text="states.lsoa.buttonText"
+                                class="ml-xs-1 mr-xs-1 invisible-below-sm">
+                          </span>
+                        </button>
 
-                          <button type="button" class="btn btn-primary m-1"
-                                  v-bind:class="[states.polygon.isCurrent ? 'active' : '']"
-                                  v-on:click="setCurrentState('polygon')">
-                            <i class="amber-text mr-2"
-                               v-bind:class="[states.polygon.icon]">
-                            </i>
-                            <span v-text="states.polygon.buttonText"></span>
-                          </button>
-
-                          <button type="button" class="btn btn-primary m-1"
-                                  v-bind:class="[states.lsoa.isCurrent ? 'active' : '']"
-                                  v-on:click="setCurrentState('lsoa')">
-                            <i class="amber-text mr-2"
-                               v-bind:class="[states.lsoa.icon]">
-                            </i>
-                            <span v-text="states.lsoa.buttonText"></span>
-                          </button>
-
-                          <button type="button" class="btn btn-primary m-1"
-                                  v-bind:class="[states.wards.isCurrent ? 'active' : '']"
-                                  v-on:click="setCurrentState('wards')">
-                            <i class="amber-text mr-2"
-                               v-bind:class="[states.wards.icon]">
-                            </i>
-                            <span v-text="states.wards.buttonText"></span>
-                          </button>
-
-                        </div>
+                        <button type="button" class="btn btn-primary m-1"
+                                v-bind:class="[states.wards.isCurrent ? 'active' : '']"
+                                v-on:click="setCurrentState('wards')">
+                          <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
+                             v-bind:class="[states.wards.icon]">
+                          </i>
+                          <span v-text="states.wards.buttonText"
+                                class="ml-xs-1 mr-xs-1 font-size-8 invisible-above-sm"></span>
+                          <span v-text="states.wards.buttonText"
+                                class="ml-xs-1 mr-xs-1 invisible-below-sm">
+                          </span>
+                        </button>
 
                       </div>
 
@@ -428,7 +442,7 @@
 
                       <div id="diagram-card" class="card card-body">
 
-                        <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row mb-2">
+                        <div class="btn-group btn-group-toggle mb-2">
                           <a class="btn-floating btn-sm btn-primary mr-1" data-toggle="tooltip"
                              v-bind:class="[diagrams.doughnut.isCurrent ? 'active' : '']"
                              v-bind:title="[diagrams.doughnut.tooltip]"
@@ -555,10 +569,12 @@
 <script type="text/javascript" src="../libs/leaflet-1.5.1/leaflet-src.js"></script>
 <!--<script type="text/javascript" src="../libs/leaflet-plugins/leaflet-providers-1.1.17/leaflet-providers.js"></script>-->
 <script type="text/javascript" src="../libs/leaflet-plugins/leaflet-providers-2018-04-11/leaflet-providers.js"></script>
-<script type="text/javascript" src="../libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.js"></script>
-<!--<script type="text/javascript" src="../libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.min.js"></script>-->
+<!--<script type="text/javascript" src="../libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.js"></script>-->
+<script type="text/javascript" src="../libs/leaflet-plugins/sidebar-v2-0.4.0/leaflet-sidebar.min.js"></script>
 <!--<script type="text/javascript" src="../libs/leaflet-plugins/leaflet-pouch/leaflet.pouch.js"></script>-->
+<script type="text/javascript" src="../libs/leaflet-plugins/brunob-leaflet.fullscreen-1.6.0/Control.FullScreen.js"></script>
 <script type="text/javascript" src="../libs/leaflet-plugins/leaflet-editable-1.2.0/leaflet-editable.js"></script>
+
 
 <script type="text/javascript" src="../libs/chart-js-2.8.0/Chart.js"></script>
 <!--<script type="text/javascript" src="../libs/chart-js-2.8.0/Chart.min.js"></script>-->

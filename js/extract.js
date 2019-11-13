@@ -2562,6 +2562,13 @@ let Spatial = {
       minZoom: Spatial.mapOptions.minZoom,
       maxZoom: Spatial.mapOptions.maxZoom,
       doubleClickZoom: false,
+      fullscreenControl: true,
+      fullscreenControlOptions: {
+        position: 'topleft',
+        // content: '<i class="material-icons mt-1">fullscreen</i>',
+        content: '<i class="fas fa-expand fa-2x" style="margin: 3px 0 0 0;"></i>',
+        forceSeparateButton: true
+      },
       editable: true
     });
 
