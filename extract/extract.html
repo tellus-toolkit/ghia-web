@@ -288,7 +288,7 @@
           <div class="pane-container h-100" >
 
             <!-- Component: GHIA Dashboard -->
-            <div id="ghia-dashboard" class="h-100">
+            <div id="ghia-dashboard" class="h-100 ver-scrollbars">
               <div class="p-0 h-100">
                 <div class="d-flex align-content-stretch flex-column h-100">
 
@@ -406,24 +406,40 @@
                       </h6>
                     </div>
 
-                    <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row">
+                    <div class="btn-group btn-group-toggle d-flex flex-md-row">
 
-                      <button type="button" class="btn btn-primary m-1"
+                      <button type="button" class="btn btn-primary padding-small-below-sm m-1"
                               v-bind:class="[methods.diagram.isCurrent ? 'active' : '']"
                               v-on:click="setCurrentMethod('diagram')">
-                        <i class="amber-text mr-2"
+                        <i class="amber-text fa-sm ml-1 mr-1 invisible-above-sm"
                            v-bind:class="[methods.diagram.icon]">
                         </i>
-                        <span v-text="methods.diagram.buttonText"></span>
+                        <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
+                           v-bind:class="[methods.diagram.icon]">
+                        </i>
+                        <span v-text="methods.diagram.buttonText"
+                              class="ml-xs-1 mr-xs-1 font-size-8 invisible-above-sm">
+                        </span>
+                        <span v-text="methods.diagram.buttonText"
+                              class="ml-xs-1 mr-xs-1 invisible-below-sm">
+                        </span>
                       </button>
 
-                      <button type="button" class="btn btn-primary m-1"
+                      <button type="button" class="btn btn-primary padding-small-below-sm m-1"
                               v-bind:class="[methods.report.isCurrent ? 'active' : '']"
                               v-on:click="setCurrentMethod('report')">
-                        <i class="amber-text mr-2"
+                        <i class="amber-text fa-sm ml-1 mr-1 invisible-above-sm"
                            v-bind:class="[methods.report.icon]">
                         </i>
-                        <span v-text="methods.report.buttonText"></span>
+                        <i class="amber-text fa-lg ml-1 mr-1 invisible-below-sm"
+                           v-bind:class="[methods.report.icon]">
+                        </i>
+                        <span v-text="methods.report.buttonText"
+                              class="ml-xs-1 mr-xs-1 font-size-8 invisible-above-sm">
+                        </span>
+                        <span v-text="methods.report.buttonText"
+                              class="ml-xs-1 mr-xs-1 invisible-below-sm">
+                        </span>
                       </button>
 
                     </div>
