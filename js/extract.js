@@ -2759,6 +2759,7 @@ let Diagrams = {
 
           index = this.data.labels.indexOf(form);
           this.data.datasets[1].data[index] += lookup[key].count;
+          Raster.authorities.form.data.GM.cells[index] = lookup[key].count;
 
         }
       }
@@ -2766,7 +2767,9 @@ let Diagrams = {
       let data = this.data.datasets[1].data;
 
       for (let i = 0; i < data.length; i++) {
-        data[i] = ((data[i] / Raster.metadata.numberOfValues) * 100).toFixed(3);
+        let pc = (data[i] / Raster.metadata.numberOfValues) * 100;
+        data[i] = pc.toFixed(3);
+        Raster.authorities.form.data.GM.percentages[i] = pc;
       }
 
     },
