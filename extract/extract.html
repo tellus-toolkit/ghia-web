@@ -381,8 +381,14 @@
                       <div class="ghia-hor-sep"></div>
 
                       <div>
-                        <h6>
-                          <span class="font-weight-bold">Step 2: </span>Zoom into the map to find your area of interest.
+                        <h6 class="invisible-below-sm">
+                          <span class="font-weight-bold">Step 2: </span>
+                          Zoom into the map to find your area of interest.
+                        </h6>
+                        <h6 class="invisible-above-sm">
+                          <span class="font-weight-bold">Step 2: </span>
+                          Click the yellow bars button located on the upper right corner to close this panel
+                          and reveal the map. Zoom in to the map to find your area of interest.
                         </h6>
 
                         <p v-text="getHelpText()"></p>
@@ -504,12 +510,18 @@
                         <div class="mt-1">
                           <select class="browser-default custom-select custom-select-sm"
                                   v-model="selectedAuthority"
-                                  v-on:change="updateDiagram()">
+                                  v-on:change="updateView()">
                             <option v-for="authority in authorities"
                                     v-bind:value="authority.value">
                               {{ authority.name }}
                             </option>
                           </select>
+                        </div>
+
+                        <div class="mt-2" v-bind:class="[isCustomLegendCollapsed() ? 'collapse' : '']">
+                          <span class="font-smaller" v-text="getCustomLegendLabel1()"></span>
+                          <span class="font-smaller"> - </span>
+                          <span class="font-smaller" v-text="getCustomLegendLabel2()"></span>
                         </div>
 
                         <div id="diagram-container">

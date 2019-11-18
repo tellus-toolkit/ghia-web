@@ -4,7 +4,7 @@
 //  https://www.tellus-toolkit.com/
 //
 //  Name:            extract.js
-//  Original coding: Vasilis Vlastaras (@gisvlasta), 25/10/2019.
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 18/11/2019.
 //  Updated:
 // ================================================================================
 
@@ -2800,7 +2800,15 @@ let Diagrams = {
         data[i] = ((data[i] / Raster.data.count) * 100).toFixed(3);
       }
 
-      this.data.datasets[1].label = Raster.authorities // TODO: CONTINUE HERE !!!
+      let authority = diagramViewModel.selectedAuthority;
+
+      this.data.datasets[1].label = Raster.authorities.form.data[authority].label;
+
+      let authorityData = this.data.datasets[1].data;
+
+      for (let i = 0; i < authorityData.length; i++) {
+        authorityData[i] = Raster.authorities.form.data[authority].percentages[i].toFixed(3);
+      }
 
     }
 
@@ -2969,10 +2977,22 @@ let Diagrams = {
               labels: {
                 boxWidth: 20
               }
+            },
+            tooltips: {
+              callbacks: {
+                label: function(item, data) {
+                  return data.datasets[item.datasetIndex].label + ' - ' +
+                         Diagrams.form.data.labels[item.index] + ': ' +
+                         data.datasets[item.datasetIndex].data[item.index];
+                }
+              }
             }
           }
 
         };
+
+        diagramViewModel.diagrams.doughnut.customLegend.labels[0] = 'Outer Ring: Extracted Data';
+        diagramViewModel.diagrams.doughnut.customLegend.labels[1] = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
 
         $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
         let element = $('#diagram');
@@ -3027,10 +3047,22 @@ let Diagrams = {
               labels: {
                 boxWidth: 20
               }
+            },
+            tooltips: {
+              callbacks: {
+                label: function(item, data) {
+                  return data.datasets[item.datasetIndex].label + ' - ' +
+                    Diagrams.form.data.labels[item.index] + ': ' +
+                    data.datasets[item.datasetIndex].data[item.index];
+                }
+              }
             }
           }
 
         };
+
+        diagramViewModel.diagrams.pie.customLegend.labels[0] = 'Outer Ring: Extracted Data';
+        diagramViewModel.diagrams.pie.customLegend.labels[1] = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
 
         $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
         let element = $('#diagram');
@@ -3095,10 +3127,22 @@ let Diagrams = {
               labels: {
                 boxWidth: 20
               }
+            },
+            tooltips: {
+              callbacks: {
+                label: function(item, data) {
+                  return data.datasets[item.datasetIndex].label + ' - ' +
+                    Diagrams.form.data.labels[item.index] + ': ' +
+                    data.datasets[item.datasetIndex].data[item.index];
+                }
+              }
             }
           }
 
         };
+
+        diagramViewModel.diagrams.polarArea.customLegend.labels[0] = 'Coloured cohorts: Extracted Data';
+        diagramViewModel.diagrams.polarArea.customLegend.labels[1] = 'Blue cohorts: ' + Diagrams.form.data.datasets[1].label;
 
         $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
         let element = $('#diagram');
@@ -3272,7 +3316,7 @@ let Diagrams = {
   updateData: function() {
 
     Diagrams.form.updateData();
-    Diagrams.landscape.updateData();
+    //Diagrams.landscape.updateData(); // TODO: Deal with it in case the landscape aspect is needed to be showm.
 
   }
 
@@ -4001,10 +4045,6 @@ let diagramViewModel = new Vue({
       {
         value: Raster.authorities.names[10],
         name: 'Compare to: ' + Raster.authorities.fullNames[10]
-      },
-      {
-        value: Raster.authorities.names[11],
-        name: 'Compare to: ' + Raster.authorities.fullNames[11]
       }
     ],
 
@@ -4020,27 +4060,47 @@ let diagramViewModel = new Vue({
       doughnut: {
         isCurrent: true,
         icon: 'donut_large',
-        tooltip: 'Doughnut Diagram'
+        tooltip: 'Doughnut Diagram',
+        customLegend: {
+          isCollapsed: false,
+          labels: ['', '']
+        }
       },
       pie: {
         isCurrent: false,
         icon: 'pie_chart',
-        tooltip: 'Pie Diagram'
+        tooltip: 'Pie Diagram',
+        customLegend: {
+          isCollapsed: false,
+          labels: ['', '']
+        }
       },
       polarArea: {
         isCurrent: false,
         icon: 'filter_tilt_shift',
-        tooltip: 'Polar Area Diagram'
+        tooltip: 'Polar Area Diagram',
+        customLegend: {
+          isCollapsed: false,
+          labels: ['', '']
+        }
       },
       radar: {
         isCurrent: false,
         icon: 'control_camera',
-        tooltip: 'Radar Diagram'
+        tooltip: 'Radar Diagram',
+        customLegend: {
+          isCollapsed: true,
+          labels: ['', '']
+        }
       },
       bar: {
         isCurrent: false,
         icon: 'bar_chart',
-        tooltip: 'Bar Diagram'
+        tooltip: 'Bar Diagram',
+        customLegend: {
+          isCollapsed: true,
+          labels: ['', '']
+        }
       }
     },
 
@@ -4064,6 +4124,29 @@ let diagramViewModel = new Vue({
 
       return currentDiagram;
 
+    },
+
+    /**
+     * Gets whether the custom legend is collapsed or not.
+     */
+    isCustomLegendCollapsed: function() {
+
+      return this.diagrams[this.getCurrentDiagram()].customLegend.isCollapsed;
+
+    },
+
+    /**
+     * Gets the first label of the custom legend.
+     */
+    getCustomLegendLabel1: function() {
+      return this.diagrams[this.getCurrentDiagram()].customLegend.labels[0];
+    },
+
+    /**
+     * Gets the second label of the custom legend.
+     */
+    getCustomLegendLabel2: function() {
+      return this.diagrams[this.getCurrentDiagram()].customLegend.labels[1];
     },
 
     /**
@@ -4113,11 +4196,6 @@ let diagramViewModel = new Vue({
       // Update the diagram.
       Diagrams[this.getCurrentDiagram()].update();
 
-    },
-
-
-    updateDiagram() {
-      alert('Update Diagram');
     }
 
   }
