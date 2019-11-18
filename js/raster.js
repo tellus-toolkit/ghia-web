@@ -482,14 +482,17 @@ var Raster = {
     }
   },
 
+  /**
+   * The data associated with authorities.
+   */
   authorities: {
     names: ['GM', 'Bolton', 'Bury', 'Manchester', 'Oldham', 'Rochdale', 'Salford', 'Stockport', 'Tameside', 'Trafford', 'Wigan'],
     fullNames: ['Greater Manchester', 'Bolton', 'Bury', 'Manchester', 'Oldham', 'Rochdale', 'Salford', 'Stockport', 'Tameside', 'Trafford', 'Wigan'],
-    labels: ['GM', 'Bolton', 'Bury', 'Manchester', 'Oldham', 'Rochdale', 'Salford', 'Stockport', 'Tameside', 'Trafford', 'Wigan'],
     form: {
       labels: ['Built', 'Water', 'Grasses', 'Forbs and shrubs', 'Tree Canopy'],
       data: {
         GM: {
+          label: 'GM Average',
           cells: [0, 0, 0, 0, 0],
           percentages: [0, 0, 0, 0, 0]
         },

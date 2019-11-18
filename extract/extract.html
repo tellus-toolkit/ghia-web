@@ -499,20 +499,18 @@
                                v-text="diagrams.bar.icon">
                             </i>
                           </a>
-
-                          <div class="float-right">
-                            <select class="browser-default custom-select custom-select-sm">
-                              <option selected>Greater Manchester</option>
-                              <option value="1">Bolton</option>
-                              <option value="2">Bury</option>
-                              <option value="3">Manchester</option>
-                              <option value="4">Oldham</option>
-                            </select>
-                          </div>
-
                         </div>
 
-
+                        <div class="mt-1">
+                          <select class="browser-default custom-select custom-select-sm"
+                                  v-model="selectedAuthority"
+                                  v-on:change="updateDiagram()">
+                            <option v-for="authority in authorities"
+                                    v-bind:value="authority.value">
+                              {{ authority.name }}
+                            </option>
+                          </select>
+                        </div>
 
                         <div id="diagram-container">
 

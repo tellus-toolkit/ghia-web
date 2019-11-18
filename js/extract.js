@@ -2715,7 +2715,7 @@ let Diagrams = {
           /**
            * The label of the Greater Manchester dataset.
            */
-          label: 'GM Average',
+          label: '',
 
           /**
            * The actual Greater Manchester data.
@@ -2800,6 +2800,8 @@ let Diagrams = {
         data[i] = ((data[i] / Raster.data.count) * 100).toFixed(3);
       }
 
+      this.data.datasets[1].label = Raster.authorities // TODO: CONTINUE HERE !!!
+
     }
 
   },
@@ -2846,7 +2848,7 @@ let Diagrams = {
           /**
            * The label of the Greater Manchester dataset.
            */
-          label: 'GM Data',
+          label: '',
 
           /**
            * The actual Greater Manchester data.
@@ -3953,6 +3955,65 @@ let diagramViewModel = new Vue({
   data: {
 
     /**
+     * The list of authorities in Greater Manchester.
+     */
+    authorities: [
+      {
+        value: Raster.authorities.names[0],
+        name: 'Compare to: ' + Raster.authorities.fullNames[0]
+      },
+      {
+        value: Raster.authorities.names[1],
+        name: 'Compare to: ' + Raster.authorities.fullNames[1]
+      },
+      {
+        value: Raster.authorities.names[2],
+        name: 'Compare to: ' + Raster.authorities.fullNames[2]
+      },
+      {
+        value: Raster.authorities.names[3],
+        name: 'Compare to: ' + Raster.authorities.fullNames[3]
+      },
+      {
+        value: Raster.authorities.names[4],
+        name: 'Compare to: ' + Raster.authorities.fullNames[4]
+      },
+      {
+        value: Raster.authorities.names[5],
+        name: 'Compare to: ' + Raster.authorities.fullNames[5]
+      },
+      {
+        value: Raster.authorities.names[6],
+        name: 'Compare to: ' + Raster.authorities.fullNames[6]
+      },
+      {
+        value: Raster.authorities.names[7],
+        name: 'Compare to: ' + Raster.authorities.fullNames[7]
+      },
+      {
+        value: Raster.authorities.names[8],
+        name: 'Compare to: ' + Raster.authorities.fullNames[8]
+      },
+      {
+        value: Raster.authorities.names[9],
+        name: 'Compare to: ' + Raster.authorities.fullNames[9]
+      },
+      {
+        value: Raster.authorities.names[10],
+        name: 'Compare to: ' + Raster.authorities.fullNames[10]
+      },
+      {
+        value: Raster.authorities.names[11],
+        name: 'Compare to: ' + Raster.authorities.fullNames[11]
+      }
+    ],
+
+    /**
+     * The selected authority.
+     */
+    selectedAuthority: 'GM',
+
+    /**
      * The possible diagrams.
      */
     diagrams: {
@@ -4052,6 +4113,11 @@ let diagramViewModel = new Vue({
       // Update the diagram.
       Diagrams[this.getCurrentDiagram()].update();
 
+    },
+
+
+    updateDiagram() {
+      alert('Update Diagram');
     }
 
   }
