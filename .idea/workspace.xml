@@ -2,39 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08924dda-c242-485d-8acf-b4c899821e4b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extract/extract.html" beforeDir="false" afterPath="$PROJECT_DIR$/extract/extract.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_LSOA_Full.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_LSOA_Generalised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_LSOA_SuperGeneralised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_Wards_Full.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_Wards_Generalised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_Wards_SuperGeneralised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_LSOA_Full.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_LSOA_Generalised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_LSOA_SuperGeneralised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_Wards_Full.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_Wards_Generalised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_Wards_SuperGeneralised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_LSOA_Full.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_LSOA_Generalised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_LSOA_SuperGeneralised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_Wards_Full.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_Wards_Generalised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_Wards_SuperGeneralised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_LSOA_Full.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_LSOA_Generalised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_LSOA_SuperGeneralised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_Wards_Full.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_Wards_Generalised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_Wards_SuperGeneralised.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/gm-lsoa-full.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/gm-lsoa-generalised.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/gm-lsoa-super-generalised.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-full.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-generalised.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-super-generalised.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_Wards_2018_Full.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision04/GM_Wards_2018_Full.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_Wards_2018_Generalised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision04/GM_Wards_2018_Generalised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_Wards_2018_SuperGeneralised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision04/GM_Wards_2018_SuperGeneralised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_Wards_2019_Full.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision04/GM_Wards_2019_Full.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_Wards_2019_Generalised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision04/GM_Wards_2019_Generalised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision04/GM_Wards_2019_SuperGeneralised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision04/GM_Wards_2019_SuperGeneralised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_Wards_2018_Full.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision06/GM_Wards_2018_Full.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_Wards_2018_Generalised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision06/GM_Wards_2018_Generalised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_Wards_2018_SuperGeneralised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision06/GM_Wards_2018_SuperGeneralised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_Wards_2019_Full.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision06/GM_Wards_2019_Full.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_Wards_2019_Generalised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision06/GM_Wards_2019_Generalised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision06/GM_Wards_2019_SuperGeneralised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision06/GM_Wards_2019_SuperGeneralised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_Wards_2018_Full.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision09/GM_Wards_2018_Full.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_Wards_2018_Generalised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision09/GM_Wards_2018_Generalised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_Wards_2018_SuperGeneralised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision09/GM_Wards_2018_SuperGeneralised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_Wards_2019_Full.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision09/GM_Wards_2019_Full.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_Wards_2019_Generalised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision09/GM_Wards_2019_Generalised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision09/GM_Wards_2019_SuperGeneralised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision09/GM_Wards_2019_SuperGeneralised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_Wards_2018_Full.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision15/GM_Wards_2018_Full.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_Wards_2018_Generalised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision15/GM_Wards_2018_Generalised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_Wards_2018_SuperGeneralised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision15/GM_Wards_2018_SuperGeneralised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_Wards_2019_Full.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision15/GM_Wards_2019_Full.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_Wards_2019_Generalised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision15/GM_Wards_2019_Generalised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Precision15/GM_Wards_2019_SuperGeneralised.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/js/Precision15/GM_Wards_2019_SuperGeneralised.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-2011-full.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-wards-2011-full.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-2011-generalised.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-wards-2011-generalised.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-2011-super-generalised.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-wards-2011-super-generalised.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-2018-full.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-wards-2018-full.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-2018-generalised.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-wards-2018-generalised.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-2018-super-generalised.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-wards-2018-super-generalised.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-2019-full.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-wards-2019-full.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-2019-generalised.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-wards-2019-generalised.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/gm-wards-2019-super-generalised.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/gm-wards-2019-super-generalised.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/extract.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/extract.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -208,6 +209,8 @@
       <workItem from="1574120665074" duration="34000" />
       <workItem from="1574169437284" duration="1015000" />
       <workItem from="1574198450286" duration="1494000" />
+      <workItem from="1574285703019" duration="737000" />
+      <workItem from="1574286560712" duration="33000" />
     </task>
     <task id="LOCAL-00001" summary="more now">
       <created>1563329687444</created>

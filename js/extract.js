@@ -4,7 +4,7 @@
 //  https://www.tellus-toolkit.com/
 //
 //  Name:            extract.js
-//  Original coding: Vasilis Vlastaras (@gisvlasta), 19/11/2019.
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 20/11/2019.
 //  Updated:
 // ================================================================================
 
@@ -1438,7 +1438,7 @@ let MapLayers = {
         let ps = layer.feature.properties;
 
         //ps.lad11nm + '<br>' + ps.cmwd11nm
-        layer.bindTooltip(ps.wd19nm, {
+        layer.bindTooltip(ps.lad19nm + '<br>' + ps.wd19nm, {
           direction: 'top',
           offset: [0, -10],
           sticky: true
