@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 //
@@ -105,13 +105,27 @@
     <item id="step2Head">Step 2 of 3</item>
     <item id="step2Text">
         Re-read the cards from the {b}"AGREE"{/b} pile. Select the two statements you most agree with and place them on
-        right side of the score sheet below the "+2". You can scroll through the statements by using the scroll bar.
+        right side of the score sheet below the "+2" ('Agree Most'). You can scroll through the statements by using the
+        scroll bar.
         {br}{br}
-        Now read the cards in the "DISAGREE" pile again. Just like before, select the two statements you most disagree
-        with and place them on the left side of the score sheet below the "-2".{br}{br}Next, select the statements you
-        second most agree/disagree with and place them under "+1"/"-1". Follow this procedure for all cards in the
-        "AGREE" and "DISAGREE" pile.{br}{br}
-        Finally, read the "NEUTRAL" cards again and arrange them in the remaining open boxes of the score sheet.
+        Now read the cards in the {b}"DISAGREE"{/b} pile again. Just like before, select the two statements you most
+        disagree with and place them on the left side of the score sheet below the "-2" ('Agree Least').
+        {br}{br}
+        Next, return to the statements in your "AGREE" pile and select up to three of the next most agreeable
+        statements. Place them in the "+1" column (to the left of 'Agree Most'). If you have fewer than three AGREE
+        statements left, just leave some of the boxes blank.
+        {br}{br}
+        Return to the "DISAGREE" pile and select up to three of the next most disagreeable statements. Place them
+        in the "-1" column (to the right of "Agree Least"). If you have fewer than three "DISAGREE" statements left,
+        just leave some of the boxes blank.
+        {br}{br}
+        Finally, re-read the {b}"NEUTRAL"{/b} statements and any that still remain in the "AGREE" or "DISAGREE" piles.
+        Arrange the statements into the remaining open boxes of the score sheet according to how strongly you agree with
+        them. You may need to place some of your "AGREE" or "DISAGREE" statements into the column marked "0", or place
+        some of your "NEUTRAL" statements into the +1 or -1 columns to complete the sheet.
+        {br}{br}
+        You can move statements around until you are happy with the order of your choices. The order of statements
+        within the columns does not matter. When finished, click continue to progress.
     </item>
 
     <!-- step3: check sorting, only displayed if showStep3== true (see config-file; leave blank to skip popup)-->
