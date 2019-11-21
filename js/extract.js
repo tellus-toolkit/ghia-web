@@ -4,7 +4,7 @@
 //  https://www.tellus-toolkit.com/
 //
 //  Name:            extract.js
-//  Original coding: Vasilis Vlastaras (@gisvlasta), 20/11/2019.
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 21/11/2019.
 //  Updated:
 // ================================================================================
 
@@ -3002,11 +3002,11 @@ let Diagrams = {
         Diagrams.diagram.update();
       }
 
-      // diagramViewModel.diagrams.doughnut.customLegend.labels[0] = 'Outer Ring: Extracted Data';
-      // diagramViewModel.diagrams.doughnut.customLegend.labels[1] = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
+      // diagramViewModel.customLegendExtractedDataLabel = 'Outer Ring: Extracted Data';
+      // diagramViewModel.customLegendAuthorityDataLabel = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
 
-      diagramViewModel.customLegendExtractedDataLabel = 'Outer Ring: Extracted Data';
-      diagramViewModel.customLegendAuthorityDataLabel = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
+      $("#customLegendExtractedDataLabel").text('Outer Ring: Extracted Data');
+      $("#customLegendAuthorityDataLabel").text('Inner Ring: ' + Diagrams.form.data.datasets[1].label);
 
     }
 
@@ -3076,11 +3076,11 @@ let Diagrams = {
         Diagrams.diagram.update();
       }
 
-      // diagramViewModel.diagrams.pie.customLegend.labels[0] = 'Outer Ring: Extracted Data';
-      // diagramViewModel.diagrams.pie.customLegend.labels[1] = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
+      // diagramViewModel.customLegendExtractedDataLabel = 'Outer Ring: Extracted Data';
+      // diagramViewModel.customLegendAuthorityDataLabel = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
 
-      diagramViewModel.customLegendExtractedDataLabel = 'Outer Ring: Extracted Data';
-      diagramViewModel.customLegendAuthorityDataLabel = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
+      $("#customLegendExtractedDataLabel").text('Outer Ring: Extracted Data');
+      $("#customLegendAuthorityDataLabel").text('Inner Ring: ' + Diagrams.form.data.datasets[1].label);
 
     }
 
@@ -3160,11 +3160,11 @@ let Diagrams = {
         Diagrams.diagram.update();
       }
 
-      // diagramViewModel.diagrams.polarArea.customLegend.labels[0] = 'Coloured cohorts: Extracted Data';
-      // diagramViewModel.diagrams.polarArea.customLegend.labels[1] = 'Blue cohorts: ' + Diagrams.form.data.datasets[1].label;
+      // diagramViewModel.customLegendExtractedDataLabel = 'Coloured cohorts: Extracted Data';
+      // diagramViewModel.customLegendAuthorityDataLabel = 'Blue cohorts: ' + Diagrams.form.data.datasets[1].label;
 
-      diagramViewModel.customLegendExtractedDataLabel = 'Coloured cohorts: Extracted Data';
-      diagramViewModel.customLegendAuthorityDataLabel = 'Blue cohorts: ' + Diagrams.form.data.datasets[1].label;
+      $("#customLegendExtractedDataLabel").text('Coloured cohorts: Extracted Data');
+      $("#customLegendAuthorityDataLabel").text('Blue cohorts: ' + Diagrams.form.data.datasets[1].label);
 
     }
 
@@ -4190,15 +4190,6 @@ let diagramViewModel = new Vue({
       set: function(newValue) {
         return this.diagrams[this.currentDiagram].customLegend.labels[1] = newValue;
       }
-    }
-
-  },
-
-  watch: {
-
-    customLegendAuthorityDataLabel: function(newValue, oldValue) {
-      alert('watched');
-      Diagrams[diagram].update();
     }
 
   },

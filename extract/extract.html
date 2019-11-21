@@ -507,7 +507,6 @@
                           </a>
                         </div>
 
-                        <!--                                  "-->
                         <div class="mt-1">
                           <select class="browser-default custom-select custom-select-sm"
                                   v-model="selectedAuthority"
@@ -520,8 +519,10 @@
                         </div>
 
                         <div class="mt-2" v-bind:class="[isCustomLegendCollapsed ? 'collapse' : '']">
-                          <span class="font-smaller" v-text="customLegendExtractedDataLabel"></span>
-                          <span class="font-smaller" v-text="customLegendAuthorityDataLabel"></span>
+<!--                          <span class="font-smaller" v-text="customLegendExtractedDataLabel"></span>-->
+<!--                          <span class="font-smaller" v-text="customLegendAuthorityDataLabel"></span>-->
+                          <span id="customLegendExtractedDataLabel" class="font-smaller"></span>
+                          <span id="customLegendAuthorityDataLabel" class="font-smaller"></span>
                         </div>
 
                         <div id="diagram-container">
