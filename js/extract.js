@@ -2494,8 +2494,6 @@ let MapLayers = {
 
       }
 
-
-
       this.geoJSON.features[0].geometry = point;
       this.mapLayer.clearLayers();
       this.mapLayer.addData(this.geoJSON);
@@ -2716,7 +2714,7 @@ let Diagrams = {
           /**
            * The label of the Greater Manchester dataset.
            */
-          label: '',
+          label: 'GM Average',
 
           /**
            * The actual Greater Manchester data.
@@ -2857,7 +2855,7 @@ let Diagrams = {
           /**
            * The label of the Greater Manchester dataset.
            */
-          label: '',
+          label: 'GM Average',
 
           /**
            * The actual Greater Manchester data.
@@ -2992,9 +2990,6 @@ let Diagrams = {
 
         };
 
-        diagramViewModel.diagrams.doughnut.customLegend.labels[0] = 'Outer Ring: Extracted Data';
-        diagramViewModel.diagrams.doughnut.customLegend.labels[1] = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
-
         $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
         let element = $('#diagram');
 
@@ -3003,8 +2998,15 @@ let Diagrams = {
       }
       else {
         Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.data.datasets[1].label = Diagrams.form.data.datasets[1].label;
         Diagrams.diagram.update();
       }
+
+      // diagramViewModel.diagrams.doughnut.customLegend.labels[0] = 'Outer Ring: Extracted Data';
+      // diagramViewModel.diagrams.doughnut.customLegend.labels[1] = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
+
+      diagramViewModel.customLegendExtractedDataLabel = 'Outer Ring: Extracted Data';
+      diagramViewModel.customLegendAuthorityDataLabel = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
 
     }
 
@@ -3062,9 +3064,6 @@ let Diagrams = {
 
         };
 
-        diagramViewModel.diagrams.pie.customLegend.labels[0] = 'Outer Ring: Extracted Data';
-        diagramViewModel.diagrams.pie.customLegend.labels[1] = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
-
         $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
         let element = $('#diagram');
 
@@ -3073,8 +3072,15 @@ let Diagrams = {
       }
       else {
         Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.data.datasets[1].label = Diagrams.form.data.datasets[1].label;
         Diagrams.diagram.update();
       }
+
+      // diagramViewModel.diagrams.pie.customLegend.labels[0] = 'Outer Ring: Extracted Data';
+      // diagramViewModel.diagrams.pie.customLegend.labels[1] = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
+
+      diagramViewModel.customLegendExtractedDataLabel = 'Outer Ring: Extracted Data';
+      diagramViewModel.customLegendAuthorityDataLabel = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
 
     }
 
@@ -3142,9 +3148,6 @@ let Diagrams = {
 
         };
 
-        diagramViewModel.diagrams.polarArea.customLegend.labels[0] = 'Coloured cohorts: Extracted Data';
-        diagramViewModel.diagrams.polarArea.customLegend.labels[1] = 'Blue cohorts: ' + Diagrams.form.data.datasets[1].label;
-
         $('#diagram').replaceWith($('<canvas id="diagram"></canvas>'));
         let element = $('#diagram');
 
@@ -3153,8 +3156,15 @@ let Diagrams = {
       }
       else {
         Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.data.datasets[1].label = Diagrams.form.data.datasets[1].label;
         Diagrams.diagram.update();
       }
+
+      // diagramViewModel.diagrams.polarArea.customLegend.labels[0] = 'Coloured cohorts: Extracted Data';
+      // diagramViewModel.diagrams.polarArea.customLegend.labels[1] = 'Blue cohorts: ' + Diagrams.form.data.datasets[1].label;
+
+      diagramViewModel.customLegendExtractedDataLabel = 'Coloured cohorts: Extracted Data';
+      diagramViewModel.customLegendAuthorityDataLabel = 'Blue cohorts: ' + Diagrams.form.data.datasets[1].label;
 
     }
 
@@ -3227,6 +3237,7 @@ let Diagrams = {
       }
       else {
         Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.data.datasets[1].label = Diagrams.form.data.datasets[1].label;
         Diagrams.diagram.update();
       }
 
@@ -3289,6 +3300,7 @@ let Diagrams = {
       }
       else {
         Diagrams.diagram.data.datasets[0].data = Diagrams.form.data.datasets[0].data;
+        Diagrams.diagram.data.datasets[1].label = Diagrams.form.data.datasets[1].label;
         Diagrams.diagram.update();
       }
 
@@ -4106,11 +4118,25 @@ let diagramViewModel = new Vue({
     },
 
     /**
+     * Gets whether the view is visible or not.
+     */
+    isViewVisible() {
+      return displayResultsViewModel.methods.diagram.isCurrent;
+    }
+
+  },
+
+  /**
+   * The computed properties of the model of the view model.
+   */
+  computed: {
+
+    /**
      * Gets the current diagram.
      *
      * @returns {string} - A string with the diagram name.
      */
-    getCurrentDiagram: function() {
+    currentDiagram: function() {
 
       let currentDiagram = '';
 
@@ -4131,30 +4157,48 @@ let diagramViewModel = new Vue({
      * Gets whether the custom legend is collapsed or not.
      */
     isCustomLegendCollapsed: function() {
-
-      return this.diagrams[this.getCurrentDiagram()].customLegend.isCollapsed;
-
+      return this.diagrams[this.currentDiagram].customLegend.isCollapsed;
     },
 
     /**
-     * Gets the first label of the custom legend.
+     * Gets/Sets the label of the extracted data part of custom legend.
      */
-    getCustomLegendLabel1: function() {
-      return this.diagrams[this.getCurrentDiagram()].customLegend.labels[0];
+    customLegendExtractedDataLabel: {
+      get: function() {
+
+        let label = this.diagrams[this.currentDiagram].customLegend.labels[0];
+
+        if (label !== '') {
+          label += ' - ';
+        }
+
+        return label;
+
+      },
+      set: function(newValue) {
+        this.diagrams[this.currentDiagram].customLegend.labels[0] = newValue;
+      }
     },
 
     /**
-     * Gets the second label of the custom legend.
+     * Gets/Sets the label of the authority data part of custom legend.
      */
-    getCustomLegendLabel2: function() {
-      return this.diagrams[this.getCurrentDiagram()].customLegend.labels[1];
-    },
+    customLegendAuthorityDataLabel: {
+      get: function() {
+        return this.diagrams[this.currentDiagram].customLegend.labels[1];
+      },
+      set: function(newValue) {
+        return this.diagrams[this.currentDiagram].customLegend.labels[1] = newValue;
+      }
+    }
 
-    /**
-     * Gets whether the view is visible or not.
-     */
-    isViewVisible() {
-      return displayResultsViewModel.methods.diagram.isCurrent;
+  },
+
+  watch: {
+
+    customLegendAuthorityDataLabel: function(newValue, oldValue) {
+      alert('watched');
+      Diagrams[diagram].update();
     }
 
   },
@@ -4182,6 +4226,7 @@ let diagramViewModel = new Vue({
       }
 
       Diagrams[diagram].update();
+      // diagramViewModel.updateView();
 
     },
 
@@ -4195,7 +4240,7 @@ let diagramViewModel = new Vue({
       Diagrams.updateData();
 
       // Update the diagram.
-      Diagrams[this.getCurrentDiagram()].update();
+      Diagrams[this.currentDiagram].update();
 
     }
 

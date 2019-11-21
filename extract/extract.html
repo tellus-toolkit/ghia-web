@@ -507,10 +507,11 @@
                           </a>
                         </div>
 
+                        <!--                                  "-->
                         <div class="mt-1">
                           <select class="browser-default custom-select custom-select-sm"
                                   v-model="selectedAuthority"
-                                  v-on:change="updateView()">
+                                  v-on:change="updateView();">
                             <option v-for="authority in authorities"
                                     v-bind:value="authority.value">
                               {{ authority.name }}
@@ -518,10 +519,9 @@
                           </select>
                         </div>
 
-                        <div class="mt-2" v-bind:class="[isCustomLegendCollapsed() ? 'collapse' : '']">
-                          <span class="font-smaller" v-text="getCustomLegendLabel1()"></span>
-                          <span class="font-smaller"> - </span>
-                          <span class="font-smaller" v-text="getCustomLegendLabel2()"></span>
+                        <div class="mt-2" v-bind:class="[isCustomLegendCollapsed ? 'collapse' : '']">
+                          <span class="font-smaller" v-text="customLegendExtractedDataLabel"></span>
+                          <span class="font-smaller" v-text="customLegendAuthorityDataLabel"></span>
                         </div>
 
                         <div id="diagram-container">
@@ -638,12 +638,6 @@
 <!--<script type="text/javascript" src="../js/data/ghia-ilm-v-1-1-tiles1000.js"></script>-->
 
 <script type="text/javascript" src="../js/extract.js"></script>
-
-<!--<script>-->
-<!--$(document).ready(function () {-->
-<!--$('body').bootstrapMaterialDesign();-->
-<!--});-->
-<!--</script>-->
 
 </body>
 </html>
