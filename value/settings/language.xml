@@ -31,6 +31,10 @@
     <item id="btnAgreement">Agree</item>
     <item id="btnNeutral">Neutral</item>
     <item id="btnDisagreement">Disagree</item>
+    
+    <item id="btnLeast">Agree least</item>
+    <item id="btnMost">Agree most</item>
+    
     <item id="btnTransfer">Submit data</item>
     <item id="btnMail">Send via email</item>
     <item id="btnPrint">Print data</item>
