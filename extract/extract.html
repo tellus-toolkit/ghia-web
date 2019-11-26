@@ -66,92 +66,43 @@
 
 <div class="page-container">
 
-  <div>
-    <!-- Component: Radar Diagram -->
-    <!--<div id="radarContainerVM" class="radar-container-vm collapse">-->
-
-    <!--<div id="radar-diagram-card" class="card h-100">-->
-    <!--&lt;!&ndash;<div class="card-header">&ndash;&gt;-->
-    <!--&lt;!&ndash;Featured&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-    <!--&lt;!&ndash;col-12" style="position: relative;&ndash;&gt;-->
-    <!--<div id="radar-diagram-card-body" class="card-body h-100">-->
-
-    <!--&lt;!&ndash;<div id="radar-diagram-chart-container" class="radar-container" style="border: 1px solid #FB8C00;">&ndash;&gt;-->
-    <!--<div id="radar-diagram-chart-container" class="radar-container">-->
-    <!--&lt;!&ndash;style="border: 1px solid #000000;"&ndash;&gt;-->
-    <!--&lt;!&ndash;<canvas id="radar-diagram" style="border: 1px solid #000000;"></canvas>&ndash;&gt;-->
-    <!--<canvas id="radar-diagram"></canvas>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash;style="border: 1px solid #000000;"&ndash;&gt;-->
-    <!--&lt;!&ndash;<canvas id="radar-diagram-2"></canvas>&ndash;&gt;-->
-    <!--&lt;!&ndash;<canvas id="radar-diagram-2" style="border: 1px solid #000000;"></canvas>&ndash;&gt;-->
-    <!--&lt;!&ndash;<canvas id="radar-diagram-2" height="80" style="border: 1px solid #000000;"></canvas>&ndash;&gt;-->
-    <!--&lt;!&ndash;<div id="radar-diagram-2" style="height: 120px; width:120px; border: 1px solid #000000;"></div>&ndash;&gt;-->
-
-    <!--&lt;!&ndash;style="position: absolute; bottom: 20px; right: 20px;"&ndash;&gt;-->
-    <!--<div class="text-right pt-2">-->
-    <!--<button type="button" class="btn btn-danger btn-outline-danger"-->
-    <!--v-bind:class="[currentDomain === '' ? 'btn-raised' : '']"-->
-    <!--v-on:click="updateDiagram('')">-->
-    <!--All-->
-    <!--</button>-->
-    <!--<button class="btn btn-danger btn-outline-danger"-->
-    <!--v-bind:class="[currentDomain === 'Hazard' ? 'btn-raised' : '']"-->
-    <!--v-on:click="updateDiagram('Hazard')">-->
-    <!--Hazard-->
-    <!--</button>-->
-    <!--<button class="btn btn-danger btn-outline-danger"-->
-    <!--v-bind:class="[currentDomain === 'Exposure' ? 'btn-raised' : '']"-->
-    <!--v-on:click="updateDiagram('Exposure')">-->
-    <!--Exposure-->
-    <!--</button>-->
-    <!--<button class="btn btn-danger btn-outline-danger"-->
-    <!--v-bind:class="[currentDomain === 'Vulnerability - Sensitivity' ? 'btn-raised' : '']"-->
-    <!--v-on:click="updateDiagram('Vulnerability - Sensitivity')">-->
-    <!--Sensitivity-->
-    <!--</button>-->
-    <!--<button class="btn btn-danger btn-outline-danger"-->
-    <!--v-bind:class="[currentDomain === 'Vulnerability - Adaptive Capacity' ? 'btn-raised' : '']"-->
-    <!--v-on:click="updateDiagram('Vulnerability - Adaptive Capacity')">-->
-    <!--Adaptive Capacity-->
-    <!--</button>-->
-
-    <!--<button class="btn btn-primary btn-outline-primary"-->
-    <!--v-on:click="hide()">-->
-    <!--Close-->
-    <!--</button>-->
-    <!--</div>-->
-
-    <!--</div>-->
-    <!--&lt;!&ndash;<div class="card-footer text-right">&ndash;&gt;-->
-    <!--&lt;!&ndash;<a href="#" class="btn btn-primary"&ndash;&gt;-->
-    <!--&lt;!&ndash;v-on:click="hide()">&ndash;&gt;-->
-    <!--&lt;!&ndash;Close&ndash;&gt;-->
-    <!--&lt;!&ndash;</a>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-    <!--</div>-->
-
-    <!--</div>-->
+  <!-- Component: Popup -->
+  <div class="modal fade" id="popupVM" tabindex="-1" role="dialog" aria-labelledby="popup-title" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title w-100" id="popup-title" v-text="title"
+              v-bind:class="[isError ? 'text-danger' : '']">
+          </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="popup-message" v-html="htmlMessage"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal"
+                  v-bind:class="[isError ? 'btn-danger' : '']">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-
-
 
   <div class="map-container">
 
     <!-- Component: Spinner -->
-    <!--<div id="spinnerVM" class="spinner" v-show="isVisible">-->
-    <!--<div class="showbox">-->
-    <!--<div class="loader">-->
-    <!--<svg class="circular" viewBox="25 25 50 50">-->
-    <!--<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>-->
-    <!--</svg>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
+    <div id="spinnerVM" class="spinner" v-show="isVisible">
+<!--    <div id="spinnerVM" class="spinner"-->
+<!--         v-bind:class="[isVisible ? 'visible' : 'invisible'">-->
+      <div class="showbox">
+        <div class="loader">
+          <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>
+          </svg>
+        </div>
+      </div>
+    </div>
 
     <!-- Component: Map -->
     <div id="map" class="sidebar-map"></div>

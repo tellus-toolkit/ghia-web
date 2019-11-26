@@ -4,7 +4,7 @@
 //  https://www.tellus-toolkit.com/
 //
 //  Name:            extract.js
-//  Original coding: Vasilis Vlastaras (@gisvlasta), 21/11/2019.
+//  Original coding: Vasilis Vlastaras (@gisvlasta), 26/11/2019.
 //  Updated:
 // ================================================================================
 
@@ -517,9 +517,6 @@ let MapLayers = {
      */
     createLayer: function() {
 
-      // TODO: RESIN - Check next line.
-      // spinnerViewModel.isVisible = true;
-
       // Get the named basemap layer.
       let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
@@ -839,7 +836,6 @@ let MapLayers = {
      */
     createLayer: function() {
 
-      // TODO: RESIN - Check next line.
       // spinnerViewModel.isVisible = true;
 
       // Get the named basemap layer.
@@ -919,12 +915,16 @@ let MapLayers = {
         });
       });
 
+      //spinnerViewModel.isVisible = false;
+
     },
 
     /**
      * Renders the LSOA layer.
      */
     renderLayer: function() {
+
+      // spinnerViewModel.isVisible = true;
 
       // Get the current basemap. This is used to decide the symbology of the LSOA polygons.
       let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
@@ -937,6 +937,8 @@ let MapLayers = {
         });
 
       }
+
+      // spinnerViewModel.isVisible = false;
 
     },
 
@@ -1366,7 +1368,6 @@ let MapLayers = {
      */
     createLayer: function() {
 
-      // TODO: RESIN - Check next line.
       // spinnerViewModel.isVisible = true;
 
       // Get the named basemap layer.
@@ -1444,6 +1445,8 @@ let MapLayers = {
           sticky: true
         });
       });
+
+      // spinnerViewModel.isVisible = false;
 
     },
 
@@ -2561,13 +2564,13 @@ let Spatial = {
       minZoom: Spatial.mapOptions.minZoom,
       maxZoom: Spatial.mapOptions.maxZoom,
       doubleClickZoom: false,
-      fullscreenControl: true,
-      fullscreenControlOptions: {
-        position: 'topleft',
-        // content: '<i class="material-icons mt-1">fullscreen</i>',
-        content: '<i class="fas fa-expand fa-2x" style="margin: 3px 0 0 0;"></i>',
-        forceSeparateButton: true
-      },
+      // fullscreenControl: true,
+      // fullscreenControlOptions: {
+      //   position: 'topleft',
+      //   // content: '<i class="material-icons mt-1">fullscreen</i>',
+      //   content: '<i class="fas fa-expand fa-2x" style="margin: 3px 0 0 0;"></i>',
+      //   forceSeparateButton: true
+      // },
       editable: true
     });
 
@@ -3005,7 +3008,7 @@ let Diagrams = {
       // diagramViewModel.customLegendExtractedDataLabel = 'Outer Ring: Extracted Data';
       // diagramViewModel.customLegendAuthorityDataLabel = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
 
-      $("#customLegendExtractedDataLabel").text('Outer Ring: Extracted Data');
+      $("#customLegendExtractedDataLabel").text('Outer Ring: Extracted Data - ');
       $("#customLegendAuthorityDataLabel").text('Inner Ring: ' + Diagrams.form.data.datasets[1].label);
 
     }
@@ -3079,7 +3082,7 @@ let Diagrams = {
       // diagramViewModel.customLegendExtractedDataLabel = 'Outer Ring: Extracted Data';
       // diagramViewModel.customLegendAuthorityDataLabel = 'Inner Ring: ' + Diagrams.form.data.datasets[1].label;
 
-      $("#customLegendExtractedDataLabel").text('Outer Ring: Extracted Data');
+      $("#customLegendExtractedDataLabel").text('Outer Ring: Extracted Data - ');
       $("#customLegendAuthorityDataLabel").text('Inner Ring: ' + Diagrams.form.data.datasets[1].label);
 
     }
@@ -3163,7 +3166,7 @@ let Diagrams = {
       // diagramViewModel.customLegendExtractedDataLabel = 'Coloured cohorts: Extracted Data';
       // diagramViewModel.customLegendAuthorityDataLabel = 'Blue cohorts: ' + Diagrams.form.data.datasets[1].label;
 
-      $("#customLegendExtractedDataLabel").text('Coloured cohorts: Extracted Data');
+      $("#customLegendExtractedDataLabel").text('Coloured cohorts: Extracted Data - ');
       $("#customLegendAuthorityDataLabel").text('Blue cohorts: ' + Diagrams.form.data.datasets[1].label);
 
     }
@@ -3417,18 +3420,32 @@ let RestClient = {
 
       }).catch(function(error) {
 
-      let result =
-        'ERROR:\r\n'  + '----------------------------------------\r\n' +
-        'MESSAGE: '     + error.message + '\r\n' +
-        'STACK: \r\n'   + error.stack + '\r\n\r\n' +
-        'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
-        'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
-        'STATUS: '      + error.status + '\r\n' +
-        'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
-        'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
-        'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+        // let result =
+        //   'ERROR:\r\n'  + '----------------------------------------\r\n' +
+        //   'MESSAGE: '     + error.message + '\r\n' +
+        //   'STACK: \r\n'   + error.stack + '\r\n\r\n' +
+        //   'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
+        //   'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
+        //   'STATUS: '      + error.status + '\r\n' +
+        //   'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
+        //   'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
+        //   'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+        //
+        // alert(result);
 
-      alert(result);
+        let message =
+          '<div>' +
+            '<p>' +
+              '<span>MESSAGE: ' + error.message + '</span><br><br>' +
+              '<span>STATUS: ' + error.status + '</span><br>' +
+              '<span>STATUS TEXT: ' + error.statusText + '</span><br><br>' +
+            '</p>' +
+          '<div>';
+
+        popupViewModel.isError = true;
+        popupViewModel.title = 'An error has occurred getting results';
+        popupViewModel.htmlMessage = message;
+        popupViewModel.show();
 
     }).finally(function() {
       // TODO: Decide about finally.
@@ -3445,69 +3462,6 @@ let RestClient = {
   getReportByPolygon: function(polygon) {
 
     let url = this.baseURL + '/report';
-
-    // let data =  {
-    //   polygon: {
-    //     geographic: {
-    //       type: "Polygon",
-    //       coordinates: [[[-2.283783, 53.54602], [-2.242584, 53.545204], [-2.248764, 53.512143], [-2.318802, 53.508876], [-2.283783, 53.54602]]]
-    //     },
-    //     projected: {
-    //       type: "Polygon",
-    //       coordinates: [[
-    //         [381293.28000357543, 405524.4198418361],
-    //         [384022.91574372555, 405423.53947639425],
-    //         [383600.5501975797, 401746.7627054498],
-    //         [378954.3333445564, 401401.8078244587],
-    //         [381293.28000357543, 405524.4198418361]
-    //       ]]
-    //     }
-    //   },
-    //   rasterExtract: {
-    //     envelope: {
-    //       minRow: 1564,
-    //       minCol: 2728,
-    //       maxRow: 1976,
-    //       maxCol: 3235
-    //     },
-    //     histogram: {
-    //       11: 18641,
-    //       13: 14676,
-    //       14: 1825,
-    //       15: 1779,
-    //       16: 199,
-    //       17: 1449,
-    //       21: 35,
-    //       23: 7,
-    //       24: 2181,
-    //       25: 478,
-    //       26: 1,
-    //       28: 383,
-    //       31: 2491,
-    //       33: 6553,
-    //       34: 5895,
-    //       35: 1852,
-    //       36: 44,
-    //       37: 378,
-    //       38: 1676,
-    //       41: 1635,
-    //       43: 4894,
-    //       44: 9426,
-    //       45: 4453,
-    //       46: 15,
-    //       47: 520,
-    //       48: 3581,
-    //       51: 4658,
-    //       53: 12297,
-    //       54: 21948,
-    //       55: 15365,
-    //       56: 149,
-    //       57: 721,
-    //       58: 2847,
-    //       totalCells: 143052
-    //     }
-    //   }
-    // };
 
     axios.post(url, {
       polygon: polygon
@@ -3536,18 +3490,33 @@ let RestClient = {
 
     }).catch(function(error) {
 
-      let result =
-        'ERROR:\r\n'  + '----------------------------------------\r\n' +
-        'MESSAGE: '     + error.message + '\r\n' +
-        'STACK: \r\n'   + error.stack + '\r\n\r\n' +
-        'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
-        'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
-        'STATUS: '      + error.status + '\r\n' +
-        'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
-        'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
-        'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+      // let result =
+      //   'ERROR:\r\n'  + '----------------------------------------\r\n' +
+      //   'MESSAGE: '     + error.message + '\r\n' +
+      //   'STACK: \r\n'   + error.stack + '\r\n\r\n' +
+      //   'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
+      //   'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
+      //   'STATUS: '      + error.status + '\r\n' +
+      //   'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
+      //   'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
+      //   'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
 
-      alert(result);
+      // alert(result);
+
+      let message =
+        '<div>' +
+          '<p>' +
+            '<span>MESSAGE: ' + error.message + '</span><br><br>' +
+            '<span>STATUS: ' + error.status + '</span><br>' +
+            '<span>STATUS TEXT: ' + error.statusText + '</span><br><br>' +
+          '</p>' +
+        '<div>';
+
+      popupViewModel.isError = true;
+      popupViewModel.title = 'An error has occurred while getting results';
+      popupViewModel.htmlMessage = message;
+      popupViewModel.show();
+
 
     }).finally(function() {
 
@@ -3565,28 +3534,83 @@ let RestClient = {
  *
  * @type {Vue} - A Vue object with the model and methods used in the view model.
  */
-// let spinnerViewModel = new Vue({
-//
-//   /**
-//    * The name of the view model.
-//    */
-//   el: '#spinnerVM',
-//
-//   /**
-//    * The model of the view model.
-//    */
-//   data: {
-//
-//     /**
-//      * Indicates whether the spinner is visible or not.
-//      */
-//     isVisible: false
-//
-//   }
-//
-// });
+let spinnerViewModel = new Vue({
 
+  /**
+   * The name of the view model.
+   */
+  el: '#spinnerVM',
 
+  /**
+   * The model of the view model.
+   */
+  data: {
+
+    /**
+     * Indicates whether the spinner is visible or not.
+     */
+    isVisible: false
+
+  }
+
+});
+
+/**
+ * The popupViewModel provides the data and logic to show popups on the web page.
+ *
+ * @type {Vue} - A Vue object with the model and methods used in the view model.
+ */
+let popupViewModel = new Vue({
+
+  /**
+   * The name of the view model.
+   */
+  el: '#popupVM',
+
+  /**
+   * The model of the view model.
+   */
+  data: {
+
+    /**
+     * The title of the popup.
+     */
+    title: '',
+
+    /**
+     * The message of the popup in html format.
+     */
+    htmlMessage: '<p><p>',
+
+    /**
+     * Indicates whether the popup displays an error or not.
+     */
+    isError: false
+
+  },
+
+  /**
+   * The methods of the view model.
+   */
+  methods: {
+
+    /**
+     * Shows the popup.
+     */
+    show() {
+      $('#popupVM').modal('show');
+    },
+
+    /**
+     * Hides the popup.
+     */
+    hide() {
+      $('#popupVM').modal('hide');
+    }
+
+  }
+
+});
 
 /**
  * The sidebarTabsViewModel provides the data and logic to toggle the sidebar itself or its contents.
