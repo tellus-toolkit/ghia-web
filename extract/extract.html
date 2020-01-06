@@ -482,6 +482,42 @@
 
                           </canvas>
 
+                          <div class="mt-3 w-100">
+                            <table class="table-bordered table-hover raster-value-table">
+<!--                              <thead style="background-color: #4285f4; color: white;">-->
+                              <thead>
+                              <tr>
+                                <th scope="col" class="raster-value-form">Form</th>
+                                <th scope="col" class="text-right">Extracted Data</th>
+                                <th scope="col" class="text-right">Authority</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td class="raster-value-form" v-text="legendTable.forms[0]"></td>
+<!--                                  <td class="raster-value-function" v-text="entry.function"></td>-->
+<!--                                  &lt;!&ndash;                              <td class="raster-value-count text-right" v-text="entry.count"></td>&ndash;&gt;-->
+<!--                                  <td class="raster-value-percentage text-right"-->
+<!--                                      v-bind:class="[entry.function === '' ? 'font-weight-bold' : '']"-->
+<!--                                      v-text="entry.percentage.toFixed(3)">-->
+<!--                                  </td>-->
+                                </tr>
+                                <tr>
+                                  <td class="raster-value-form" v-text="legendTable.forms[1]"></td>
+                                </tr>
+                                <tr>
+                                  <td class="raster-value-form" v-text="legendTable.forms[2]"></td>
+                                </tr>
+                                <tr>
+                                  <td class="raster-value-form" v-text="legendTable.forms[3]"></td>
+                                </tr>
+                                <tr>
+                                  <td class="raster-value-form" v-text="legendTable.forms[4]"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
                         </div>
 
                       </div>
@@ -565,7 +601,6 @@
 <!--<script type="text/javascript" src="../libs/leaflet-plugins/leaflet-pouch/leaflet.pouch.js"></script>-->
 <script type="text/javascript" src="../libs/leaflet-plugins/brunob-leaflet.fullscreen-1.6.0/Control.FullScreen.js"></script>
 <script type="text/javascript" src="../libs/leaflet-plugins/leaflet-editable-1.2.0/leaflet-editable.js"></script>
-
 
 <script type="text/javascript" src="../libs/chart-js-2.8.0/Chart.js"></script>
 <!--<script type="text/javascript" src="../libs/chart-js-2.8.0/Chart.min.js"></script>-->

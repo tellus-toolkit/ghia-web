@@ -836,8 +836,6 @@ let MapLayers = {
      */
     createLayer: function() {
 
-      // spinnerViewModel.isVisible = true;
-
       // Get the named basemap layer.
       let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
@@ -915,16 +913,12 @@ let MapLayers = {
         });
       });
 
-      //spinnerViewModel.isVisible = false;
-
     },
 
     /**
      * Renders the LSOA layer.
      */
     renderLayer: function() {
-
-      // spinnerViewModel.isVisible = true;
 
       // Get the current basemap. This is used to decide the symbology of the LSOA polygons.
       let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
@@ -937,8 +931,6 @@ let MapLayers = {
         });
 
       }
-
-      // spinnerViewModel.isVisible = false;
 
     },
 
@@ -1368,8 +1360,6 @@ let MapLayers = {
      */
     createLayer: function() {
 
-      // spinnerViewModel.isVisible = true;
-
       // Get the named basemap layer.
       let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
@@ -1445,8 +1435,6 @@ let MapLayers = {
           sticky: true
         });
       });
-
-      // spinnerViewModel.isVisible = false;
 
     },
 
@@ -1895,9 +1883,6 @@ let MapLayers = {
      * Creates the queried polygons layer.
      */
     createLayer: function() {
-
-      // TODO: RESIN - Check next line.
-      // spinnerViewModel.isVisible = true;
 
       // Get the named basemap layer.
       let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
@@ -2392,9 +2377,6 @@ let MapLayers = {
      */
     createLayer: function() {
 
-      // TODO: RESIN - Check next line.
-      // spinnerViewModel.isVisible = true;
-
       // Get the named basemap layer.
       let namedBaseMap = toggleBaseMapViewModel.currentBaseMap;
 
@@ -2416,19 +2398,6 @@ let MapLayers = {
       // Add the layer in to the map and make sure it is visible.
       this.mapLayer.addTo(Spatial.map);
       this.mapLayer.bringToFront();
-
-      // Loop through all the internal layers.
-      // Create the feature to internal layer dictionary and bind the layer tooltips.
-      // this.mapLayer.eachLayer(function(layer) {
-      //   MapLayers.lsoa.featureToInternalLayerDictionary[layer.feature.properties.lsoa11cd] = layer._leaflet_id;
-      //
-      //   layer.bindTooltip('', {
-      //     // TODO: RESIN - Check here the final tooltip options.
-      //     direction: 'top', // TODO: RESIN - APPVAR
-      //     offset: [0, -30], // TODO: RESIN - APPVAR
-      //     sticky: true
-      //   });
-      // });
 
     },
 
@@ -2556,7 +2525,7 @@ let Spatial = {
    */
   initializeMap: function() {
 
-    //spinnerViewModel.isVisible = true;
+    spinnerViewModel.isVisible = true;
 
     Spatial.map = L.map('map', {
       center: Spatial.mapOptions.center,
@@ -2564,13 +2533,6 @@ let Spatial = {
       minZoom: Spatial.mapOptions.minZoom,
       maxZoom: Spatial.mapOptions.maxZoom,
       doubleClickZoom: false,
-      // fullscreenControl: true,
-      // fullscreenControlOptions: {
-      //   position: 'topleft',
-      //   // content: '<i class="material-icons mt-1">fullscreen</i>',
-      //   content: '<i class="fas fa-expand fa-2x" style="margin: 3px 0 0 0;"></i>',
-      //   forceSeparateButton: true
-      // },
       editable: true
     });
 
@@ -2621,8 +2583,9 @@ let Spatial = {
     Spatial.map.attributionControl.setPosition('bottomleft');
 
     // Create the sidebar and add it on the map.
-    // TODO: RESIN
-    Spatial.sidebar = L.control.sidebar(Spatial.Members.sidebarName, { position: Spatial.Members.sidebarPosition });
+    Spatial.sidebar = L.control.sidebar(
+      Spatial.Members.sidebarName, { position: Spatial.Members.sidebarPosition }
+    );
     Spatial.sidebar.addTo(Spatial.map);
 
     BaseMapLayers.setNamedBasemapLayers();
@@ -2638,7 +2601,7 @@ let Spatial = {
 
     Spatial.setInitialBaseMapLayer();
 
-    // spinnerViewModel.isVisible = false;
+    spinnerViewModel.isVisible = false;
 
   },
 
@@ -3362,20 +3325,32 @@ let RestClient = {
 
       }).catch(function(error) {
 
-        // TODO: Change this Alert !!!
+        // let result =
+        //   'ERROR:\r\n'  + '----------------------------------------\r\n' +
+        //   'MESSAGE: '     + error.message + '\r\n' +
+        //   'STACK: \r\n'   + error.stack + '\r\n\r\n' +
+        //   'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
+        //   'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
+        //   'STATUS: '      + error.status + '\r\n' +
+        //   'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
+        //   'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
+        //   'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+        //
+        // alert(result);
 
-        let result =
-          'ERROR:\r\n'  + '----------------------------------------\r\n' +
-          'MESSAGE: '     + error.message + '\r\n' +
-          'STACK: \r\n'   + error.stack + '\r\n\r\n' +
-          'REQUEST: \r\n' + JSON.stringify(error.request) + '\r\n\r\n' +
-          'CONFIG: \r\n'  + JSON.stringify(error.config) + '\r\n\r\n' +
-          'STATUS: '      + error.status + '\r\n' +
-          'STATUS TEXT: ' + error.statusText + '\r\n\r\n' +
-          'HEADERS: \r\n' + JSON.stringify(error.headers) + '\r\n\r\n' +
-          'DATA: \r\n'    + JSON.stringify(error.data) + '\r\n';
+        let message =
+          '<div>' +
+            '<p>' +
+              '<span>MESSAGE: ' + error.message + '</span><br><br>' +
+              '<span>STATUS: ' + error.status + '</span><br>' +
+              '<span>STATUS TEXT: ' + error.statusText + '</span><br><br>' +
+            '</p>' +
+          '<div>';
 
-        alert(result);
+        popupViewModel.isError = true;
+        popupViewModel.title = 'An error has occurred getting results';
+        popupViewModel.htmlMessage = message;
+        popupViewModel.show();
 
       }).finally(function() {
         // TODO: Decide about finally.
@@ -3900,12 +3875,16 @@ let queryStateViewModel = new Vue({
 
         Spatial.map.editTools.startMarker();
 
+        spinnerViewModel.isVisible = true;
+
         MapLayers.wards.removeLayer();
         MapLayers.lsoa.renderLayer();
         MapLayers.lsoa.addLayer();
         MapLayers.queriedPolygons.mapLayer.bringToFront();
         MapLayers.queriedCentroids.mapLayer.bringToFront();
         MapLayers.greaterManchesterOutline.mapLayer.bringToFront();
+
+        spinnerViewModel.isVisible = false;
       }
       else if (state === 'wards') {
         if (Spatial.map.editTools.drawing()) {
@@ -3914,12 +3893,16 @@ let queryStateViewModel = new Vue({
 
         Spatial.map.editTools.startMarker();
 
+        spinnerViewModel.isVisible = true;
+
         MapLayers.lsoa.removeLayer();
         MapLayers.wards.renderLayer();
         MapLayers.wards.addLayer();
         MapLayers.queriedPolygons.mapLayer.bringToFront();
         MapLayers.queriedCentroids.mapLayer.bringToFront();
         MapLayers.greaterManchesterOutline.mapLayer.bringToFront();
+
+        spinnerViewModel.isVisible = false;
       }
 
     }
@@ -4139,6 +4122,15 @@ let diagramViewModel = new Vue({
           labels: ['', '']
         }
       }
+    },
+
+    /**
+     * The table displayed under the diagram as part of a legend.
+     */
+    legendTable: {
+      forms: ['Built', 'Water', 'Grasses', 'Forbs and shrubs', 'Tree canopy'],
+      authorityData: [-1, -1, -1, -1, -1],
+      extractedData: [-1, -1, -1, -1, -1]
     },
 
     /**
