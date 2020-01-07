@@ -8,121 +8,17 @@ body {
   overflow-y: hidden;
 }
 
-/*.xs-brand-heading {*/
-  /*font-size: 0.75rem;*/
-/*}*/
-
-/*.sm-brand-heading {*/
-  /*display: none;*/
-  /*font-size: 1.00rem;*/
-/*}*/
-
-/*.md-brand-heading {*/
-  /*display: none;*/
-/*}*/
-
-/*@media only screen and (max-width: 320px) {*/
-  /*.website-logo {*/
-    /*display: none;*/
-  /*}*/
-/*}*/
-
-/*@media only screen and (min-width: 400px) {*/
-  /*.xs-brand-heading {*/
-    /*display: none;*/
-  /*}*/
-/*}*/
-
-/*@media only screen and (min-width: 400px) and (max-width: 459px) {*/
-  /*.sm-brand-heading {*/
-    /*display: inline-block;*/
-  /*}*/
-/*}*/
-
-/*@media only screen and (min-width: 460px) and (max-width: 575px) {*/
-  /*.md-brand-heading {*/
-    /*display: inline-block;*/
-  /*}*/
-/*}*/
-
 .page-container {
-  /*background-color: #d62d20;*/
   position: relative;
   padding: 56px 0 0 0;
   margin: 0;
   height: 100%;
-  /*height: calc(100% - 56px);*/
   min-height: 100%;
-  /*min-height: calc(100% - 56px);*/
   overflow-x: hidden;
   overflow-y: hidden;
 }
-
-.radar-container-vm {
-  /*background-color: #027fb8;*/
-  position: relative;
-  padding: 10px 10px 10px 10px;
-  height: 100%;
-  min-height: 100%;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.radar-container {
-  position: relative;
-  margin: auto;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-
-  /*height: 70vh;*/
-  /*width: 70vw;*/
-  /*height: 70%;*/
-  /*width: 70%;*/
-  /*height: calc(100vh - 180px);*/
-  /*width: 70vw;*/
-
-  height: calc(100% - 40px);
-  width: 100%;
-}
-
-/*.nuts3-profile-vm {*/
-  /*background-color: #027fb8;*/
-  /*position: relative;*/
-  /*padding: 10px 10px 10px 10px;*/
-  /*height: 100%;*/
-  /*min-height: 100%;*/
-  /*width: 100%;*/
-  /*max-width: 100%;*/
-  /*overflow-x: hidden;*/
-  /*overflow-y: hidden;*/
-/*}*/
-
-
-/*#radar-diagram {*/
-  /*position: relative;*/
-  /*!*width: 100%;*!*/
-  /*!*height: 100%;*!*/
-  /*!*height: calc(100vh - 180px);*!*/
-  /*!*width: 70vw;*!*/
-  /*height: calc(100% - 40px);*/
-  /*width: 100%;*/
-  /*!*top: 0;*!*/
-/*}*/
-
-/*#radar-diagram {*/
-  /*position: absolute;*/
-  /*top: 20px;*/
-  /*right: 20px;*/
-  /*bottom: 20px;*/
-  /*left: 20px;*/
-  /*!*width: 100%;*!*/
-/*}*/
 
 .map-container {
-  /*background-color: #027fb8;*/
   position: relative;
   padding-left: 0;
   padding-right: 0;
@@ -143,14 +39,27 @@ body {
 }
 
 #map {
-  /*background-color: #ffa000;*/
-  /*background-color: #282828;*/
   background-color: #3d3d3d;
   height: 100%;
   min-height: 100%;
   width: 100%;
 }
 
+.ver-scrollbars {
+  overflow-y: auto;
+}
+
+.v-allign-middle {
+  vertical-align: middle;
+}
+
+.ghia-hor-sep {
+  margin: 20px 0 0 0;
+}
+
+.ghia-ver-sep {
+  margin: 0 10px 0 0;
+}
 
 
 /*
@@ -158,14 +67,6 @@ body {
  *    Basemap Buttons Menu
  *  ================================================================================
  */
-
-/*#toggleBaseMapButtonsVM {*/
-  /*bottom: 0px;*/
-  /*left: 0px;*/
-  /*margin: 0px 0px 12px 12px;*/
-  /*position: absolute;*/
-  /*z-index: 980;*/
-/*}*/
 
 #toggleBaseMapButtonsVM {
   left: 0;
@@ -194,62 +95,12 @@ body {
 }
 
 
-
-
-
-.ver-scrollbars {
-  overflow-y: auto;
-}
-
-.btn-typology-help {
-  margin-bottom: 0;
-  height: 30px;
-  padding: 2px 3px 0 3px;
-}
-
-.btn-typology-help-raised {
-  margin-bottom: 0;
-  height: 30px;
-  padding: 3px 3px 0 3px;
-}
-
-.info-icon {
-  margin-left: 20px;
-}
-
-#typology-results-table {
-  margin-bottom: 0;
-}
-
-.indicator-details-panel {
-  padding: 0.75rem;
-}
-
-
-
-
-.crt-row {
-  /*margin: 10px 0 0 0;*/
-  /*margin: 10px;*/
-}
-
-.crt-row-internal {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.crt-hor-sep {
-  margin: 20px 0 0 0;
-}
-
-.crt-ver-sep {
-  margin: 0 10px 0 0;
-}
-
-/* Material Icons */
-.crt-material-icons {
+/*
+ *  ================================================================================
+ *    GHIA Material Icons
+ *  ================================================================================
+ */
+.ghia-material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
@@ -267,77 +118,33 @@ body {
 
 /* Rules for sizing the icon. */
 .material-icons.md-875-rem { font-size: .875rem; }
+.material-icons.md-16 { font-size: 16px; }
 .material-icons.md-18 { font-size: 18px; }
+.material-icons.md-20 { font-size: 20px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
-.crt-material-icons.md-18 { font-size: 18px; }
-.crt-material-icons.md-24 { font-size: 24px; }
-.crt-material-icons.md-36 { font-size: 36px; }
-.crt-material-icons.md-48 { font-size: 48px; }
+.ghia-material-icons.md-16 { font-size: 16px; }
+.ghia-material-icons.md-18 { font-size: 18px; }
+.ghia-material-icons.md-20 { font-size: 20px; }
+.ghia-material-icons.md-24 { font-size: 24px; }
+.ghia-material-icons.md-36 { font-size: 36px; }
+.ghia-material-icons.md-48 { font-size: 48px; }
 
 /* Rules for using icons as black on a light background. */
 .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
 .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
-.crt-material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-.crt-material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.ghia-material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.ghia-material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
 /* Rules for using icons as white on a dark background. */
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
-.crt-material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.crt-material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.ghia-material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.ghia-material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
 .material-icons.orange600 { color: #FB8C00; }
-.crt-material-icons.orange600 { color: #FB8C00; }
-
-
-
-.indicators-container {
-  margin-left: 10px;
-}
-
-.ind-table {
-  margin: -10px;
-
-}
-
-.ind-index {
-  padding-left: 3px;
-  padding-right: 3px;
-}
-
-.ind-name {
-  padding-left: 3px;
-  padding-right: 3px;
-}
-
-/* TODO: RESIN - Perhaps remove this one? */
-.ind-tooltip {
-  /*.875rem;*/
-
-}
-
-.ind-value {
-  padding-left: 3px;
-  padding-right: 3px;
-  width: 60px;
-}
-
-.ind-unit {
-  padding-left: 3px;
-  padding-right: 3px;
-  width: 40px;
-}
-
-.typology-class-header {
-  margin-top: -21px;
-}
-
-.group-toggle-link {
-  font-size: 1rem;
-  margin-left: 5px;
-}
+.ghia-material-icons.orange600 { color: #FB8C00; }
 
 
 /*
@@ -364,29 +171,6 @@ body {
   opacity: 1.0;
 }
 
-
-/*
- *  ================================================================================
- *    Colours
- *  ================================================================================
- */
-.row-gray {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.row-indigo {
-  background-color: rgba(63, 81, 181, 0.1); /*#c9ceea*/
-}
-
-/*.yellow {*/
-/*color: #ff9c00;*/
-/*}*/
-
-/*.title {*/
-/*font-weight: bold;*/
-/*text-shadow: -1px 0 #696969, 0 1px #696969, 1px 0 #696969, 0 -1px #696969;*/
-/*!*text-shadow: -1px 0 #808080, 0 1px #808080, 1px 0 #808080, 0 -1px #808080;*!*/
-/*}*/
 
 /*
  *  ================================================================================
@@ -429,10 +213,6 @@ body {
   top: 56px;
   bottom: 0;
   width: 100%;
-  /*height: 100%; !* TODO: RESIN - AAAA *!*/
-  /*height: calc(100% - 72px);*/
-  /*min-height: 100%; !* TODO: RESIN - AAAA *!*/
-  /*min-height: calc(100% - 72px);*/
   overflow: hidden;
   z-index: 2000;
 }
@@ -444,8 +224,6 @@ body {
 @media (min-width: 768px) {
   .sidebar {
     width: 590px;
-    /*top: 56px; !* OVERRIDE *!*/
-    /*bottom: 0px; !* OVERRIDE *!*/
     transition: width 250ms; /* OVERRIDE */
   }
 }
@@ -465,7 +243,6 @@ body {
 @media (min-width: 1200px) {
   .sidebar {
     width: 590px;
-    /*width: 580px;*/
   }
 }
 
@@ -532,7 +309,21 @@ body {
 .sidebar-tabs > ul > li.active {
   color: #fff;
   /*background-color: #337ab7; !*#0074d9;*!*/
-  background-color: #f44336; /*#d9534f;*/ /*#0074d9;*/
+  /*background-color: #f44336; !*#d9534f;*! !*#0074d9;*!*/
+
+  /*background-color: #007bff; !* Blue *!*/
+  /*background-color: #6610f2; !* Indigo *!*/
+  /*background-color: #6f42c1; !* Purple *!*/
+  /*background-color: #e83e8c; !* Pink *!*/
+  /*background-color: #dc3545; !* Red *!*/
+  /*background-color: #fd7e14; !* Orange *!*/
+  background-color: #ffc107; /* Yellow */
+  /*background-color: #28a745; !* Green *!*/
+  /*background-color: #20c997; !* Teal *!*/
+  /*background-color: #17a2b8; !* Cyan *!*/
+  /*background-color: #6c757d; !* Gray *!*/
+  /*background-color: #343a40; !* Gray Dark *!*/
+  /*background-color: #6c757d; !* Secondary *!*/
 }
 
 .sidebar-tabs > li.disabled,
@@ -571,7 +362,7 @@ body {
   bottom: 0;
   /*background-color: rgba(255, 255, 255, 0.95);*/
   background-color: #fff;
-  /*background-color: #febf00;*/  /* TODO: RESIN - AAAA */
+  /*background-color: #febf00;*/
   /*margin: 10px;*/
   min-height: 100%;
   overflow-x: hidden;
@@ -598,12 +389,10 @@ body {
   display: none;
   left: 0;
   right: 0;
-  min-height: 100%; /* TODO: RESIN - AAAA */
-  overflow-x: hidden; /* TODO: RESIN - AAAA */
-  overflow-y: hidden; /* TODO: RESIN - AAAA */
-  padding: 10px 10px 10px 10px; /* TODO: RESIN - Check if these settings need to change */
-  /*padding: 15px 15px 15px 15px; !* TODO: RESIN - Check if these settings need to change *!*/
-  /*padding: 20px 20px 20px 20px; !* TODO: RESIN - Check if these settings need to change *!*/
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 10px 10px 10px 10px;
 }
 
 .sidebar-pane.active {
@@ -774,77 +563,17 @@ body {
 }
 
 
-
-
 /*
  *  ================================================================================
  *    New Sidebar Classes
  *  ================================================================================
  */
-/*.sidebar-pane > .pane-container {*/
 .pane-container {
   min-height: 100%;
-  overflow-x: hidden; /* TODO: RESIN - AAAA */
-  overflow-y: hidden; /* TODO: RESIN - AAAA */
+  overflow-x: hidden;
+  overflow-y: hidden;
   padding: 5px 5px 5px 5px;
 }
-
-
-
-/*
- *  ================================================================================
- *    Sidebar Card
- *  ================================================================================
- */
-/*.sidebar-card .card-header {*/
-/*padding: 1rem;*/
-/*background-color: transparent;*/
-/*}*/
-
-/*.sidebar-card > .card-body {*/
-  /*padding: 1.0rem;*/
-/*}*/
-
-/*.sidebar-card > .card-body > .table th, .table td {*/
-  /*padding: 0.75rem 0 0.75rem 0.50rem*/
-/*}*/
-
-/*.sidebar-card > .card-body > .table th, .table td > .colour-narrow-td {*/
-/*padding-left: 0;*/
-/*padding-right: 0;*/
-/*}*/
-
-
-/*
- *  ================================================================================
- *    Sidebar Table
- *  ================================================================================
- */
-
-/* Used to define very narrow table colums */
-.narrow-td {
-  width: 20px;
-}
-
-.map-polygon-colour-rect {
-  border-radius: 2px;
-  height: 20px;
-  width: 20px;
-  margin: 0 0 0 5px;
-}
-
-.legend-label {
-  margin-bottom: 0;
-}
-
-.clickable-label {
-  cursor: pointer;
-}
-
-/*.help {*/
-  /*cursor: help;*/
-/*}*/
-
 
 
 /*

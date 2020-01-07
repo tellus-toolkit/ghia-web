@@ -427,7 +427,6 @@ let BaseMapLayers = {
  * The MapLayers object provides properties and methods related to map layers.
  */
 let MapLayers = {
-  // TODO: Update the documentation.
 
   /**
    * The LSOA polygons layer
@@ -777,12 +776,12 @@ let MapLayers = {
     featureToInternalLayerDictionary: {},
 
     /**
-     * The NUTS3 feature selected by the user.
+     * The LSOA feature selected by the user.
      */
     selectedFeature: null,
 
     /**
-     * The internal layer of the selected NUTS3 feature.
+     * The internal layer of the selected LSOA feature.
      */
     selectedInternalLayer: null,
 
@@ -791,31 +790,31 @@ let MapLayers = {
      */
     classes: {
       '1': {
-        class: 1, visible: true, name: 'Younger Low Income'
+        class: 1, visible: true, name: 'Younger - Low Income'
       },
       '2': {
-        class: 2, visible: true, name: 'Younger Medium Income'
+        class: 2, visible: true, name: 'Younger - Medium Income'
       },
       '3': {
-        class: 3, visible: true, name: 'Younger High Income'
+        class: 3, visible: true, name: 'Younger - High Income'
       },
       '4': {
-        class: 4, visible: true, name: 'Middle Low Income'
+        class: 4, visible: true, name: 'Middle - Low Income'
       },
       '5': {
-        class: 5, visible: true, name: 'Middle Medium Income'
+        class: 5, visible: true, name: 'Middle - Medium Income'
       },
       '6': {
-        class: 6, visible: true, name: 'Middle High Income'
+        class: 6, visible: true, name: 'Middle - High Income'
       },
       '7': {
-        class: 7, visible: true, name: 'Older Low Income'
+        class: 7, visible: true, name: 'Older - Low Income'
       },
       '8': {
-        class: 8, visible: true, name: 'Older Middle Income'
+        class: 8, visible: true, name: 'Older - Medium Income'
       },
       '9': {
-        class: 9, visible: true, name: 'Older Higher Income'
+        class: 9, visible: true, name: 'Older - High Income'
       }
     },
 
@@ -927,7 +926,43 @@ let MapLayers = {
       //   });
       // });
 
-    }
+    },
+
+    /**
+     * Renders the LSOA layer.
+     */
+    renderLayer: function() {
+
+      // Get the current basemap. This is used to decide the symbology of the LSOA polygons.
+      let currentBaseMap = toggleBaseMapViewModel.currentBaseMap;
+
+      // Check whether LSOA features exist or not.
+      if (this.geoJSON !== undefined || this.geoJSON !== null) {
+
+        this.mapLayer.eachLayer(function(layer) {
+
+          let feature = layer.feature;
+
+          if (feature.properties.class !== 0) {
+            let isVisible = MapLayers.lsoa.classes[feature.properties.class.toString()].visible;
+
+            if (isVisible) {
+              layer.setStyle(MapLayers.lsoa.namedBasemapLayers[currentBaseMap].pc10[feature.properties.class]);
+            }
+            else {
+              layer.setStyle(MapLayers.lsoa.namedBasemapLayers[currentBaseMap].defaultStyle);
+            }
+          }
+          else {
+            layer.setStyle(MapLayers.lsoa.namedBasemapLayers[currentBaseMap].defaultStyle);
+          }
+
+          //layer.setStyle(MapLayers.lsoa.namedBasemapLayers[currentBaseMap].defaultStyle);
+        });
+
+      }
+
+    },
 
   }
 
@@ -994,10 +1029,10 @@ let Spatial = {
     Spatial.map.attributionControl.setPosition('bottomleft');
 
     // Create the sidebar and add it on the map.
-    // Spatial.sidebar = L.control.sidebar(
-    //   Spatial.Members.sidebarName, { position: Spatial.Members.sidebarPosition }
-    // );
-    // Spatial.sidebar.addTo(Spatial.map);
+    Spatial.sidebar = L.control.sidebar(
+      Spatial.Members.sidebarName, { position: Spatial.Members.sidebarPosition }
+    );
+    Spatial.sidebar.addTo(Spatial.map);
 
     BaseMapLayers.setNamedBasemapLayers();
     BaseMapLayers.createBaseMapLayers();
@@ -1171,6 +1206,127 @@ let toggleBaseMapViewModel = new Vue({
 
 });
 
+/**
+ * The mapRendererSetupViewModel provides the data and logic to select how the map will be rendered based on the
+ * income and age stratification and the percentage of health improvement.
+ *
+ * @type {Vue} - A Vue object with the model and methods used in the view model.
+ */
+let mapRendererSetupViewModel = new Vue({
+
+  /**
+   * The name of the view model.
+   */
+  el: '#mapRendererSetupVM',
+
+  /**
+   * The model of the view model.
+   */
+  data: {
+
+    /**
+     * The list of classes of the stratification of Greater Manchester.
+     */
+    stratification: [
+      {
+        value: 0,
+        name: 'All classes'
+      },
+      {
+        value: 1,
+        name: 'Younger - Low Income'
+      },
+      {
+        value: 2,
+        name: 'Younger - Medium Icome'
+      },
+      {
+        value: 3,
+        name: 'Younger - High Income'
+      },
+      {
+        value: 4,
+        name: 'Middle - Low Income'
+      },
+      {
+        value: 5,
+        name: 'Middle - Medium Income'
+      },
+      {
+        value: 6,
+        name: 'Middle - High Income'
+      },
+      {
+        value: 7,
+        name: 'Older - Low Income'
+      },
+      {
+        value: 8,
+        name: 'Older - Medium Income'
+      },
+      {
+        value: 9,
+        name: 'Older - High Income'
+      }
+    ],
+
+    /**
+     * The selected stratification class.
+     */
+    selectedClassValue: 0,
+
+    /**
+     * The selected improvement value.
+     */
+    selectedImprovementValue: 0
+
+  },
+
+  /**
+   * The computed properties of the model of the view model.
+   */
+  computed: {
+
+    /**
+     * Gets the selected stratification class.
+     *
+     * @returns {T} - The selected stratification class object.
+     */
+    selectedStratificationClass: function() {
+      return this.stratification.find(c => c.value === this.selectedClassValue);
+    },
+
+    /**
+     * Gets the selected improvement text.
+     *
+     * @returns {string} - The text to show.
+     */
+    selectedImprovementText: function() {
+      return this.selectedImprovementValue.toString() + "%";
+    }
+
+  },
+
+  /**
+   * The methods of the view model.
+   */
+  methods: {
+
+    /**
+     * Updates the map using the relevant renderer.
+     */
+    updateMap() {
+
+      alert('Update Map- Class: ' + this.selectedStratificationClass.name + " Imrrovement: " + this.selectedImprovementValue);
+
+    }
+
+  }
+
+});
+
+
+
 //
 // ================================================================================
 
@@ -1185,7 +1341,7 @@ let toggleBaseMapViewModel = new Vue({
 
 Spatial.initializeMap();
 
-//Spatial.sidebar.open('map-controls');
+Spatial.sidebar.open('map-controls');
 
 //
 // ================================================================================
