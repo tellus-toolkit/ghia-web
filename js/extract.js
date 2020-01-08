@@ -882,9 +882,8 @@ let MapLayers = {
              * Raised when the mouse is going out of a feature.
              */
             mouseout: function() {
-              // MapLayers.nuts3.hideTooltip(layer);
+              // MapLayers.lsoa.hideTooltip(layer);
               MapLayers.lsoa.resetFeatureStyle(feature, layer);
-              // MapLayers.nuts3.reselectNuts3();
             },
 
             /**
@@ -892,7 +891,6 @@ let MapLayers = {
              */
             click: function() {
               MapLayers.lsoa.selectFeature(feature);
-              // MapLayers.lsoa.updateInfo(feature);
             }
 
           });
@@ -1398,7 +1396,7 @@ let MapLayers = {
              * Raised when the mouse is over a feature.
              */
             mouseover: function() {
-              //MapLayers.lsoa.showTooltip(layer);
+              //MapLayers.wards.showTooltip(layer);
               MapLayers.wards.highlightFeature(feature, layer);
             },
 
@@ -1406,9 +1404,8 @@ let MapLayers = {
              * Raised when the mouse is going out of a feature.
              */
             mouseout: function() {
-              // MapLayers.nuts3.hideTooltip(layer);
+              // MapLayers.wards.hideTooltip(layer);
               MapLayers.wards.resetFeatureStyle(feature, layer);
-              // MapLayers.nuts3.reselectNuts3();
             },
 
             /**
@@ -1416,7 +1413,6 @@ let MapLayers = {
              */
             click: function() {
               MapLayers.wards.selectFeature(feature);
-              // MapLayers.lsoa.updateInfo(feature);
             }
 
           });
